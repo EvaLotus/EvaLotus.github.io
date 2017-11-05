@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="效率," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Eva's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="自从入了极简主义的坑，觉得自己开始无欲无求了。极简主义就是寻找生活的最优解，作为了一个专业的web 开发者，每天要花很多时间在开发工作上，事先花点时间打造一个高效舒适的开发环境，会让你的开发效率如飞，以下是我的装机必备清单。">
+<meta name="keywords" content="效率">
+<meta property="og:type" content="article">
+<meta property="og:title" content="web开发提升效率">
+<meta property="og:url" content="https://evalotus.github.io/2017/07/23/web开发提升效率/index.html">
+<meta property="og:site_name" content="Eva&#39;s Blog">
+<meta property="og:description" content="自从入了极简主义的坑，觉得自己开始无欲无求了。极简主义就是寻找生活的最优解，作为了一个专业的web 开发者，每天要花很多时间在开发工作上，事先花点时间打造一个高效舒适的开发环境，会让你的开发效率如飞，以下是我的装机必备清单。">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-07-23T07:48:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="web开发提升效率">
+<meta name="twitter:description" content="自从入了极简主义的坑，觉得自己开始无欲无求了。极简主义就是寻找生活的最优解，作为了一个专业的web 开发者，每天要花很多时间在开发工作上，事先花点时间打造一个高效舒适的开发环境，会让你的开发效率如飞，以下是我的装机必备清单。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://evalotus.github.io/2017/07/23/web开发提升效率/"/>
+
+
+
+
+
+  <title>web开发提升效率 | Eva's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Eva's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">进一寸有一寸的欢喜</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://evalotus.github.io/2017/07/23/web开发提升效率/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="EvaLotus">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eva's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">web开发提升效率</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-23T15:12:42+08:00">
+                2017-07-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>自从入了极简主义的坑，觉得自己开始无欲无求了。极简主义就是寻找生活的最优解，作为了一个专业的web 开发者，每天要花很多时间在开发工作上，事先花点时间打造一个高效舒适的开发环境，会让你的开发效率如飞，以下是我的装机必备清单。</p>
+<a id="more"></a>
+<p>有道云笔记</p>
+<p>mac</p>
+<h2 id="iterm-2"><a href="#iterm-2" class="headerlink" title="iterm 2"></a>iterm 2</h2><p>修改iterm2主题</p>
+<p>下载<a href="http://iterm2colorschemes.com" target="_blank" rel="external">配色方案</a><br>cmd+i选择color，选择color preset，import 3024 night ,text把字体改为36px,window修改transparent。重启iterm 2 ，记得在general中选择把当前风格设置为默认的</p>
+<p>双击选中，三击选中整行，选中即复制</p>
+<p>cmd+t 新建tab</p>
+<p>cmd+w 关闭tab</p>
+<p>cmd+arrow 左右切换tab</p>
+<p>cmd+/ 会显示你的鼠标</p>
+<p>cmd+R 清屏</p>
+<p>cmd+enter进入/退出全屏模式</p>
+<p>查找：command + f</p>
+<p>分屏</p>
+<p>垂直分屏：command + d</p>
+<p>水平分屏：command + shift + d</p>
+<p>切换屏幕：command + option + 方向键 command + [ 或 command + ]</p>
+<p>查看历史命令：command + ;</p>
+<p>查看剪贴板历史：command + shift + h</p>
+<p>ctrl + u 清空当前行，无论光标在什么位置</p>
+<h2 id="Browser"><a href="#Browser" class="headerlink" title="Browser"></a>Browser</h2><p>chrome extension：</p>
+<ul>
+<li>React Dev Tools:react必备</li>
+<li>FE助手：包括color picker，json format，ajax等</li>
+<li>Postman：发送request</li>
+<li>Page load time（计算网页load时间）</li>
+<li>jsonViewer</li>
+<li>Page Ruler</li>
+<li>Livereload(sublime中也装)</li>
+</ul>
+<p>firefox,safari,ie</p>
+<h2 id="IDE-amp-编辑器"><a href="#IDE-amp-编辑器" class="headerlink" title="IDE &amp; 编辑器"></a>IDE &amp; 编辑器</h2><h3 id="sublime"><a href="#sublime" class="headerlink" title="sublime"></a>sublime</h3><h3 id="安装package-control"><a href="#安装package-control" class="headerlink" title="安装package control"></a>安装package control</h3><p>从菜单 View -&gt;Show Console 或者 ctrl + ~ 快捷键，调出 console。将以下 Python 代码粘贴进去并 enter 执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import urllib.request,os; pf = &apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), &apos;wb&apos;).write(urllib.request.urlopen( &apos;http://sublime.wbond.net/&apos; + pf.replace(&apos; &apos;,&apos;%20&apos;)).read())</div></pre></td></tr></table></figure></p>
+<p>解决utf-8问题</p>
+<p>sublime plugin</p>
+<ol>
+<li>【emmet】</li>
+<li>【html-css-js prettify】格式化代码</li>
+<li>【snippet】查看snippet中的快捷键并添加自己的snippet</li>
+<li>【image2Base64】 </li>
+<li>【sass】</li>
+<li>【saveOnBuild】</li>
+<li>【autoprefixer】：在css中直接使用ctrl+alt+shift+p即可autoprefixer</li>
+<li>【sublime server】可以不需要hbuilder了：右键view in sublime server</li>
+<li>【sideBarEnhance】</li>
+<li>【git】ctrl+shift+p然后输命令</li>
+<li>【livereload】实现自动刷新：只有静态服务器时可以实现自刷新</li>
+</ol>
+<ul>
+<li>sublime中package control安装的livereload有问题，在github中下载后可以使用，删掉ST3-livereload</li>
+<li>在chrome中安装插件livereload，点击右侧开启</li>
+</ul>
+<ol>
+<li>【bootstrap 3 snippet】</li>
+<li>【gulp】在control+shift+p可以运行各种gulp</li>
+<li>【DocBlockr】代码注释生成</li>
+<li>【tomorrow color scheme】直接preferences-&gt;color scheme选择tomorrow night</li>
+<li>【markdown preview】</li>
+<li>【autoFilename】路径自动补全</li>
+</ol>
+<p>用dropbox来同步不同机器里的sublime text设置</p>
+<p>From<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/</div><div class="line">mkdir ~/Dropbox/Sublime</div><div class="line">mv User ~/Dropbox/Sublime/</div><div class="line">ln -s ~/Dropbox/Sublime/User</div></pre></td></tr></table></figure></p>
+<p>To</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/</div><div class="line">rm -r User</div><div class="line">ln -s ~/Dropbox/Sublime/User`</div></pre></td></tr></table></figure>
+<h3 id="vs-code"><a href="#vs-code" class="headerlink" title="vs code"></a>vs code</h3><h2 id="homebrew：mac下的包管理工具"><a href="#homebrew：mac下的包管理工具" class="headerlink" title="homebrew：mac下的包管理工具"></a>homebrew：mac下的包管理工具</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">brew install git</div><div class="line">brew install node</div><div class="line">gem install sass</div><div class="line">brew update</div><div class="line">brew install mongo</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org //淘宝镜像</div><div class="line">npm install nodemon -g//node 开发和部署工具</div><div class="line">npm install pm2 -g</div><div class="line"></div><div class="line"></div><div class="line">//安装我需要的常用npm</div><div class="line">npm i -g bower eslint express generator-react-webpack generator-webapp generator-angular generator-express generator-react-fullstack gulp hexo-cli sass swig webpack yo yarn</div><div class="line">//分别是：静态包管理bower，语法校验eslint，node 服务器express，yoeman常用的generator，静态博客hexo，sass，后端模版swig，webpack，yoeman，yarn之后可能使用yarn替代npm</div><div class="line"></div><div class="line">npm update -g//全局更新所有过时的</div><div class="line">npm outdated -g//列出所有过时的</div><div class="line"></div><div class="line"></div><div class="line">yo react-webpack/express/reacr-fullstack//生成不同模版</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd /d/workspace/demo</div><div class="line">npm init//生成package.json</div><div class="line">npm install express --save //安装express</div></pre></td></tr></table></figure>
+<h2 id="VMWare，Axure，IDE，Juniper，NptePad-Hbuilder-好压-winscp-beyond-compare"><a href="#VMWare，Axure，IDE，Juniper，NptePad-Hbuilder-好压-winscp-beyond-compare" class="headerlink" title="VMWare，Axure，IDE，Juniper，NptePad++,Hbuilder,好压,winscp,beyond compare,"></a>VMWare，Axure，IDE，Juniper，NptePad++,Hbuilder,好压,winscp,beyond compare,</h2><h2 id="其他调试工具"><a href="#其他调试工具" class="headerlink" title="其他调试工具"></a>其他调试工具</h2><h3 id="switchHosts"><a href="#switchHosts" class="headerlink" title="switchHosts"></a>switchHosts</h3><h3 id="git-tortoise-mac-下source-tree"><a href="#git-tortoise-mac-下source-tree" class="headerlink" title="git tortoise (mac 下source tree)"></a>git tortoise (mac 下source tree)</h3><h3 id="fiddler-mac-下Charles"><a href="#fiddler-mac-下Charles" class="headerlink" title="fiddler (mac 下Charles)"></a>fiddler (mac 下Charles)</h3><p>海外版fiddler证书安装不了的方法：将滑动解锁改成数字解锁，从系统安全中安装文件</p>
+<p>fiddler-&gt;toolbar-&gt;textwizard可以进行编码解码</p>
+<h3 id="环境变量配置："><a href="#环境变量配置：" class="headerlink" title="环境变量配置："></a>环境变量配置：</h3><p>JAVA_HOME C:\Program Files\Java\jdk1.8.0_111<br>MAVEN_HOME D:\workspace\maven\apache-maven-3.2.5<br>NODE_PATH C:\Program Files\nodejs\node_global\node_modules<br>Path:<br>C:\ProgramData\Oracle\Java\javapath;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;C:\Program Files\Java\jdk1.8.0_111\bin;%MAVEN_HOME%\bin;C:\Program Files\nodejs\;C:\Program Files\TortoiseGit\bin;%RUBY_HOME%\bin;C:\Program Files (x86)\Git\bin;C:\Ruby23-x64\bin;</p>
+<p>【beyond compare】<br>【ps】<br>【wechat】<br>【outlook】</p>
+<h3 id="Oh-my-zsh"><a href="#Oh-my-zsh" class="headerlink" title="Oh my zsh"></a>Oh my zsh</h3><p>Terminal里bash的最佳替代品，强大的自动补全功能，能自动补全命令、参数、文件名、进程、用户名、变量、权限符等， 以及各种插件以及主题的支持。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh -c &quot;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;</div></pre></td></tr></table></figure></p>
+<h2 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h2><p>下载jenkins.war直接java -jar jenkins.war</p>
+<h1 id="Eva’s-Blog"><a href="#Eva’s-Blog" class="headerlink" title="Eva’s Blog"></a>Eva’s Blog</h1><p>github clone</p>
+<h1 id="mac浏览器快捷键"><a href="#mac浏览器快捷键" class="headerlink" title="mac浏览器快捷键"></a>mac浏览器快捷键</h1><p>cmd+R刷新等于F5</p>
+<p>cmd+option+I等于F12</p>
+<p>cmd+option+J等于F12</p>
+<p>cmd+option+U等于显示源代码</p>
+<p>cmd+option+左右</p>
+<p>空格向下滚动网页</p>
+<h2 id="暂定"><a href="#暂定" class="headerlink" title="暂定"></a>暂定</h2><p>npm<br>gitbook-cli,</p>
+<p>修改bash的颜色和字体<br>右键options，</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/效率/" rel="tag"># 效率</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/05/hexo+githubPages建站最佳实践/" rel="next" title="hexo+githubPages建站最佳实践">
+                <i class="fa fa-chevron-left"></i> hexo+githubPages建站最佳实践
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/05/再也没有人扬起浅色的衣裙，来敲你的彩镶玻璃窗/" rel="prev" title="再也没有人扬起浅色的衣裙，来敲你的彩镶玻璃窗">
+                再也没有人扬起浅色的衣裙，来敲你的彩镶玻璃窗 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="EvaLotus" />
+          <p class="site-author-name" itemprop="name">EvaLotus</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#iterm-2"><span class="nav-number">1.</span> <span class="nav-text">iterm 2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Browser"><span class="nav-number">2.</span> <span class="nav-text">Browser</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IDE-amp-编辑器"><span class="nav-number">3.</span> <span class="nav-text">IDE & 编辑器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sublime"><span class="nav-number">3.1.</span> <span class="nav-text">sublime</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装package-control"><span class="nav-number">3.2.</span> <span class="nav-text">安装package control</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vs-code"><span class="nav-number">3.3.</span> <span class="nav-text">vs code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#homebrew：mac下的包管理工具"><span class="nav-number">4.</span> <span class="nav-text">homebrew：mac下的包管理工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VMWare，Axure，IDE，Juniper，NptePad-Hbuilder-好压-winscp-beyond-compare"><span class="nav-number">5.</span> <span class="nav-text">VMWare，Axure，IDE，Juniper，NptePad++,Hbuilder,好压,winscp,beyond compare,</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他调试工具"><span class="nav-number">6.</span> <span class="nav-text">其他调试工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#switchHosts"><span class="nav-number">6.1.</span> <span class="nav-text">switchHosts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-tortoise-mac-下source-tree"><span class="nav-number">6.2.</span> <span class="nav-text">git tortoise (mac 下source tree)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fiddler-mac-下Charles"><span class="nav-number">6.3.</span> <span class="nav-text">fiddler (mac 下Charles)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境变量配置："><span class="nav-number">6.4.</span> <span class="nav-text">环境变量配置：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Oh-my-zsh"><span class="nav-number">6.5.</span> <span class="nav-text">Oh my zsh</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker"><span class="nav-number">7.</span> <span class="nav-text">docker</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Eva’s-Blog"><span class="nav-number"></span> <span class="nav-text">Eva’s Blog</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mac浏览器快捷键"><span class="nav-number"></span> <span class="nav-text">mac浏览器快捷键</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#暂定"><span class="nav-number">1.</span> <span class="nav-text">暂定</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvaLotus</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
