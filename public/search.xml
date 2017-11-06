@@ -1,28 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Eva&#39;s Blog</title>
-  <subtitle>进一寸有一寸的欢喜</subtitle>
-  <link href="/atom.xml" rel="self"/>
+<search> 
   
-  <link href="https://evalotus.github.io/"/>
-  <updated>2017-11-05T16:16:34.000Z</updated>
-  <id>https://evalotus.github.io/</id>
-  
-  <author>
-    <name>EvaLotus</name>
     
-  </author>
-  
-  <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>再也没有人扬起浅色的衣裙，穿过蝉声如雨的小巷</title>
-    <link href="https://evalotus.github.io/2017/08/05/%E5%86%8D%E4%B9%9F%E6%B2%A1%E6%9C%89%E4%BA%BA%E6%89%AC%E8%B5%B7%E6%B5%85%E8%89%B2%E7%9A%84%E8%A1%A3%E8%A3%99%EF%BC%8C%E6%9D%A5%E6%95%B2%E4%BD%A0%E7%9A%84%E5%BD%A9%E9%95%B6%E7%8E%BB%E7%92%83%E7%AA%97/"/>
-    <id>https://evalotus.github.io/2017/08/05/再也没有人扬起浅色的衣裙，来敲你的彩镶玻璃窗/</id>
-    <published>2017-08-05T09:46:09.000Z</published>
-    <updated>2017-11-05T16:16:34.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>我的忧伤因为你的照耀</p>
+    <entry>
+      <title><![CDATA[再也没有人扬起浅色的衣裙，穿过蝉声如雨的小巷]]></title>
+      <url>/2017/08/05/%E5%86%8D%E4%B9%9F%E6%B2%A1%E6%9C%89%E4%BA%BA%E6%89%AC%E8%B5%B7%E6%B5%85%E8%89%B2%E7%9A%84%E8%A1%A3%E8%A3%99%EF%BC%8C%E6%9D%A5%E6%95%B2%E4%BD%A0%E7%9A%84%E5%BD%A9%E9%95%B6%E7%8E%BB%E7%92%83%E7%AA%97/</url>
+      <content type="html"><![CDATA[<p>我的忧伤因为你的照耀</p>
 <p>升起一圈淡淡的光轮。</p>
 <a id="more"></a>
 <p>–题记</p>
@@ -201,27 +184,20 @@
 <p>会唱歌的鸢尾花</p>
 <p>1981年10月28日</p>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> poem </tag>
+            
+        </tags>
+        
+    </entry>
     
-    <summary type="html">
-    
-      &lt;p&gt;我的忧伤因为你的照耀&lt;/p&gt;
-&lt;p&gt;升起一圈淡淡的光轮。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="poem" scheme="https://evalotus.github.io/tags/poem/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>web开发提升效率</title>
-    <link href="https://evalotus.github.io/2017/07/23/web%E5%BC%80%E5%8F%91%E6%8F%90%E5%8D%87%E6%95%88%E7%8E%87/"/>
-    <id>https://evalotus.github.io/2017/07/23/web开发提升效率/</id>
-    <published>2017-07-23T07:12:42.000Z</published>
-    <updated>2017-11-05T16:16:34.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>自从入了极简主义的坑，觉得自己开始无欲无求了。极简主义就是寻找生活的最优解，作为了一个专业的web 开发者，每天要花很多时间在开发工作上，事先花点时间打造一个高效舒适的开发环境，会让你的开发效率如飞，以下是我的装机必备清单。</p>
+    <entry>
+      <title><![CDATA[web开发提升效率]]></title>
+      <url>/2017/07/23/web%E5%BC%80%E5%8F%91%E6%8F%90%E5%8D%87%E6%95%88%E7%8E%87/</url>
+      <content type="html"><![CDATA[<p>自从入了极简主义的坑，觉得自己开始无欲无求了。极简主义就是寻找生活的最优解，作为了一个专业的web 开发者，每天要花很多时间在开发工作上，事先花点时间打造一个高效舒适的开发环境，会让你的开发效率如飞，以下是我的装机必备清单。</p>
 <a id="more"></a>
 <p>有道云笔记</p>
 <p>mac</p>
@@ -305,26 +281,20 @@
 <h2 id="暂定"><a href="#暂定" class="headerlink" title="暂定"></a>暂定</h2><p>npm<br>gitbook-cli,</p>
 <p>修改bash的颜色和字体<br>右键options，</p>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> 效率 </tag>
+            
+        </tags>
+        
+    </entry>
     
-    <summary type="html">
-    
-      &lt;p&gt;自从入了极简主义的坑，觉得自己开始无欲无求了。极简主义就是寻找生活的最优解，作为了一个专业的web 开发者，每天要花很多时间在开发工作上，事先花点时间打造一个高效舒适的开发环境，会让你的开发效率如飞，以下是我的装机必备清单。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="效率" scheme="https://evalotus.github.io/tags/%E6%95%88%E7%8E%87/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hexo+githubPages建站最佳实践</title>
-    <link href="https://evalotus.github.io/2017/06/05/hexo+githubPages%E5%BB%BA%E7%AB%99%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/"/>
-    <id>https://evalotus.github.io/2017/06/05/hexo+githubPages建站最佳实践/</id>
-    <published>2017-06-05T06:06:09.000Z</published>
-    <updated>2017-11-05T16:16:34.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>前两天超哥很开心的敲下<code>hexo d</code>，再加上手贱莫名其妙删掉了源文件，写了4年的博客全都没有啦，只能一个个copy出来，简直是喜闻乐见（超哥不要打我，逃～）</p>
+    <entry>
+      <title><![CDATA[hexo+githubPages建站最佳实践]]></title>
+      <url>/2017/06/05/hexo+githubPages%E5%BB%BA%E7%AB%99%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</url>
+      <content type="html"><![CDATA[<p>前两天超哥很开心的敲下<code>hexo d</code>，再加上手贱莫名其妙删掉了源文件，写了4年的博客全都没有啦，只能一个个copy出来，简直是喜闻乐见（超哥不要打我，逃～）</p>
 <p>研究了下hexo+githubPages的最佳实践，也是踩了不少坑才用的比较顺滑。</p>
 <a id="more"></a>
 <p>以下是操作必备，只是mark一下</p>
@@ -349,17 +319,16 @@
 </ol>
 <p>其他不会的可以直接去看hexo的文档，已经灰常良心了！</p>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> hexo github </tag>
+            
+        </tags>
+        
+    </entry>
     
-    <summary type="html">
-    
-      &lt;p&gt;前两天超哥很开心的敲下&lt;code&gt;hexo d&lt;/code&gt;，再加上手贱莫名其妙删掉了源文件，写了4年的博客全都没有啦，只能一个个copy出来，简直是喜闻乐见（超哥不要打我，逃～）&lt;/p&gt;
-&lt;p&gt;研究了下hexo+githubPages的最佳实践，也是踩了不少坑才用的比较顺滑。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="hexo github" scheme="https://evalotus.github.io/tags/hexo-github/"/>
-    
-  </entry>
   
-</feed>
+  
+</search>

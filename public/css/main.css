@@ -1677,7 +1677,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #b05dff;
+  background: #a1e350;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -1763,7 +1763,6 @@ pre .javascript .function {
 .post-toc .nav-item {
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
   line-height: 1.8;
 }
 .post-toc .nav .nav-child {
@@ -2523,8 +2522,20 @@ a img {
 }
 .header {
   width: 100%;
-  height: 300px;
-  opacity: 0.7;
   background-size: cover;
   box-shadow: 2px 2px 30px 2px #cd5c5c;
+}
+.header .header-inner {
+  padding: 30px 0;
+}
+.headband {
+  height: 1px;
+}
+.site-author-image {
+  max-width: 200px;
+  border: none;
+}
+.sidebar {
+  background: #eee;
+  box-shadow: none;
 }
