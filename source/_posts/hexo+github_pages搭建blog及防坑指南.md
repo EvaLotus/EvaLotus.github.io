@@ -106,3 +106,5 @@ npm install
 ```
 
 其他问题可以直接去看[hexo的文档](https://hexo.io/zh-cn/docs/index.html)，已经灰常良心了！
+
+如果遇到其他问题可以给我留言，一起来搭建自己的博客吧。
