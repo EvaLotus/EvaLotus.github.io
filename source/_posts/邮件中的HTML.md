@@ -20,8 +20,7 @@ outlook客户端里：css统统不生效。
 
 不能使用reset实在太臃肿了，要保持一致性要写很多重复的代码，怀念现代的生活。
 
-  
-2.不要想flex布局，float布局，直接上table布局。
+2.不要想flex布局，float布局，绝对定位啦！直接上年轻人都没听过的table布局。
 
 ```
 <table align="center" border="1" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
@@ -42,6 +41,14 @@ outlook客户端里：css统统不生效。
 ```
 
 先想好布局分为几部分，写在各个tr里。
+
+3.图片是唯一可以引用的外部资源。其他的外部资源，比如样式表文件、字体文件、视频文件等，一概不能引用。
+
+遵循上面3条规则，代码越写φ\(≧ω≦\*\)♪越臃肿了，但是最可怕的是发现，自己根本不懂table！
+
+
+
+
 
 
 
