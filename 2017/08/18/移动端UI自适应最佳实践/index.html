@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"right","width":300,"display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="我们的工作少不了要和UI设计师打交道，一般设计小姐姐给的图都是iPhone6尺寸750*1334px，这样我们在切图时，只需要将像素值/2作为元素的宽高，字体的尺寸即可。但是一般的设计图中border是1px，怎么把元素的border设置为0.5px呢？ 有的小伙伴说，那是他们不专业，随便写个1px就可以了。但是我们rgb不变直接写成1px的话，会明显发现border显得太粗颜色太深。 作为一个有">
+<meta name="keywords" content="CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端UI自适应最佳实践">
+<meta property="og:url" content="https://Evalotus.github.io/2017/08/18/移动端UI自适应最佳实践/index.html">
+<meta property="og:site_name" content="Eva&#39;s Blog">
+<meta property="og:description" content="我们的工作少不了要和UI设计师打交道，一般设计小姐姐给的图都是iPhone6尺寸750*1334px，这样我们在切图时，只需要将像素值/2作为元素的宽高，字体的尺寸即可。但是一般的设计图中border是1px，怎么把元素的border设置为0.5px呢？ 有的小伙伴说，那是他们不专业，随便写个1px就可以了。但是我们rgb不变直接写成1px的话，会明显发现border显得太粗颜色太深。 作为一个有">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-12-19T06:22:17.568Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端UI自适应最佳实践">
+<meta name="twitter:description" content="我们的工作少不了要和UI设计师打交道，一般设计小姐姐给的图都是iPhone6尺寸750*1334px，这样我们在切图时，只需要将像素值/2作为元素的宽高，字体的尺寸即可。但是一般的设计图中border是1px，怎么把元素的border设置为0.5px呢？ 有的小伙伴说，那是他们不专业，随便写个1px就可以了。但是我们rgb不变直接写成1px的话，会明显发现border显得太粗颜色太深。 作为一个有">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Eva's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://Evalotus.github.io/2017/08/18/移动端UI自适应最佳实践/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>移动端UI自适应最佳实践 | Eva's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Eva's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">进一寸有一寸的欢喜</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Evalotus.github.io/2017/08/18/移动端UI自适应最佳实践/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Eva">
+      <meta itemprop="description" content="JavaScript,HTML,CSS,Node JS,Front-end Develop">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eva's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">移动端UI自适应最佳实践
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-08-18 17:14:58" itemprop="dateCreated datePublished" datetime="2017-08-18T17:14:58+08:00">2017-08-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-12-19 14:22:17" itemprop="dateModified" datetime="2018-12-19T14:22:17+08:00">2018-12-19</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>我们的工作少不了要和UI设计师打交道，一般设计小姐姐给的图都是iPhone6尺寸750*1334px，这样我们在切图时，只需要将像素值/2作为元素的宽高，字体的尺寸即可。但是一般的设计图中border是1px，怎么把元素的border设置为0.5px呢？</p>
+<p>有的小伙伴说，那是他们不专业，随便写个1px就可以了。但是我们rgb不变直接写成1px的话，会明显发现border显得太粗颜色太深。</p>
+<p>作为一个有追求的前端工程师，应该怎么做到border的高保真呢？浏览器支持0.5px吗？<br><a id="more"></a></p>
+<h3 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h3><p>我们先忽略这个0.5px的问题，思考下移动端适配的历史。</p>
+<p>最开始我们适配时都是通过百分比来解决的。但是百分比只能解决宽度自适应，高度却不能自适应，小尺寸屏幕上按钮过高，显得臃肿</p>
+<p>对于不同屏幕上宽高比一致的方案，使用百分比达不到效果</p>
+<p>其他的解决方案<br>px：px相对于屏幕分辨率而言（与物理设备有关），普通屏是1px对应1个物理像素点，高清屏是1px对应4个物理像素点<br>em：相对长度单位，相对于当前对象内的字体尺寸，em的值不固定，继承父级字体大小<br>rem：相对于html根元素的尺寸。只修改根元素html就可以成比例的调整所有字体大小。</p>
+<h3 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h3><p>rem兼容性：</p>
+<p>iOS6.1+都支持<br>Android 2.1+都支持<br>主流浏览器都支持</p>
+<h3 id="em和rem"><a href="#em和rem" class="headerlink" title="em和rem"></a>em和rem</h3><p>em：相对于当前元素内的字体尺寸。当前元素font-size=20px，当前元素中的1em=20px</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">h1&#123;font-size:20px;&#125; // 1em=20px</span><br></pre></td></tr></table></figure>
+<p>rem简单，1rem始终是那么大，但rem使组件不那么模块化。实际开发中可以结合使用:</p>
+<p>1.当元素属性值需要根据元素字体尺寸缩放时，就使用em</p>
+<p>2.其他情况都简单的使用rem</p>
+<h3 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h3><p>rem：font-size of the root element</p>
+<p>rem：期望字体/body-font-size rem</p>
+<p>rem不仅适用于字体，也可以用于width height margin</p>
+<p>使用scss可以直接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">html&#123;font-size:10px;&#125;1rem=10px;</span><br><span class="line">html&#123;font-size:62.5%;&#125; // =10px</span><br><span class="line"></span><br><span class="line">@mixin px2rem($px)&#123;</span><br><span class="line">$rem:37.5px;// window.innerWidth/10</span><br><span class="line">@return ($px/$rem)+rem;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">height:px2rem(90px);</span><br></pre></td></tr></table></figure>
+<p>使用media query来设置根节点，上面的设置方法有一个很明显的问题font-size是在一个屏幕宽度的区间上有一个基准值。像安卓手机种类的繁多，屏幕大小就更多的情况下，上面的方法很鸡肋。</p>
+<p>第二种解决方案，就是使用JavaScript根据当前屏幕的宽度动态计算font-size值，这种方法可以保证屏幕宽度连续变化的时候，font-size基准值也是连续变化的。</p>
+<p>那么最后一个问题也来了：为什么将计算rem单位的js放在head标签里面？</p>
+<p>一句话总结：在浏览器中文档流是从上往下加载渲染的。为了保证发生不必要的重绘或者是重排肯定是越早给根节点设置font-size值越好。</p>
+<h3 id="rem适用场景"><a href="#rem适用场景" class="headerlink" title="rem适用场景"></a>rem适用场景</h3><p>整体的布局还是使用百分比<br>使用rem的最佳场景是,遇到例如多列带有图片的列表,常常需要图片固定宽高比例<br>研究了一些网站，比如淘宝，对字体字体一般情况建议使用px<br>出现1px像素线的地方，仍旧使用border-width:1px;而不是border-width:.1rem;</p>
+<h3 id="5px的解决"><a href="#5px的解决" class="headerlink" title=".5px的解决"></a>.5px的解决</h3><p>设计稿中常常是iPhone6尺寸750*1334px,border是1px</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 移动端设置viewport</span></span><br><span class="line"><span class="comment">// 直接按照750*1334来切图</span></span><br><span class="line"><span class="comment">// 解决.5px border</span></span><br><span class="line"><span class="keyword">var</span> dpr = <span class="built_in">window</span>.devicePixelRatio,</span><br><span class="line">viewPort = <span class="built_in">document</span>.createElement(<span class="string">'meta'</span>),</span><br><span class="line">head = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>];</span><br><span class="line">viewPort.setAttribute(<span class="string">'name'</span>, <span class="string">'viewport'</span>);</span><br><span class="line">viewPort.setAttribute(<span class="string">'content'</span>, <span class="string">'initial-scale='</span> + <span class="number">1</span> / dpr + <span class="string">', maximum-scale='</span> + <span class="number">1</span> / dpr + <span class="string">', minimum-scale='</span> + <span class="number">1</span> / dpr + <span class="string">', user-scalable=no'</span>);</span><br><span class="line">head.insertBefore(viewPort, <span class="built_in">document</span>.getElementsByTagName(<span class="string">'meta'</span>)[<span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 任意浏览器的默认font-size=16px; html&#123;font-size:6.25% // 10px;&#125;则=&gt;1rem=6.25%=10px;</span></span><br><span class="line"><span class="comment">// 按照750*1334来切图则 1rem=&gt;37.5px 设置好了rem可以直接在css中rem</span></span><br><span class="line"><span class="comment">// pxToRem中rem直接定为37.5px;尺寸都是照这个来的</span></span><br><span class="line"><span class="built_in">document</span>.getElementsByTagName(<span class="string">'html'</span>)[<span class="number">0</span>].style.fontSize = <span class="built_in">window</span>.innerWidth / <span class="number">10</span> + <span class="string">'px'</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="小程序中"><a href="#小程序中" class="headerlink" title="小程序中"></a>小程序中</h3><p>rpx是微信小程序专用尺寸单位，规定屏幕宽为750rpx<br>注：开发微信小程序时设计师可以用 iPhone6 作为视觉稿的标准。<br>建议：设计稿使用设备宽度750px比较容易计算750px的话1rpx=1px，这样的话，设计图上量出来的尺寸是多少px就是多少rpx，至于在不同的设备上实际上要换算成多少个rem就交给小程序自己换算</p>
+<p>像素：</p>
+<p>物理像素：</p>
+<p>设备独立像素</p>
+<p>设备像素比：dpr</p>
+<h3 id="vm"><a href="#vm" class="headerlink" title="vm"></a>vm</h3><p>vw，vh，vmin和vmax是基于viewport的长度单位</p>
+<ul>
+<li><p>vw: viewport’s width,1vw等于window.innerWidth的1%</p>
+</li>
+<li><p>vh：viewport’s height，1vh等于window.innerHeihgt的1%</p>
+</li>
+<li><p>vmin: vmin的值是当前vw和vh中较小的值</p>
+</li>
+<li><p>vmax: vmax的值是当前vw和vh中较大的值</p>
+</li>
+</ul>
+<p>针对750px的设计稿，将px值除以75得到vw的值</p>
+<p>尽管在某些Android机型上还存在兼容问题，我们也可以使用Viewport Units Buggyfill，具体见《如何在Vue项目中使用vw实现移动端适配》</p>
+<p>回顾与总结：</p>
+<p>细节与思考：</p>
+<p>面试中常问的.5px的实现，现在你会了吗？</p>
+<p>参考文献：</p>
+<p><a href="http://www.html-js.com/article/4771" target="_blank" rel="noopener">http://www.html-js.com/article/4771</a><br><a href="http://www.alloyteam.com/2016/03/mobile-web-adaptation-tool-rem/" target="_blank" rel="noopener">http://www.alloyteam.com/2016/03/mobile-web-adaptation-tool-rem/</a><br>移动端适配和.5px的由来<a href="http://mp.weixin.qq.com/s/5BpIpM6WAvWaX2Y8IrVETA" target="_blank" rel="noopener">http://mp.weixin.qq.com/s/5BpIpM6WAvWaX2Y8IrVETA</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat_qcode.png" alt="Eva wechat" style="width: 200px; max-width: 100%;">
+    <div>关注Eva的意如小馆，更方便的与我交流</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS/" rel="tag"># CSS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/18/邮件中的HTML/" rel="next" title="邮件中的HTML">
+                <i class="fa fa-chevron-left"></i> 邮件中的HTML
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/18/homebrew的使用/" rel="prev" title="homebrew的使用">
+                homebrew的使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Eva">
+            
+              <p class="site-author-name" itemprop="name">Eva</p>
+              <p class="site-description motion-element" itemprop="description">JavaScript,HTML,CSS,Node JS,Front-end Develop</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/EvaLotus" title="GitHub &rarr; https://github.com/EvaLotus" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:evacoder@126.com" title="E-Mail &rarr; mailto:evacoder@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://instagram.com/eva_coder" title="Instagram &rarr; https://instagram.com/eva_coder" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#历史"><span class="nav-number">1.</span> <span class="nav-text">历史</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#兼容性"><span class="nav-number">2.</span> <span class="nav-text">兼容性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#em和rem"><span class="nav-number">3.</span> <span class="nav-text">em和rem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rem"><span class="nav-number">4.</span> <span class="nav-text">rem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rem适用场景"><span class="nav-number">5.</span> <span class="nav-text">rem适用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5px的解决"><span class="nav-number">6.</span> <span class="nav-text">.5px的解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小程序中"><span class="nav-number">7.</span> <span class="nav-text">小程序中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vm"><span class="nav-number">8.</span> <span class="nav-text">vm</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Eva</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1.1/reading_progress.min.js"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

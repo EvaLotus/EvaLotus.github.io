@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Eva&#39;s Blog</title>
+  
+  <subtitle>进一寸有一寸的欢喜</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://Evalotus.github.io/"/>
+  <updated>2018-12-19T06:48:57.265Z</updated>
+  <id>https://Evalotus.github.io/</id>
+  
+  <author>
+    <name>Eva</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>「情商课」切忌交浅言深</title>
+    <link href="https://Evalotus.github.io/2018/12/19/%E6%83%85%E5%95%86%E8%AF%BE1/"/>
+    <id>https://Evalotus.github.io/2018/12/19/情商课1/</id>
+    <published>2018-12-19T05:54:02.000Z</published>
+    <updated>2018-12-19T06:48:57.265Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="情商课" scheme="https://Evalotus.github.io/tags/%E6%83%85%E5%95%86%E8%AF%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「前端团队建设」每周分享</title>
+    <link href="https://Evalotus.github.io/2018/12/19/%E5%89%8D%E7%AB%AF%E5%9B%A2%E9%98%9F%E5%BB%BA%E8%AE%BE5/"/>
+    <id>https://Evalotus.github.io/2018/12/19/前端团队建设5/</id>
+    <published>2018-12-19T05:50:56.000Z</published>
+    <updated>2018-12-19T06:48:57.264Z</updated>
+    
+    <content type="html"><![CDATA[<p>如果做不到每周分享会的话，至少也要做到轮值发布前端周刊。<br>看看你每周分享能分享什么东西，你就会发现学习和不学习的人的差别实在太大了。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;如果做不到每周分享会的话，至少也要做到轮值发布前端周刊。&lt;br&gt;看看你每周分享能分享什么东西，你就会发现学习和不学习的人的差别实在太大了。&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="前端团队建设" scheme="https://Evalotus.github.io/tags/%E5%89%8D%E7%AB%AF%E5%9B%A2%E9%98%9F%E5%BB%BA%E8%AE%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「前端团队建设」项目搭建，从vue-cli功能拆解说起</title>
+    <link href="https://Evalotus.github.io/2018/12/19/%E5%89%8D%E7%AB%AF%E5%9B%A2%E9%98%9F%E5%BB%BA%E8%AE%BE4/"/>
+    <id>https://Evalotus.github.io/2018/12/19/前端团队建设4/</id>
+    <published>2018-12-19T05:50:35.000Z</published>
+    <updated>2018-12-19T06:48:57.263Z</updated>
+    
+    <content type="html"><![CDATA[<p>TODO</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;TODO&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="前端团队建设" scheme="https://Evalotus.github.io/tags/%E5%89%8D%E7%AB%AF%E5%9B%A2%E9%98%9F%E5%BB%BA%E8%AE%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「前端团队建设」技术选型</title>
+    <link href="https://Evalotus.github.io/2018/12/19/%E5%89%8D%E7%AB%AF%E5%9B%A2%E9%98%9F%E5%BB%BA%E8%AE%BE3/"/>
+    <id>https://Evalotus.github.io/2018/12/19/前端团队建设3/</id>
+    <published>2018-12-19T05:50:09.000Z</published>
+    <updated>2018-12-19T06:48:57.262Z</updated>
+    
+    <content type="html"><![CDATA[<p>TODO</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;TODO&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="前端团队建设" scheme="https://Evalotus.github.io/tags/%E5%89%8D%E7%AB%AF%E5%9B%A2%E9%98%9F%E5%BB%BA%E8%AE%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「前端团队建设」新人必读</title>
+    <link href="https://Evalotus.github.io/2018/12/19/%E5%89%8D%E7%AB%AF%E5%9B%A2%E9%98%9F%E5%BB%BA%E8%AE%BE2/"/>
+    <id>https://Evalotus.github.io/2018/12/19/前端团队建设2/</id>
+    <published>2018-12-19T05:49:43.000Z</published>
+    <updated>2018-12-19T06:48:57.261Z</updated>
+    
+    <content type="html"><![CDATA[<p>TODO</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;TODO&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="前端团队建设" scheme="https://Evalotus.github.io/tags/%E5%89%8D%E7%AB%AF%E5%9B%A2%E9%98%9F%E5%BB%BA%E8%AE%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「前端团队建设」组建团队，想到的一些面试题</title>
+    <link href="https://Evalotus.github.io/2018/12/19/%E5%89%8D%E7%AB%AF%E5%9B%A2%E9%98%9F%E5%BB%BA%E8%AE%BE1/"/>
+    <id>https://Evalotus.github.io/2018/12/19/前端团队建设1/</id>
+    <published>2018-12-19T05:47:33.000Z</published>
+    <updated>2018-12-19T06:48:57.260Z</updated>
+    
+    <content type="html"><![CDATA[<p>这个系列是开始思考如何组建一个好的前端团队，虽然团队现在只有我一个人，但是一个人也要像一支队伍一样管理呀~<br>等以后有别的小伙伴加入了，直接看这个系列就可以了，文档大法拯救世界。<br>没错，我就是这样的懒东西~<br><a id="more"></a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这个系列是开始思考如何组建一个好的前端团队，虽然团队现在只有我一个人，但是一个人也要像一支队伍一样管理呀~&lt;br&gt;等以后有别的小伙伴加入了，直接看这个系列就可以了，文档大法拯救世界。&lt;br&gt;没错，我就是这样的懒东西~&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="前端团队建设" scheme="https://Evalotus.github.io/tags/%E5%89%8D%E7%AB%AF%E5%9B%A2%E9%98%9F%E5%BB%BA%E8%AE%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「极简」你是什么样的人，就会选择什么样的路</title>
+    <link href="https://Evalotus.github.io/2018/12/19/%E6%9E%81%E7%AE%801/"/>
+    <id>https://Evalotus.github.io/2018/12/19/极简1/</id>
+    <published>2018-12-19T05:33:05.000Z</published>
+    <updated>2018-12-19T06:48:57.267Z</updated>
+    
+    <content type="html"><![CDATA[<p>经常会听到这么一句话，你看到的都是别人想让你看到的，但是现在想得更多的却是，你看到的都是你愿意看到的。<br>最近豆瓣上风行消费降级，极简主义也跟着火了起来，timeline上十篇文章有九篇是教你如何消费降级的。我不知道是因为豆瓣的个性化推荐做的太好，我看过一篇极简的文章之后就各种推这种类型的，还是大家真的开始认真的极简起来。<br>虽然你可能并不是极简主义，根据你看到的都是你愿意看到的逻辑，当你主动点开看这篇文章的时候，就说明你内心还是有极简的星星之火。<br><a id="more"></a></p><p>我走上极简道路的原因并不复杂，因为从小就有这样的观念，家楼下常年堆着父亲卖不出去的货物，我常想，这腾出来可以给狗子搭一间多宽敞的窝呀。加上求学，幼儿园在北京，小学在镇里，初中去县里，高中去市里，大学又去北京（走出大山的孩子，噗），搬家是家常便饭，早就习惯了轻装前行。<br>其实还是因为脑子也就花生米那么大，装太多东西，真的装不下。<br>而且我这人讨厌麻烦，给自己留坑的事万万不愿意做。<br>大学的时候知乎上最火的问题就是，百元以内提升生活质量的好物，<br>理财规划之路都走的轻松一些，因为没有那么多的障碍。<br>我抱着手机一条一条的看<br>把床品换成了五星级酒店专用的康尔馨四件套，<br>扔掉了牙刷换成电动牙刷入门款<br>死机再也打不开的三星被换成了iPhone<br>因为学习iOS开发换成了MacBook。<br>物质道路已经成型，对未来我丝毫不害怕，不发生大的变故，我一定会是一个财务清爽，每天进步的人。<br>长久养成的习惯从来不会担心反弹。就像减肥的办法，从来不是短时间的节食，而是你内心形成观念，知道吃多少算是多。<br>只是有时候确实会想起来，咦，这件衣服咋找不到了，我记得没捐掉啊！那就是告别仪式做的还不够。没有认认真真的感谢它，谢谢你陪伴我的这一路，但是我长大了，你现在可能没那么适合我啦，已经xx天没穿你了，实在是不尊重你，送你去别的珍惜你的人身边发挥更大的价值吧。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;经常会听到这么一句话，你看到的都是别人想让你看到的，但是现在想得更多的却是，你看到的都是你愿意看到的。&lt;br&gt;最近豆瓣上风行消费降级，极简主义也跟着火了起来，timeline上十篇文章有九篇是教你如何消费降级的。我不知道是因为豆瓣的个性化推荐做的太好，我看过一篇极简的文章之后就各种推这种类型的，还是大家真的开始认真的极简起来。&lt;br&gt;虽然你可能并不是极简主义，根据你看到的都是你愿意看到的逻辑，当你主动点开看这篇文章的时候，就说明你内心还是有极简的星星之火。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="极简" scheme="https://Evalotus.github.io/tags/%E6%9E%81%E7%AE%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>冬日学车的碎碎念</title>
+    <link href="https://Evalotus.github.io/2018/12/18/%E5%86%AC%E6%97%A5%E5%AD%A6%E8%BD%A6%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
+    <id>https://Evalotus.github.io/2018/12/18/冬日学车的碎碎念/</id>
+    <published>2018-12-18T10:30:43.000Z</published>
+    <updated>2018-12-19T06:22:17.558Z</updated>
+    
+    <content type="html"><![CDATA[<p>大家一般都喜欢在高考一毕业就开始学车，最次也是在大学里尽量拿本，因为工作了学车就比较难了，时间，精力各项都不太够。</p><p>但是这次学车，却有很多意想不到的收获。<br><a id="more"></a></p><h4 id="一些人生感悟碎碎念"><a href="#一些人生感悟碎碎念" class="headerlink" title="一些人生感悟碎碎念"></a>一些人生感悟碎碎念</h4><p>坐在车上思维就开始天马行空，随手记录一些零碎的想法。</p><p>1.每天六点就得起，所以必须睡够8小时的我一般十点就睡了，学个车习惯了早睡早起，皮肤都变好了。</p><p>2.学车找回了学习的乐趣。有些人上了大学之后就再也不学习，再也没看过一本书，（我自己本来说的一年20本书的计划只完成了1本），这真的是件<strong>很可怕</strong>的事情，除了上班时候的被动学习，在工作中学习，自己回到家居然再也不想打开电脑，只在手机里零零碎碎的看些段子。如果人生是在游乐场，你就玩个旋转木马就够了吗？不，还有那么多的项目，不管你怎么想，反正我都要玩一遍。</p><p>3.不用为了应付考试的学习真幸福呀。考试考十分你就要准备二十分。正如面试造火箭，入职拧螺丝。所以自己凭兴趣，重拾学习的乐趣，为了让人生路走的更远而学习，真的是一件快乐安心的事。</p><p>4.唯有努力最心安。</p><p>5.碎片化的时间利用好了更有意义。</p><h4 id="好玩的段子，笑点低"><a href="#好玩的段子，笑点低" class="headerlink" title="好玩的段子，笑点低"></a>好玩的段子，笑点低</h4><p>1.学车的时候倒库很快就找到了感觉，怎么着都能倒进去，有一次没按教练的意思做也成功了</p><p>教练：“哟呵，怎么着，都有自己的意识了是吧”。</p><p>感觉自己是个AI，我大喊一句：“<strong>人工智能觉醒啦！</strong>”</p><p>中二病犯了，噗。</p><p>2.开始准备科二考试了，因为开得太稳，每次模拟考教练坐我边上都没过一会儿就睡着了，<strong>发出均匀的打呼声</strong>。</p><p>想起了之前的段子，交警拦下一辆车，乘客没驾照，司机在睡觉。</p><p>这就是人与人之间的信任吧嘻嘻。</p><p>3.科二虽然练得很好，但是还是紧张的每天晚上睡不着觉，心里素质好差。</p><p>到考试了，反正我的原则是长痛不如短痛，早死早超生，第一个冲上去，一把过满分过了。</p><p>我：“稳如狗就是我~满分一把过”，</p><p>Pango：“考前紧张如鸡，现在稳如狗”。</p><p>4.开始上道路实训了</p><p>我忍不住笑问教练：“咱这车上了保险么？”</p><p>教练惊恐：“你想咋滴？”</p><p>我：“嘻嘻，旁边有个保时捷”。</p><p>教练：“这破车能上多少保险，你要撞了我裤衩都卖了也赔不起了，我们是拿生命在陪你们练车啊啊啊”。</p><p>5.道路实训，郭郭开车老是跑到两条道路中间，教练刹车踩得飞起。</p><p>他俩都有安全带，我一会儿被甩到这边，一会儿被甩到那边。</p><p>6.道路实训，前车太慢了</p><p>我开始嘀咕：“要不要超过去呀，太磨叽了”，</p><p>教练：“哟呵，看不出来脾气还挺爆的”，</p><p>我：“哈哈，每次男票开车我坐副驾，我俩就讨论，前面哪个是sb，这个叫耳濡目染~”。</p><p>7.和同事聊天</p><p>我：“要是大学的时候不一赌气就放弃了学车，或者不为了省钱和近报了东方时尚，大概早都摇到号了吧，我舍友大学的时候就摇到了。啊，被偷走的那五年”，</p><p>pm狗：“<strong>我从12年开始摇的</strong>”，</p><p>我掐指一算：“哦，我想多了”。</p><p>8.跟Pango说起摇号的事</p><p>我：“我希望可以摇到尾号6，车牌号是EVA666，咱俩还可以避过单双号限行”，</p><p>Pango：“现在只能P，Q开头了，404也不错啊”，</p><p>我：“或者JS666也行”，</p><p>Pango：“为啥不是JS404”，</p><p>我：“403比较好，403forbidden，401也不错，401 unauthorized，500 server error…”</p><p>9.还是摇号的事</p><p>Pango：“做生意的冬冬说他们家一共五辆车，哪天限行都可以，A是摇号后一个月中的，B是三个月”</p><p>我：“好羡慕呀，C呢”，</p><p>Pango：“摇号最疯狂的那一阵提前买的。就是马上要出摇号政策了，北京的车都被买完了，4s店来一辆车就被预订了，有的人直接守在4s店门口，来一辆车直接操起一凳子就把车窗砸了，说不好意思，那这辆是我的了。然后另一人立马就把前挡风砸了，说怎么tmd就是你的了”。</p><p>我：“哦”。</p><p>10.三环路上，心想马上要拿本了，好憧憬。</p><p>我：“哼，拿到本我就开你的破车，居然说这个小破车是你的小情人。”，</p><p>Pango：“下周我可能要去出差，给妈妈过生日我不在，你就载着妈妈自己开去刘家窑接上三姨吧”，</p><p>我秒怂：“你不在北京罩着我，臣妾tmd做不到啊”</p><h4 id="驾考独家笔记"><a href="#驾考独家笔记" class="headerlink" title="驾考独家笔记"></a>驾考独家笔记</h4><p>下面是一些驾考笔记，我感觉和年龄相近的小伙伴应该都用不上了吧，但是还是随手记录分享给想看的小伙伴。</p><p>其实说到底，还是因为懒，拿到本了还是有很多小伙伴问我一些信息，本着文档拯救世界的观念，记录下来这些看似无用之用的知识。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;大家一般都喜欢在高考一毕业就开始学车，最次也是在大学里尽量拿本，因为工作了学车就比较难了，时间，精力各项都不太够。&lt;/p&gt;
+&lt;p&gt;但是这次学车，却有很多意想不到的收获。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="生活" scheme="https://Evalotus.github.io/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>微信开发实用指南4-openId，unionId，首先要明白OAuth那些事儿</title>
+    <link href="https://Evalotus.github.io/2018/12/18/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E5%AE%9E%E7%94%A8%E6%8C%87%E5%8D%974-openId%EF%BC%8CunionId%EF%BC%8C%E9%A6%96%E5%85%88%E8%A6%81%E6%98%8E%E7%99%BDOAuth%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/"/>
+    <id>https://Evalotus.github.io/2018/12/18/微信开发实用指南4-openId，unionId，首先要明白OAuth那些事儿/</id>
+    <published>2018-12-18T10:28:51.000Z</published>
+    <updated>2018-12-19T06:22:17.567Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421140842" target="_blank" rel="noopener">微信的OAuth文档</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;a href=&quot;https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;amp;id=mp1421140842&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;微信的OAuth文档&lt;/a&gt;&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="微信开发" scheme="https://Evalotus.github.io/tags/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JS事件循环机制5-webwork</title>
+    <link href="https://Evalotus.github.io/2018/12/18/JS%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B65-webwork/"/>
+    <id>https://Evalotus.github.io/2018/12/18/JS事件循环机制5-webwork/</id>
+    <published>2018-12-18T10:11:10.000Z</published>
+    <updated>2018-12-19T06:22:17.553Z</updated>
+    
+    <content type="html"><![CDATA[<p>占坑TODO</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;占坑TODO&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="javascript" scheme="https://Evalotus.github.io/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>城市选择启示录</title>
+    <link href="https://Evalotus.github.io/2018/11/18/%E5%9F%8E%E5%B8%82%E9%80%89%E6%8B%A9%E5%90%AF%E7%A4%BA%E5%BD%95/"/>
+    <id>https://Evalotus.github.io/2018/11/18/城市选择启示录/</id>
+    <published>2018-11-18T12:14:39.000Z</published>
+    <updated>2018-12-19T06:22:17.562Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近公司出了去转岗武汉的好政策，3万元的安家费，不降薪，不落户也可以随时买房。<br>小伙伴问我咋不回去，也不是没想过，只不过男票肯定不同意，也难以下定决心。<br>几乎所有的人都说，男票不同意那就换个同意的男票（逃~）。</p><a id="more"></a><p>昨天华为的小伙伴问我要不要去深圳，空气好，离香港近，随时出国玩耍，生活成本低。<br>我说买不起房啊。其实去深圳肯定不如去武汉的，毕竟是湖北人。<br>大学的时候学的管理学派上了用场，我用SWOT分析法分析下城市选择的优劣势，你看到了也可以帮我分析分析，或者希望我的分析对你也有用处。</p><p>TODO</p><h4 id="武汉迁户口攻略："><a href="#武汉迁户口攻略：" class="headerlink" title="武汉迁户口攻略："></a>武汉迁户口攻略：</h4><p>1.关注光谷公安公众号，填写信息，看看是否符合条件<br>2.选借住，让有房的朋友给写个借住证明，其他材料必须齐全，不齐全谁也没办法，都是拍照上传的<br>3.提交材料之后，材料都没问题的话，大概一天内就有回复了。<br>4.审核通过后会你可以选择寄准迁证明到户口所在地的亲人那边，让亲人拿到准迁证明去你原户口所在地去办迁出，给你寄材料，然后你就可以去武汉了</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近公司出了去转岗武汉的好政策，3万元的安家费，不降薪，不落户也可以随时买房。&lt;br&gt;小伙伴问我咋不回去，也不是没想过，只不过男票肯定不同意，也难以下定决心。&lt;br&gt;几乎所有的人都说，男票不同意那就换个同意的男票（逃~）。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="生活" scheme="https://Evalotus.github.io/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>前端静态发布系统探索</title>
+    <link href="https://Evalotus.github.io/2018/10/25/%E5%89%8D%E7%AB%AF%E9%9D%99%E6%80%81%E5%8F%91%E5%B8%83%E7%B3%BB%E7%BB%9F%E6%8E%A2%E7%B4%A2/"/>
+    <id>https://Evalotus.github.io/2018/10/25/前端静态发布系统探索/</id>
+    <published>2018-10-25T10:16:56.000Z</published>
+    <updated>2018-12-19T06:22:17.559Z</updated>
+    
+    <content type="html"><![CDATA[<p>现代的静态发布系统探索<br><a id="more"></a></p><h4 id="建议的发布方式："><a href="#建议的发布方式：" class="headerlink" title="建议的发布方式："></a>建议的发布方式：</h4><p>1.前后端分离，npm run build，将静态资源上cdn</p><p>2.将入口文件index放在server端返回。</p><h4 id="代码层面："><a href="#代码层面：" class="headerlink" title="代码层面："></a>代码层面：</h4><p>在webpack中，不仅仅分离vendor.js，对于稳定的功能，也可以在webpack中动静分离，分成经常改的文件和不经常修改的。</p><h4 id="覆盖式发布还是非覆盖式发布？"><a href="#覆盖式发布还是非覆盖式发布？" class="headerlink" title="覆盖式发布还是非覆盖式发布？"></a>覆盖式发布还是非覆盖式发布？</h4><p>如果每次发布都在原来的文件基础上修改，每次都覆盖式发布文件，只是在访问时 <a href="http://evacode.com/static/a.js?v=1.0" target="_blank" rel="noopener">http://evacode.com/static/a.js?v=1.0</a> ,修改v后面的版本号。这样不仅回滚时不好操作，而且版本非常容易混淆。</p><p>mi使用的发布系统是与git关联的，后来和sre沟通，发现真的是每个版本都留着，现在7年多了，其实占用的磁盘资源并没有想象的那么多。但是静态资源上cdn，cdn上还是需要定期清理。</p><p>更新资源发布路径实现非覆盖式发布。</p><h4 id="静态资源的入口文件index放在server项目中还是不放？"><a href="#静态资源的入口文件index放在server项目中还是不放？" class="headerlink" title="静态资源的入口文件index放在server项目中还是不放？"></a>静态资源的入口文件index放在server项目中还是不放？</h4><p>思考场景：</p><p>1.后端修改了接口，增加了参数，如果后端先上线了，前端后上线的话，中间时间点访问网站的用户因为缺少参数就不可用了。</p><p>2.后端新增了一个接口，前端先上线，后端还没部署，中间时间点访问网站的用户就会发现404了。</p><p>一个功能需要前后端协同开发，功能上有依赖，如果不能一起发布的话，总是会出现用户暂时访问有问题的情况。</p><p>但是如果放在一起的话，前端修改个css，后端需要几百台机器全部上个线，总不好意思每次都让后端同学那么辛苦的上线。</p><p>前端的静态资源入口文件，不管是index.htm还是index.jsp等等，在开发过程中，都可以直接scp到服务器上，并不需要后台编译。</p><p>所以结论是：</p><p>静态资源的入口文件应该放在server端项目。但是在部署系统上，应该同时实现两种情况的部署系统：</p><p>1.前后端同时发布，主要用于一个需要前后端协同开发的功能发布。</p><p>2.前端简单的发布index.html，主要用在与后端无关的前端发布上，如文案，css等。此时只需要把入口文件scp到项目中即可。</p><p>每次部署先发布静态资源再发布server端项目</p><h4 id="打包上线去本地化："><a href="#打包上线去本地化：" class="headerlink" title="打包上线去本地化："></a>打包上线去本地化：</h4><p>发布机上有docker image，在发布机上进行<code>npm run build</code>，将文件部署到cdn上。</p><p>TODO，文件丢到cdn，我们需要做什么。</p><h4 id="回滚操作："><a href="#回滚操作：" class="headerlink" title="回滚操作："></a>回滚操作：</h4><p>前后端有依赖的功能，全量回滚。</p><p>前后端无依赖的功能，直接回滚index到上个版本。</p><p>全程不用回滚静态资源发布，因为是非覆盖式发布，只需要修改index中的版本即可。</p><h4 id="缓存设置："><a href="#缓存设置：" class="headerlink" title="缓存设置："></a>缓存设置：</h4><p>静态资源因为有版本号，可以全部都设超长缓存时间。</p><p>index设置no-cache。</p><h5 id="公司的xbox系统"><a href="#公司的xbox系统" class="headerlink" title="公司的xbox系统"></a>公司的xbox系统</h5><p><a href="https://www.ibm.com/developerworks/cn/opensource/os-cn-puppet/index.html" target="_blank" rel="noopener">https://www.ibm.com/developerworks/cn/opensource/os-cn-puppet/index.html</a></p><p><a href="https://puppet.com/" target="_blank" rel="noopener">https://puppet.com/</a></p><p>封装了puppet等开源项目，在Git项目中加上deploy文件之后，xbox就可以从git上拉代码，选择git版本进行编译</p><p>#!/bin/bash<br>set -x<br>job=$1</p><p>get_env_name() {<br>tag_env=<code>echo $1 | sed &#39;s/.*cluster\.\([^._]*\).*/\1/&#39;</code><br>echo ${tag_env}<br>}</p><p>get_job_name() {<br>echo $1 | sed ‘s/.<em>job.([^._]</em>).*/\1/‘<br>}</p><p>get_service_name() {<br>echo $1 | sed ‘s/.<em>service.([^._]</em>).*/\1/‘<br>}</p><p>env_name=<code>get_env_name $job</code><br>job_name=<code>get_job_name $job</code><br>service_name=<code>get_service_name $job</code></p><p>[ -d release ] &amp;&amp; rm -rf release</p><h1 id="需要什么文件夹就加什么文件夹"><a href="#需要什么文件夹就加什么文件夹" class="headerlink" title="需要什么文件夹就加什么文件夹."></a>需要什么文件夹就加什么文件夹.</h1><p>mkdir -p release &amp;&amp; cp -r ./dist/* release/<br>cp -r deploy release</p><p>exit 0</p><p>deploy和build.sh</p><h4 id="前端静态文件发布的过程："><a href="#前端静态文件发布的过程：" class="headerlink" title="前端静态文件发布的过程："></a>前端静态文件发布的过程：</h4><p>由sre来创建job</p><p>job要属于资源所在产品线</p><p>静态发布需要创建job，从部署系统发布，不要私自copy到机器上</p><p>发布时启停只能是update</p><p>申请机器权限：</p><p><a href="http://apply.pt.xiaomi.com/apply" target="_blank" rel="noopener">http://apply.pt.xiaomi.com/apply</a></p><p>在发布系统中docker的使用</p><p>docker镜像编译</p><p><a href="http://v9.git.n.xiaomi.com/mcfe/goku" target="_blank" rel="noopener">http://v9.git.n.xiaomi.com/mcfe/goku</a></p><p>稳定性和编译能力</p><p>git拉代码，文件copy，机器打通</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;现代的静态发布系统探索&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="frontend team" scheme="https://Evalotus.github.io/tags/frontend-team/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JS事件循环机制2-throttle和debounce</title>
+    <link href="https://Evalotus.github.io/2018/10/15/JS%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B62-throttle%E5%92%8Cdebounce/"/>
+    <id>https://Evalotus.github.io/2018/10/15/JS事件循环机制2-throttle和debounce/</id>
+    <published>2018-10-15T05:10:28.000Z</published>
+    <updated>2018-12-19T06:22:17.552Z</updated>
+    
+    <content type="html"><![CDATA[<p>函数的debounce和throttle<br><a id="more"></a></p><table><thead><tr><th style="text-align:left"></th><th style="text-align:left">throttle</th><th style="text-align:left">debounce</th></tr></thead><tbody><tr><td style="text-align:left">释义</td><td style="text-align:left">节流（整个事件所用的时间）</td><td style="text-align:left">去抖动（整个事件的单次循环之间的时间间隔）</td></tr><tr><td style="text-align:left"></td><td style="text-align:left">水龙头打开本来是连续不断的出水，但是我们将水龙头不断拧紧，直到水龙头以一滴一滴的形式流出。使某个连续不断的动作在某个规定时间段只调用一次，叫做节流throttle</td><td style="text-align:left">从按下弹簧到弹簧恢复松弛状态需要一定的时间，每次按下弹簧必须要一定时间等其恢复到原状之后才可以进行下一次按压，这才是一次完整的循环。为两次循环动作设定最短的时间间隔，叫做防抖debounce</td></tr><tr><td style="text-align:left"></td><td style="text-align:left">在某时间段只调用一次</td><td style="text-align:left">两次触发时间间隔超过设定值才会调用</td></tr><tr><td style="text-align:left">实例</td><td style="text-align:left">window.resize事件虽然一直触发，但是我们其实只需要某时间段内最后一次</td><td style="text-align:left">图形验证码刷新，用户一直点击刷新，但是我们设定只有点击间隔大于500ms时才会触发</td></tr><tr><td style="text-align:left"></td><td style="text-align:left">window.scroll事件滑动时一直触发，但是我们需要控制</td><td style="text-align:left">input中输入关键字查询，每次keydown输入关键字都触发ajax查询，我们可以设定两次请求的最小间隔</td></tr><tr><td style="text-align:left"></td><td style="text-align:left">mouseMove事件</td><td style="text-align:left">多次点击按钮放重复提交</td></tr><tr><td style="text-align:left">对于时间的理解</td><td style="text-align:left">interval是对于整个事件所占用的时间</td><td style="text-align:left">interval是对于不断循环往复的事件之间的时间间隔</td></tr><tr><td style="text-align:left">调用方式</td><td style="text-align:left"></td><td style="text-align:left"></td></tr><tr><td style="text-align:left">差别</td><td style="text-align:left">每3000ms只调用一次和两次调用时间间隔大于3000ms,差别在于前者两次调用时间可能很近</td><td style="text-align:left">防抖用的多一点。还是要看具体的使用场景。其实很多场景差别并不那么大</td></tr></tbody></table><h4 id="基本实现"><a href="#基本实现" class="headerlink" title="基本实现"></a>基本实现</h4><h4 id="debounce"><a href="#debounce" class="headerlink" title="debounce"></a>debounce</h4><p>eg:input中输入字符来搜索，如果用户连续keydown，造成大量ajax，正确的做法是设置一个门槛值，两次请求的最小间隔</p><p>debounce：返回一个新函数，两次触发的时间间隔大于事先设定的值才运行实际任务</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ========================</span></span><br><span class="line"><span class="comment">// debounce</span></span><br><span class="line"><span class="comment">// 一般是一些用户操作</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn, delay</span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> timer = <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> context = <span class="keyword">this</span>;</span><br><span class="line"><span class="keyword">var</span> args = <span class="built_in">arguments</span>;</span><br><span class="line">clearTimeout(timer);</span><br><span class="line">timer = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">fn.apply(context, args);</span><br><span class="line">&#125;, delay);</span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 得到fn的防抖版本</span></span><br><span class="line"><span class="keyword">var</span> lazyLayout = debounce(calLayout, <span class="number">3000</span>);</span><br><span class="line">$(<span class="built_in">window</span>).rezise(lazyLayout);</span><br></pre></td></tr></table></figure><h4 id="Throttle"><a href="#Throttle" class="headerlink" title="Throttle"></a>Throttle</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ========================</span></span><br><span class="line"><span class="comment">// throttle</span></span><br><span class="line"><span class="comment">// 一般是对于一些延续性的动作</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">fn,interval</span>) </span>&#123;</span><br><span class="line"><span class="keyword">var</span> last;</span><br><span class="line"><span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">var</span> curr = <span class="keyword">new</span> <span class="built_in">Date</span>().valueOf();</span><br><span class="line"><span class="keyword">if</span> (curr - last &gt; interval) &#123;</span><br><span class="line">fn.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">last = curr;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> throttle = throttle(updatePosition, <span class="number">3000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 一个延续性动作的停止时间</span></span><br><span class="line"><span class="comment">// TODO 注意延续性动作的停止时间和debounce也是差不多的</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">end</span>(<span class="params">func</span>) </span>&#123;</span><br><span class="line"><span class="keyword">var</span> timer;</span><br><span class="line"><span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (timer) clearTimeout(timer);</span><br><span class="line">timer = setTimeout(func, <span class="number">100</span>, event);</span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>不要设置太多setTimeout，因为其特别耗费CPU，比较理想的做法是，将要推迟执行的代码都放在一个函数里，然后只对这个函数使用setTimeout或setInterval。</p><p>可以用于模块的生命周期<br>_.defer:延迟调用fn直到当前调用栈清空，类似setTimeout(fn,0)。对于执行开销大的计算和无阻塞UI线程的HTML渲染时候非常有用</p><p>由于事件频繁被触发，因而频繁执行DOM操作、资源加载等重行为，导致UI停顿甚至浏览器崩溃</p><p>比如：</p><ol><li><p>window对象的resize、scroll事件</p></li><li><p>拖拽时的mousemove事件</p></li><li><p>射击游戏中的mousedown、keydown事件</p></li><li><p>文字输入、自动完成的keyup事件</p></li></ol><p>实际上对于window的resize事件，实际需求大多为停止改变大小n毫秒后执行后续处理；而其他事件大多的需求是以一定的频率执行后续处理。针对这两种需求就出现了debounce和throttle两种解决办法。</p><p>这两者本质都是函数调用的频度控制器。</p><p>参考文献：</p><p><a href="http://www.cnblogs.com/fsjohnhuang/p/4147810.html" target="_blank" rel="noopener">http://www.cnblogs.com/fsjohnhuang/p/4147810.html</a></p><p><a href="https://zhuanlan.zhihu.com/p/26054718" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/26054718</a></p><p>用于测试js的性能</p><p><a href="https://jsperf.com/" target="_blank" rel="noopener">https://jsperf.com/</a><br><a href="http://www.alloyteam.com/2012/11/javascript-throttle/" target="_blank" rel="noopener">http://www.alloyteam.com/2012/11/javascript-throttle/</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;函数的debounce和throttle&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="javascript" scheme="https://Evalotus.github.io/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JS事件循环机制1</title>
+    <link href="https://Evalotus.github.io/2018/10/13/JS%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B61/"/>
+    <id>https://Evalotus.github.io/2018/10/13/JS事件循环机制1/</id>
+    <published>2018-10-13T06:09:20.000Z</published>
+    <updated>2018-12-19T06:22:17.551Z</updated>
+    
+    <content type="html"><![CDATA[<p>单线程和异步</p><a id="more"></a><h4 id="js为啥是单线程的？"><a href="#js为啥是单线程的？" class="headerlink" title="js为啥是单线程的？"></a>js为啥是单线程的？</h4><p>作为浏览器脚本语言，JavaScript的主要用途是与用户互动，以及操作DOM。这决定了它只能是单线程，否则会带来很复杂的同步问题。比如，假定JavaScript同时有两个线程，一个线程在某个DOM节点上添加内容，另一个线程删除了这个节点，这时浏览器应该以哪个线程为准？</p><p>所以，为了避免复杂性，从一诞生，JavaScript就是单线程，这已经成了这门语言的核心特征，将来也不会改变。</p><p>为了利用多核CPU的计算能力，HTML5提出Web Worker标准，允许JavaScript脚本创建多个线程，但是子线程完全受主线程控制，且不得操作DOM。所以，这个新标准并没有改变JavaScript单线程的本质。</p><p>单线程<br>优点：免去了频繁切换线程的开销，减少资源互抢问题。不用如多线程那样处处在意状态的同步，没有死锁的概念。<br>缺点：容易阻塞，无法利用多核CPU。</p><h4 id="为啥有异步？"><a href="#为啥有异步？" class="headerlink" title="为啥有异步？"></a>为啥有异步？</h4><p>异步编程的四种方式：<br>回调，事件监听，观察者模式（发布订阅），Promise（为异步编程提供统一的接口）</p><p>是<strong>浏览器</strong>提供了多线程的环境<br>网络请求，定时器，事件监听等任务是非常耗时的，都老老实实的排队等待执行的话，执行效率会非常的低，甚至导致页面的假死。所以，浏览器为这些耗时任务开辟了另外的线程，主要包括<strong>http请求线程</strong>，<strong>浏览器定时器线程</strong>，<strong>浏览器事件触发线程</strong>，<strong>页面渲染线程</strong><br>浏览器主线程用来页面渲染？</p><p>浏览器中js和UI共用一个线程</p><p>主线程排队执行同步任务</p><p>主线程之外有个<strong>任务队列</strong>（callback queue），任务队列中都是异步任务，主线程空了就会读取任务队列里的任务，将其加入主线程执行，如<code>setTimeout(fn,0)</code>也是在主线程所有的代码都执行完毕之后才执行，意思是尽可能早的执行fn，而不是马上执行fn。</p><p>任务产生事件：<br>http请求线程：网络请求事件，ajax success failure的回调<br>浏览器定时器线程：setTimeout的回调<br>浏览器事件触发线程：用户交互事件，如click，keypress等事件的回调</p><p>这些callback都被加入callback queue中，<strong>浏览器是多线程的，但是js是异步的</strong>，将这些任务放在任务队列里等待执行而已</p><h4 id="无阻塞Never-Blocking"><a href="#无阻塞Never-Blocking" class="headerlink" title="无阻塞Never Blocking"></a>无阻塞Never Blocking</h4><p>Event<br>JS通过events和callbacks来处理I/O,所以在等待ajax返回时依然可以处理用户输入</p><p>Event loop事件循环：主线程不断从任务队列中读取任务的过程，是实现异步的一种方式。js宿主环境的机制</p><h4 id="setTimeout运行机制"><a href="#setTimeout运行机制" class="headerlink" title="setTimeout运行机制"></a>setTimeout运行机制</h4><p>setTimeout和setInterval的运行机制：将指定的代码添加到任务队列中，等到下一轮EventLoop（主线程从任务队列中读取任务）时，再检查是否到了指定时间，如果到了就执行对应的代码，否则就等下一次Event Loop重新判断，setTimeout指定的代码，必须等到本次EventLoop执行完所有代码执行才执行</p><p>setTimeout()只是将事件插入了”任务队列”，必须等到当前代码（执行栈）执行完，主线程才会去执行它指定的回调函数。要是当前代码耗时很长，有可能要等很久，所以并没有办法保证，回调函数一定会在setTimeout()指定的时间执行。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(waitTask,1000)// 10000+100?还是1000</span><br><span class="line">veryLongTask();// 耗时10000</span><br></pre></td></tr></table></figure><p>setTimeout(fn,0)是立即执行吗</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(fn1,0);// fn2先执行</span><br><span class="line">fn2();</span><br></pre></td></tr></table></figure><p>必须等主线程中的同步任务和任务队列中已有事件全部处理完之后才执行setTimeout</p><p>setTimeout(fn,0)只能做到尽可能早的执行指定任务，H5新标准规定，setTimeout推迟执行的事件最少是4毫秒，小于4会自动增加到4，为了防止多个setTimeout(fn,0)连续执行造成性能问题</p><p>setTimeout(fn,0)加在你要延迟执行的函数上，或者需要页面渲染完毕才执行</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById(&apos;my-ok&apos;).onkeypress = function() &#123;</span><br><span class="line">var self = this;</span><br><span class="line">setTimeout(function() &#123;</span><br><span class="line">self.value = self.value.toUpperCase();</span><br><span class="line">&#125;, 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>js是单线程的，容易阻塞<br>将复杂的操作分片放在setTimeout(fn,0)中执行</p><p>setTimeout(fn,1000)返回一个int，可以clearTimeout来取消对应定时器</p><p>setTimeout和setInterval返回的整数值是连续的(一定环境下，比如浏览器控制台，或者js执行环境等)，也就是说，第二个setTimeout方法返回的整数值，将比第一个的整数值大1。利用这一点，可以写一个函数，取消当前所有的setTimeout。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">(function() &#123;</span><br><span class="line">var gid = setInterval(clearAllTimeouts, 0);</span><br><span class="line"></span><br><span class="line">function clearAllTimeouts() &#123;</span><br><span class="line">var id = setTimeout(function() &#123;&#125;, 0);</span><br><span class="line">while (id &gt; 0) &#123;</span><br><span class="line">if (id !== gid) &#123;</span><br><span class="line">clearTimeout(id);</span><br><span class="line">&#125;</span><br><span class="line">id--;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure><h4 id="setTimeout和Promise"><a href="#setTimeout和Promise" class="headerlink" title="setTimeout和Promise"></a>setTimeout和Promise</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(function() &#123;</span><br><span class="line">console.log(1)</span><br><span class="line">&#125;, 0);</span><br><span class="line">new Promise(function executor(resolve) &#123;</span><br><span class="line">console.log(2);</span><br><span class="line">for( var i=0 ; i&lt;10000 ; i++ ) &#123;</span><br><span class="line">i == 9999 &amp;&amp; resolve();</span><br><span class="line">&#125;</span><br><span class="line">console.log(3);</span><br><span class="line">&#125;).then(function() &#123;</span><br><span class="line">console.log(4);</span><br><span class="line">&#125;);</span><br><span class="line">console.log(5);</span><br><span class="line">// 2 3 5 4 1</span><br></pre></td></tr></table></figure><p>promise虽然是异步操作但是setTimeout是等所有的同步操作加任务队列里所有的任务都执行完之后才执行的</p><h4 id="nodejs"><a href="#nodejs" class="headerlink" title="nodejs"></a>nodejs</h4><p>i/o密集和cpu密集型<br>适合io密集型而不适合cpu密集型操作</p><p>不必耗费过多的系统开销，把精力放在处理多线程<br>宿主环境和事件驱动机制使它实现了非阻塞IO</p><p>进程-&gt;线程-&gt;协程</p><p>很多让nodejs支持多线程的方法是使用C++的addon实现，在需要进行cpu密集型计算的地方，把js代码改写成c/c++代码，但是如果开发人员对c++不是很熟悉，一来开发效率会降低不少，二来也容易出bug，而且我们知道在addon中的c++代码除了编译出错外，是很难调试的，毕竟没有vs调试c++代码方便。</p><p>v8引擎是c++写的，解析js的</p><p>js处理并发就是排队</p><p>reactor模式：NIO，selector多路复用，</p><p>nodejs为啥要用js来写呢：没有历史包袱</p><p>线程process 进程thread</p><h1 id="从setTimeout来理解事件循环"><a href="#从setTimeout来理解事件循环" class="headerlink" title="从setTimeout来理解事件循环"></a>从setTimeout来理解事件循环</h1><p>基于event loop（事件循环）的concurrency model（并发模型）</p><p>runtime（运行时）的概念：<br>由stack（栈），heap（堆），queue（队列）来组成</p><p>stack:函数执行<br>heap：Object 的allocated内存分配<br>queue：runtime有message queue，每个message对应处理这条message的function<br>event loop：在某些时间点，runtime开始处理queue上的message，message从queue中移除，其对应的function被调用，message会被作为参数传递进去，调用函数也会产生新的stack frame</p><p>一般主线程都空了之后就同步的等待messgage，来一条处理一条</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">while (queue.waitForMessage()) &#123;</span><br><span class="line">queue.processNextMessage();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>不可以像C那样切换线程，如果处理一条messgae比较耗时，就无法处理用户交互了，可以将messgage分片处理<br>message queue空了之后event loop再次执行？？？</p><p>message和function对应，事件发生时就会产生message，如果click事件没有handler，事件就丢弃了，不产生message</p><p>理解：<br>普通的代码都是在stack中执行的，setTimeout是加在queue中的</p><p>感觉event loop并不是主线程读取queue，主线程即stack中的代码在js加载时就一行行执行完毕了，其他的如网络请求，事件点击等，都是用户交互之后通过事件和message加入在queue中，通过和message关联的function来进行处理的</p><p>因为你不可能在stack中新增function吗？</p><p>Queue：<br>Callback queue：任务队列<br>Single thread：单线程<br>Event Loop：事件循环<br>macroTask：</p><p>microTask：</p><p>callstack：<br>I/O<br>JS V8 engine</p><p>Stack，heap，message queue，runtimes（web worker 或 cross-origin iframe）</p><p>runtimes：不同的运行时环境有不同的Stack，heap，message queue。可以通过postMessage来传递消息</p><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop</a></p><p>参考文献：<br><a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2014/10/event-loop.html</a></p><p><a href="http://caibaojian.com/interesting-interview.html" target="_blank" rel="noopener">关于setTimeout的面试</a></p><p><a href="http://caibaojian.com/about-settimeout.html" target="_blank" rel="noopener">关于setTimeout你不知道的事</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;单线程和异步&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="javascript" scheme="https://Evalotus.github.io/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>微信开发实用指南3-手机浏览器唤起微信app登录的可行性</title>
+    <link href="https://Evalotus.github.io/2018/10/12/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E5%AE%9E%E7%94%A8%E6%8C%87%E5%8D%973-%E6%89%8B%E6%9C%BA%E6%B5%8F%E8%A7%88%E5%99%A8%E5%94%A4%E8%B5%B7%E5%BE%AE%E4%BF%A1app%E7%99%BB%E5%BD%95%E7%9A%84%E5%8F%AF%E8%A1%8C%E6%80%A7/"/>
+    <id>https://Evalotus.github.io/2018/10/12/微信开发实用指南3-手机浏览器唤起微信app登录的可行性/</id>
+    <published>2018-10-12T10:26:01.000Z</published>
+    <updated>2018-12-19T06:22:17.566Z</updated>
+    
+    <content type="html"><![CDATA[<p>微信的地位越来越高，隔不了多久就有大佬问，为什么你们的手机端H5没有微信登录的入口，压力很大呀。</p><p>可能是安全问题或者其他考虑，微信在网页端只提供了扫码登录的入口，即使在手机端集成了微信登录，用户点开也会很奇怪，这个码只有PC端的样式，看起来很奇怪，而且怎么用我的手机微信来扫这个手机浏览器这个码呢？而且即使可以扫码成功也无法登录成功，所以看了大部分的公司都选择在手机浏览器隐藏了微信登录的入口。</p><p>但是细心的PM发现，京东居然有微信登录的入口，但是一般也只是在QQ浏览器或者系统浏览器中支持，可以直接打开手机上的微信app，但是在无痕模式或者其他的浏览器也无法成功。</p><p>前端无隐私，让我们来F12来看看他们是怎么做到的。</p><p><img src="/assets/wap_wxlogin.png" alt=""></p><p>可以发现，京东的微信登录并没有什么特别的，也是各种302跳转最后到了 <a href="https://open.weixin.qq.com/sns/explorer_broker?appid=wx2f5d8f9715c59d10&amp;redirect_uri=https%3A%2F%2Fplogin.m.jd.com%2Fcgi-bin%2Fml%2Fwxcallback%3Flsid%3Dq9ibchzrnbivxypneji7r4sxusp24wrv&amp;response_type=code&amp;scope=snsapi_userinfo&amp;state=smr1qm3p&amp;connect_redirect=1的" target="_blank" rel="noopener">https://open.weixin.qq.com/sns/explorer_broker?appid=wx2f5d8f9715c59d10&amp;redirect_uri=https%3A%2F%2Fplogin.m.jd.com%2Fcgi-bin%2Fml%2Fwxcallback%3Flsid%3Dq9ibchzrnbivxypneji7r4sxusp24wrv&amp;response_type=code&amp;scope=snsapi_userinfo&amp;state=smr1qm3p&amp;connect_redirect=1 </a>这个页面。最重要的是这个是微信的域名，所以我们可以知道，这个跳转是微信主动触发的。</p><p>怪不得说京东是微信亲儿子嘛。让我们看看这个页面做了什么事。</p><p><img src="/assets/wap_wxlogin2.png" alt="">前面都是一些环境的判断，而且这些都是微信方帮忙实现的。最重要的是<code>location.href = &#39;weixin://dl/business/?ticket=tb15388ef1a6e07db69a0d57a87345f93&#39;</code></p><p>前端是可以实现打开微信app的，但是如何打开某个特定的页面就需要app端来支持了，而微信端为京东做了特殊的处理，可以做到直接打开微信的app中京东的微信授权页面。</p><p>所以如果我们的业务也需要实现这个功能，就需要向微信申请了。</p><p>另外一个更激进的就是QQ了，公告说是为了一些不安全因素，在18年年初完全下掉了wap端网页登录的方式，现在wap端的QQ登录都采用直接打开QQ app的方式来授权登录。在某些非系统浏览器中因为无法打开app就悲剧了。还是觉得有些激进了些。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;微信的地位越来越高，隔不了多久就有大佬问，为什么你们的手机端H5没有微信登录的入口，压力很大呀。&lt;/p&gt;
+&lt;p&gt;可能是安全问题或者其他考虑，微信在网页端只提供了扫码登录的入口，即使在手机端集成了微信登录，用户点开也会很奇怪，这个码只有PC端的样式，看起来很奇怪，而且怎么用我
+      
+    
+    </summary>
+    
+    
+      <category term="微信开发" scheme="https://Evalotus.github.io/tags/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>微信开发实用指南3-微信分享功能</title>
+    <link href="https://Evalotus.github.io/2018/09/28/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E5%AE%9E%E7%94%A8%E6%8C%87%E5%8D%973-%E5%BE%AE%E4%BF%A1%E5%88%86%E4%BA%AB%E5%8A%9F%E8%83%BD/"/>
+    <id>https://Evalotus.github.io/2018/09/28/微信开发实用指南3-微信分享功能/</id>
+    <published>2018-09-28T10:27:12.000Z</published>
+    <updated>2018-12-19T06:22:17.565Z</updated>
+    
+    <content type="html"><![CDATA[<p>接入js-sdk的分享功能，分享出去的地址会变成</p><p><a href="https://i.mi.com/static2?filename=MicloudWebBill/event/recruit/index.html&amp;from=singlemessage&amp;isappinstalled=0" target="_blank" rel="noopener">https://i.mi.com/static2?filename=MicloudWebBill/event/recruit/index.html&amp;from=singlemessage&amp;isappinstalled=0</a></p><p>后台签名如果是写死url的话，第二次分享就会有签名错误的问题，导致分享出去用户看到的description和头图都没有了，变成了默认的url地址。</p><p>所以后端需要实时获取url地址来加密签名，以免导致二次分享出错的问题</p><p>一般给后端传入当前<code>location.href</code></p><p>建议查看<a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421141115" target="_blank" rel="noopener">https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421141115</a>中的<strong>附录5-常见错误及解决方法</strong></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;接入js-sdk的分享功能，分享出去的地址会变成&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://i.mi.com/static2?filename=MicloudWebBill/event/recruit/index.html&amp;amp;from=singlemessage
+      
+    
+    </summary>
+    
+    
+      <category term="微信开发" scheme="https://Evalotus.github.io/tags/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>微信开发实用指南2-小程序的入口</title>
+    <link href="https://Evalotus.github.io/2018/09/22/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E5%AE%9E%E7%94%A8%E6%8C%87%E5%8D%972-%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%85%A5%E5%8F%A3/"/>
+    <id>https://Evalotus.github.io/2018/09/22/微信开发实用指南2-小程序的入口/</id>
+    <published>2018-09-22T12:02:14.000Z</published>
+    <updated>2018-12-19T06:22:17.564Z</updated>
+    
+    <content type="html"><![CDATA[<p>用户在使用微信时，打开小程序的体验要比打开H5页面的体验要好得多，老板希望在H5页面可以直接打开小程序。</p><p>查阅资料发现，至目前为止，现在H5和小程序互相跳转的唯二方式如下：<br><a id="more"></a></p><p>1.可以在H5的页面中放一个小程序的二维码，用户<strong>长按识别</strong>小程序二维码就可以跳转到小程序中</p><p>2.或者把H5页面嵌入到小程序的web-view中，在H5页面中通过调用JS-SDK的<code>wx.navigateToMiniProgram</code>跳转到小程序的native页面中。注意此时行为都发生在小程序中，H5的域名需要在小程序的域名校验名单中。</p><p>除了以上入口，还有：</p><p>1.用户在小程序中点分享给朋友，还可以把小程序发在消息中。</p><p>2.在公众号文章中可以直接打开小程序。</p><p>但是非小程序内嵌的H5是不能直接打开小程序的。</p><p>参考文档：</p><p><a href="https://developers.weixin.qq.com/miniprogram/dev/component/web-view.html" target="_blank" rel="noopener">微信的web-view API</a></p><p><a href="https://www.jianshu.com/p/50657f9af5b4" target="_blank" rel="noopener">小程序内嵌网页的方法</a></p><p>这下可以不用担心啦。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;用户在使用微信时，打开小程序的体验要比打开H5页面的体验要好得多，老板希望在H5页面可以直接打开小程序。&lt;/p&gt;
+&lt;p&gt;查阅资料发现，至目前为止，现在H5和小程序互相跳转的唯二方式如下：&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>微信开发实用指南1-前言</title>
+    <link href="https://Evalotus.github.io/2018/09/18/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E5%AE%9E%E7%94%A8%E6%8C%87%E5%8D%971-%E5%89%8D%E8%A8%80/"/>
+    <id>https://Evalotus.github.io/2018/09/18/微信开发实用指南1-前言/</id>
+    <published>2018-09-18T10:23:29.000Z</published>
+    <updated>2018-12-19T06:22:17.563Z</updated>
+    
+    <content type="html"><![CDATA[<p>现在经济不景气，小公司拿不到投资，连iOS开发和andriod开发都招不起，而微信凭借着众多的用户，成为了开发的热土，一个创业公司可以没有App，但一定会需要先在微信里试水，是公司获客的最佳渠道。</p><p>这个系列记录了微信开发遇到的问题，和产品狗相爱相杀的往事。</p><p>目录（也是产品狗的那些呐喊）：</p><p>0.开发前的了解</p><p>1.我想要在微信的H5页面里直接打开小程序</p><p>2.我想要做活动页分享给好友</p><p>3.我想小程序和webview的登录态互相传递</p><p>…</p><h4 id="关于H5的那些争执"><a href="#关于H5的那些争执" class="headerlink" title="关于H5的那些争执"></a>关于H5的那些争执</h4><p>H5，在我们大前端眼中实际是HTML5的缩写，其实HTML已经是缩写了，缩完再缩，就变成了他们口中的H5，实际上只有中国人才会这么称呼，要是跟老外说H5，H five，他们就懵逼了。</p><p>比如App，并不是任何词组的缩写，而是Application的简读，只有中国人才会读APP。还有那个UGG的鞋子，实际上应该念‘阿哥’，但是呢，你开心就好。嗯，啥时候出一个程序员英语装逼指南应该会更受欢迎吧。</p><p>说回H5，对于FE来说，HTML5只不过是一种语言而已。</p><p>对于PM还有其他非前端的开发人员来说，H5指的是手机端上的网页。</p><p>对于运营妹子来说，嗯，H5呀，我也会做哦。实际上他们说的是，可以拖拖拽拽，像做PPT一样生成的页面，便于在微信里快速传播。</p><p>虽然他们说的都不对，但他们开心就好，能听懂就好。</p><h4 id="关于微信公众平台和开放平台"><a href="#关于微信公众平台和开放平台" class="headerlink" title="关于微信公众平台和开放平台"></a>关于微信公众平台和开放平台</h4><p>公众平台：<a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">https://mp.weixin.qq.com/</a> 主要用在公众号，运营妹子登的多，我们需要开发微信公众号的一些活动页面时也需要在里面配置一些东西</p><p>开放平台：<a href="https://open.weixin.qq.com/" target="_blank" rel="noopener">https://open.weixin.qq.com/</a> 主要用在各种开发上，app，小程序，公众号都包括</p><h4 id="开发公众号页面的配置"><a href="#开发公众号页面的配置" class="headerlink" title="开发公众号页面的配置"></a>开发公众号页面的配置</h4><p>有的公号后台都是运营或PM来管，都不让我们FE来登录。下面是我们开发必要的一些信息。</p><p><img src="/assets/微信公众平台-基本配置.png" alt=""></p><h5 id="首页-gt-开发-gt-基本配置"><a href="#首页-gt-开发-gt-基本配置" class="headerlink" title="首页=&gt;开发=&gt;基本配置"></a>首页=&gt;开发=&gt;基本配置</h5><h6 id="公众号开发信息"><a href="#公众号开发信息" class="headerlink" title="公众号开发信息"></a>公众号开发信息</h6><p>AppId用在很多地方</p><p>AppSecret只能放在服务端，前端代码对攻击者来说完全是透明的，只要是跟AppSecret相关的接口都一定是后端调微信的接口。</p><p>需要添加你的IP在Ip白名单里，这样才可以获取acces_token来测试</p><h6 id="服务器配置"><a href="#服务器配置" class="headerlink" title="服务器配置"></a>服务器配置</h6><p>不要配置这个，以免运营妹子的自动回复没了</p><h6 id="已绑定的微信开放平台帐号"><a href="#已绑定的微信开放平台帐号" class="headerlink" title="已绑定的微信开放平台帐号"></a>已绑定的微信开放平台帐号</h6><p>有用到unionId的话会需要这部分</p><h5 id="首页-gt-开发-gt-开发者工具"><a href="#首页-gt-开发-gt-开发者工具" class="headerlink" title="首页=&gt;开发=&gt;开发者工具"></a>首页=&gt;开发=&gt;开发者工具</h5><p><img src="/assets/微信公众平台-开发者工具.png" alt=""></p><p>下载一个微信开发者工具</p><p>开发者工具相关信息：<a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1455784140" target="_blank" rel="noopener">https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1455784140</a></p><p>关注公众平台安全助手</p><p>让管理者开通公号开发者权限</p><p>基本工作完成就可以用开发者工具调试公号页面啦</p><h4 id="完成需求的步骤"><a href="#完成需求的步骤" class="headerlink" title="完成需求的步骤"></a>完成需求的步骤</h4><p>1.当PM抛出一个需求时，我们应该看看<strong>当前的公众号是否有相应的权限</strong>。</p><p>不要设计接口、讨论开发了半天才发现这个公号根本没有这个接口权限。</p><p>登录微信公众平台=&gt;开发=&gt;接口权限</p><p>或者综合的接口权限说明： <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1433401084" target="_blank" rel="noopener">https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1433401084</a></p><p>选择设置=&gt;系统代理时，fiddler代理并不能生效。可以选择手动设置代理，ipconfig获取本机ip，ip:8888。</p><h5 id="订阅号和服务号的区别："><a href="#订阅号和服务号的区别：" class="headerlink" title="订阅号和服务号的区别："></a>订阅号和服务号的区别：</h5><p>简言之，订阅号会被收纳起来，服务号推送消息会直接出现的你的消息列表中</p><p>订阅号比如：咪蒙。。。这类写文章的。</p><p>服务号比如：小米商城，招行信用卡，京医通等等。</p><p>其他的区别参见：<br><a href="https://www.zhihu.com/question/21289814" target="_blank" rel="noopener">https://www.zhihu.com/question/21289814</a></p><p>2.思索一下在生活中有没有看到过类似的别人完成的需求。</p><p>PM也是人，他们设计肯定也是看别人发了啥他们也要，他见过的咱们也肯定见过啊，没有见过就让他给找例子。</p><p>3.在chrome中打开链接，F12看下源码</p><p>反正咱们前端都是小透明，如果运气好没压缩的话，很easy就可以看懂了。</p><p>其实最大的问题是刚开始因为刚上手，不太明确前端和后端的职责，看看别人页面的network就可以胸有成竹的指使后端我需要这个你得给我返回啦~</p><p>有套路，不迷路。</p><h4 id="经常需要查看的文档们，google不如看文档："><a href="#经常需要查看的文档们，google不如看文档：" class="headerlink" title="经常需要查看的文档们，google不如看文档："></a>经常需要查看的文档们，google不如看文档：</h4><p>公众平台综合技术文档：<a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1472017492_58YV5" target="_blank" rel="noopener">https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1472017492_58YV5</a></p><p>JS-SDK：<a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421141115" target="_blank" rel="noopener">https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421141115</a></p><p>JS接口签名校验工具：<a href="https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign&amp;token=&amp;lang=zh_CN" target="_blank" rel="noopener">https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign&amp;token=⟨=zh_CN</a></p><p>接口调试工具：<a href="https://mp.weixin.qq.com/debug?token=1156200581&amp;lang=zh_CN" target="_blank" rel="noopener">https://mp.weixin.qq.com/debug?token=1156200581⟨=zh_CN</a></p><p>获取JSTicket：<a href="https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={Access_TOKEN}&amp;type=jsapi" target="_blank" rel="noopener">https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={Access_TOKEN}&amp;type=jsapi</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;现在经济不景气，小公司拿不到投资，连iOS开发和andriod开发都招不起，而微信凭借着众多的用户，成为了开发的热土，一个创业公司可以没有App，但一定会需要先在微信里试水，是公司获客的最佳渠道。&lt;/p&gt;
+&lt;p&gt;这个系列记录了微信开发遇到的问题，和产品狗相爱相杀的往事。&lt;/
+      
+    
+    </summary>
+    
+    
+      <category term="微信开发" scheme="https://Evalotus.github.io/tags/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JS异步加载和script标签属性的深层解析</title>
+    <link href="https://Evalotus.github.io/2018/09/18/JS%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD%E5%92%8Cscript%E6%A0%87%E7%AD%BE%E5%B1%9E%E6%80%A7%E7%9A%84%E6%B7%B1%E5%B1%82%E8%A7%A3%E6%9E%90/"/>
+    <id>https://Evalotus.github.io/2018/09/18/JS异步加载和script标签属性的深层解析/</id>
+    <published>2018-09-18T06:07:59.000Z</published>
+    <updated>2018-12-19T06:22:17.555Z</updated>
+    
+    <content type="html"><![CDATA[<p>JS异步加载和script标签属性的深层解析<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">&lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;script src=&quot;https://www.evacoder.com/404.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">// console还是会执行，但是会先返回js 404之后才执行。</span><br><span class="line">// 浏览器确实是按script标签的顺序，依次加载执行的，所以经常说需要将script放在body的底部，防止阻塞页面。</span><br><span class="line">console.log(1);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p><p>只要不存在defer和async属性，浏览器都会按照script出现的顺序依次解析。</p><p>script加上defer或async属性之后，会先console，才返回404</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;https://www.evacoder.com/b.js&quot; async defer=&quot;defer&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure><h4 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h4><p>脚本可以延迟到<strong>文档完全被解析</strong>和显示之后才执行。表示脚本在执行时不会影响页面的构造。立即下载，延迟解析（遇到<code>&lt;/html&gt;</code>之后才执行）。</p><p>出现多个script defer时，延迟解析也是按照出现的顺序来解析的？在DOMContentLoaded之前解析？</p><p>规定是这么规定，但是现实却是无法确定谁先解析，甚至都不一定在DOMContentLoaded之前解析。所以一般最好只包含一个defer script。</p><p>浏览器兼容性：</p><p>IE4-不支持，兼容性不错，但是最好还是将defer script放在body底部。</p><p>那请求发出的时机呢？？</p><p>下载时机：立即下载</p><p>执行时机：</p><h4 id="async"><a href="#async" class="headerlink" title="async"></a>async</h4><p>async的意思是应该立即下载脚本，但是不应妨碍页面其他的操作。注意是<strong>下载</strong>而不是<strong>加载</strong>。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;https://www.evacoder.com/1.js&quot; async&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;https://www.evacoder.com/2.js&quot; async&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure><p>不能保证1.js在2.js之前解析，所以需要保证两者之间互不依赖。</p><p>一定会在document.load之前执行，但是可能会在DOMContentLoaded触发之前或之后执行。</p><p>下载和解析：</p><p>aynsc：立即下载，到底何时执行？加载完就执行？遇到阻塞的情况就最后执行？不阻塞就立刻执行吗？</p><p>defer：立即下载，遇到<code>&lt;/html&gt;</code>之后才执行？所有元素解析完成之后，DOMContentLoaded触发之前执行。类似放在最底部，但是是先下载的。</p><p>最大6个资源一起下载</p><p>window.onload:</p><p>document.onload：</p><p>DOMLoading：浏览器开始解析dom</p><p>DOMInteractive：浏览器解析好dom树</p><p>DOMContentLoaded：同步的js执行完毕</p><h4 id="sdk的版本控制"><a href="#sdk的版本控制" class="headerlink" title="sdk的版本控制"></a>sdk的版本控制</h4><p>引入一个不变的小的js，设置超长缓存或不设置缓存？</p><p>在其中通过document.createElement(‘script’)来异步加载js，这个时候生成的js本来就是aynsc的，何时加载完已经和window.onload等一点关系都没有了，此时可以通过script.onload来获取加载完成的状态，ie可以使用onreadystatechange</p><p>业务方加载了你的js sdk，如何在不用通知业务的情况下，就可以进行版本更新?</p><p>JS sdk load完成之前，如何调用</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">load js</span><br><span class="line"></span><br><span class="line">loadSDK(function()&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>通过动态插入script标签的方式</p><p>加载完成之前会阻止onload事件的出发，而现在很多页面的代码都在onload时</p><p>DOMContentLoaded：页面(document)已经解析完成，页面中的dom元素已经可用。但是页面中引用的图片、subframe可能还没有加载完</p><p>onLoad：页面的所有资源都加载完毕（包括图片）</p><p>async是html5的新属性，async 属性规定一旦脚本可用，则会异步执行（一旦下载完毕就会立刻执行）。</p><p>需要注意的是async 属性仅适用于外部脚本（只有在使用 src 属性时）</p><p>noscript 元素用来定义在脚本未被执行时的替代内容（文本）。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;noscript&gt;Your browser does not support JavaScript!&lt;/noscript&gt;</span><br></pre></td></tr></table></figure><h4 id="readyState"><a href="#readyState" class="headerlink" title="readyState"></a>readyState</h4><p><a href="https://blog.csdn.net/u011700203/article/details/47656857" target="_blank" rel="noopener">https://blog.csdn.net/u011700203/article/details/47656857</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;JS异步加载和script标签属性的深层解析&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="javascript" scheme="https://Evalotus.github.io/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JS中的面向对象5-Object.create和new Object</title>
+    <link href="https://Evalotus.github.io/2018/07/18/JS%E4%B8%AD%E7%9A%84%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A15-Object-create%E5%92%8Cnew-Object/"/>
+    <id>https://Evalotus.github.io/2018/07/18/JS中的面向对象5-Object-create和new-Object/</id>
+    <published>2018-07-18T06:02:40.000Z</published>
+    <updated>2018-12-19T06:22:17.550Z</updated>
+    
+    <content type="html"><![CDATA[<p>Object.create和new Object的区别<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var Person = function(age) &#123;</span><br><span class="line">this.age=age;</span><br><span class="line">this.say=function()&#123;console.log(&apos;hello&apos;);&#125;</span><br><span class="line">&#125;;</span><br><span class="line">var p=new Person(11);</span><br><span class="line">var p1 = Object.create(p);</span><br></pre></td></tr></table></figure></p><p><img src="/assets/proto1.png" alt=""></p><p><img src="/assets/proto2.png" alt=""></p><p>从console中可以发现，p成了p1的原型对象，p中的属性和方法都成了p1的原型方法。</p><p>Object.create的作用就是传入一个对象，给创建的新对象提供<code>__proto__</code>引用</p><p>多用在对象的继承中。</p><p>Object.create的实现方式</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">if (!Object.create) &#123;</span><br><span class="line">Object.create = function(proto, propertiesObject) &#123;</span><br><span class="line">if (typeof proto !== &apos;object&apos; &amp;&amp; typeof proto !== &apos;function&apos;) &#123;</span><br><span class="line">throw new TypeError(&apos;Object prototype may only be an Object:&apos; + proto);</span><br><span class="line">&#125; else if (proto === null) &#123;</span><br><span class="line">throw new Error(&quot;This browser&apos;s implementation of Object.create is a shim and doesn&apos;t support &apos;null&apos;&quot;);</span><br><span class="line">&#125;</span><br><span class="line">if (typeof propertiesObject != &apos;undefined&apos;) &#123;</span><br><span class="line">throw new Error(&quot;This browser&apos;s implementation of Object.create is a shim and doesn&apos;t support a second argument&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function F() &#123;&#125;;</span><br><span class="line">F.prototype = proto;</span><br><span class="line">return new F();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Object.create和new Object的区别&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="javascript" scheme="https://Evalotus.github.io/tags/javascript/"/>
+    
+  </entry>
+  
+</feed>
