@@ -126,6 +126,10 @@ npm install
 git clone https://github.com/theme-next/hexo-theme-next themes/next
 
 ```
+**5.怎么维护博客呢？**
+我之前都是在gitbook上做学习笔记，语言很随意，排版很混乱，这样并不利于知识的沉淀，不仅仅要自己理解，更要能陈述的让其他人一看就明白，像阮一峰老师那样，由浅入深，把复杂的只是说清楚。
+现在把gitbook的笔记都整理成博客之后，也不敢把gitbook的笔记删掉，一旦遇到维护两份差不多的文档时，我们就要警惕，他们一定会差别越来越大，
+
 
 其他问题可以直接去看[hexo的文档](https://hexo.io/zh-cn/docs/index.html)，已经灰常良心了！
 
