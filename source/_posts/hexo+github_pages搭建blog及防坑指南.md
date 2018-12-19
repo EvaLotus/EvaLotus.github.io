@@ -37,7 +37,7 @@ git clone https://github.com/iissnan/hexo-theme-next themes/next
 # 在外层_confif.yml中改theme为next
 
 # 删除generate的文件，切换主题时最好执行下，可以不用自己删掉public文件
-hexo clean
+hexo clean****
 
 # 生成public目录，可以在本地调试时使用，注意看下.gitignore可以发现git提交时并不提交public目录
 hexo g
@@ -51,12 +51,12 @@ hexo new 'HelloWorld'
 很容易就搭建好了自己的博客，下面是一些常见问题的解决。
 #### FAQ
 
-1.怎么能将github.io的域名改成自己申请的域名？
+**1.怎么能将github.io的域名改成自己申请的域名？**
 
 首先你需要在万网或其他平台上买个域名，一般50元/年。购买完成后需要在购买域名的管理后台进行CNAME解析，目的是将gitubpages的地址比如`https://github.com/EvaLotus/EvaLotus.github.io`指向你购买的域名`evacoder.com`。
 然后直接在github的project settings里，设置custom domain，这样就会自动在你的项目中增加一个CNAME文件，里面会记录你自己的域名。
 
-2.如何`hexo d`自动更新部署博客
+**2.如何`hexo d`自动更新部署博客**
 
 需要安装插件`npm i hexo-deployer-git --save`，在`_config.yml`中配置
 
@@ -73,7 +73,7 @@ branch: master
 
 3.每次`hexo d`之后我的CNAME都没了怎么办？
 
-注意看下.gitignore可以发现git提交时并不提交public目录
+注意看下`.gitignore`可以发现git提交时并不提交public目录
 
 小伙伴们应该都发现了，`hexo d`之后并没有push source目录，只是push生成后的public中的文件，所以我们要注意，CNAME，README，Favicon.ico都应该放在source目录下，这样`hexo d`之后会直接放在public的根目录下
 
