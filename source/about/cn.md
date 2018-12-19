@@ -4,17 +4,18 @@ title: Eva's Resume
 
 ### 个人信息：
 - 求职意向：web前端开发
-- 工作经验：2年
+- 工作经验：3.5年
+- 年龄：26
 - 手 机：18810623283		  						
-- 邮 箱： zhangchu1211@126.com
+- 邮 箱： evacoder@126.com
 - Github：https://github.com/Evalotus				
-- 个人主页： http://www.envylotus.com
+- 个人主页： http://www.evacoder.com
 
 ### 工作经历：
 
 > **小米科技** 云平台 帐号与安全组	Web前端开发 2016年11月-至今
 
-> **宇信科技** 中信网络金融部 			Web前端 & iOS开发 2015年7月-2016年11月
+> **宇信科技** 中信网络金融部 		Web前端 & iOS开发 2015年7月-2016年11月
 
 ### 项目经历：
 #### 小米帐号
@@ -23,14 +24,14 @@ title: Eva's Resume
 
 为3亿+小米用户提供帐号相关服务
 
-- 访问地址：https://account.mi.com
+- 访问地址：https://account.xiaomi.com
 - 责任描述：
 1. 开发维护小米帐号相关页面，调研新技术并应用
 2. 小米帐号页面国际化，目前支持31种语言
 3. 滑动验证优化用户体验
 4. 为公司其他组提供定制化的登录页面
 5. 微信小程序登录sdk
-6. 使用element-ui开发support后台系统
+6. 使用element-ui快速开发各种管理系统
 7. 为后台深度学习收集环境信息及行为信息
 8. 和native交互进行取号操作
 
@@ -71,33 +72,20 @@ title: Eva's Resume
     云会议主要用于无纸化会议，用户可以查看会议详情，对参会进行回执，阅读会议材料，对议题进行表决，储存会议材料批注。
 
 - 责任描述：
-    独立完成整个项目移动端开发。
-
-    参与需求讨论，产品设计，文档撰写，测试，上线，维护，迭代，技术支持等全流程，熟悉了项目的完整生命周期，也熟悉了MDM移动设备管理。
-
-- 主要技术：
-
-    利用CGPath实现画笔功能；实现相册功能、换肤功能、iPhone版实现touch ID登录及手势解锁
-
-    利用 iCloud 钥匙串存储 uuid 实现专人专机，保证系统安全性
-
-    利用plist实现app外选择换肤及更改服务器地址
-
-    oc和js混合编程，iPad端使用一套javaScript快速开发模板实现多个界面的复用
+    凭借优秀的英语能力自学iOS开发进入软开行业，独立负责维护中信移动OA项目及云会议新需求开发。除了iOS开发知识和思想，有了MDM移动设备的管理经验，熟悉企业级应用的in house发布，处理了apple证书过期事宜。
+    长久不实践忘得比较多，可以和Native开发顺畅沟通
 
 ### 专业技能：
-1. 熟练掌握 HTML,CSS,JavaScript,有 iOS 开发实战经验,了解Node JS
-2. 熟练掌握 jQuery, Bootstrap,Vue.JS, Anguar JS
-3. 熟练掌握 ES6 
-4. 熟练掌握 AJAX 及 JSON 解析，完成数据的请求与渲染
-5. 熟练使用 Sass/Less 等 CSS 预处理器
-6. 熟练使用自动化构建工具 webpack, gulp
-7. 熟练使用 Charlse，Fiddler等代理工具
-8. 熟练使用 git, svn进行版本控制
-9. 熟练使用PhotoShop, Sketch, Axure, MarkMan等设计软件
+-   熟悉原生JS / ES6，了解JAVA/ Object-C
+-   熟练使用jQuery / Bootstrap / Vue / Element-UI / SASS / Webpack / Gulp
+-   熟练使用Chrome Dev Tool / Charles / Fiddler / Git / Sketch / PhotoShop / Axure / XMind等工具 
+-   熟悉HTTP协议
+
 
 ### 教育背景：
-毕业院校：北京第二外国语学院（一本）				英语专业八级
+毕业院校：北京第二外国语学院（一本）				
+
+英语专业八级
 
 
 ### 自我评价
@@ -105,5 +93,6 @@ title: Eva's Resume
 - 严谨细致			
 - 学习能力强
 
-### TANKS
-谢谢您花时间阅读我的简历，期待能与您共事～
+
+[en](/about/)
+TODO:[download pdf](evacode.com)

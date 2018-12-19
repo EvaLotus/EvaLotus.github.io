@@ -69,9 +69,14 @@ PhotoShop/Axure
 English: TEM 8
 
 ## Education
-Beijing International Studies' University  English & Management BS, 2011 - 2015
+Beijing International Studies' University  
+
+English & Management BS, 2011 - 2015
 
 ## Hobbies
 - Traveling & Photographing
 - Watching Movies
 - Cooking
+
+[cn](/about/cn.html)
+TODO:[download pdf](evacode.com)

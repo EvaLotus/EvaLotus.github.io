@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"right","width":400,"display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="单线程和异步">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS事件循环机制1">
+<meta property="og:url" content="https://Evalotus.github.io/2018/10/13/JS事件循环机制1/index.html">
+<meta property="og:site_name" content="Eva&#39;s Blog">
+<meta property="og:description" content="单线程和异步">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-12-18T14:06:13.229Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS事件循环机制1">
+<meta name="twitter:description" content="单线程和异步">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Eva's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://Evalotus.github.io/2018/10/13/JS事件循环机制1/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>JS事件循环机制1 | Eva's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Eva's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">进一寸有一寸的欢喜</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Evalotus.github.io/2018/10/13/JS事件循环机制1/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Eva">
+      <meta itemprop="description" content="JavaScript,HTML,CSS,Node JS,Front-end Develop">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eva's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">JS事件循环机制1
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-10-13 14:09:20" itemprop="dateCreated datePublished" datetime="2018-10-13T14:09:20+08:00">2018-10-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-12-18 22:06:13" itemprop="dateModified" datetime="2018-12-18T22:06:13+08:00">2018-12-18</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>单线程和异步</p>
+<a id="more"></a>
+<h4 id="js为啥是单线程的？"><a href="#js为啥是单线程的？" class="headerlink" title="js为啥是单线程的？"></a>js为啥是单线程的？</h4><p>作为浏览器脚本语言，JavaScript的主要用途是与用户互动，以及操作DOM。这决定了它只能是单线程，否则会带来很复杂的同步问题。比如，假定JavaScript同时有两个线程，一个线程在某个DOM节点上添加内容，另一个线程删除了这个节点，这时浏览器应该以哪个线程为准？</p>
+<p>所以，为了避免复杂性，从一诞生，JavaScript就是单线程，这已经成了这门语言的核心特征，将来也不会改变。</p>
+<p>为了利用多核CPU的计算能力，HTML5提出Web Worker标准，允许JavaScript脚本创建多个线程，但是子线程完全受主线程控制，且不得操作DOM。所以，这个新标准并没有改变JavaScript单线程的本质。</p>
+<p>单线程<br>优点：免去了频繁切换线程的开销，减少资源互抢问题。不用如多线程那样处处在意状态的同步，没有死锁的概念。<br>缺点：容易阻塞，无法利用多核CPU。</p>
+<h4 id="为啥有异步？"><a href="#为啥有异步？" class="headerlink" title="为啥有异步？"></a>为啥有异步？</h4><p>异步编程的四种方式：<br>回调，事件监听，观察者模式（发布订阅），Promise（为异步编程提供统一的接口）</p>
+<p>是<strong>浏览器</strong>提供了多线程的环境<br>网络请求，定时器，事件监听等任务是非常耗时的，都老老实实的排队等待执行的话，执行效率会非常的低，甚至导致页面的假死。所以，浏览器为这些耗时任务开辟了另外的线程，主要包括<strong>http请求线程</strong>，<strong>浏览器定时器线程</strong>，<strong>浏览器事件触发线程</strong>，<strong>页面渲染线程</strong><br>浏览器主线程用来页面渲染？</p>
+<p>浏览器中js和UI共用一个线程</p>
+<p>主线程排队执行同步任务</p>
+<p>主线程之外有个<strong>任务队列</strong>（callback queue），任务队列中都是异步任务，主线程空了就会读取任务队列里的任务，将其加入主线程执行，如<code>setTimeout(fn,0)</code>也是在主线程所有的代码都执行完毕之后才执行，意思是尽可能早的执行fn，而不是马上执行fn。</p>
+<p>任务产生事件：<br>http请求线程：网络请求事件，ajax success failure的回调<br>浏览器定时器线程：setTimeout的回调<br>浏览器事件触发线程：用户交互事件，如click，keypress等事件的回调</p>
+<p>这些callback都被加入callback queue中，<strong>浏览器是多线程的，但是js是异步的</strong>，将这些任务放在任务队列里等待执行而已</p>
+<h4 id="无阻塞Never-Blocking"><a href="#无阻塞Never-Blocking" class="headerlink" title="无阻塞Never Blocking"></a>无阻塞Never Blocking</h4><p>Event<br>JS通过events和callbacks来处理I/O,所以在等待ajax返回时依然可以处理用户输入</p>
+<p>Event loop事件循环：主线程不断从任务队列中读取任务的过程，是实现异步的一种方式。js宿主环境的机制</p>
+<h4 id="setTimeout运行机制"><a href="#setTimeout运行机制" class="headerlink" title="setTimeout运行机制"></a>setTimeout运行机制</h4><p>setTimeout和setInterval的运行机制：将指定的代码添加到任务队列中，等到下一轮EventLoop（主线程从任务队列中读取任务）时，再检查是否到了指定时间，如果到了就执行对应的代码，否则就等下一次Event Loop重新判断，setTimeout指定的代码，必须等到本次EventLoop执行完所有代码执行才执行</p>
+<p>setTimeout()只是将事件插入了”任务队列”，必须等到当前代码（执行栈）执行完，主线程才会去执行它指定的回调函数。要是当前代码耗时很长，有可能要等很久，所以并没有办法保证，回调函数一定会在setTimeout()指定的时间执行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(waitTask,1000)// 10000+100?还是1000</span><br><span class="line">veryLongTask();// 耗时10000</span><br></pre></td></tr></table></figure>
+<p>setTimeout(fn,0)是立即执行吗</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(fn1,0);// fn2先执行</span><br><span class="line">fn2();</span><br></pre></td></tr></table></figure>
+<p>必须等主线程中的同步任务和任务队列中已有事件全部处理完之后才执行setTimeout</p>
+<p>setTimeout(fn,0)只能做到尽可能早的执行指定任务，H5新标准规定，setTimeout推迟执行的事件最少是4毫秒，小于4会自动增加到4，为了防止多个setTimeout(fn,0)连续执行造成性能问题</p>
+<p>setTimeout(fn,0)加在你要延迟执行的函数上，或者需要页面渲染完毕才执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById(&apos;my-ok&apos;).onkeypress = function() &#123;</span><br><span class="line">var self = this;</span><br><span class="line">setTimeout(function() &#123;</span><br><span class="line">self.value = self.value.toUpperCase();</span><br><span class="line">&#125;, 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>js是单线程的，容易阻塞<br>将复杂的操作分片放在setTimeout(fn,0)中执行</p>
+<p>setTimeout(fn,1000)返回一个int，可以clearTimeout来取消对应定时器</p>
+<p>setTimeout和setInterval返回的整数值是连续的(一定环境下，比如浏览器控制台，或者js执行环境等)，也就是说，第二个setTimeout方法返回的整数值，将比第一个的整数值大1。利用这一点，可以写一个函数，取消当前所有的setTimeout。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">(function() &#123;</span><br><span class="line">var gid = setInterval(clearAllTimeouts, 0);</span><br><span class="line"></span><br><span class="line">function clearAllTimeouts() &#123;</span><br><span class="line">var id = setTimeout(function() &#123;&#125;, 0);</span><br><span class="line">while (id &gt; 0) &#123;</span><br><span class="line">if (id !== gid) &#123;</span><br><span class="line">clearTimeout(id);</span><br><span class="line">&#125;</span><br><span class="line">id--;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<h4 id="setTimeout和Promise"><a href="#setTimeout和Promise" class="headerlink" title="setTimeout和Promise"></a>setTimeout和Promise</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(function() &#123;</span><br><span class="line">console.log(1)</span><br><span class="line">&#125;, 0);</span><br><span class="line">new Promise(function executor(resolve) &#123;</span><br><span class="line">console.log(2);</span><br><span class="line">for( var i=0 ; i&lt;10000 ; i++ ) &#123;</span><br><span class="line">i == 9999 &amp;&amp; resolve();</span><br><span class="line">&#125;</span><br><span class="line">console.log(3);</span><br><span class="line">&#125;).then(function() &#123;</span><br><span class="line">console.log(4);</span><br><span class="line">&#125;);</span><br><span class="line">console.log(5);</span><br><span class="line">// 2 3 5 4 1</span><br></pre></td></tr></table></figure>
+<p>promise虽然是异步操作但是setTimeout是等所有的同步操作加任务队列里所有的任务都执行完之后才执行的</p>
+<h4 id="nodejs"><a href="#nodejs" class="headerlink" title="nodejs"></a>nodejs</h4><p>i/o密集和cpu密集型<br>适合io密集型而不适合cpu密集型操作</p>
+<p>不必耗费过多的系统开销，把精力放在处理多线程<br>宿主环境和事件驱动机制使它实现了非阻塞IO</p>
+<p>进程-&gt;线程-&gt;协程</p>
+<p>很多让nodejs支持多线程的方法是使用C++的addon实现，在需要进行cpu密集型计算的地方，把js代码改写成c/c++代码，但是如果开发人员对c++不是很熟悉，一来开发效率会降低不少，二来也容易出bug，而且我们知道在addon中的c++代码除了编译出错外，是很难调试的，毕竟没有vs调试c++代码方便。</p>
+<p>v8引擎是c++写的，解析js的</p>
+<p>js处理并发就是排队</p>
+<p>reactor模式：NIO，selector多路复用，</p>
+<p>nodejs为啥要用js来写呢：没有历史包袱</p>
+<p>线程process 进程thread</p>
+<h1 id="从setTimeout来理解事件循环"><a href="#从setTimeout来理解事件循环" class="headerlink" title="从setTimeout来理解事件循环"></a>从setTimeout来理解事件循环</h1><p>基于event loop（事件循环）的concurrency model（并发模型）</p>
+<p>runtime（运行时）的概念：<br>由stack（栈），heap（堆），queue（队列）来组成</p>
+<p>stack:函数执行<br>heap：Object 的allocated内存分配<br>queue：runtime有message queue，每个message对应处理这条message的function<br>event loop：在某些时间点，runtime开始处理queue上的message，message从queue中移除，其对应的function被调用，message会被作为参数传递进去，调用函数也会产生新的stack frame</p>
+<p>一般主线程都空了之后就同步的等待messgage，来一条处理一条</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">while (queue.waitForMessage()) &#123;</span><br><span class="line">queue.processNextMessage();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不可以像C那样切换线程，如果处理一条messgae比较耗时，就无法处理用户交互了，可以将messgage分片处理<br>message queue空了之后event loop再次执行？？？</p>
+<p>message和function对应，事件发生时就会产生message，如果click事件没有handler，事件就丢弃了，不产生message</p>
+<p>理解：<br>普通的代码都是在stack中执行的，setTimeout是加在queue中的</p>
+<p>感觉event loop并不是主线程读取queue，主线程即stack中的代码在js加载时就一行行执行完毕了，其他的如网络请求，事件点击等，都是用户交互之后通过事件和message加入在queue中，通过和message关联的function来进行处理的</p>
+<p>因为你不可能在stack中新增function吗？</p>
+<p>Queue：<br>Callback queue：任务队列<br>Single thread：单线程<br>Event Loop：事件循环<br>macroTask：</p>
+<p>microTask：</p>
+<p>callstack：<br>I/O<br>JS V8 engine</p>
+<p>Stack，heap，message queue，runtimes（web worker 或 cross-origin iframe）</p>
+<p>runtimes：不同的运行时环境有不同的Stack，heap，message queue。可以通过postMessage来传递消息</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop</a></p>
+<p>参考文献：<br><a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2014/10/event-loop.html</a></p>
+<p><a href="http://caibaojian.com/interesting-interview.html" target="_blank" rel="noopener">关于setTimeout的面试</a></p>
+<p><a href="http://caibaojian.com/about-settimeout.html" target="_blank" rel="noopener">关于setTimeout你不知道的事</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="Eva wechat" style="width: 200px; max-width: 100%;">
+    <div>ex. subscribe to my blog by scanning my public wechat account</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Donate comment here</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Eva WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Eva Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+      <div id="bitcoin" style="display: inline-block">
+        <img id="bitcoin_qr" src="/images/bitcoin.png" alt="Eva Bitcoin">
+        <p>Bitcoin</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/12/微信开发实用指南3-手机浏览器唤起微信app登录的可行性/" rel="next" title="微信开发实用指南3-手机浏览器唤起微信app登录的可行性">
+                <i class="fa fa-chevron-left"></i> 微信开发实用指南3-手机浏览器唤起微信app登录的可行性
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/15/JS事件循环机制2-throttle和debounce/" rel="prev" title="JS事件循环机制2-throttle和debounce">
+                JS事件循环机制2-throttle和debounce <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Eva">
+            
+              <p class="site-author-name" itemprop="name">Eva</p>
+              <p class="site-description motion-element" itemprop="description">JavaScript,HTML,CSS,Node JS,Front-end Develop</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/EvaLotus" title="GitHub &rarr; https://github.com/EvaLotus" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:evacoder@126.com" title="E-Mail &rarr; mailto:evacoder@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://instagram.com/eva_coder" title="Instagram &rarr; https://instagram.com/eva_coder" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#js为啥是单线程的？"><span class="nav-number">1.</span> <span class="nav-text">js为啥是单线程的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为啥有异步？"><span class="nav-number">2.</span> <span class="nav-text">为啥有异步？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#无阻塞Never-Blocking"><span class="nav-number">3.</span> <span class="nav-text">无阻塞Never Blocking</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#setTimeout运行机制"><span class="nav-number">4.</span> <span class="nav-text">setTimeout运行机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#setTimeout和Promise"><span class="nav-number">5.</span> <span class="nav-text">setTimeout和Promise</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nodejs"><span class="nav-number">6.</span> <span class="nav-text">nodejs</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#从setTimeout来理解事件循环"><span class="nav-number"></span> <span class="nav-text">从setTimeout来理解事件循环</span></a></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Eva</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
