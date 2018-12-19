@@ -39,7 +39,7 @@ git clone https://github.com/theme-next/hexo-theme-next themes/next
 # 删除generate的文件，切换主题时最好执行下，可以不用自己删掉public文件
 hexo clean****
 
-# 生成public目录，可以在本地调试时使用，注意看下.gitignore可以发现git提交时并不提交public目录
+# 生成public目录，可以在本地调试时使用
 hexo g
 
 # 如果只是直接部署
