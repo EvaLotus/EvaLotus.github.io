@@ -30,7 +30,7 @@ npm install
 hexo s
 
 # 选择喜欢的主题，如next，实在是太容易撞衫了，但是确实是极简主义的爱
-# 将主题clone至themesext目录下
+# 将主题clone至themes目录下
 # 每次换电脑重新clone项目都需要执行这一步哦
 git clone https://github.com/iissnan/hexo-theme-next themes/next
 
