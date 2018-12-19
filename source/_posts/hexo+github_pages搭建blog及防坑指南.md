@@ -87,8 +87,6 @@ branch: master
 
 操作之前我们要分清职责，既然hexo上只存放源文件，那么我们要配置合理的`.gitignore`
 
-
-
 ```
 .DS_Store
 Thumbs.db
@@ -136,7 +134,7 @@ git clone https://github.com/theme-next/hexo-theme-next themes/next
 
 但是直接在sublime中写markdown并不能所见即所得，我想到的办法是在gitbook中直接打开博客的source目录，这样既能所见即所得，又保持了唯一性，之后会把gitbook上零碎的知识整理成每个人都能看懂的文章。
 **6.分享愉快的写博客体验**
-`hexo s`之后我们修改了markdown
+`hexo s`之后我们修改了markdown之后，再
 
 
 
