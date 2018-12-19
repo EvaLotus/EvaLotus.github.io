@@ -1,6 +1,6 @@
 ---
-layout: w
-title: display属性居然有这么多
+layout: post
+title: 「 CSS 」display属性居然有这么多
 date: 2016-11-28 17:11:22
 tags: CSS
 ---

@@ -66,7 +66,7 @@ footer:
   icon:
     # Icon name in fontawesome, see: https://fontawesome.com/v4.7.0/icons
     # `heart` is recommended with animation in red (#ff0000).
-    name: heart
+    name: Travel
     # If you want to animate the icon, set it to true.
     animated: true
     # Change the color of icon, using Hex Code.
@@ -138,10 +138,12 @@ exturl: false
 # External url should start with http:// or https:// .
 menu:
   home: / || home
-  about: /about/ || user
-  tags: /tags/ || tags
   #categories: /categories/ || th
   archives: /archives/ || archive
+  Movies: /movies || film
+  Album: /album || image
+  about: /about/ || user
+  tags: /tags/ || tags
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
   #commonweal: /404/ || heartbeat
@@ -184,7 +186,8 @@ social:
   #VK Group: https://vk.com/yourname || vk
   #StackOverflow: https://stackoverflow.com/yourname || stack-overflow
   #YouTube: https://youtube.com/yourname || youtube
-  Instagram: https://instagram.com/eva_coder || instagram
+  #Instagram: https://instagram.com/eva_coder || instagram
+  #Douban: https://instagram.com/eva_coder || douban
   #Skype: skype:yourname?call|chat || skype
 
 social_icons:
@@ -231,8 +234,8 @@ toc:
 
 sidebar:
   # Sidebar Position, available value: left | right (only for Pisces | Gemini).
-  #position: left
-  position: right
+  position: left
+  #position: right
 
   # Manual define the sidebar width.
   # If commented, will be default for:
@@ -285,6 +288,13 @@ auto_excerpt:
 # Read more button
 # If true, the read more button would be displayed in excerpt section
 read_more_btn: true
+
+post_wordcount:
+  item_text: true
+  wordcount: true  # 文章字数
+  min2read: true   # 阅读时间
+  totalcount: true  # 总共字数
+  separated_meta: true
 
 # Post meta display settings
 post_meta:
@@ -529,15 +539,15 @@ changyan:
 # You can get your appid and appkey from https://leancloud.cn
 # more info please open https://valine.js.org
 valine:
-  enable: false # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version.
-  appid:  # your leancloud application appid
-  appkey:  # your leancloud application appkey
+  enable: true # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version.
+  appid:  7Ck7B9LoU0iNuR7sVgC3Sscr-gzGzoHsz # your leancloud application appid
+  appkey:  GURQk3swSriTo8QzVtgoUDnk # your leancloud application appkey
   notify: false # mail notifier , https://github.com/xCss/Valine/wiki
   verify: false # Verification code
-  placeholder: Just go go # comment box placeholder
+  placeholder: 有什么想对Eva说的呢？ # comment box placeholder
   avatar: mm # gravatar style
   guest_info: nick,mail,link # custom comment header
-  pageSize: 10 # pagination size
+  pageSize: 5 # pagination size
   visitor: false # leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html
 
 # Support for LiveRe comments system.
@@ -615,7 +625,7 @@ needmoreshare2:
 #google_site_verification:
 
 # Google Analytics
-#google_analytics:
+google_analytics: UA-131198272-1
 
 # Bing Webmaster tools verification setting
 # See: https://www.bing.com/webmaster
@@ -677,8 +687,8 @@ rating:
 # You can visit https://leancloud.cn get AppID and AppKey.
 leancloud_visitors:
   enable: false
-  app_id: #<app_id>
-  app_key: #<app_key>
+  appid:  7Ck7B9LoU0iNuR7sVgC3Sscr-gzGzoHsz
+  appkey:  GURQk3swSriTo8QzVtgoUDnk
   # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
   # If you don't care about security in lc counter and just want to use it directly
   # (without hexo-leancloud-counter-security plugin), set the `security` to `false`.
@@ -816,7 +826,7 @@ reading_progress:
 
 # Use velocity to animate everything.
 motion:
-  enable: true
+  enable: false
   async: false
   transition:
     # Transition variants:
@@ -869,9 +879,9 @@ pace: false
 pace_theme: pace-theme-minimal
 
 # Canvas-nest
-# Dependencies: https://github.com/theme-next/theme-next-canvas-nest
+#Dependencies: https://github.com/theme-next/theme-next-canvas-nest
 canvas_nest:
-  enable: false
+  enable: true
   onmobile: true # display on mobile or not
   color: '0,0,255' # RGB values, use ',' to separate
   opacity: 0.5 # the opacity of line: 0~1
@@ -988,10 +998,10 @@ vendors:
   # Internal version: 1.0.0
   # See: https://github.com/theme-next/theme-next-canvas-nest
   # Example:
-  # canvas_nest: //cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1.0.0/canvas-nest.min.js
-  # canvas_nest_nomobile: //cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1.0.0/canvas-nest-nomobile.min.js
-  canvas_nest:
-  canvas_nest_nomobile:
+  canvas_nest: //cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1.0.0/canvas-nest.min.js
+  canvas_nest_nomobile: //cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1.0.0/canvas-nest-nomobile.min.js
+  #canvas_nest:
+  #canvas_nest_nomobile:
 
   # Internal version: 1.0.0
   # See: https://github.com/theme-next/theme-next-three
@@ -1045,7 +1055,7 @@ vendors:
   # Example:
   # valine: //cdn.jsdelivr.net/npm/valine@1.3.3/dist/Valine.min.js
   # valine: //cdnjs.cloudflare.com/ajax/libs/valine/1.3.3/Valine.min.js
-  valine:
+  valine: //cdn.jsdelivr.net/npm/valine@1.3.3/dist/Valine.min.js
 
   # Internal version: 1.4.0
   # See: https://github.com/gitalk/gitalk

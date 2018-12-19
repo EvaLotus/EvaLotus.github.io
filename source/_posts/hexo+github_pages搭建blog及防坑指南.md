@@ -1,4 +1,5 @@
 ---
+layout: post
 title: hexo+github pages 搭建 blog及防坑指南
 date: 2016-12-18 12:57:11
 tags: blog

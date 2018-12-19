@@ -1,5 +1,6 @@
 ---
-title: css布局规则和你不知道的BFC
+layout: post
+title: 「 CSS 」css布局规则和你不知道的BFC
 date: 2017-04-18 10:11:15
 tags: CSS
 ---
