@@ -105,7 +105,8 @@ git clone git@github.com:EvaLotus/EvaLotus.github.io.git
 git checkout hexo
 npm install
 # 因为theme文件在gitignore下，所以每次还需要重新clone下，不然会遇到no layout的错误。
-git clone https://github.com/iissnan/hexo-theme-next themes/next
+git clone https://github.com/theme-next/hexo-theme-next themes/next
+
 ```
 
 其他问题可以直接去看[hexo的文档](https://hexo.io/zh-cn/docs/index.html)，已经灰常良心了！
