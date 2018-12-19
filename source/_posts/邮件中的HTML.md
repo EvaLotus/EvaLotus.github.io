@@ -47,5 +47,28 @@ outlook客户端里：css统统不生效。
 遵循上面3条规则，代码越写φ\(≧ω≦\*\)♪越臃肿了，但是最可怕的是发现，自己根本不懂table！  
 ![一个很复杂的表格](/source/images/complex_table.png)
 
+```
+  <table align="center" border="1" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
+    　<tr>
+      　<td rowspan="2"> 好 </td>
+      　<td> 复杂</td>
+      <td rowspan="5">嗷嗷嗷！</td>
+    </tr>
+    <tr>
+      <td> 的</td>
+    </tr>
+    　<tr>
+      	<td> 表 </td>
+      	<td rowspan="2"> 格 </td>　
+    </tr>
+    <tr>
+      　<td> 啊 </td>
+    </tr>
+    <tr>
+      　<td colspan="2"> ! </td>
+    </tr>
+  </table>
+```
+
 
 
