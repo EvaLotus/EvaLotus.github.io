@@ -138,7 +138,7 @@ git clone https://github.com/theme-next/hexo-theme-next themes/next
 
 **6.分享愉快的写博客体验**
 在`hexo s`状态下我们修改了markdown之后，只需要刷新页面就可以看到变化了。如何实现自动刷新可以使用webpack的loader，但是暂时不想实现本地的chrome+sublime插件livereload也可以实现这个功能。
-hexo使用的是gulp，gulp也有[gulp-livereload](https://www.npmjs.com/package/gulp-livereload)可以使用，感兴趣的小伙伴可以改下下试试。
+hexo使用的是gulp，gulp也有[gulp-livereload](https://www.npmjs.com/package/gulp-livereload)可以使用，感兴趣的小伙伴可以改下试试。
 
 其他问题可以直接去看[hexo的文档](https://hexo.io/zh-cn/docs/index.html)，已经灰常良心了！
 
