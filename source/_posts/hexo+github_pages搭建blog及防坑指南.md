@@ -137,8 +137,6 @@ git clone https://github.com/theme-next/hexo-theme-next themes/next
 `hexo s`之后我们修改了markdown之后，再
 
 
-
-
 其他问题可以直接去看[hexo的文档](https://hexo.io/zh-cn/docs/index.html)，已经灰常良心了！
 
 搭建博客很简单，有很多漂亮的主题可供大家选择，但是博客的壳子并没有那么重要，最重要的是保持每天记录的习惯，分享高质量的内容。
