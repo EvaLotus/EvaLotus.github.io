@@ -95,7 +95,7 @@ git checkout -b hexo
 git checkout master
 hexo d
 
-# 但是每次修改之后还是记得自己把源文件的修改push一下
+# 但是每次修改之后一定要记得自己把hexo分支上的源文件的修改push一下！！
 git push origin/hexo
 
 # Easy!
@@ -103,6 +103,8 @@ git push origin/hexo
 git clone git@github.com:EvaLotus/EvaLotus.github.io.git
 git checkout hexo
 npm install
+# 因为theme文件在gitignore下，所以每次还需要重新clone下，不然会遇到no layout的错误。
+git clone https://github.com/iissnan/hexo-theme-next themes/next
 ```
 
 其他问题可以直接去看[hexo的文档](https://hexo.io/zh-cn/docs/index.html)，已经灰常良心了！
