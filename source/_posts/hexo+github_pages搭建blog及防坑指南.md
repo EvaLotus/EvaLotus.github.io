@@ -21,7 +21,9 @@ nmp i hexo-cli -g
 
 # 在此目录搭建博客，在github创建此项目
 cd EvaLotus.github.io
+# 新搭建的blog需要这一行
 hexo init
+# 安装依赖
 npm install
 
 # 启动服务，一个基本的博客就已经搭建好了
@@ -29,6 +31,7 @@ hexo s
 
 # 选择喜欢的主题，如next，实在是太容易撞衫了，但是确实是极简主义的爱
 # 将主题clone至themesext目录下
+# 每次换电脑重新clone项目都需要执行这一步哦
 git clone https://github.com/iissnan/hexo-theme-next themes/next
 
 # 在外层_confif.yml中改theme为next
