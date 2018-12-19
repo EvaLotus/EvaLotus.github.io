@@ -68,12 +68,13 @@ type: git
 repo: git@github.com:EvaLotus/EvaLotus.github.io.git
 branch: master
 ```
+配置完成之后，每次`hexo d`都会自动将编译好的文件提交到master分支上，并部署完成。
 
-在配置\_config.yml时一定要注意此类文件对缩进要求很严格，在sublime中编辑会有适当的颜色提醒你是否缩进正确
+还需要在配置\_config.yml时一定要注意此类文件对缩进要求很严格，在sublime中编辑会有适当的颜色提醒你是否缩进正确。
 
 3.每次`hexo d`之后我的CNAME都没了怎么办？
 
-注意看下`.gitignore`可以发现git提交时并不提交public目录
+注意看下`.gitignore`,git提交时并不提交public目录
 
 小伙伴们应该都发现了，`hexo d`之后并没有push source目录，只是push生成后的public中的文件，所以我们要注意，CNAME，README，Favicon.ico都应该放在source目录下，这样`hexo d`之后会直接放在public的根目录下
 
