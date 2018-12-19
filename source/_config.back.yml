@@ -60,7 +60,7 @@ rss:
 footer:
   # Specify the date when the site was setup.
   # If not defined, current year will be used.
-  since: 2015
+  since: 2016
 
   # Icon between year and copyright info.
   icon:
@@ -320,14 +320,14 @@ codeblock:
 # Wechat Subscriber
 wechat_subscriber:
   enabled: true
-  qcode: /uploads/wechat-qcode.jpg
-  description: ex. subscribe to my blog by scanning my public wechat account
+  qcode: /images/wechat_qrcode.jpg
+  description: 关注Eva的意如小馆，更方便的与我交流
 
 # Reward
 # If true, reward would be displayed in every article by default.
 # And you can show or hide one article specially through add page variable `reward: true/false`.
 reward:
-  enable: true
+  enable: false
   comment: Donate comment here
   wechatpay: /images/wechatpay.jpg
   alipay: /images/alipay.jpg
@@ -359,7 +359,7 @@ post_edit:
 # ---------------------------------------------------------------
 
 # Disable Baidu tranformation on mobile devices.
-disable_baidu_tranformation: false
+disable_baidu_tranformation: true
 
 # Reduce padding / margin indents on devices with narrow width.
 mobile_layout_economy: false
@@ -379,7 +379,7 @@ custom_logo:
 # Code Highlight theme
 # Available values: normal | night | night eighties | night blue | night bright
 # https://github.com/chriskempson/tomorrow-theme
-highlight_theme: normal
+highlight_theme: night eighties
 
 # Enable "cheers" for archive page.
 cheers_enabled: true
@@ -505,7 +505,7 @@ pangu: false
 #swiftype_key:
 
 # Baidu Analytics ID
-#baidu_analytics:
+baidu_analytics: ca3d224de40fbf734d1e623cf68e0fb4
 
 # Growingio Analytics ID
 # Copyright 2015-2018 GrowingIO, Inc. More info available at http://www.growingio.com
@@ -698,7 +698,7 @@ firestore:
 # Show Views/Visitors of the website/page with busuanzi.
 # Get more information on http://ibruce.info/2015/04/04/busuanzi
 busuanzi_count:
-  enable: false
+  enable: true
   total_visitors: true
   total_visitors_icon: user
   total_views: true
@@ -715,7 +715,7 @@ busuanzi_count:
 
 
 # Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO
-baidu_push: true
+baidu_push: false
 
 # Google Calendar
 # Share your recent schedule to others via calendar page
@@ -1038,7 +1038,7 @@ vendors:
   # See: https://github.com/theme-next/theme-next-reading-progress
   # Example:
   # reading_progress: //cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1.1/reading_progress.min.js
-  reading_progress:
+  reading_progress: //cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1.1/reading_progress.min.js
 
   # valine comment
   # See: https://github.com/xCss/Valine
