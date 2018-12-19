@@ -125,6 +125,7 @@ git clone https://github.com/theme-next/hexo-theme-next themes/next
 
 ```
 我的博客可能不是最好看的，但是一定是目录结构最清爽的！
+
 **5.怎么维护博客呢？**
 我之前都是在gitbook上做学习笔记，语言很随意，排版很混乱，这样并不利于知识的沉淀，不仅仅要自己理解，更要能陈述的让其他人一看就明白，像阮一峰老师那样，由浅入深，把复杂的只是说清楚。
 
@@ -133,6 +134,7 @@ git clone https://github.com/theme-next/hexo-theme-next themes/next
 既然写blog可以让我们知识沉淀更深，那么就写在博客上吧。
 
 但是直接在sublime中写markdown并不能所见即所得，我想到的办法是在gitbook中直接打开博客的source目录，这样既能所见即所得，又保持了唯一性，之后会把gitbook上零碎的知识整理成每个人都能看懂的文章。
+
 **6.分享愉快的写博客体验**
 `hexo s`之后我们修改了markdown之后，再
 
