@@ -11,10 +11,8 @@
 
 
 
-  
 
-
-<html class="theme-next gemini use-motion" lang="en">
+<html class="theme-next gemini" lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,6 +28,9 @@
 
 
 
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -82,12 +83,12 @@
     root: '/',
     scheme: 'Gemini',
     version: '6.6.0',
-    sidebar: {"position":"right","width":300,"display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","width":300,"display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
     fancybox: false,
     fastclick: false,
     lazyload: false,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -107,14 +108,14 @@
   <meta name="description" content="思考一个简单的问题，如何用原生js实现元素的显示隐藏，也就是jQuery中show和hide方法。 你肯定觉得特别简单，隐藏的话，直接el.style.display=&amp;#39;none&amp;#39;; 那显示呢？el.style.display=&amp;#39;block&amp;#39;？">
 <meta name="keywords" content="CSS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="display属性居然有这么多">
+<meta property="og:title" content="「 CSS 」display属性居然有这么多">
 <meta property="og:url" content="https://Evalotus.github.io/2016/11/28/display属性居然有这么多/index.html">
 <meta property="og:site_name" content="Eva&#39;s Blog">
 <meta property="og:description" content="思考一个简单的问题，如何用原生js实现元素的显示隐藏，也就是jQuery中show和hide方法。 你肯定觉得特别简单，隐藏的话，直接el.style.display=&amp;#39;none&amp;#39;; 那显示呢？el.style.display=&amp;#39;block&amp;#39;？">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-12-19T06:22:17.539Z">
+<meta property="og:updated_time" content="2018-12-19T09:03:26.803Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="display属性居然有这么多">
+<meta name="twitter:title" content="「 CSS 」display属性居然有这么多">
 <meta name="twitter:description" content="思考一个简单的问题，如何用原生js实现元素的显示隐藏，也就是jQuery中show和hide方法。 你肯定觉得特别简单，隐藏的话，直接el.style.display=&amp;#39;none&amp;#39;; 那显示呢？el.style.display=&amp;#39;block&amp;#39;？">
 
 
@@ -134,13 +135,32 @@
   };
 </script>
 
-  <title>display属性居然有这么多 | Eva's Blog</title>
+  <title>「 CSS 」display属性居然有这么多 | Eva's Blog</title>
   
 
 
 
 
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131198272-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'UA-131198272-1');
+</script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ca3d224de40fbf734d1e623cf68e0fb4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
 
@@ -182,7 +202,7 @@
     
   
 
-  <div class="container sidebar-position-right page-post-detail">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -240,6 +260,57 @@
         
         
           
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-movies">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/movies" rel="section"><i class="menu-item-icon fa fa-fw fa-film"></i> <br>Movies</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-album">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/album" rel="section"><i class="menu-item-icon fa fa-fw fa-image"></i> <br>Album</a>
+
+  </li>
+        
+        
+        
+          
           <li class="menu-item menu-item-about">
 
     
@@ -268,23 +339,6 @@
     
 
     <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
 
   </li>
 
@@ -342,7 +396,7 @@
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Eva">
-      <meta itemprop="description" content="JavaScript,HTML,CSS,Node JS,Front-end Develop">
+      <meta itemprop="description" content="JavaScript, HTML, CSS, Node JS, Front-end Develop">
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
@@ -355,7 +409,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">display属性居然有这么多
+          <h2 class="post-title" itemprop="name headline">「 CSS 」display属性居然有这么多
 
               
             
@@ -398,7 +452,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-12-19 14:22:17" itemprop="dateModified" datetime="2018-12-19T14:22:17+08:00">2018-12-19</time>
+                <time title="Modified: 2018-12-19 17:03:26" itemprop="dateModified" datetime="2018-12-19T17:03:26+08:00">2018-12-19</time>
               
             
           </span>
@@ -407,11 +461,28 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/11/28/display属性居然有这么多/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2016/11/28/display属性居然有这么多/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
           
 
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
           
 
           
@@ -451,7 +522,7 @@
     
       <div>
         <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/images/wechat_qcode.png" alt="Eva wechat" style="width: 200px; max-width: 100%;">
+    <img id="wechat_subscriber_qcode" src="/images/wechat_qrcode.jpg" alt="Eva wechat" style="width: 200px; max-width: 100%;">
     <div>关注Eva的意如小馆，更方便的与我交流</div>
 </div>
 
@@ -517,6 +588,10 @@
           
 
   
+    <div class="comments" id="comments">
+    </div>
+
+  
 
 
 
@@ -547,7 +622,7 @@
               <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Eva">
             
               <p class="site-author-name" itemprop="name">Eva</p>
-              <p class="site-description motion-element" itemprop="description">JavaScript,HTML,CSS,Node JS,Front-end Develop</p>
+              <p class="site-description motion-element" itemprop="description">JavaScript, HTML, CSS, Node JS, Front-end Develop</p>
           </div>
 
           
@@ -557,7 +632,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -598,7 +673,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -640,17 +715,6 @@
                   <a href="mailto:evacoder@126.com" title="E-Mail &rarr; mailto:evacoder@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://instagram.com/eva_coder" title="Instagram &rarr; https://instagram.com/eva_coder" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
-                </span>
-              
             </div>
           
 
@@ -688,7 +752,7 @@
       <div class="footer-inner">
         <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2018</span>
   <span class="with-love" id="animate">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-Travel"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Eva</span>
 
@@ -706,6 +770,24 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
 
 
 
@@ -747,6 +829,14 @@
 
 
 
+
+  
+    
+      
+        
+      
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1.0.0/canvas-nest.min.js"></script>
 
 
 
@@ -828,6 +918,33 @@
 
 
 
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+    
+  
+  <script src="//cdn.jsdelivr.net/npm/valine@1.3.3/dist/Valine.min.js"></script>
+
+  <script>
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '7Ck7B9LoU0iNuR7sVgC3Sscr-gzGzoHsz',
+        appKey: 'GURQk3swSriTo8QzVtgoUDnk',
+        placeholder: '有什么想对Eva说的呢？',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'5' || 10,
+        visitor: false
+    });
+  </script>
+
 
 
 
@@ -842,21 +959,6 @@
   
 
   
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
 
   
 

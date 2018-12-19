@@ -3,109 +3,7 @@
   
     
     <entry>
-      <title>「情商课」切忌交浅言深</title>
-      <link href="/2018/12/19/%E6%83%85%E5%95%86%E8%AF%BE1/"/>
-      <url>/2018/12/19/%E6%83%85%E5%95%86%E8%AF%BE1/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 情商课 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>「前端团队建设」每周分享</title>
-      <link href="/2018/12/19/%E5%89%8D%E7%AB%AF%E5%9B%A2%E9%98%9F%E5%BB%BA%E8%AE%BE5/"/>
-      <url>/2018/12/19/%E5%89%8D%E7%AB%AF%E5%9B%A2%E9%98%9F%E5%BB%BA%E8%AE%BE5/</url>
-      
-        <content type="html"><![CDATA[<p>如果做不到每周分享会的话，至少也要做到轮值发布前端周刊。<br>看看你每周分享能分享什么东西，你就会发现学习和不学习的人的差别实在太大了。</p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 前端团队建设 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>「前端团队建设」项目搭建，从vue-cli功能拆解说起</title>
-      <link href="/2018/12/19/%E5%89%8D%E7%AB%AF%E5%9B%A2%E9%98%9F%E5%BB%BA%E8%AE%BE4/"/>
-      <url>/2018/12/19/%E5%89%8D%E7%AB%AF%E5%9B%A2%E9%98%9F%E5%BB%BA%E8%AE%BE4/</url>
-      
-        <content type="html"><![CDATA[<p>TODO</p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 前端团队建设 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>「前端团队建设」技术选型</title>
-      <link href="/2018/12/19/%E5%89%8D%E7%AB%AF%E5%9B%A2%E9%98%9F%E5%BB%BA%E8%AE%BE3/"/>
-      <url>/2018/12/19/%E5%89%8D%E7%AB%AF%E5%9B%A2%E9%98%9F%E5%BB%BA%E8%AE%BE3/</url>
-      
-        <content type="html"><![CDATA[<p>TODO</p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 前端团队建设 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>「前端团队建设」新人必读</title>
-      <link href="/2018/12/19/%E5%89%8D%E7%AB%AF%E5%9B%A2%E9%98%9F%E5%BB%BA%E8%AE%BE2/"/>
-      <url>/2018/12/19/%E5%89%8D%E7%AB%AF%E5%9B%A2%E9%98%9F%E5%BB%BA%E8%AE%BE2/</url>
-      
-        <content type="html"><![CDATA[<p>TODO</p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 前端团队建设 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>「前端团队建设」组建团队，想到的一些面试题</title>
-      <link href="/2018/12/19/%E5%89%8D%E7%AB%AF%E5%9B%A2%E9%98%9F%E5%BB%BA%E8%AE%BE1/"/>
-      <url>/2018/12/19/%E5%89%8D%E7%AB%AF%E5%9B%A2%E9%98%9F%E5%BB%BA%E8%AE%BE1/</url>
-      
-        <content type="html"><![CDATA[<p>这个系列是开始思考如何组建一个好的前端团队，虽然团队现在只有我一个人，但是一个人也要像一支队伍一样管理呀~<br>等以后有别的小伙伴加入了，直接看这个系列就可以了，文档大法拯救世界。<br>没错，我就是这样的懒东西~<br><a id="more"></a></p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 前端团队建设 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>「极简」你是什么样的人，就会选择什么样的路</title>
+      <title>「 极简 」你是什么样的人，就会选择什么样的路</title>
       <link href="/2018/12/19/%E6%9E%81%E7%AE%801/"/>
       <url>/2018/12/19/%E6%9E%81%E7%AE%801/</url>
       
@@ -122,7 +20,7 @@
     </entry>
     
     <entry>
-      <title>冬日学车的碎碎念</title>
+      <title>「 生活 」冬日学车的碎碎念</title>
       <link href="/2018/12/18/%E5%86%AC%E6%97%A5%E5%AD%A6%E8%BD%A6%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
       <url>/2018/12/18/%E5%86%AC%E6%97%A5%E5%AD%A6%E8%BD%A6%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5/</url>
       
@@ -558,7 +456,7 @@
     </entry>
     
     <entry>
-      <title>css布局规则和你不知道的BFC</title>
+      <title>「 CSS 」css布局规则和你不知道的BFC</title>
       <link href="/2017/04/18/css%E5%B8%83%E5%B1%80%E8%A7%84%E5%88%99%E5%92%8C%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84BFC/"/>
       <url>/2017/04/18/css%E5%B8%83%E5%B1%80%E8%A7%84%E5%88%99%E5%92%8C%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84BFC/</url>
       
@@ -609,23 +507,6 @@
     </entry>
     
     <entry>
-      <title>Eva的舒适愉悦的前端环境</title>
-      <link href="/2016/12/18/Eva%E7%9A%84%E8%88%92%E9%80%82%E6%84%89%E6%82%A6%E7%9A%84%E5%89%8D%E7%AB%AF%E7%8E%AF%E5%A2%83/"/>
-      <url>/2016/12/18/Eva%E7%9A%84%E8%88%92%E9%80%82%E6%84%89%E6%82%A6%E7%9A%84%E5%89%8D%E7%AB%AF%E7%8E%AF%E5%A2%83/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> tool </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
       <title>hexo+github pages 搭建 blog及防坑指南</title>
       <link href="/2016/12/18/hexo+github_pages%E6%90%AD%E5%BB%BAblog%E5%8F%8A%E9%98%B2%E5%9D%91%E6%8C%87%E5%8D%97/"/>
       <url>/2016/12/18/hexo+github_pages%E6%90%AD%E5%BB%BAblog%E5%8F%8A%E9%98%B2%E5%9D%91%E6%8C%87%E5%8D%97/</url>
@@ -660,7 +541,7 @@
     </entry>
     
     <entry>
-      <title>display属性居然有这么多</title>
+      <title>「 CSS 」display属性居然有这么多</title>
       <link href="/2016/11/28/display%E5%B1%9E%E6%80%A7%E5%B1%85%E7%84%B6%E6%9C%89%E8%BF%99%E4%B9%88%E5%A4%9A/"/>
       <url>/2016/11/28/display%E5%B1%9E%E6%80%A7%E5%B1%85%E7%84%B6%E6%9C%89%E8%BF%99%E4%B9%88%E5%A4%9A/</url>
       
