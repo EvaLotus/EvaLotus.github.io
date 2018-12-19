@@ -58,8 +58,8 @@ outlook客户端里：css统统不生效。
       <td> 的</td>
     </tr>
     　<tr>
-      	<td> 表 </td>
-      	<td rowspan="2"> 格 </td>　
+          <td> 表 </td>
+          <td rowspan="2"> 格 </td>　
     </tr>
     <tr>
       　<td> 啊 </td>
@@ -70,5 +70,6 @@ outlook客户端里：css统统不生效。
   </table>
 ```
 
+复杂的表格需要用到`colspan`和`rowspan`用于单元格的合并。
 
 
