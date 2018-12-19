@@ -32,7 +32,7 @@ hexo s
 # 选择喜欢的主题，如next，实在是太容易撞衫了，但是确实是极简主义的爱
 # 将主题clone至themes目录下
 # 每次换电脑重新clone项目都需要执行这一步哦
-git clone https://github.com/iissnan/hexo-theme-next themes/next
+git clone https://github.com/theme-next/hexo-theme-next themes/next
 
 # 在外层_confif.yml中改theme为next
 
