@@ -88,6 +88,22 @@ branch: master
 操作之前我们要分清职责，既然hexo上只存放源文件，那么我们要配置合理的`.gitignore`
 
 
+
+```
+.DS_Store
+Thumbs.db
+db.json
+*.log
+node_modules/
+.deploy*/
+# public和themes文件在hexo分支上都应该不应该被提交，因为是我们自己写的
+# 但是themes中的_confif.yml我们需要copy一份在source目录下备用，以免换电脑之后丢失
+# 合理的管理分支和文件，不要给自己埋坑
+public/
+themes/
+```
+
+
 操作上并不需要切换分支，按下面的步骤配置之后，每次操作都在hexo分支上修改，不用再管master分支了。
 
 ```bash
