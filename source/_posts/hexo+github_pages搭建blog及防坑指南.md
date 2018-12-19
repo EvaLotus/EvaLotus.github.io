@@ -53,8 +53,8 @@ hexo new 'HelloWorld'
 
 1. 怎么能将github.io的域名改成自己申请的域名？
 
-首先你需要在万网或其他平台上买个域名，一般50元/年。购买完成后需要cname解析。
-直接在github的project settings里，设置custom domain，这样就会自动在你的项目中增加一个CNAME文件，里面会记录你自己的域名
+首先你需要在万网或其他平台上买个域名，一般50元/年。购买完成后需要在购买域名的管理后台进行CNAME解析，目的是将gitubpages的地址比如`https://github.com/EvaLotus/EvaLotus.github.io`指向你购买的域名`evacoder.com`。
+然后直接在github的project settings里，设置custom domain，这样就会自动在你的项目中增加一个CNAME文件，里面会记录你自己的域名
 
 2. 如何`hexo d`自动更新部署博客
 
