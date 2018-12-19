@@ -77,7 +77,7 @@ branch: master
 
 小伙伴们应该都发现了，`hexo d`之后并没有push source目录，只是push生成后的public中的文件，所以我们要注意，CNAME，README，Favicon.ico都应该放在source目录下，这样`hexo d`之后会直接放在public的根目录下
 
-4. 换电脑了或者像超哥那样误删了源文件怎么办？
+4.换电脑了或者像超哥那样误删了源文件怎么办？
 
 很多小伙伴应该都有同时在公司和在家修改博客的需求，一换电脑就懵逼，github上新clone下来的只有编译后的文件。
 
