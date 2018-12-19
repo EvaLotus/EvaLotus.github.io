@@ -109,4 +109,6 @@ git clone https://github.com/iissnan/hexo-theme-next themes/next
 
 其他问题可以直接去看[hexo的文档](https://hexo.io/zh-cn/docs/index.html)，已经灰常良心了！
 
+搭建博客很简单，而且有很多主题可供大家选择，但是最重要的是保持每天记录的习惯。
+
 如果遇到其他问题可以给我留言，一起来搭建自己的博客吧。
