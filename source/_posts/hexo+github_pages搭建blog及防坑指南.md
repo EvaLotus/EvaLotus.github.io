@@ -31,7 +31,7 @@ hexo s
 # 将主题clone至themesext目录下
 git clone https://github.com/iissnan/hexo-theme-next themes/next
 
-#在_confif.yml中改theme为next
+# 在外层_confif.yml中改theme为next
 
 # 删除generate的文件，切换主题时最好执行下，可以不用自己删掉public文件
 hexo clean
