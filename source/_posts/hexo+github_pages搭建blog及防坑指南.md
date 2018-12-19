@@ -51,12 +51,12 @@ hexo new 'HelloWorld'
 很容易就搭建好了自己的博客，下面是一些常见问题的解决。
 #### FAQ
 
-1. 怎么能将github.io的域名改成自己申请的域名？
+1.怎么能将github.io的域名改成自己申请的域名？
 
 首先你需要在万网或其他平台上买个域名，一般50元/年。购买完成后需要在购买域名的管理后台进行CNAME解析，目的是将gitubpages的地址比如`https://github.com/EvaLotus/EvaLotus.github.io`指向你购买的域名`evacoder.com`。
 然后直接在github的project settings里，设置custom domain，这样就会自动在你的项目中增加一个CNAME文件，里面会记录你自己的域名。
 
-2. 如何`hexo d`自动更新部署博客
+2.如何`hexo d`自动更新部署博客
 
 需要安装插件`npm i hexo-deployer-git --save`，在`_config.yml`中配置
 
@@ -71,7 +71,7 @@ branch: master
 
 在配置\_config.yml时一定要注意此类文件对缩进要求很严格，在sublime中编辑会有适当的颜色提醒你是否缩进正确
 
-3. 每次`hexo d`之后我的CNAME都没了怎么办？
+3.每次`hexo d`之后我的CNAME都没了怎么办？
 
 注意看下.gitignore可以发现git提交时并不提交public目录
 
