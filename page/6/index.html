@@ -389,7 +389,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Evalotus.github.io/2017/04/18/国际化的一些思考和注意事项/">
+    <link itemprop="mainEntityOfPage" href="https://Evalotus.github.io/2016/12/18/hexo+github_pages搭建blog及防坑指南/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Eva">
@@ -409,7 +409,7 @@
           <h2 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2017/04/18/国际化的一些思考和注意事项/" class="post-title-link" itemprop="https://Evalotus.github.io/page/6/index.html">国际化的一些思考和注意事项</a>
+                <a href="/2016/12/18/hexo+github_pages搭建blog及防坑指南/" class="post-title-link" itemprop="https://Evalotus.github.io/page/6/index.html">hexo+github pages 搭建 blog及防坑指南</a>
               
             
           </h2>
@@ -434,7 +434,7 @@
                 
               
 
-              <time title="Created: 2017-04-18 18:20:35" itemprop="dateCreated datePublished" datetime="2017-04-18T18:20:35+08:00">2017-04-18</time>
+              <time title="Created: 2016-12-18 12:57:11" itemprop="dateCreated datePublished" datetime="2016-12-18T12:57:11+08:00">2016-12-18</time>
             
 
             
@@ -451,7 +451,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-12-19 17:03:26" itemprop="dateModified" datetime="2018-12-19T17:03:26+08:00">2018-12-19</time>
+                <time title="Modified: 2019-01-03 15:18:13" itemprop="dateModified" datetime="2019-01-03T15:18:13+08:00">2019-01-03</time>
               
             
           </span>
@@ -465,8 +465,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/04/18/国际化的一些思考和注意事项/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2017/04/18/国际化的一些思考和注意事项/" itemprop="commentCount"></span>
+                <a href="/2016/12/18/hexo+github_pages搭建blog及防坑指南/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2016/12/18/hexo+github_pages搭建blog及防坑指南/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -495,374 +495,12 @@
 
       
         
-          
-            <p>翻译同学一般使用 <a href="https://crowdin.com" target="_blank" rel="noopener">https://crowdin.com</a> 来提交翻译</p>
-<p>和翻译同学合作需要注意以下几点：</p>
-<p>1.注意尽量不要使用拼接的字符串</p>
-<p>比如：</p>
-<p>tips=请同意隐私政策和用户协议</p>
-<p>千万不要因为用户协议和隐私政策需要在多处用到，就将字符串切分为多个：</p>
-<p>agreement=用户协议</p>
-<p>privacy=隐私政策</p>
-<p>notice=请同意</p>
-<p>and=和</p>
-<p>这样翻译同学会和莫名其妙，而且不同语言因为语序不一样，我们生硬的组合起来，展示在网页上的整句话会完全不可读。</p>
-<p>2.注意单复数的处理：</p>
-<p>left_times=您还能发送{n}条短信</p>
-<p>在其他语言中会有单复数的区分，1 message left，2 messages left。 在阿语中单复数的表达甚至有多达6种。 Android的resource是使用xml，处理单复数如下</p>
-<p><plurals name="watch_face_count"></plurals></p>
-<p><item quantity="one">%1$d个手盘</item></p>
-<p><item quantity="other">%1$d个手盘</item><br><br>3.需要注意日期，金额等的处理：</p>
-<p>4.需要注意rtl语言的特殊ui处理：</p>
-<p>有很多语言，比如iw_IL，ar，等语言习惯都是从左到右的书写习惯，此时除了需要加上body{direction:rtl}</p>
-<p>其他的布局也需要注意将left和right互换。</p>
-<p>5.需要注意语言中单双引号的处理：</p>
-<p>英语en_US和法语fr_FR有单引号，iw_IL希伯来语中有双引号作为字符。</p>
-<p>如果出现在js的字符串中，导致语法错误，程序直接无法运行，此时我们需要用上转义字符来避免问题。</p>
-<p>如果出现在html中，我们倒是没问题。</p>
-<p>6.需要注意某些语言过长的处理：</p>
-<p>有些语言，比如mr_IR一个单词就非常长，所以一点要做好超长的处理。</p>
-<p>要注意：</p>
-<p>一般情况下都是前端同学来维护国际化的资源文件，确实是一件费时费力枯燥无味的工作，但是在工作中切忌眼高手低，分配到你的工作一定要做好。随着语言的种类越来越多，为了方便维护，最开始就要考虑好上面的问题的解决方案。</p>
-<p>注意发布前需要在crowdin上查看下语言翻译进度，是否达到100%了。</p>
-<p>需要同步工具，将翻译同学的git项目内容分散copy到我们实际的项目中</p>
-<p>国家地区码：<a href="https://www.jianshu.com/p/f425950a09c7" target="_blank" rel="noopener">https://www.jianshu.com/p/f425950a09c7</a></p>
-<p>TODO:<br>前后端分离国际化应该怎么做</p>
-<p>参考文献：</p>
-<p><a href="http://taobaofed.org/blog/2016/03/21/internationalization/" target="_blank" rel="noopener">http://taobaofed.org/blog/2016/03/21/internationalization/</a></p>
-<p><a href="https://github.com/ProtoTeam/blog/blob/master/201710/1.md" target="_blank" rel="noopener">https://github.com/ProtoTeam/blog/blob/master/201710/1.md</a></p>
-<p><a href="https://segmentfault.com/a/1190000009058572" target="_blank" rel="noopener">https://segmentfault.com/a/1190000009058572</a></p>
-<p><a href="https://github.com/DDFE/DDFE-blog/issues/14" target="_blank" rel="noopener">https://github.com/DDFE/DDFE-blog/issues/14</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Evalotus.github.io/2017/04/18/玩转sublime/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Eva">
-      <meta itemprop="description" content="JavaScript, HTML, CSS, Node JS, Front-end Develop">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eva's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/04/18/玩转sublime/" class="post-title-link" itemprop="https://Evalotus.github.io/page/6/index.html">玩转sublime</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-04-18 17:08:33" itemprop="dateCreated datePublished" datetime="2017-04-18T17:08:33+08:00">2017-04-18</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-12-19 17:03:26" itemprop="dateModified" datetime="2018-12-19T17:03:26+08:00">2018-12-19</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/04/18/玩转sublime/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2017/04/18/玩转sublime/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Evalotus.github.io/2017/04/18/css布局规则和你不知道的BFC/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Eva">
-      <meta itemprop="description" content="JavaScript, HTML, CSS, Node JS, Front-end Develop">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eva's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/04/18/css布局规则和你不知道的BFC/" class="post-title-link" itemprop="https://Evalotus.github.io/page/6/index.html">「 CSS 」css布局规则和你不知道的BFC</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-04-18 10:11:15" itemprop="dateCreated datePublished" datetime="2017-04-18T10:11:15+08:00">2017-04-18</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-12-19 17:03:26" itemprop="dateModified" datetime="2018-12-19T17:03:26+08:00">2018-12-19</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/04/18/css布局规则和你不知道的BFC/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2017/04/18/css布局规则和你不知道的BFC/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>BFC的文章很多，但是大多翻译腔读起来佶屈聱牙，而且有些例子根本不符合场景。今天从一些常见基本问题入手，来全面的分析css布局的规则。大部分内容来自MDN及自己的理解。</p>
+          <p>在超哥的安利下，开始使用hexo+githubpages搭建自己的博客。对于前端同学来说，基于Node.js的hexo可谓是非常友好的选择。</p>
+<p>前两天超哥很开心的敲下<code>hexo d</code>，过了两天整理文件时一不小心手贱删掉了项目，写了4年的博客全都没有啦，只能一个个copy出来，简直是喜闻乐见（超哥不要打我，逃～）</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2017/04/18/css布局规则和你不知道的BFC/#more" rel="contents">
+              <a class="btn" href="/2016/12/18/hexo+github_pages搭建blog及防坑指南/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -922,7 +560,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Evalotus.github.io/2017/03/18/通过伪元素来得到一些常见的icon/">
+    <link itemprop="mainEntityOfPage" href="https://Evalotus.github.io/2016/12/10/HTML条件注释/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Eva">
@@ -942,7 +580,7 @@
           <h2 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2017/03/18/通过伪元素来得到一些常见的icon/" class="post-title-link" itemprop="https://Evalotus.github.io/page/6/index.html">通过伪元素来得到一些常见的icon</a>
+                <a href="/2016/12/10/HTML条件注释/" class="post-title-link" itemprop="https://Evalotus.github.io/page/6/index.html">HTML条件注释</a>
               
             
           </h2>
@@ -967,7 +605,7 @@
                 
               
 
-              <time title="Created: 2017-03-18 17:29:06" itemprop="dateCreated datePublished" datetime="2017-03-18T17:29:06+08:00">2017-03-18</time>
+              <time title="Created: 2016-12-10 17:37:12" itemprop="dateCreated datePublished" datetime="2016-12-10T17:37:12+08:00">2016-12-10</time>
             
 
             
@@ -984,7 +622,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-12-19 17:03:26" itemprop="dateModified" datetime="2018-12-19T17:03:26+08:00">2018-12-19</time>
+                <time title="Modified: 2019-01-03 15:18:13" itemprop="dateModified" datetime="2019-01-03T15:18:13+08:00">2019-01-03</time>
               
             
           </span>
@@ -998,8 +636,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/18/通过伪元素来得到一些常见的icon/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2017/03/18/通过伪元素来得到一些常见的icon/" itemprop="commentCount"></span>
+                <a href="/2016/12/10/HTML条件注释/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2016/12/10/HTML条件注释/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1028,11 +666,183 @@
 
       
         
-          <p>通过伪元素<code>:before</code>和<code>:after</code>来得到一些常用的icon<br>
+          <p>在ie8-下不加入某个功能，回想起那个遥远的年代，初次见到是在Bootstrap中，低版本ie需要加载html5shiv，用到了条件注释。<br>希望幸福的你们都不需要用到~</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2017/03/18/通过伪元素来得到一些常见的icon/#more" rel="contents">
+              <a class="btn" href="/2016/12/10/HTML条件注释/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Evalotus.github.io/2016/11/28/display属性居然有这么多/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Eva">
+      <meta itemprop="description" content="JavaScript, HTML, CSS, Node JS, Front-end Develop">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eva's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/11/28/display属性居然有这么多/" class="post-title-link" itemprop="https://Evalotus.github.io/page/6/index.html">「 CSS 」display属性居然有这么多</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-11-28 17:11:22" itemprop="dateCreated datePublished" datetime="2016-11-28T17:11:22+08:00">2016-11-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-01-03 15:18:13" itemprop="dateModified" datetime="2019-01-03T15:18:13+08:00">2019-01-03</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/11/28/display属性居然有这么多/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2016/11/28/display属性居然有这么多/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>思考一个简单的问题，如何用原生js实现元素的显示隐藏，也就是jQuery中show和hide方法。</p>
+<p>你肯定觉得特别简单，隐藏的话，直接<code>el.style.display=&#39;none&#39;;</code></p>
+<p>那显示呢？<code>el.style.display=&#39;block&#39;</code>？<br>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2016/11/28/display属性居然有这么多/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1092,7 +902,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Evalotus.github.io/2017/03/12/git-操作及原理/">
+    <link itemprop="mainEntityOfPage" href="https://Evalotus.github.io/2016/11/18/meta全解释/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Eva">
@@ -1112,7 +922,7 @@
           <h2 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2017/03/12/git-操作及原理/" class="post-title-link" itemprop="https://Evalotus.github.io/page/6/index.html">git 操作及原理</a>
+                <a href="/2016/11/18/meta全解释/" class="post-title-link" itemprop="https://Evalotus.github.io/page/6/index.html">meta全解释</a>
               
             
           </h2>
@@ -1137,7 +947,7 @@
                 
               
 
-              <time title="Created: 2017-03-12 17:02:29" itemprop="dateCreated datePublished" datetime="2017-03-12T17:02:29+08:00">2017-03-12</time>
+              <time title="Created: 2016-11-18 12:44:27" itemprop="dateCreated datePublished" datetime="2016-11-18T12:44:27+08:00">2016-11-18</time>
             
 
             
@@ -1154,7 +964,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-12-19 17:03:26" itemprop="dateModified" datetime="2018-12-19T17:03:26+08:00">2018-12-19</time>
+                <time title="Modified: 2019-01-03 15:18:13" itemprop="dateModified" datetime="2019-01-03T15:18:13+08:00">2019-01-03</time>
               
             
           </span>
@@ -1168,8 +978,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/12/git-操作及原理/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2017/03/12/git-操作及原理/" itemprop="commentCount"></span>
+                <a href="/2016/11/18/meta全解释/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2016/11/18/meta全解释/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1198,11 +1008,11 @@
 
       
         
-          <p>最近全面整理下工作中遇到的git问题，了解了下git工作的原理。<br>
+          <p>整理下HTML中常用的meta。<br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2017/03/12/git-操作及原理/#more" rel="contents">
+              <a class="btn" href="/2016/11/18/meta全解释/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1251,7 +1061,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
   </nav>
 
 
@@ -1296,7 +1106,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">29</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1337,7 +1147,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">11</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -1414,7 +1230,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-Travel"></i>
   </span>

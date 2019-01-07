@@ -105,18 +105,18 @@
 
 
 
-  <meta name="description" content="最近公司出了去转岗武汉的好政策，3万元的安家费，不降薪，不落户也可以随时买房。小伙伴问我咋不回去，也不是没想过，只不过男票肯定不同意，也难以下定决心。几乎所有的人都说，男票不同意那就换个同意的男票（逃~）。">
-<meta name="keywords" content="生活">
+  <meta name="description" content="HTTP是无状态的协议，cookie可以用来存储用户的信息方便追踪。">
+<meta name="keywords" content="HTTP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="城市选择启示录">
-<meta property="og:url" content="https://Evalotus.github.io/2018/11/18/城市选择启示录/index.html">
+<meta property="og:title" content="「 缓存 」cookie实践指南">
+<meta property="og:url" content="https://Evalotus.github.io/2018/12/20/cookie实践指南/index.html">
 <meta property="og:site_name" content="Eva&#39;s Blog">
-<meta property="og:description" content="最近公司出了去转岗武汉的好政策，3万元的安家费，不降薪，不落户也可以随时买房。小伙伴问我咋不回去，也不是没想过，只不过男票肯定不同意，也难以下定决心。几乎所有的人都说，男票不同意那就换个同意的男票（逃~）。">
+<meta property="og:description" content="HTTP是无状态的协议，cookie可以用来存储用户的信息方便追踪。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-12-19T09:03:26.809Z">
+<meta property="og:updated_time" content="2019-01-07T12:35:05.542Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="城市选择启示录">
-<meta name="twitter:description" content="最近公司出了去转岗武汉的好政策，3万元的安家费，不降薪，不落户也可以随时买房。小伙伴问我咋不回去，也不是没想过，只不过男票肯定不同意，也难以下定决心。几乎所有的人都说，男票不同意那就换个同意的男票（逃~）。">
+<meta name="twitter:title" content="「 缓存 」cookie实践指南">
+<meta name="twitter:description" content="HTTP是无状态的协议，cookie可以用来存储用户的信息方便追踪。">
 
 
 
@@ -125,7 +125,7 @@
 
 
 
-  <link rel="canonical" href="https://Evalotus.github.io/2018/11/18/城市选择启示录/">
+  <link rel="canonical" href="https://Evalotus.github.io/2018/12/20/cookie实践指南/">
 
 
 
@@ -135,7 +135,7 @@
   };
 </script>
 
-  <title>城市选择启示录 | Eva's Blog</title>
+  <title>「 缓存 」cookie实践指南 | Eva's Blog</title>
   
 
 
@@ -392,7 +392,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Evalotus.github.io/2018/11/18/城市选择启示录/">
+    <link itemprop="mainEntityOfPage" href="https://Evalotus.github.io/2018/12/20/cookie实践指南/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Eva">
@@ -409,7 +409,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">城市选择启示录
+          <h2 class="post-title" itemprop="name headline">「 缓存 」cookie实践指南
 
               
             
@@ -435,7 +435,7 @@
                 
               
 
-              <time title="Created: 2018-11-18 20:14:39" itemprop="dateCreated datePublished" datetime="2018-11-18T20:14:39+08:00">2018-11-18</time>
+              <time title="Created: 2018-12-20 20:11:15" itemprop="dateCreated datePublished" datetime="2018-12-20T20:11:15+08:00">2018-12-20</time>
             
 
             
@@ -452,7 +452,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-12-19 17:03:26" itemprop="dateModified" datetime="2018-12-19T17:03:26+08:00">2018-12-19</time>
+                <time title="Modified: 2019-01-07 20:35:05" itemprop="dateModified" datetime="2019-01-07T20:35:05+08:00">2019-01-07</time>
               
             
           </span>
@@ -466,8 +466,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/11/18/城市选择启示录/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/11/18/城市选择启示录/" itemprop="commentCount"></span>
+                <a href="/2018/12/20/cookie实践指南/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/20/cookie实践指南/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -502,11 +502,49 @@
       
 
       
-        <p>最近公司出了去转岗武汉的好政策，3万元的安家费，不降薪，不落户也可以随时买房。<br>小伙伴问我咋不回去，也不是没想过，只不过男票肯定不同意，也难以下定决心。<br>几乎所有的人都说，男票不同意那就换个同意的男票（逃~）。</p>
-<a id="more"></a>
-<p>昨天华为的小伙伴问我要不要去深圳，空气好，离香港近，随时出国玩耍，生活成本低。<br>我说买不起房啊。其实去深圳肯定不如去武汉的，毕竟是湖北人。<br>大学的时候学的管理学派上了用场，我用SWOT分析法分析下城市选择的优劣势，你看到了也可以帮我分析分析，或者希望我的分析对你也有用处。</p>
-<p>TODO</p>
-<h4 id="武汉迁户口攻略："><a href="#武汉迁户口攻略：" class="headerlink" title="武汉迁户口攻略："></a>武汉迁户口攻略：</h4><p>1.关注光谷公安公众号，填写信息，看看是否符合条件<br>2.选借住，让有房的朋友给写个借住证明，其他材料必须齐全，不齐全谁也没办法，都是拍照上传的<br>3.提交材料之后，材料都没问题的话，大概一天内就有回复了。<br>4.审核通过后会你可以选择寄准迁证明到户口所在地的亲人那边，让亲人拿到准迁证明去你原户口所在地去办迁出，给你寄材料，然后你就可以去武汉了</p>
+        <p>HTTP是无状态的协议，cookie可以用来存储用户的信息方便追踪。<br><a id="more"></a></p>
+<h4 id="封装cookie操作"><a href="#封装cookie操作" class="headerlink" title="封装cookie操作"></a>封装cookie操作</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getCookie</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line"><span class="keyword">const</span> cookieName = <span class="string">`<span class="subst">$&#123;<span class="built_in">encodeURIComponent</span>(name)&#125;</span>=`</span>;</span><br><span class="line"><span class="keyword">const</span> cookieStart = <span class="built_in">document</span>.cookie.indexOf(cookieName);</span><br><span class="line"><span class="keyword">let</span> cookieValue = <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">if</span> (cookieStart &gt; <span class="number">-1</span>) &#123;</span><br><span class="line"><span class="keyword">let</span> cookieEnd = <span class="built_in">document</span>.cookie.indexOf(<span class="string">';'</span>, cookieStart);</span><br><span class="line"><span class="keyword">if</span> (cookieEnd === <span class="number">-1</span>) &#123;</span><br><span class="line">cookieEnd = <span class="built_in">document</span>.cookie.length;</span><br><span class="line">&#125;</span><br><span class="line">cookieValue = <span class="built_in">document</span>.cookie.substring(cookieStart + cookieName.length, cookieEnd);</span><br><span class="line">cookieValue = <span class="built_in">decodeURIComponent</span>(cookieValue);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> cookieValue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setCookie</span>(<span class="params">name, value, expires, path, domain, secure</span>) </span>&#123;</span><br><span class="line"><span class="keyword">let</span> cookieText = <span class="string">`<span class="subst">$&#123;<span class="built_in">encodeURIComponent</span>(name)&#125;</span>=<span class="subst">$&#123;<span class="built_in">encodeURIComponent</span>(value)&#125;</span>`</span>;</span><br><span class="line"><span class="keyword">if</span> (expires) &#123;</span><br><span class="line">cookieText += <span class="string">`;expires=<span class="subst">$&#123;expires.toUTCString()&#125;</span>`</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (path) &#123;</span><br><span class="line">cookieText += <span class="string">`;path=<span class="subst">$&#123;path&#125;</span>`</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (domain) &#123;</span><br><span class="line">cookieText += <span class="string">`;domain=<span class="subst">$&#123;domain&#125;</span>`</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (secure) &#123;</span><br><span class="line">cookieText += <span class="string">';secure'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.cookie = cookieText;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delCookie</span>(<span class="params">name, path, domain, secure</span>) </span>&#123;</span><br><span class="line">setCookie(name, <span class="string">''</span>, <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">0</span>), path, domain, secure);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从setCookie来看，每个参数都暗藏玄机。</p>
+<ul>
+<li>name和value</li>
+</ul>
+<p>name和value自不必多说，cookie是存储的一个个键值对，name和value都需要encode之后存储，如果没有encode会怎么样呢？</p>
+<p>在chrome中试验<code>document.cookie=&#39;%ddd=2=%#&amp;试试中文&#39;</code>依然可以设置cookie成功，读取时也可以读取到，但是为了规范存取，还是需要encode之后再读写。</p>
+<ul>
+<li>expires</li>
+</ul>
+<p>如果不设置expires，会得到<strong>session级别的cookie</strong>。一定要注意，session的定义是把<strong>整个浏览器关闭</strong>之后，这些cookie才会消失，而不是仅仅关闭所在的tab页。</p>
+<ul>
+<li>path</li>
+</ul>
+<p>如果不设置path的话，得到的cookie的path会是当前页面的path哦。比如在<code>eva.com/blog/page/1.html</code>中设置cookie，不设置path，得到的cookie的path会是<code>/blog/page/</code></p>
+<ul>
+<li>domain</li>
+</ul>
+<p>仔细观察可以发现，cookie中的domain有的是带点的比如<code>.eva.com</code>，有的是不带点的<code>eva.com</code>。它们的区别是什么？又是怎么设置成功的呢？</p>
+<p><code>eva.com</code>和<code>.eva.com</code>的区别</p>
+<p>cookie也符合<strong>同源策略</strong>，带点的表示子域如<code>account.eva.com</code>也可以访问，而不带点的要求严格，只能在本域名中访问。</p>
+<p>如果不设置domain的话，就默认是当前不带点的域名。如果设置域名的话，会下发在带点的域名下，子域也可以共享cookie。</p>
+<p>比如在<code>eva.com/blog/page/1.html</code>中设置cookie，不设置domain，得到的cookie的path会是eva.com，<code>setCookie(&#39;key&#39;,&#39;value&#39;,new Date(),&#39;/&#39;,&#39;eva.com&#39;)</code>设置了domain的话，会自动加上.变成<code>.eva.com</code>。</p>
+<p>后端下发的cookie也同理，看是否设置域名。</p>
+<p>带不带点需要视情况而定，看是否允许子域获取到cookie。</p>
+<h4 id="cookie的使用场景"><a href="#cookie的使用场景" class="headerlink" title="cookie的使用场景"></a>cookie的使用场景</h4><p>1.登录态的记录</p>
+<p>sso登录中需要用cookie来记录用户的登录态</p>
+<p>2.已阅读标识</p>
+<p>对于只出现一次的用户协议，我们需要一个已阅读的标识，这个时候其实可以不需要后端，前端设置一个cookie来作为已经出现过的标识。</p>
+<p>其他待补充</p>
+<h4 id="遇到的那些问题"><a href="#遇到的那些问题" class="headerlink" title="遇到的那些问题"></a>遇到的那些问题</h4><p>1.cookie大小的问题</p>
+<p>有的时候后端为了全面追溯用户的状态下，发的cookie非常大，注意一般浏览器的cookie大小限制是4kb左右，保险起见最好不要超过4kb。过大的cookie会下发不成功，遇到问题不好定位。</p>
+<p>有时候运维也会在ngnix对cookie设置大小限制，一般比4kb还小，这个时候问题就更难定位了，可以作为一个排查点。</p>
+<p>另外过大的cookie还会造成严重的性能问题。一般没有特别做性能优化的网站js/css/img等静态资源都和接口共用一个域名，域名下如果有很多的cookie的话，每次获取静态资源时这些cookie也会带在了请求中，虽然有4kb的限制，但是还是会造成不必要的网络开销，如果条件允许，建议启动<strong>和主站不同的域名来放置静态资源</strong>。虽然采用不同的域名导致多次建立网络连接，会多耗费时间，可以权衡一下采用哪种方案。</p>
+<p>和server端强调下最好不要下发没必要的cookie，注意cookie的大小。</p>
+<p>2.cookie标志用户，用户切换时要注意避免cookie污染。</p>
+<p>使用cookie进行交互时一定要注意各个用户切换时造成的问题。一定能覆盖成功才可以</p>
+<p>3.熟练使用抓包工具避免推诿</p>
+<p>chrome中network的追溯</p>
+<p>一旦涉及到cookie的问题，特别是webview中的cookie，需要iOS，andriod，FE，server端一起来定位问题，这个时候非常需要一个工具来确定到底谁是罪魁祸首。熟练使用抓包工具会避免推诿，省心不少。</p>
+<p>一定要看清楚到底是response cookie和request cookie，明确cookie是在哪个请求中下发的。</p>
+<p>抓包工具的使用</p>
 
       
     </div>
@@ -538,7 +576,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/生活/" rel="tag"># 生活</a>
+            <a href="/tags/HTTP/" rel="tag"># HTTP</a>
           
         </div>
       
@@ -551,8 +589,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/25/前端静态发布系统探索/" rel="next" title="前端静态发布系统探索">
-                <i class="fa fa-chevron-left"></i> 前端静态发布系统探索
+              <a href="/2018/10/15/JS事件循环机制2-throttle和debounce/" rel="next" title="JS事件循环机制2-throttle和debounce">
+                <i class="fa fa-chevron-left"></i> JS事件循环机制2-throttle和debounce
               </a>
             
           </div>
@@ -561,8 +599,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/18/JS事件循环机制5-webwork/" rel="prev" title="JS事件循环机制5-webwork">
-                JS事件循环机制5-webwork <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/05/前后端分离项目的本地代理及登录态绕过/" rel="prev" title="前后端分离项目的本地代理及登录态绕过">
+                前后端分离项目的本地代理及登录态绕过 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -639,7 +677,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">29</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -680,7 +718,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">11</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -748,7 +792,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#武汉迁户口攻略："><span class="nav-number">1.</span> <span class="nav-text">武汉迁户口攻略：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#封装cookie操作"><span class="nav-number">1.</span> <span class="nav-text">封装cookie操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cookie的使用场景"><span class="nav-number">2.</span> <span class="nav-text">cookie的使用场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#遇到的那些问题"><span class="nav-number">3.</span> <span class="nav-text">遇到的那些问题</span></a></li></ol></div>
             
 
           </div>
@@ -773,7 +817,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-Travel"></i>
   </span>
