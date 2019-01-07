@@ -4,9 +4,9 @@ title: Eva Zhang's Resume
 
 ## Front-end Web Developer
 - Phone：18810623283         
-- E-mail： zhangchu1211@126.com
+- E-mail： evacoder@126.com
 - Github：https://github.com/Evalotus                
-- Blog： http://www.envylotus.com
+- Blog： https://www.evacoder.com
 
 ## Summary
 Hi! I am a front-end developer
