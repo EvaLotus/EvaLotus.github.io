@@ -11,6 +11,7 @@ outlook客户端里：css统统不生效。
 手机端显示更是惨不忍睹，各种手机表现形式完全不一样。
 
 真是狠狠打自己的脸。
+<!-- more -->
 
 速google了一下，果然这种邮件内嵌html都是有固定的格式要求的，这种HTML Emial能否正常显示完全就取决于邮件客户端，而web技术发展了这么多年，这种邮件中的HTML却丝毫没有发展，各种邮件客户端都特别傲娇，简直可以称得上是面目全非。
 
@@ -22,17 +23,14 @@ outlook客户端里：css统统不生效。
 
 2.不要想flex布局，float布局，绝对定位啦！直接上年轻人都没听过的table布局。
 
-```
+```html
 <table align="center" border="1" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
-
 　<tr>
 　　<td> Row 1 </td>
 　</tr>
-
 　<tr>
 　　<td> Row 2 </td>
 　</tr>
-
 　<tr>
 　　<td> Row 3 </td>
 　</tr>
@@ -47,7 +45,7 @@ outlook客户端里：css统统不生效。
 遵循上面3条规则，代码越写φ\(≧ω≦\*\)♪越臃肿了，但是最可怕的是发现，自己根本不懂table！  
 ![一个很复杂的表格](/source/images/complex_table.png)
 
-```
+```html
   <table align="center" border="1" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
     　<tr>
       　<td rowspan="2"> 好 </td>

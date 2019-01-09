@@ -141,7 +141,7 @@ menu:
   #categories: /categories/ || th
   archives: /archives/ || archive
   Movies: /movies || film
-  Album: /album || image
+  #Album: /album || image
   about: /about/ || user
   tags: /tags/ || tags
   #schedule: /schedule/ || calendar
