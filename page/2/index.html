@@ -293,23 +293,6 @@
         
         
           
-          <li class="menu-item menu-item-album">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/album" rel="section"><i class="menu-item-icon fa fa-fw fa-image"></i> <br>Album</a>
-
-  </li>
-        
-        
-        
-          
           <li class="menu-item menu-item-about">
 
     
@@ -791,7 +774,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-01-07 20:48:56" itemprop="dateModified" datetime="2019-01-07T20:48:56+08:00">2019-01-07</time>
+                <time title="Modified: 2019-01-09 09:59:00" itemprop="dateModified" datetime="2019-01-09T09:59:00+08:00">2019-01-09</time>
               
             
           </span>
@@ -835,58 +818,17 @@
 
       
         
-          
-            <p>现在经济不景气，小公司拿不到投资，连iOS开发和andriod开发都招不起，而微信凭借着众多的用户，成为了开发的热土，一个创业公司可以没有App，但一定会需要先在微信里试水，是公司获客的最佳渠道。</p>
+          <p>现在经济不景气，小公司拿不到投资，连iOS开发和andriod开发都招不起，而微信凭借着众多的用户，成为了开发的热土，一个创业公司可以没有App，但一定会需要先在微信里试水，是公司获客的最佳渠道。</p>
 <p>这个系列记录了微信开发遇到的问题，和产品狗相爱相杀的往事。</p>
-<p>目录（也是产品狗的那些呐喊）：</p>
-<p>0.开发前的了解</p>
-<p>1.我想要在微信的H5页面里直接打开小程序</p>
-<p>2.我想要做活动页分享给好友</p>
-<p>3.我想小程序和webview的登录态互相传递</p>
-<p>…</p>
-<h4 id="关于H5的那些争执"><a href="#关于H5的那些争执" class="headerlink" title="关于H5的那些争执"></a>关于H5的那些争执</h4><p>H5，在我们大前端眼中实际是HTML5的缩写，其实HTML已经是缩写了，缩完再缩，就变成了他们口中的H5，实际上只有中国人才会这么称呼，要是跟老外说H5，H five，他们就懵逼了。</p>
-<p>比如App，并不是任何词组的缩写，而是Application的简读，只有中国人才会读APP。还有那个UGG的鞋子，实际上应该念‘阿哥’，但是呢，你开心就好。嗯，啥时候出一个程序员英语装逼指南应该会更受欢迎吧。</p>
-<p>说回H5，对于FE来说，HTML5只不过是一种语言而已。</p>
-<p>对于PM还有其他非前端的开发人员来说，H5指的是手机端上的网页。</p>
-<p>对于运营妹子来说，嗯，H5呀，我也会做哦。实际上他们说的是，可以拖拖拽拽，像做PPT一样生成的页面，便于在微信里快速传播。</p>
-<p>虽然他们说的都不对，但他们开心就好，能听懂就好。</p>
-<h4 id="关于微信公众平台和开放平台"><a href="#关于微信公众平台和开放平台" class="headerlink" title="关于微信公众平台和开放平台"></a>关于微信公众平台和开放平台</h4><p>公众平台：<a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">https://mp.weixin.qq.com/</a> 主要用在公众号，运营妹子登的多，我们需要开发微信公众号的一些活动页面时也需要在里面配置一些东西</p>
-<p>开放平台：<a href="https://open.weixin.qq.com/" target="_blank" rel="noopener">https://open.weixin.qq.com/</a> 主要用在各种开发上，app，小程序，公众号都包括</p>
-<h4 id="开发公众号页面的配置"><a href="#开发公众号页面的配置" class="headerlink" title="开发公众号页面的配置"></a>开发公众号页面的配置</h4><p>有的公号后台都是运营或PM来管，都不让我们FE来登录。下面是我们开发必要的一些信息。</p>
-<p><img src="/assets/微信公众平台-基本配置.png" alt=""></p>
-<h5 id="首页-gt-开发-gt-基本配置"><a href="#首页-gt-开发-gt-基本配置" class="headerlink" title="首页=&gt;开发=&gt;基本配置"></a>首页=&gt;开发=&gt;基本配置</h5><h6 id="公众号开发信息"><a href="#公众号开发信息" class="headerlink" title="公众号开发信息"></a>公众号开发信息</h6><p>AppId用在很多地方</p>
-<p>AppSecret只能放在服务端，前端代码对攻击者来说完全是透明的，只要是跟AppSecret相关的接口都一定是后端调微信的接口。</p>
-<p>需要添加你的IP在Ip白名单里，这样才可以获取acces_token来测试</p>
-<h6 id="服务器配置"><a href="#服务器配置" class="headerlink" title="服务器配置"></a>服务器配置</h6><p>不要配置这个，以免运营妹子的自动回复没了</p>
-<h6 id="已绑定的微信开放平台帐号"><a href="#已绑定的微信开放平台帐号" class="headerlink" title="已绑定的微信开放平台帐号"></a>已绑定的微信开放平台帐号</h6><p>有用到unionId的话会需要这部分</p>
-<h5 id="首页-gt-开发-gt-开发者工具"><a href="#首页-gt-开发-gt-开发者工具" class="headerlink" title="首页=&gt;开发=&gt;开发者工具"></a>首页=&gt;开发=&gt;开发者工具</h5><p><img src="/assets/微信公众平台-开发者工具.png" alt=""></p>
-<p>下载一个微信开发者工具</p>
-<p>开发者工具相关信息：<a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1455784140" target="_blank" rel="noopener">https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1455784140</a></p>
-<p>关注公众平台安全助手</p>
-<p>让管理者开通公号开发者权限</p>
-<p>基本工作完成就可以用开发者工具调试公号页面啦</p>
-<h4 id="完成需求的步骤"><a href="#完成需求的步骤" class="headerlink" title="完成需求的步骤"></a>完成需求的步骤</h4><p>1.当PM抛出一个需求时，我们应该看看<strong>当前的公众号是否有相应的权限</strong>。</p>
-<p>不要设计接口、讨论开发了半天才发现这个公号根本没有这个接口权限。</p>
-<p>登录微信公众平台=&gt;开发=&gt;接口权限</p>
-<p>或者综合的接口权限说明： <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1433401084" target="_blank" rel="noopener">https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1433401084</a></p>
-<p>选择设置=&gt;系统代理时，fiddler代理并不能生效。可以选择手动设置代理，ipconfig获取本机ip，ip:8888。</p>
-<h5 id="订阅号和服务号的区别："><a href="#订阅号和服务号的区别：" class="headerlink" title="订阅号和服务号的区别："></a>订阅号和服务号的区别：</h5><p>简言之，订阅号会被收纳起来，服务号推送消息会直接出现的你的消息列表中</p>
-<p>订阅号比如：咪蒙。。。这类写文章的。</p>
-<p>服务号比如：小米商城，招行信用卡，京医通等等。</p>
-<p>其他的区别参见：<br><a href="https://www.zhihu.com/question/21289814" target="_blank" rel="noopener">https://www.zhihu.com/question/21289814</a></p>
-<p>2.思索一下在生活中有没有看到过类似的别人完成的需求。</p>
-<p>PM也是人，他们设计肯定也是看别人发了啥他们也要，他见过的咱们也肯定见过啊，没有见过就让他给找例子。</p>
-<p>3.在chrome中打开链接，F12看下源码</p>
-<p>反正咱们前端都是小透明，如果运气好没压缩的话，很easy就可以看懂了。</p>
-<p>其实最大的问题是刚开始因为刚上手，不太明确前端和后端的职责，看看别人页面的network就可以胸有成竹的指使后端我需要这个你得给我返回啦~</p>
-<p>有套路，不迷路。</p>
-<h4 id="经常需要查看的文档们，google不如看文档："><a href="#经常需要查看的文档们，google不如看文档：" class="headerlink" title="经常需要查看的文档们，google不如看文档："></a>经常需要查看的文档们，google不如看文档：</h4><p>公众平台综合技术文档：<a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1472017492_58YV5" target="_blank" rel="noopener">https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1472017492_58YV5</a></p>
-<p>JS-SDK：<a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421141115" target="_blank" rel="noopener">https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421141115</a></p>
-<p>JS接口签名校验工具：<a href="https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign&amp;token=&amp;lang=zh_CN" target="_blank" rel="noopener">https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign&amp;token=⟨=zh_CN</a></p>
-<p>接口调试工具：<a href="https://mp.weixin.qq.com/debug?token=1156200581&amp;lang=zh_CN" target="_blank" rel="noopener">https://mp.weixin.qq.com/debug?token=1156200581⟨=zh_CN</a></p>
-<p>获取JSTicket：<a href="https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={Access_TOKEN}&amp;type=jsapi" target="_blank" rel="noopener">https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={Access_TOKEN}&amp;type=jsapi</a></p>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/09/18/微信开发实用指南1-前言/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
         
       
     </div>

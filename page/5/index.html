@@ -293,23 +293,6 @@
         
         
           
-          <li class="menu-item menu-item-album">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/album" rel="section"><i class="menu-item-icon fa fa-fw fa-image"></i> <br>Album</a>
-
-  </li>
-        
-        
-        
-          
           <li class="menu-item menu-item-about">
 
     
@@ -621,7 +604,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-01-07 20:48:56" itemprop="dateModified" datetime="2019-01-07T20:48:56+08:00">2019-01-07</time>
+                <time title="Modified: 2019-01-09 09:59:50" itemprop="dateModified" datetime="2019-01-09T09:59:50+08:00">2019-01-09</time>
               
             
           </span>
@@ -665,49 +648,19 @@
 
       
         
+          <p>国际化一般由前端来维护，记录下踩过的坑。<br>
+          <!--noindex-->
           
-            <p>翻译同学一般使用 <a href="https://crowdin.com" target="_blank" rel="noopener">https://crowdin.com</a> 来提交翻译</p>
-<p>和翻译同学合作需要注意以下几点：</p>
-<p>1.注意尽量不要使用拼接的字符串</p>
-<p>比如：</p>
-<p>tips=请同意隐私政策和用户协议</p>
-<p>千万不要因为用户协议和隐私政策需要在多处用到，就将字符串切分为多个：</p>
-<p>agreement=用户协议</p>
-<p>privacy=隐私政策</p>
-<p>notice=请同意</p>
-<p>and=和</p>
-<p>这样翻译同学会和莫名其妙，而且不同语言因为语序不一样，我们生硬的组合起来，展示在网页上的整句话会完全不可读。</p>
-<p>2.注意单复数的处理：</p>
-<p>left_times=您还能发送{n}条短信</p>
-<p>在其他语言中会有单复数的区分，1 message left，2 messages left。 在阿语中单复数的表达甚至有多达6种。 Android的resource是使用xml，处理单复数如下</p>
-<p><plurals name="watch_face_count"></plurals></p>
-<p><item quantity="one">%1$d个手盘</item></p>
-<p><item quantity="other">%1$d个手盘</item><br><br>3.需要注意日期，金额等的处理：</p>
-<p>4.需要注意rtl语言的特殊ui处理：</p>
-<p>有很多语言，比如iw_IL，ar，等语言习惯都是从左到右的书写习惯，此时除了需要加上body{direction:rtl}</p>
-<p>其他的布局也需要注意将left和right互换。</p>
-<p>5.需要注意语言中单双引号的处理：</p>
-<p>英语en_US和法语fr_FR有单引号，iw_IL希伯来语中有双引号作为字符。</p>
-<p>如果出现在js的字符串中，导致语法错误，程序直接无法运行，此时我们需要用上转义字符来避免问题。</p>
-<p>如果出现在html中，我们倒是没问题。</p>
-<p>6.需要注意某些语言过长的处理：</p>
-<p>有些语言，比如mr_IR一个单词就非常长，所以一点要做好超长的处理。</p>
-<p>要注意：</p>
-<p>一般情况下都是前端同学来维护国际化的资源文件，确实是一件费时费力枯燥无味的工作，但是在工作中切忌眼高手低，分配到你的工作一定要做好。随着语言的种类越来越多，为了方便维护，最开始就要考虑好上面的问题的解决方案。</p>
-<p>注意发布前需要在crowdin上查看下语言翻译进度，是否达到100%了。</p>
-<p>需要同步工具，将翻译同学的git项目内容分散copy到我们实际的项目中</p>
-<p>国家地区码：<a href="https://www.jianshu.com/p/f425950a09c7" target="_blank" rel="noopener">https://www.jianshu.com/p/f425950a09c7</a></p>
-<p>TODO:<br>前后端分离国际化应该怎么做</p>
-<p>参考文献：</p>
-<p><a href="http://taobaofed.org/blog/2016/03/21/internationalization/" target="_blank" rel="noopener">http://taobaofed.org/blog/2016/03/21/internationalization/</a></p>
-<p><a href="https://github.com/ProtoTeam/blog/blob/master/201710/1.md" target="_blank" rel="noopener">https://github.com/ProtoTeam/blog/blob/master/201710/1.md</a></p>
-<p><a href="https://segmentfault.com/a/1190000009058572" target="_blank" rel="noopener">https://segmentfault.com/a/1190000009058572</a></p>
-<p><a href="https://github.com/DDFE/DDFE-blog/issues/14" target="_blank" rel="noopener">https://github.com/DDFE/DDFE-blog/issues/14</a></p>
-
-          
+            <div class="post-button text-center">
+              <a class="btn" href="/2017/04/18/国际化的一些思考和注意事项/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
         
       
-    </div>
+    </p></div>
 
     
 
@@ -991,7 +944,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-01-07 20:48:56" itemprop="dateModified" datetime="2019-01-07T20:48:56+08:00">2019-01-07</time>
+                <time title="Modified: 2019-01-08 14:10:53" itemprop="dateModified" datetime="2019-01-08T14:10:53+08:00">2019-01-08</time>
               
             
           </span>
