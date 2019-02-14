@@ -5,7 +5,7 @@ tags: javascript
 ---
 ```js
 function fn() {
-var a = 1;
+	var a = 1;
 }
 ```
 
@@ -18,9 +18,9 @@ var a = 1;
 
 ```js
 function fn() {
-var a = 1;
-console.log(a);
-return a;
+	var a = 1;
+	console.log(a);
+	return a;
 }
 // a++; a依然是私有变量,外部访问不到
 
@@ -48,11 +48,11 @@ b++之后 a的值变化了吗？我感觉因为a是基本数据类型，存在�
 
 ```js
 function f1() {
-var a = 1;
-return function() {
-console.log(a);
-return a++;
-};
+	var a = 1;
+	return function() {
+		console.log(a);
+		return a++;
+	};
 }
 f1()(); // 1
 f1()(); // 1
@@ -101,9 +101,9 @@ f2(); // 3
 ```js
 var a = 333;
 function fn() {
-var a;
-console.log(a); // undefined
-return a;
+	var a;
+	console.log(a); // undefined
+	return a;
 }
 ```
 

@@ -3,12 +3,9 @@ title: JS中的面向对象5-Object.create和new Object
 date: 2018-07-18 14:02:40
 tags: javascript
 ---
-Object.create和new Object的区别
-<!-- more -->
-```
 var Person = function(age) {
-this.age=age;
-this.say=function(){console.log('hello');}
+    this.age=age;
+    this.say=function(){console.log('hello');}
 };
 var p=new Person(11);
 var p1 = Object.create(p);
@@ -28,20 +25,20 @@ Object.create的实现方式
 
 ```
 if (!Object.create) {
-Object.create = function(proto, propertiesObject) {
-if (typeof proto !== 'object' && typeof proto !== 'function') {
-throw new TypeError('Object prototype may only be an Object:' + proto);
-} else if (proto === null) {
-throw new Error("This browser's implementation of Object.create is a shim and doesn't support 'null'");
-}
-if (typeof propertiesObject != 'undefined') {
-throw new Error("This browser's implementation of Object.create is a shim and doesn't support a second argument");
-}
+  Object.create = function(proto, propertiesObject) {
+    if (typeof proto !== 'object' && typeof proto !== 'function') {
+      throw new TypeError('Object prototype may only be an Object:' + proto);
+    } else if (proto === null) {
+      throw new Error("This browser's implementation of Object.create is a shim and doesn't support 'null'");
+    }
+    if (typeof propertiesObject != 'undefined') {
+      throw new Error("This browser's implementation of Object.create is a shim and doesn't support a second argument");
+    }
 
-function F() {};
-F.prototype = proto;
-return new F();
-}
+    function F() {};
+    F.prototype = proto;
+    return new F();
+  }
 }
 ```
 

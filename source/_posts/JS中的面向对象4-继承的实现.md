@@ -27,21 +27,21 @@ Object.prototype.__proto__ === null // true 说明原型链到Object.prototype�
 
 ```js
 function SuperType() {
-this.property = true;
+  this.property = true;
 }
 SuperType.prototype = {
-constructor: SubType,
-getSuperVal: function() {
-return this.property;
-}
+  constructor: SubType,
+  getSuperVal: function() {
+    return this.property;
+  }
 }
 
 function SubType() {
-this.subProperty = false;
+  this.subProperty = false;
 }
 SubType.prototype = new SuperType(); // 重点
 SubType.property.getSubVal = function() {
-return this.subProperty;
+  return this.subProperty;
 }
 
 var sub1 = new SubType();
@@ -70,9 +70,9 @@ var p = Person.call(instance);
 // 值类型就不要了，还是返回instance
 // 如果是引用类型，替换掉instance返回引用类型
 if(typeof p =='object'){
-return p
+ return p 
 }else{
-return instance;
+ return instance;
 }
 ```
 
@@ -81,6 +81,21 @@ return instance;
 ```js
 SubType.prototype.__proto__ = SuperType.prototype;
 SuperType.call(SubType.prototype);
+var Animal = function(name) {
+  this.name = name;
+  this.wow = function() {
+    console.log(this.name + ':wow');
+  }
+}
+
+var Dog = function(name) {
+  this.run = function() {
+    console.log(this.name + ':run');
+  }
+}
+
+Dog.prototype = new Animal(); // 继承的实现：将父类原型指向子类
+Dog.prototype=Animal.prototype; // 为啥不是这样？
 ```
 
 

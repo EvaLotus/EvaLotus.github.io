@@ -95,18 +95,18 @@ var fn1=function(){};
 var fn2=function(){};
 
 fn1.constructor===Function
-fn1.__proto__===Function.prototype
-fn1__proto__===fn2.__proto__ // true
+fn1.__proto__===Function.prototype 
+fn1__proto__===fn2.__proto__ // true 
 
 fn1.prototype.constructor=fn1;
 fn1.prototype.constructor.name // fn1
 fn2.prototype.constructor.name // fn2
-fn1.prototype===fn2.prototype // false
+fn1.prototype===fn2.prototype // false 
 fn1.prototype==={
-// fn1
-constructor:function(){
+    // fn1
+    constructor:function(){
 
-}
+    }
 } // 指向了Object.prototype
 
 
@@ -117,7 +117,6 @@ fn1.prototype.__proto__ === Object.prototype
 #### 原型的相关方法
 
 ```js
-// prototype相关方法
 Object.getPrototypeOf(p) === Person.prototype; // true
 Person.prototype.isPrototypeOf(p); // true
 p.hasOwnProperty('name'); // false 是原型属性
@@ -126,7 +125,7 @@ p.hasOwnProperty('salary'); // true 是实例属性
 
 // 通过in操作符和hasOwnProperty可以判断属性到底是在实例还是原型中
 function hasPrototypeProperty(obj, name) { // 判断是否是原型属性
-return !obj.hasOwnProperty(name) && (name in obj);
+  return !obj.hasOwnProperty(name) && (name in obj);
 }
 // 因为in操作符包括原型属性，所以在遍历时eslint不建议使用for-in，如果必须使用也需要用hasOwnProperty来过滤下
 
@@ -139,7 +138,7 @@ p instanceof Person; // true 实例是否是类的实例
 
 ```js
 function isType(type) {
-return obj => Object.prototype.toString.call(obj) === `[object ${type}]`;
+  return obj => Object.prototype.toString.call(obj) === `[object ${type}]`;
 }
 
 const isObject = isType('Object');
@@ -155,22 +154,22 @@ export { isObject, isString, isArray, isFunction };
 
 ```js
 function Person(age, name, friends) {
-this.name = name;
-this.age = age;
-this.friends = friends;
-// 只在初始化时判断，不需要把每个方法都判断TODO
-if (typeof this.sayName != 'function') {
-Person.prototype.sayName = function() {
-console.log(this.name);
-}
-// 局部添加方法和属性会立即生效，重写整个原型对象会切断现有实例和原型的关系
+  this.name = name;
+  this.age = age;
+  this.friends = friends;
+  // 只在初始化时判断，不需要把每个方法都判断TODO
+  if (typeof this.sayName != 'function') {
+    Person.prototype.sayName = function() {
+      console.log(this.name);
+    }
+    // 局部添加方法和属性会立即生效，重写整个原型对象会切断现有实例和原型的关系
 
-// 在已经创建实例的情况下，使用Person.prototype={}这种对象字面量，相当于重写原型
-// 会切断现有实例和原型之间的关联
-}
+    // 在已经创建实例的情况下，使用Person.prototype={}这种对象字面量，相当于重写原型
+    // 会切断现有实例和原型之间的关联
+  }
 }
 ```
 
-参考文献：
+参考
 [https://github.com/creeperyang/blog/issues/9](https://github.com/creeperyang/blog/issues/9)
 [https://www.zhihu.com/question/34183746](https://www.zhihu.com/question/34183746)

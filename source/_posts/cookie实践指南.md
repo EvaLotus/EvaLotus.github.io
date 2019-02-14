@@ -10,39 +10,39 @@ HTTP是无状态的协议，cookie可以用来存储用户的信息方便追踪�
 
 ```js
 function getCookie(name) {
-const cookieName = `${encodeURIComponent(name)}=`;
-const cookieStart = document.cookie.indexOf(cookieName);
-let cookieValue = null;
-if (cookieStart > -1) {
-let cookieEnd = document.cookie.indexOf(';', cookieStart);
-if (cookieEnd === -1) {
-cookieEnd = document.cookie.length;
-}
-cookieValue = document.cookie.substring(cookieStart + cookieName.length, cookieEnd);
-cookieValue = decodeURIComponent(cookieValue);
-}
-return cookieValue;
+  const cookieName = `${encodeURIComponent(name)}=`;
+  const cookieStart = document.cookie.indexOf(cookieName);
+  let cookieValue = null;
+  if (cookieStart > -1) {
+    let cookieEnd = document.cookie.indexOf(';', cookieStart);
+    if (cookieEnd === -1) {
+      cookieEnd = document.cookie.length;
+    }
+    cookieValue = document.cookie.substring(cookieStart + cookieName.length, cookieEnd);
+    cookieValue = decodeURIComponent(cookieValue);
+  }
+  return cookieValue;
 }
 
 function setCookie(name, value, expires, path, domain, secure) {
-let cookieText = `${encodeURIComponent(name)}=${encodeURIComponent(value)}`;
-if (expires) {
-cookieText += `;expires=${expires.toUTCString()}`;
-}
-if (path) {
-cookieText += `;path=${path}`;
-}
-if (domain) {
-cookieText += `;domain=${domain}`;
-}
-if (secure) {
-cookieText += ';secure';
-}
-document.cookie = cookieText;
+  let cookieText = `${encodeURIComponent(name)}=${encodeURIComponent(value)}`;
+  if (expires) {
+    cookieText += `;expires=${expires.toUTCString()}`;
+  }
+  if (path) {
+    cookieText += `;path=${path}`;
+  }
+  if (domain) {
+    cookieText += `;domain=${domain}`;
+  }
+  if (secure) {
+    cookieText += ';secure';
+  }
+  document.cookie = cookieText;
 }
 
 function delCookie(name, path, domain, secure) {
-setCookie(name, '', new Date(0), path, domain, secure);
+  setCookie(name, '', new Date(0), path, domain, secure);
 }
 ```
 
@@ -113,8 +113,6 @@ chrome中network的追溯
 一旦涉及到cookie的问题，特别是webview中的cookie，需要iOS，andriod，FE，server端一起来定位问题，这个时候非常需要一个工具来确定到底谁是罪魁祸首。熟练使用抓包工具会避免推诿，省心不少。
 
 一定要看清楚到底是response cookie和request cookie，明确cookie是在哪个请求中下发的。
-
-抓包工具的使用
 
 
 

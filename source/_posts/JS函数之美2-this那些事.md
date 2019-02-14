@@ -12,17 +12,18 @@ tags: javascript
 ```javascript
 // 柯里化
 function curry(fn) {
-// arguments=[fn,...args];
-var args = [].slice.call(arguments, 1);
-return function() {
-// 柯里化之后的函数的arguments转array
-var innerArgs = [].slice.call(arguments);
-var finalArgs = args.concat(innerArgs);
-return fn.apply(null, finalArgs);
+  // arguments=[fn,...args];
+  var args = [].slice.call(arguments, 1);
+  return function() {
+    // 柯里化之后的函数的arguments转array
+    var innerArgs = [].slice.call(arguments);
+    var finalArgs = args.concat(innerArgs);
+    return fn.apply(null, finalArgs);
+  }
 }
-}
+
 function add(a, b) {
-console.log(a + b);
+  console.log(a + b);
 }
 
 curry(add, 2)(6); // 设置一个固定参数
@@ -31,31 +32,31 @@ curry(add, 1, 4)(); // 设置两个固定参数
 // 函数绑定
 // ES5有原生的bind，但是支持ie9+ polyfill
 if (!Function.prototype.bind) {
-Function.prototype.bind = function(context) {
-// arguments是bind的
-var args = [].slice.call(arguments, 1);
-var fn = this;
-return function() {
-var innerArgs = [].slice.call(arguments);
-var finalArgs = args.concat(innerArgs);
-// 除了此处和curry非常相似
-fn.apply(context, finalArgs);
-};
-}
+  Function.prototype.bind = function(context) {
+    // arguments是bind的
+    var args = [].slice.call(arguments, 1);
+    var fn = this;
+    return function() {
+      var innerArgs = [].slice.call(arguments);
+      var finalArgs = args.concat(innerArgs);
+      // 除了此处和curry非常相似
+      fn.apply(context, finalArgs);
+    };
+  }
 }
 
 // 只获取到了绑定后的函数传入的参数
 // 结合了柯里化的函数绑定
 function bind(fn, context) {
-// arguments=[fn,context,...args];
-var args = [].slice.call(arguments, 2);
-return function() {
-var innerArgs = [].slice.call(arguments);
-var finalArgs = args.concat(innerArgs);
-return fn.apply(context, finalArgs);
+  // arguments=[fn,context,...args];
+  var args = [].slice.call(arguments, 2);
+  return function() {
+    var innerArgs = [].slice.call(arguments);
+    var finalArgs = args.concat(innerArgs);
+    return fn.apply(context, finalArgs);
+  }
 }
-}
-bind(a.addTwoNum,{num:2},'1');
+bind(a.addTwoNum, { num: 2 }, '1');
 
 
 // 函数绑定主要就是为了改变this的指向
@@ -63,10 +64,10 @@ bind(a.addTwoNum,{num:2},'1');
 
 // TODO
 function partial(fn, ...args) {
-return function(...partialArgs) {
-var finalArgs = args.concat(partialArgs);
-return fn.apply(this, finalArgs);
-}
+  return function(...partialArgs) {
+    var finalArgs = args.concat(partialArgs);
+    return fn.apply(this, finalArgs);
+  }
 }
 ```
 
@@ -74,14 +75,14 @@ return fn.apply(this, finalArgs);
 
 ```js
 var a = {
-num: 1,
-addNum: function(b) {
-console.log(b + this.num);
-return b + this.num
-},
-addTwoNum: function(b,c){
-return b + this.num+c
-}
+  num: 1,
+  addNum: function(b) {
+    console.log(b + this.num);
+    return b + this.num
+  },
+  addTwoNum: function(b, c) {
+    return b + this.num + c
+  }
 }
 a.addNum(2); // 1+2
 
@@ -96,13 +97,13 @@ a.addNum.call({ num: 5 }, 6); // 4+6 改变了this的指向 【调用方法】fn
 
 jQuery中$.proxy也是改变this的指向
 
-```
+```js
 var obj = {
-name: "John",
-test: function() {
-alert( this.name );
-$("#test").unbind("click", obj.test);
-}
+  name: "John",
+  test: function() {
+    alert(this.name);
+    $("#test").unbind("click", obj.test);
+  }
 };
 
 $("#test").click( jQuery.proxy( obj, "test" ) );
@@ -112,7 +113,7 @@ call,apply,bind的区别
 
 #### 为什么要使用call和apply
 
-```
+```js
 // 可以改变this的指向
 [].slice.call(document.getElementsByClassName('btn'));
 [].slice.call(arguments);
@@ -122,7 +123,7 @@ call,apply,bind的区别
 
 #### call和apply的区别
 
-```
+```js
 Math.max.call(null,1,2,3,4);
 Math.max.apply(null,[1,2,3,4]);
 ```
@@ -139,26 +140,27 @@ apply的参数list需要进一步解析，call的性能会更好
 
 #### call，apply是直接调用对应函数，bind会生成新函数
 
-```
-var m={x:1};
-function fn(y){
-alert(this.x+y);
+```js
+var m = { x: 1 };
+
+function fn(y) {
+  alert(this.x + y);
 }
-fn.apply(m,[5]);
-fn.call(m,5);
-var fn1=fn.bind(m,5);
+fn.apply(m, [5]);
+fn.call(m, 5);
+var fn1 = fn.bind(m, 5);
 // fn.bind(conext,arguments);
 fn1();
 
 // bind实现
-function bind(fn,context){
-return function(){
-return fn.apply(context,arguments);
-}
+function bind(fn, context) {
+  return function() {
+    return fn.apply(context, arguments);
+  }
 }
 
 // 常用方式
-document.getElementById('btn').onclick=bind(handler.handlerFn,handler);
+document.getElementById('btn').onclick = bind(handler.handlerFn, handler);
 ```
 
 
