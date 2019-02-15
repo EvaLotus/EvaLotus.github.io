@@ -1,7 +1,7 @@
 ---
 title: homebrew的使用
 date: 2017-11-18 17:06:31
-tags: tool
+tags: Tool
 ---
 Home-brew是mac上的软件安装管理工具，有了它每次安装软件都不用去google了，直接`brew install`就可以啦。
 

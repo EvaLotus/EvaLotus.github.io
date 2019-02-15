@@ -94,7 +94,7 @@ window.navigator.chrome = {
 };
 ```
 
-还有其他的检测plugins和language，实际都可以被篡改。
+还有其他的检测plugins，language以及permissions，实际都可以被篡改。
 
 看完是不是觉得非常悲观，怎么也拦不住！
 
@@ -113,17 +113,21 @@ function detectAuto() {
     !navigator.languages || navigator.languages.length === 0) {
     return true;
   }
+  const permissionStatus = await navigator.permissions.query({ name: 'notifications' });
+  if (Notification.permission === 'denied' && permissionStatus.state === 'prompt') {
+    return true;
+  }
   const r = [];
   const w = ['webdriver', '__driver_evaluate', '__webdriver_evaluate',
-  ' __selenium_evaluate', '__fxdriver_evaluate', '__driver_unwrapped',
-  '__webdriver_unwrapped', '__selenium_unwrapped', '__fxdriver_unwrapped',
-  '_Selenium_IDE_Recorder', '_selenium', 'calledSelenium',
-  '_WEBDRIVER_ELEM_CACHE', 'ChromeDriverw', 'driver-evaluate',
-  'webdriver-evaluate', 'selenium-evaluate', 'webdriverCommand',
-  'webdriver-evaluate-response','__webdriverFunc', '__webdriver_script_fn',
-  '__$webdriverAsyncExecutor', '__lastWatirAlert',
-  '__lastWatirConfirm', '__lastWatirPrompt', '$chrome_asyncScriptInfo',
-  '$cdc_asdjflasutopfhvcZLmcfl_', '_phantom', '_phantomas'];
+    ' __selenium_evaluate', '__fxdriver_evaluate', '__driver_unwrapped',
+    '__webdriver_unwrapped', '__selenium_unwrapped', '__fxdriver_unwrapped',
+    '_Selenium_IDE_Recorder', '_selenium', 'calledSelenium',
+    '_WEBDRIVER_ELEM_CACHE', 'ChromeDriverw', 'driver-evaluate',
+    'webdriver-evaluate', 'selenium-evaluate', 'webdriverCommand', 'webdriver-evaluate-response',
+    '__webdriverFunc', '__webdriver_script_fn', '__$webdriverAsyncExecutor', '__lastWatirAlert',
+    '__lastWatirConfirm', '__lastWatirPrompt', '$chrome_asyncScriptInfo', '$cdc_asdjflasutopfhvcZLmcfl_',
+    '_phantom', '_phantomas',
+  ];
   w.forEach((t) => {
     if (!!window[t] || !!window.document.documentElement.getAttribute(t) || !!navigator[t]) {
       r.push(t);
@@ -140,3 +144,5 @@ function detectAuto() {
 https://intoli.com/blog/not-possible-to-block-chrome-headless/
 
 https://intoli.com/blog/making-chrome-headless-undetectable/
+
+https://www.zhihu.com/question/50738719

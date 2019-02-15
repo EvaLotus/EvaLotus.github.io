@@ -2,7 +2,7 @@
 layout: post
 title: git 操作及原理
 date: 2017-03-12 17:02:29
-tags: tool
+tags: Tool
 ---
 最近全面整理下工作中遇到的git问题，了解了下git工作的原理。
 <!-- more -->
