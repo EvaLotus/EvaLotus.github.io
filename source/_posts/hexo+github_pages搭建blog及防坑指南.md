@@ -48,6 +48,11 @@ hexo d
 
 # 新建一篇博客
 hexo new 'HelloWorld'
+
+# 豆瓣相关
+hexo douban -b  #生成读书页面
+hexo douban -m  #生成电影页面
+hexo douban -g  #生成游戏页面
 ```
 很容易就搭建好了自己的博客，下面是一些常见问题的解决。
 #### FAQ
