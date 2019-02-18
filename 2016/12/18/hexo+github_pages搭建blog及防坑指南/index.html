@@ -58,16 +58,14 @@
 <link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6.6.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.6.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=6.6.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.6.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=6.6.0">
 
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
 
 
 
@@ -113,7 +111,7 @@
 <meta property="og:site_name" content="Eva&#39;s Blog">
 <meta property="og:description" content="在超哥的安利下，开始使用hexo+githubpages搭建自己的博客。对于前端同学来说，基于Node.js的hexo可谓是非常友好的选择。 前两天超哥很开心的敲下hexo d，过了两天整理文件时一不小心手贱删掉了项目，写了4年的博客全都没有啦，只能一个个copy出来，简直是喜闻乐见（超哥不要打我，逃～）">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-01-07T12:48:56.512Z">
+<meta property="og:updated_time" content="2019-02-18T07:58:46.377Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo+github pages 搭建 blog及防坑指南">
 <meta name="twitter:description" content="在超哥的安利下，开始使用hexo+githubpages搭建自己的博客。对于前端同学来说，基于Node.js的hexo可谓是非常友好的选择。 前两天超哥很开心的敲下hexo d，过了两天整理文件时一不小心手贱删掉了项目，写了4年的博客全都没有啦，只能一个个copy出来，简直是喜闻乐见（超哥不要打我，逃～）">
@@ -140,15 +138,6 @@
 
 
 
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131198272-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-131198272-1');
-</script>
 
 
 
@@ -367,8 +356,6 @@
   
 
   
-    <div class="reading-progress-bar"></div>
-  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
@@ -422,22 +409,6 @@
             
 
             
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-01-07 20:48:56" itemprop="dateModified" datetime="2019-01-07T20:48:56+08:00">2019-01-07</time>
-              
-            
           </span>
 
           
@@ -490,7 +461,7 @@
 <a id="more"></a>
 <p>基本操作大家都可以在hexo详尽的文档中找到，但是一些文档之外的最佳实践，在此记录下。</p>
 <h4 id="基本搭建操作"><a href="#基本搭建操作" class="headerlink" title="基本搭建操作"></a>基本搭建操作</h4><p>以下是搭建hexo博客基本操作，只是mark一下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装hexo命令行工具</span></span><br><span class="line">nmp i hexo-cli -g</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在此目录搭建博客，在github创建此项目</span></span><br><span class="line"><span class="built_in">cd</span> EvaLotus.github.io</span><br><span class="line"><span class="comment"># 新搭建的blog需要这一行</span></span><br><span class="line">hexo init</span><br><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动服务，一个基本的博客就已经搭建好了</span></span><br><span class="line">hexo s</span><br><span class="line"></span><br><span class="line"><span class="comment"># 选择喜欢的主题，如next，实在是太容易撞衫了，但是确实是极简主义的爱</span></span><br><span class="line"><span class="comment"># 将主题clone至themes目录下</span></span><br><span class="line"><span class="comment"># 每次换电脑重新clone项目都需要执行这一步哦</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next themes/next</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在外层_confif.yml中改theme为next</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除generate的文件，切换主题时最好执行下，可以不用自己删掉public文件</span></span><br><span class="line">hexo clean****</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成public目录，可以在本地调试时使用</span></span><br><span class="line">hexo g</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果只是直接部署</span></span><br><span class="line">hexo d</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建一篇博客</span></span><br><span class="line">hexo new <span class="string">'HelloWorld'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装hexo命令行工具</span></span><br><span class="line">nmp i hexo-cli -g</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在此目录搭建博客，在github创建此项目</span></span><br><span class="line"><span class="built_in">cd</span> EvaLotus.github.io</span><br><span class="line"><span class="comment"># 新搭建的blog需要这一行</span></span><br><span class="line">hexo init</span><br><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动服务，一个基本的博客就已经搭建好了</span></span><br><span class="line">hexo s</span><br><span class="line"></span><br><span class="line"><span class="comment"># 选择喜欢的主题，如next，实在是太容易撞衫了，但是确实是极简主义的爱</span></span><br><span class="line"><span class="comment"># 将主题clone至themes目录下</span></span><br><span class="line"><span class="comment"># 每次换电脑重新clone项目都需要执行这一步哦</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next themes/next</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在外层_confif.yml中改theme为next</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除generate的文件，切换主题时最好执行下，可以不用自己删掉public文件</span></span><br><span class="line">hexo clean****</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成public目录，可以在本地调试时使用</span></span><br><span class="line">hexo g</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果只是直接部署</span></span><br><span class="line">hexo d</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建一篇博客</span></span><br><span class="line">hexo new <span class="string">'HelloWorld'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 豆瓣相关</span></span><br><span class="line">hexo douban -b  <span class="comment">#生成读书页面</span></span><br><span class="line">hexo douban -m  <span class="comment">#生成电影页面</span></span><br><span class="line">hexo douban -g  <span class="comment">#生成游戏页面</span></span><br></pre></td></tr></table></figure>
 <p>很容易就搭建好了自己的博客，下面是一些常见问题的解决。</p>
 <h4 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h4><p><strong>1.怎么能将github.io的域名改成自己申请的域名？</strong></p>
 <p>首先你需要在万网或其他平台上买个域名，一般50元/年。购买完成后需要在购买域名的管理后台进行CNAME解析，目的是将gitubpages的地址比如<code>https://github.com/EvaLotus/EvaLotus.github.io</code>指向你购买的域名<code>evacoder.com</code>。<br>然后直接在github的project settings里，设置custom domain，这样就会自动在你的项目中增加一个CNAME文件，里面会记录你自己的域名。</p>
@@ -650,7 +621,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">36</span>
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -703,7 +674,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">12</span>
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -820,11 +793,6 @@
   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   
-    <span class="site-uv" title="Total Visitors">
-      <i class="fa fa-user"></i>
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-    </span>
-  
 
   
     <span class="site-pv" title="Total Views">
@@ -886,8 +854,6 @@
 
 
 
-  
-
 
 
   
@@ -903,11 +869,6 @@
   
   
     <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1.1/reading_progress.min.js"></script>
   
 
 

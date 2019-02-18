@@ -58,16 +58,14 @@
 <link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6.6.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.6.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=6.6.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.6.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=6.6.0">
 
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
 
 
 
@@ -138,15 +136,6 @@
 
 
 
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131198272-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-131198272-1');
-</script>
 
 
 
@@ -372,6 +361,165 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Evalotus.github.io/2019/02/15/从iframe安全说到万物皆可hook/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Eva">
+      <meta itemprop="description" content="JavaScript, HTML, CSS, Node JS, Front-end Develop">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eva's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/15/从iframe安全说到万物皆可hook/" class="post-title-link" itemprop="https://Evalotus.github.io/index.html">「 安全 」从iframe说到万物皆可hook</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-15 17:06:31" itemprop="dateCreated datePublished" datetime="2019-02-15T17:06:31+08:00">2019-02-15</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/15/从iframe安全说到万物皆可hook/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/02/15/从iframe安全说到万物皆可hook/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h4><p>今天遇到有业务要求我们的登录页允许被嵌在 iframe 中以满足导流需求，找安全的大佬们讨论了下，最后给出的结论是：</p>
+<blockquote>
+<p>如果业务方的代码写的挫了点，有 xss 漏洞的话，坏人完全可以把你本来的 iframe 隐藏掉，自己写个弹框出来，这样的话用户完全无感知地被篡改了，直接输入用户名和密码，信息就被上送到了坏人的服务器。</p>
+</blockquote>
+<p>what？还能这样吗？ 那得写多少代码才能覆盖掉弹窗再伪造一个出来啊！</p>
+<p>作为一个小白我算是长见识了。但是经过尝试，其实并不是那么回事。<br>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/15/从iframe安全说到万物皆可hook/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </p></div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://Evalotus.github.io/2019/02/14/JS检测爬虫/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -417,13 +565,9 @@
                 
               
 
-              <time title="Created: 2019-02-14 18:20:35 / Modified: 17:40:14" itemprop="dateCreated datePublished" datetime="2019-02-14T18:20:35+08:00">2019-02-14</time>
+              <time title="Created: 2019-02-14 18:20:35" itemprop="dateCreated datePublished" datetime="2019-02-14T18:20:35+08:00">2019-02-14</time>
             
 
-            
-              
-
-              
             
           </span>
 
@@ -582,22 +726,6 @@
             
 
             
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-14 17:27:15" itemprop="dateModified" datetime="2019-02-14T17:27:15+08:00">2019-02-14</time>
-              
-            
           </span>
 
           
@@ -753,22 +881,6 @@
               <time title="Created: 2019-02-12 18:20:35" itemprop="dateCreated datePublished" datetime="2019-02-12T18:20:35+08:00">2019-02-12</time>
             
 
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-14 17:31:23" itemprop="dateModified" datetime="2019-02-14T17:31:23+08:00">2019-02-14</time>
-              
             
           </span>
 
@@ -927,22 +1039,6 @@
             
 
             
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-14 17:03:26" itemprop="dateModified" datetime="2019-02-14T17:03:26+08:00">2019-02-14</time>
-              
-            
           </span>
 
           
@@ -990,176 +1086,6 @@
           
             <div class="post-button text-center">
               <a class="btn" href="/2019/01/05/前后端分离项目的本地代理及登录态绕过/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Evalotus.github.io/2018/12/31/2019OKR/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Eva">
-      <meta itemprop="description" content="JavaScript, HTML, CSS, Node JS, Front-end Develop">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eva's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/12/31/2019OKR/" class="post-title-link" itemprop="https://Evalotus.github.io/index.html">2019年OKR</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-12-31 20:11:15" itemprop="dateCreated datePublished" datetime="2018-12-31T20:11:15+08:00">2018-12-31</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-15 09:11:09" itemprop="dateModified" datetime="2019-02-15T09:11:09+08:00">2019-02-15</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/12/31/2019OKR/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/31/2019OKR/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>所有快乐和烦恼，计划和行动，全部都要具体不要抽象。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/12/31/2019OKR/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1253,7 +1179,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">36</span>
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1306,7 +1232,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">12</span>
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -1407,11 +1335,6 @@
   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   
-    <span class="site-uv" title="Total Visitors">
-      <i class="fa fa-user"></i>
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-    </span>
-  
 
   
     <span class="site-pv" title="Total Views">
@@ -1473,8 +1396,6 @@
 
 
 
-  
-
 
 
   
@@ -1490,11 +1411,6 @@
   
   
     <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1.1/reading_progress.min.js"></script>
   
 
 

