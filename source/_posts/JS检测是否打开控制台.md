@@ -1,7 +1,7 @@
 ---
 title: JS检测是否打开了控制台（devtool）
 date: 2018-12-28 20:11:15
-tags: JS
+tags: javascript
 ---
 JS并没有直接提供判断检测用户是否打开devtool的API。
 思考下，打开控制台有哪些特征呢？

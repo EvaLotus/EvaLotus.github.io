@@ -1,5 +1,5 @@
 ---
-title: JS函数之美1-闭包的理解
+title: 「 JS函数之美 」闭包的理解
 date: 2018-02-18 13:12:19
 tags: javascript
 ---

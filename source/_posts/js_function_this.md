@@ -1,5 +1,5 @@
 ---
-title: JS函数之美2-函数柯里化和this那些事
+title: 「 JS函数之美 」函数柯里化和this那些事
 date: 2018-02-27 13:13:16
 tags: javascript
 ---
