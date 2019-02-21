@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next gemini" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=6.6.0">
+
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","width":300,"display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="123function fn() &amp;#123;	var a = 1;&amp;#125; 问：不改变fn的函数体，怎么把变量a的值变成2呢？ 你肯定想说a都没return出来，我根本获取不到呀，怎么可能改a的值。 那么如果我把areturn出来，你有办法修改a的值吗？">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「 JS函数之美 」闭包的理解">
+<meta property="og:url" content="https://Evalotus.github.io/2018/02/18/js_function_closure/index.html">
+<meta property="og:site_name" content="Eva&#39;s Blog">
+<meta property="og:description" content="123function fn() &amp;#123;	var a = 1;&amp;#125; 问：不改变fn的函数体，怎么把变量a的值变成2呢？ 你肯定想说a都没return出来，我根本获取不到呀，怎么可能改a的值。 那么如果我把areturn出来，你有办法修改a的值吗？">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-02-20T08:34:43.126Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="「 JS函数之美 」闭包的理解">
+<meta name="twitter:description" content="123function fn() &amp;#123;	var a = 1;&amp;#125; 问：不改变fn的函数体，怎么把变量a的值变成2呢？ 你肯定想说a都没return出来，我根本获取不到呀，怎么可能改a的值。 那么如果我把areturn出来，你有办法修改a的值吗？">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Eva's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://Evalotus.github.io/2018/02/18/js_function_closure/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>「 JS函数之美 」闭包的理解 | Eva's Blog</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ca3d224de40fbf734d1e623cf68e0fb4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Eva's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">进一寸有一寸的欢喜</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-movies">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/movies" rel="section"><i class="menu-item-icon fa fa-fw fa-film"></i> <br>Movies</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Evalotus.github.io/2018/02/18/js_function_closure/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Eva">
+      <meta itemprop="description" content="JavaScript, HTML, CSS, Node JS, Front-end Develop">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eva's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">「 JS函数之美 」闭包的理解
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-02-18 13:12:19" itemprop="dateCreated datePublished" datetime="2018-02-18T13:12:19+08:00">2018-02-18</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/18/js_function_closure/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/02/18/js_function_closure/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>问：不改变fn的函数体，怎么把变量a的值变成2呢？</p>
+<p>你肯定想说a都没return出来，我根本获取不到呀，怎么可能改a的值。</p>
+<p>那么如果我把<code>a</code>return出来，你有办法修改a的值吗？<br><a id="more"></a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">	<span class="built_in">console</span>.log(a);</span><br><span class="line">	<span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// a++; a依然是私有变量,外部访问不到</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b=fn(); <span class="comment">// 1</span></span><br><span class="line">b++; <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c=fn(); <span class="comment">// 1 a的值依然没有改变</span></span><br></pre></td></tr></table></figure>
+<p>b++之后 a的值变化了吗？我感觉因为a是基本数据类型，存在堆内存里，b应该是指向a的，所以应该是修改成功了a的值，但是确实没办法验证。</p>
+<p>因为你想要获取a的实时状态，只能通过fn来获取，但是var c=fn()调用过后，a又被重新赋值了，所以没办法验证。</p>
+<p>你可能觉得这个问题比较傻，局部变量的值怎么可能被改变呢？改了又有什么意义呢？</p>
+<p>我就遇到过，iOS开发过程中前人封装了一个framework，只暴露了获取a的方法，实现却被打包了，framework打包前的代码也没有，无法修改函数体。但是遇到一个bug，必须要修改a的值才能解决。</p>
+<p>我想了好久也想不出来办法，现在想想其实根本没必要费这个劲儿，只能去找前人找找打包framework之前的源码，改了a重新打包一遍。</p>
+<p>类比js的场景，其实就相当于引了个第三方的加密混淆过的js，改了a的值你就能免费使用第三方的服务，但是人家是个私有局部变量，任你外面的代码写出花儿来，也没办法改变a的值。</p>
+<p>那我们就应该放弃吗？可以得出私有局部变量的值是肯定不能改的结论吗？</p>
+<p>来试试暴露出修改a的接口看看能不能成功。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(a);</span><br><span class="line">		<span class="keyword">return</span> a++;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br><span class="line">f1()(); <span class="comment">// 1</span></span><br><span class="line">f1()(); <span class="comment">// 1</span></span><br><span class="line">f1()(); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<p>很显然失败了。</p>
+<p>调用一百次得到的值也都是a=1，其实很好理解，和上一个例子一样，每次调用都重新走了一下var a=1，重新声明了a的值。那如果想办法不调用a的重新声明呢？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f2=f1();</span><br><span class="line">f2(); <span class="comment">// 1</span></span><br><span class="line">f2(); <span class="comment">// 2</span></span><br><span class="line">f2(); <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p>哇，居然真的成功了！得到的值果然符合我们的预期，但是a的值真的改变了吗？这个a还是原来的那个a吗？一脸懵逼，有点怀疑人生了。</p>
+<p>在函数外也可以调用，难道a变成了全局变量吗？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">233</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// 代码是一行一行执行的，走到这里一定会是1</span></span><br><span class="line"><span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"><span class="keyword">return</span> a++;</span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> f2 = f1();</span><br><span class="line">f2(); <span class="comment">// 1</span></span><br><span class="line">f2(); <span class="comment">// 2</span></span><br><span class="line">f2(); <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p>看起来并没有，f2的操作还是围绕着局部变量a来进行的。可能相比于上一个例子，实际上一个例子也修改成功了只是无法验证而已。</p>
+<p>静静的思考一下，开发者用局部变量而不是全局变量，就是为了不让别人不经过同意就随便改自己的代码。</p>
+<p>其实说到底还是变量作用域的问题。</p>
+<p>虽然变量名相同，但是在函数中，总是<strong>从内到外</strong>去寻找变量的声明，找到最近的声明就用最近的那个值，即使是undefined也是一样。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">333</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> a;</span><br><span class="line">	<span class="built_in">console</span>.log(a); <span class="comment">// undefined</span></span><br><span class="line">	<span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再说说<strong>变量提升</strong>的问题。</p>
+<p>其实这就是js中的闭包。闭包可以简单的理解成是<strong>函数内部的函数</strong>，核心作用是<strong>读取到其他函数内部变量的函数</strong>。</p>
+<p>因为a被return出来，随时可能会被操作，不会在调用结束后马上被垃圾回收机制回收，而是被保存在内存中，内存消耗很大，，所以不能滥用闭包，否则会造成网页的性能问题。在IE中可能会导致内存泄漏的问题。解决方法是，在退出函数之前，将不使用的局部变量全部删除。</p>
+<p>主要就是变量提升，变量作用域的问题。</p>
+<p>如果改成es6，变成大括号作用域，那会有什么不同吗？</p>
+<p>如果加上this呢？会让人更怀疑人生吗？</p>
+<p>另一个重要的作用是：让这些变量的值始终保持在内存中。</p>
+<p>闭包中的变量的生存周期很长。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function closure() &#123;</span><br><span class="line">var v = 1;</span><br><span class="line"></span><br><span class="line">function f2() &#123;</span><br><span class="line">// 重点在这里，</span><br><span class="line">return v++;</span><br><span class="line">&#125;</span><br><span class="line">return f2;</span><br><span class="line">// return function() &#123;</span><br><span class="line">// return v++;</span><br><span class="line">// &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const result = closure();</span><br><span class="line">console.log(result()); // 1</span><br><span class="line">console.log(result()); // 2</span><br><span class="line">console.log(result()); // 3</span><br><span class="line">console.log(v); // error</span><br></pre></td></tr></table></figure>
+<p>改变函数内部变量的值。</p>
+<p>f2始终在内存中？而f2依赖于f1，所以f1也始终存在内存中，不会在调用结束后被垃圾回收机制回收。</p>
+<p>那如果改成匿名函数呢？匿名函数也是全局变量吗</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// f是个匿名函数</span><br><span class="line">var f=function()&#123;&#125;</span><br><span class="line"></span><br><span class="line">function f()&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>两种声明函数方式的区别是很大的。</p>
+<p>作用：</p>
+<p>私有方法有利于限制代码的访问</p>
+<p>管理全局命名空间</p>
+<p>数据隐藏和封装</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat_qrcode.jpg" alt="Eva wechat" style="width: 200px; max-width: 100%;">
+    <div>关注Eva的意如小馆，更方便的与我交流</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/14/JS正则备忘/" rel="next" title="JS正则备忘">
+                <i class="fa fa-chevron-left"></i> JS正则备忘
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/27/js_function_this/" rel="prev" title="「 JS函数之美 」函数柯里化和this那些事">
+                「 JS函数之美 」函数柯里化和this那些事 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Eva">
+            
+              <p class="site-author-name" itemprop="name">Eva</p>
+              <p class="site-description motion-element" itemprop="description">JavaScript, HTML, CSS, Node JS, Front-end Develop</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/EvaLotus" title="GitHub &rarr; https://github.com/EvaLotus" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:evacoder@126.com" title="E-Mail &rarr; mailto:evacoder@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-Travel"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Eva</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+    
+  
+  <script src="//cdn.jsdelivr.net/npm/valine@1.3.3/dist/Valine.min.js"></script>
+
+  <script>
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '7Ck7B9LoU0iNuR7sVgC3Sscr-gzGzoHsz',
+        appKey: 'GURQk3swSriTo8QzVtgoUDnk',
+        placeholder: '有什么想对Eva说的呢？',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'5' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

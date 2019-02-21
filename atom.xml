@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://Evalotus.github.io/"/>
-  <updated>2019-02-18T08:53:30.695Z</updated>
+  <updated>2019-02-21T02:05:38.190Z</updated>
   <id>https://Evalotus.github.io/</id>
   
   <author>
@@ -17,9 +17,34 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>「 工具 」前端远程调试及空白或404解决</title>
+    <link href="https://Evalotus.github.io/2019/02/17/remote_debugging/"/>
+    <id>https://Evalotus.github.io/2019/02/17/remote_debugging/</id>
+    <published>2019-02-17T12:11:15.000Z</published>
+    <updated>2019-02-21T02:05:38.190Z</updated>
+    
+    <content type="html"><![CDATA[<p>因为自己的开发环境搭建的太舒适，在别人的电脑上查问题感觉完全无法展现自己的能力。</p><p>再加上已经习惯了chrome dev tool的每一种功能，一换到safari上查兼容性问题，感觉自己变成了白痴。</p><p>更不要说去测试webview里的问题，console都没法看，真的要一行一行alert吗？</p><p>啥？你居然不会remote debugging！</p><p>那你怎么证明到底是你还是native 开发的锅？啥证据都没有。</p><p>虽然模拟器也能完成调试的功能，但是不能完全依赖模拟的结果，而且有些特定的机型并没有模拟器，有时候必须要在真机上复现问题，最重要的是模拟器没有chrome devtools呀。</p><a id="more"></a><h4 id="Andriod"><a href="#Andriod" class="headerlink" title="Andriod"></a>Andriod</h4><p>其实这个配置非常简单，用起来也方便，小伙伴们主要遇到的就是打开页面空白或者404的问题。</p><p>所以最重要的是要检查下PC能否科学地 <strong>网上冲浪</strong></p><p>有时候能访问google都不一定成功，需要试下这个地址</p><p><a href="https://chrome-devtools-frontend.appspot.com/" target="_blank" rel="noopener">https://chrome-devtools-frontend.appspot.com/</a></p><p>如果不行的话，配置以下host</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">172.217.161.180 chrome-devtools-frontend.appspot.com</span><br><span class="line">172.217.161.180 chrometophone.appspot.com</span><br></pre></td></tr></table></figure><p>现在访问基本上是秒开啦。</p><p>访问：<code>chrome://inspect/#devices</code></p><p>然后就可以方便的调试了。</p><p>1.在开发者模式下允许通过usb来调试</p><p>2.重新连接下usb</p><p><img src="/images/remote_debugging1.png" alt=""></p><p>出现上图，点击inspect就可以开始调试啦。</p><p>不必安装chrome浏览器，其他的浏览器和webview都可以进行调试。</p><p>如果webview测试不了，还需要安卓端配置下允许调试</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WebView.setWebContentsDebuggingEnabled(<span class="keyword">true</span>);</span><br></pre></td></tr></table></figure><h4 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h4><p>iOS的remote debugging比较难，难在首先你需要一台mac哈哈哈，但是mac却可以直接调试Andriod。</p><p>1.iPhone上设置-&gt;Safari-&gt; 高级-&gt; Web 检查器，打开</p><p>2.mac 上 safara-&gt;偏好设置-&gt;高级-&gt;在菜单栏显示“开发”菜单</p><p>3.usb连接两者</p><p>4.打开 mac safari，顶部菜单中的开发，选择设备点开即可<br><img src="/images/remote_debugging2.png" alt=""></p><p>也是可以调试webview，safari</p><p>掌握了远程调试的技能，基本可以解决大部分问题了。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;因为自己的开发环境搭建的太舒适，在别人的电脑上查问题感觉完全无法展现自己的能力。&lt;/p&gt;
+&lt;p&gt;再加上已经习惯了chrome dev tool的每一种功能，一换到safari上查兼容性问题，感觉自己变成了白痴。&lt;/p&gt;
+&lt;p&gt;更不要说去测试webview里的问题，console都没法看，真的要一行一行alert吗？&lt;/p&gt;
+&lt;p&gt;啥？你居然不会remote debugging！&lt;/p&gt;
+&lt;p&gt;那你怎么证明到底是你还是native 开发的锅？啥证据都没有。&lt;/p&gt;
+&lt;p&gt;虽然模拟器也能完成调试的功能，但是不能完全依赖模拟的结果，而且有些特定的机型并没有模拟器，有时候必须要在真机上复现问题，最重要的是模拟器没有chrome devtools呀。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Tool" scheme="https://Evalotus.github.io/tags/Tool/"/>
+    
+  </entry>
+  
+  <entry>
     <title>「 安全 」从iframe说到万物皆可hook</title>
-    <link href="https://Evalotus.github.io/2019/02/15/%E4%BB%8Eiframe%E5%AE%89%E5%85%A8%E8%AF%B4%E5%88%B0%E4%B8%87%E7%89%A9%E7%9A%86%E5%8F%AFhook/"/>
-    <id>https://Evalotus.github.io/2019/02/15/从iframe安全说到万物皆可hook/</id>
+    <link href="https://Evalotus.github.io/2019/02/15/iframe_security/"/>
+    <id>https://Evalotus.github.io/2019/02/15/iframe_security/</id>
     <published>2019-02-15T09:06:31.000Z</published>
     <updated>2019-02-18T08:53:30.695Z</updated>
     
@@ -66,8 +91,8 @@
   
   <entry>
     <title>「 puppeteer 」puppeteer初尝试</title>
-    <link href="https://Evalotus.github.io/2019/02/13/puppeteer%E5%88%9D%E4%BD%93%E9%AA%8C/"/>
-    <id>https://Evalotus.github.io/2019/02/13/puppeteer初体验/</id>
+    <link href="https://Evalotus.github.io/2019/02/13/puppeteer_try/"/>
+    <id>https://Evalotus.github.io/2019/02/13/puppeteer_try/</id>
     <published>2019-02-13T10:20:35.000Z</published>
     <updated>2019-02-14T09:27:15.880Z</updated>
     
@@ -88,8 +113,8 @@
   
   <entry>
     <title>「 puppeteer 」前端如何爬虫</title>
-    <link href="https://Evalotus.github.io/2019/02/12/%E5%89%8D%E7%AB%AF%E5%A6%82%E4%BD%95%E7%88%AC%E8%99%AB/"/>
-    <id>https://Evalotus.github.io/2019/02/12/前端如何爬虫/</id>
+    <link href="https://Evalotus.github.io/2019/02/12/js_spider/"/>
+    <id>https://Evalotus.github.io/2019/02/12/js_spider/</id>
     <published>2019-02-12T10:20:35.000Z</published>
     <updated>2019-02-14T09:31:23.187Z</updated>
     
@@ -111,10 +136,10 @@
   
   <entry>
     <title>「 效率 」前后端分离项目的本地代理及登录态绕过</title>
-    <link href="https://Evalotus.github.io/2019/01/05/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%9C%AC%E5%9C%B0%E4%BB%A3%E7%90%86%E5%8F%8A%E7%99%BB%E5%BD%95%E6%80%81%E7%BB%95%E8%BF%87/"/>
-    <id>https://Evalotus.github.io/2019/01/05/前后端分离项目的本地代理及登录态绕过/</id>
+    <link href="https://Evalotus.github.io/2019/01/05/proxy_login_state/"/>
+    <id>https://Evalotus.github.io/2019/01/05/proxy_login_state/</id>
     <published>2019-01-05T04:44:27.000Z</published>
-    <updated>2019-02-14T09:03:26.322Z</updated>
+    <updated>2019-02-20T09:30:30.131Z</updated>
     
     <content type="html"><![CDATA[<p>在开发新需求或者复现bug时，前端经常会通过代理工具将被本地修改的js，css代理到线上，这样可以不用一次一次的上线测试，在本地就可以随改随生效。</p><p>vue项目可以<code>npm run dev</code>本地跑起来，开发阶段接口调试时，最好能把所有localhost的本地接口全代理到【线上】，有很多方法。</p><a id="more"></a><ol><li>使用vue-cli中默认带的 <a href="https://github.com/chimurai/http-proxy-middleware" target="_blank" rel="noopener">http-proxy-middleware</a> 具体配置参见<a href="https://github.com/chimurai/http-proxy-middleware" target="_blank" rel="noopener">http-proxy-middleware</a> 文档。</li></ol><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> proxyMiddleware = <span class="built_in">require</span>(<span class="string">'http-proxy-middleware'</span>);</span><br><span class="line"><span class="keyword">const</span> proxyTable = config.dev.proxyTable;</span><br><span class="line"><span class="comment">// proxy api requests</span></span><br><span class="line"><span class="built_in">Object</span>.keys(proxyTable).forEach(<span class="function"><span class="keyword">function</span> (<span class="params">context</span>) </span>&#123;</span><br><span class="line"><span class="keyword">let</span> options = proxyTable[context]</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> options === <span class="string">'string'</span>) &#123;</span><br><span class="line">options = &#123; <span class="attr">target</span>: options &#125;;</span><br><span class="line">&#125;</span><br><span class="line">app.use(proxyMiddleware(options.filter || context, options));</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><ol start="2"><li><p>使用代理工具，fiddler 或 Charles设置cors。</p></li><li><p>使用chrome插件Allow-Control-Allow-Origin: *</p></li><li><p>让后端开启cors（尽量不要麻烦后端小伙伴）。</p></li></ol><h4 id="如何绕过登录"><a href="#如何绕过登录" class="headerlink" title="如何绕过登录"></a>如何绕过登录</h4><p>但是遇到登录这个拦路虎，localhost下因为没有登录态，每次请求全部401，不能本地调试，代理完全都没用了。</p><p>后来同事分享了一个鸡贼的方法，真是个小机灵鬼~</p><p>登录态都是记录在cookie中的，比如mi的登录态</p><p><img src="/images/login_cookie.png" alt=""></p><p>以有品为例，因为登录态通过serviceToken来标志的，而此cookie下发在<code>.youpin.mi.com</code>域下</p><p>怎么才能让localhost共享到登录态呢？</p><p>答案就是设置host。</p><p>比如我发布在localhost:8080，此项目需要登录态，我们可以配置host</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1 test.youpin.mi.com</span><br></pre></td></tr></table></figure><p>这样我们测试的时候在youpin登录之后下发了登录态，因为有代理，访问localhost:8080可以改为访问test.youpin.mi.com:8080就可以共享到登录态了。</p><p>当然前提是后端下发cookie时是下发在带点的域下，子域可以访问到。</p>]]></content>
     
@@ -131,31 +156,11 @@
   </entry>
   
   <entry>
-    <title>2019年OKR</title>
-    <link href="https://Evalotus.github.io/2018/12/31/2019OKR/"/>
-    <id>https://Evalotus.github.io/2018/12/31/2019OKR/</id>
-    <published>2018-12-31T12:11:15.000Z</published>
-    <updated>2019-02-15T01:11:09.333Z</updated>
-    
-    <content type="html"><![CDATA[<p>所有快乐和烦恼，计划和行动，全部都要具体不要抽象。</p><a id="more"></a><p>学会设计的基本功，可以承担组内的设计工作</p><p>node JS生产环境实践</p><p>装修好房子</p><p>摇号买8手qq</p><p>存款25+</p><p>不要懒于社交，和喜欢的朋友多见面</p><h4 id="生活管理"><a href="#生活管理" class="headerlink" title="生活管理"></a>生活管理</h4><p>现阶段禁止购买口红，香水，护手霜，包。</p><p>学会做一些简单的饭，自己一个人不饿死</p><h4 id="身体健康"><a href="#身体健康" class="headerlink" title="身体健康"></a>身体健康</h4><p>每天八杯水</p><p>每天都要吃早饭</p><p>每天锻炼身体不低于20分钟</p><p>每周最多吃一次甜食</p><p>每周最多只能点一次外卖，一次盒马</p><p>每天至少吃一种水果蔬菜</p><p>学会游泳，并每周至少一次</p><p>周末不能两天都不出门</p><h4 id="情绪管理"><a href="#情绪管理" class="headerlink" title="情绪管理"></a>情绪管理</h4><p>生气的时候分析下自己为啥生气，不要把负面情绪带给其他人</p><h4 id="工作学习"><a href="#工作学习" class="headerlink" title="工作学习"></a>工作学习</h4><p>更新公众号</p><p>每天精读一篇外文</p><p>一年20本书，每月2本书</p><p>9点上班再也不迟到</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;所有快乐和烦恼，计划和行动，全部都要具体不要抽象。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="生活" scheme="https://Evalotus.github.io/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-  </entry>
-  
-  <entry>
     <title>JS检测是否打开了控制台（devtool）</title>
     <link href="https://Evalotus.github.io/2018/12/28/JS%E6%A3%80%E6%B5%8B%E6%98%AF%E5%90%A6%E6%89%93%E5%BC%80%E6%8E%A7%E5%88%B6%E5%8F%B0/"/>
     <id>https://Evalotus.github.io/2018/12/28/JS检测是否打开控制台/</id>
     <published>2018-12-28T12:11:15.000Z</published>
-    <updated>2019-02-15T01:09:52.013Z</updated>
+    <updated>2019-02-20T08:54:55.815Z</updated>
     
     <content type="html"><![CDATA[<p>JS并没有直接提供判断检测用户是否打开devtool的API。<br>思考下，打开控制台有哪些特征呢？<br><a id="more"></a></p><p>1.按键类，用户按下了F12，cmd+i+u,右键选择审查元素等</p><p>但是打开devtool并不能用一种操作模式就能完全涵盖，不同操作系统下的键盘特征也不一样。</p><p>2.窗口宽度变化类，内部宽度变窄</p><p>Github上搜到这个 devtools-detect 只通过宽度检测加上直观的demo就可以拿到800+的stars哦。</p><p>核心代码</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> threshold = <span class="number">160</span>;</span><br><span class="line">setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> widthThreshold = <span class="built_in">window</span>.outerWidth - <span class="built_in">window</span>.innerWidth &gt; threshold;</span><br><span class="line">    <span class="keyword">var</span> heightThreshold = <span class="built_in">window</span>.outerHeight - <span class="built_in">window</span>.innerHeight &gt; threshold;</span><br><span class="line">    <span class="keyword">var</span> orientation = widthThreshold ? <span class="string">'vertical'</span> : <span class="string">'horizontal'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!(heightThreshold &amp;&amp; widthThreshold) &amp;&amp;</span><br><span class="line">      ((<span class="built_in">window</span>.Firebug &amp;&amp; <span class="built_in">window</span>.Firebug.chrome &amp;&amp; <span class="built_in">window</span>.Firebug.chrome.isInitialized) || widthThreshold || </span><br><span class="line">      heightThreshold)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!devtools.open || devtools.orientation !== orientation) &#123;</span><br><span class="line">            emitEvent(<span class="literal">true</span>, orientation);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        devtools.open = <span class="literal">true</span>;</span><br><span class="line">        devtools.orientation = orientation;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (devtools.open) &#123;</span><br><span class="line">            emitEvent(<span class="literal">false</span>, <span class="literal">null</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        devtools.open = <span class="literal">false</span>;</span><br><span class="line">        devtools.orientation = <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, <span class="number">500</span>);</span><br></pre></td></tr></table></figure><p>主要思路是：一直500ms的间隔来监控是否出现内外宽高度差&gt;160的情况，基本的场景都可以覆盖，除了将调试窗口从页面中拖出来的情况。虽然思路很简单，但是应该是测试工作在的。</p><p>不得不说确实很有效，但我们可以升级下，将setInterval改为window.onresize，性能上应该会好很多</p><p>3.特殊特征类<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> re = <span class="regexp">/x/</span>;</span><br><span class="line">  <span class="keyword">var</span> i = <span class="number">0</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(re);</span><br><span class="line"></span><br><span class="line">  re.toString = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// console.log(i);</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'第 '</span> + (++i) + <span class="string">' 次打开控制台'</span>;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.console &amp;&amp; <span class="built_in">window</span>.console.log) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"打开了控制台"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>参考 <a href="https://stackoverflow.com/questions/7798748/find-out-whether-chrome-console-is-open" target="_blank" rel="noopener">https://stackoverflow.com/questions/7798748/find-out-whether-chrome-console-is-open</a></p><p><a href="https://github.com/sindresorhus/devtools-detect" target="_blank" rel="noopener">https://github.com/sindresorhus/devtools-detect</a></p>]]></content>
     
@@ -166,22 +171,22 @@
     </summary>
     
     
-      <category term="JS" scheme="https://Evalotus.github.io/tags/JS/"/>
+      <category term="javascript" scheme="https://Evalotus.github.io/tags/javascript/"/>
     
   </entry>
   
   <entry>
-    <title>「 安全 」这次，完全弄明白CSRF</title>
-    <link href="https://Evalotus.github.io/2018/12/20/CRSF%E6%94%BB%E5%87%BB/"/>
-    <id>https://Evalotus.github.io/2018/12/20/CRSF攻击/</id>
+    <title>「 缓存 」cookie实践指南</title>
+    <link href="https://Evalotus.github.io/2018/12/20/cookie/"/>
+    <id>https://Evalotus.github.io/2018/12/20/cookie/</id>
     <published>2018-12-20T12:11:15.000Z</published>
-    <updated>2019-02-14T09:12:22.165Z</updated>
+    <updated>2019-02-14T09:12:17.529Z</updated>
     
-    <content type="html"><![CDATA[<p>听小伙伴分享了下CSRF攻击的原理，这次真的弄明白了CSRF。<br><strong>CSRF(</strong>Cross Site Request Forgery) 跨站请求伪造。<br>可以做什么：冒用你的身份做任何的事情。<br><a id="more"></a></p><h4 id="为啥钱被转走了"><a href="#为啥钱被转走了" class="headerlink" title="为啥钱被转走了"></a>为啥钱被转走了</h4><p>假设mi有个付钱的接口是<code>api.mi.com/pay?money=10000&amp;x=xx</code></p><p>要知道一般登录态（serviceToken）都是存在浏览器的cookie中，有的有效期还很长，如果有一个坏人的页面，页面中加载一个小图片</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=wwww.mi.com/pay?money=10000 style=&quot;display:none&quot;/&gt;</span><br></pre></td></tr></table></figure><p>只要我们访问这个页面，就会在我们不知情的情况下自动发请求<code>api.mi.com/pay?money=10000</code>出去，虽然只是一个图片，一样会带上存在你浏览器中的<code>mi.com</code>下的所有的cookie，如果这时候你已经登录了mi网，这个请求就轻松的得到了你的登录态，向服务器发出了付款的请求。坏人setInterval每秒发个请求，你的钱就哗哗的全被转走了。</p><p>作恶的核心是跨域。</p><p>但是我们都知道这种通过ping img 图片跨域的方式发起的是<strong>get请求</strong>，只管请求发出去，而不管响应。<br>get请求一般只是读取操作，像付款这种写操作如果还使用get请求，第一步就被人吃干抹净，所以在接口设计中一定要注意。<br>现在我们将<code>api.mi.com/pay?money=10000</code>升级为post请求，如果有坏人访问就统统405，就可以高枕无忧了吗？</p><p><strong>post请求可以跨域吗？</strong></p><p>ajax有跨域限制，但是通过form表单的方式，post请求一样可以跨域，再加上放在iframe里，还可以不跳转页面就发送表单post请求，用户毫无感知钱就被转走了。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe style=&quot;display:none&quot;&gt;</span><br><span class="line">　&lt;form method=&quot;POST&quot;　action=&quot;http://api.mi.com&quot;&gt;</span><br><span class="line">　　　　&lt;input type=&quot;hidden&quot; name=&quot;other&quot; value=&quot;XXX&quot;&gt;</span><br><span class="line">　　　　&lt;input type=&quot;hidden&quot; name=&quot;money&quot; value=&quot;10000&quot;&gt;</span><br><span class="line">　&lt;/form&gt;</span><br><span class="line">&lt;/iframe&gt;</span><br></pre></td></tr></table></figure><h4 id="防御CRSF"><a href="#防御CRSF" class="headerlink" title="防御CRSF"></a>防御CRSF</h4><ul><li>删改查操作使用post method是基础。</li><li><p>一般的做法是随着登录态下发一个crsf_token，在之后所有post操作中都要求带上这个crsf_token，axios有这个功能，不需要我们手动每次添加。 这种做法的原理是在坏人的页面中，虽然可以自动带上被攻击网站的cookie，但是他的代码在<code>badman.com</code>下，因为cookie的同源策略，他通过js是无法获取在mi.com域下的crsf_token cookie放在post 请求中的，crsf_token是个随机字符串都可以达到这个效果。</p></li><li><p>也可以在敏感操作中通过后端校验refer，refer白名单的方式来杜绝来自坏人网站的攻击。</p></li><li><p>在非常敏感的操作中可以（最好不要）牺牲一些体验要求验证码验证，要求用户必须有交互。</p></li><li><p>最好严格下发子域的cookie，避免全站通用的cookie。</p></li></ul><h4 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h4><p>为啥只在post请求下使用crsf_token呢？</p><p>之前回答post和get的区别的时候都回答的很浅，但是在这个场景下，安全无小事，你就能理解两者的区别了。</p><p>get请求你要加crsf_token其实也没问题吧，只不过一般get请求是读取操作，不会修改服务器数据，一般没啥影响，不加验证也还好，毕竟加token会影响性能。一个合格的后端开发应该不会用get请求来敏感操作的，如果有，你可以教训教训他。</p>]]></content>
+    <content type="html"><![CDATA[<p>HTTP是无状态的协议，cookie可以用来存储用户的信息方便追踪。<br><a id="more"></a></p><h4 id="封装cookie操作"><a href="#封装cookie操作" class="headerlink" title="封装cookie操作"></a>封装cookie操作</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getCookie</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> cookieName = <span class="string">`<span class="subst">$&#123;<span class="built_in">encodeURIComponent</span>(name)&#125;</span>=`</span>;</span><br><span class="line">  <span class="keyword">const</span> cookieStart = <span class="built_in">document</span>.cookie.indexOf(cookieName);</span><br><span class="line">  <span class="keyword">let</span> cookieValue = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">if</span> (cookieStart &gt; <span class="number">-1</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> cookieEnd = <span class="built_in">document</span>.cookie.indexOf(<span class="string">';'</span>, cookieStart);</span><br><span class="line">    <span class="keyword">if</span> (cookieEnd === <span class="number">-1</span>) &#123;</span><br><span class="line">      cookieEnd = <span class="built_in">document</span>.cookie.length;</span><br><span class="line">    &#125;</span><br><span class="line">    cookieValue = <span class="built_in">document</span>.cookie.substring(cookieStart + cookieName.length, cookieEnd);</span><br><span class="line">    cookieValue = <span class="built_in">decodeURIComponent</span>(cookieValue);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> cookieValue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setCookie</span>(<span class="params">name, value, expires, path, domain, secure</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> cookieText = <span class="string">`<span class="subst">$&#123;<span class="built_in">encodeURIComponent</span>(name)&#125;</span>=<span class="subst">$&#123;<span class="built_in">encodeURIComponent</span>(value)&#125;</span>`</span>;</span><br><span class="line">  <span class="keyword">if</span> (expires) &#123;</span><br><span class="line">    cookieText += <span class="string">`;expires=<span class="subst">$&#123;expires.toUTCString()&#125;</span>`</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (path) &#123;</span><br><span class="line">    cookieText += <span class="string">`;path=<span class="subst">$&#123;path&#125;</span>`</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (domain) &#123;</span><br><span class="line">    cookieText += <span class="string">`;domain=<span class="subst">$&#123;domain&#125;</span>`</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (secure) &#123;</span><br><span class="line">    cookieText += <span class="string">';secure'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">document</span>.cookie = cookieText;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delCookie</span>(<span class="params">name, path, domain, secure</span>) </span>&#123;</span><br><span class="line">  setCookie(name, <span class="string">''</span>, <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">0</span>), path, domain, secure);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>从setCookie来看，每个参数都暗藏玄机。</p><ul><li>name和value</li></ul><p>name和value自不必多说，cookie是存储的一个个键值对，name和value都需要encode之后存储，如果没有encode会怎么样呢？</p><p>在chrome中试验<code>document.cookie=&#39;%ddd=2=%#&amp;试试中文&#39;</code>依然可以设置cookie成功，读取时也可以读取到，但是为了规范存取，还是需要encode之后再读写。</p><ul><li>expires</li></ul><p>如果不设置expires，会得到<strong>session级别的cookie</strong>。一定要注意，session的定义是把<strong>整个浏览器关闭</strong>之后，这些cookie才会消失，而不是仅仅关闭所在的tab页。</p><ul><li>path</li></ul><p>如果不设置path的话，得到的cookie的path会是当前页面的path哦。比如在<code>eva.com/blog/page/1.html</code>中设置cookie，不设置path，得到的cookie的path会是<code>/blog/page/</code></p><ul><li>domain</li></ul><p>仔细观察可以发现，cookie中的domain有的是带点的比如<code>.eva.com</code>，有的是不带点的<code>eva.com</code>。它们的区别是什么？又是怎么设置成功的呢？</p><p><code>eva.com</code>和<code>.eva.com</code>的区别</p><p>cookie也符合<strong>同源策略</strong>，带点的表示子域如<code>account.eva.com</code>也可以访问，而不带点的要求严格，只能在本域名中访问。</p><p>如果不设置domain的话，就默认是当前不带点的域名。如果设置域名的话，会下发在带点的域名下，子域也可以共享cookie。</p><p>比如在<code>eva.com/blog/page/1.html</code>中设置cookie，不设置domain，得到的cookie的path会是eva.com，<code>setCookie(&#39;key&#39;,&#39;value&#39;,new Date(),&#39;/&#39;,&#39;eva.com&#39;)</code>设置了domain的话，会自动加上.变成<code>.eva.com</code>。</p><p>后端下发的cookie也同理，看是否设置域名。</p><p>带不带点需要视情况而定，看是否允许子域获取到cookie。</p><h4 id="cookie的使用场景"><a href="#cookie的使用场景" class="headerlink" title="cookie的使用场景"></a>cookie的使用场景</h4><p>1.登录态的记录</p><p>sso登录中需要用cookie来记录用户的登录态</p><p>2.已阅读标识</p><p>对于只出现一次的用户协议，我们需要一个已阅读的标识，这个时候其实可以不需要后端，前端设置一个cookie来作为已经出现过的标识。</p><p>其他待补充</p><h4 id="遇到的那些问题"><a href="#遇到的那些问题" class="headerlink" title="遇到的那些问题"></a>遇到的那些问题</h4><p>1.cookie大小的问题</p><p>有的时候后端为了全面追溯用户的状态下，发的cookie非常大，注意一般浏览器的cookie大小限制是4kb左右，保险起见最好不要超过4kb。过大的cookie会下发不成功，遇到问题不好定位。</p><p>有时候运维也会在ngnix对cookie设置大小限制，一般比4kb还小，这个时候问题就更难定位了，可以作为一个排查点。</p><p>另外过大的cookie还会造成严重的性能问题。一般没有特别做性能优化的网站js/css/img等静态资源都和接口共用一个域名，域名下如果有很多的cookie的话，每次获取静态资源时这些cookie也会带在了请求中，虽然有4kb的限制，但是还是会造成不必要的网络开销，如果条件允许，建议启动<strong>和主站不同的域名来放置静态资源</strong>。虽然采用不同的域名导致多次建立网络连接，会多耗费时间，可以权衡一下采用哪种方案。</p><p>和server端强调下最好不要下发没必要的cookie，注意cookie的大小。</p><p>2.cookie标志用户，用户切换时要注意避免cookie污染。</p><p>使用cookie进行交互时一定要注意各个用户切换时造成的问题。一定能覆盖成功才可以</p><p>3.熟练使用抓包工具避免推诿</p><p>chrome中network的追溯</p><p>一旦涉及到cookie的问题，特别是webview中的cookie，需要iOS，andriod，FE，server端一起来定位问题，这个时候非常需要一个工具来确定到底谁是罪魁祸首。熟练使用抓包工具会避免推诿，省心不少。</p><p>一定要看清楚到底是response cookie和request cookie，明确cookie是在哪个请求中下发的。</p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;听小伙伴分享了下CSRF攻击的原理，这次真的弄明白了CSRF。&lt;br&gt;&lt;strong&gt;CSRF(&lt;/strong&gt;Cross Site Request Forgery) 跨站请求伪造。&lt;br&gt;可以做什么：冒用你的身份做任何的事情。&lt;br&gt;
+      &lt;p&gt;HTTP是无状态的协议，cookie可以用来存储用户的信息方便追踪。&lt;br&gt;
     
     </summary>
     
@@ -191,17 +196,17 @@
   </entry>
   
   <entry>
-    <title>「 缓存 」cookie实践指南</title>
-    <link href="https://Evalotus.github.io/2018/12/20/cookie%E5%AE%9E%E8%B7%B5%E6%8C%87%E5%8D%97/"/>
-    <id>https://Evalotus.github.io/2018/12/20/cookie实践指南/</id>
+    <title>「 安全 」这次，完全弄明白CSRF</title>
+    <link href="https://Evalotus.github.io/2018/12/20/crsf/"/>
+    <id>https://Evalotus.github.io/2018/12/20/crsf/</id>
     <published>2018-12-20T12:11:15.000Z</published>
-    <updated>2019-02-14T09:12:17.529Z</updated>
+    <updated>2019-02-20T06:24:02.327Z</updated>
     
-    <content type="html"><![CDATA[<p>HTTP是无状态的协议，cookie可以用来存储用户的信息方便追踪。<br><a id="more"></a></p><h4 id="封装cookie操作"><a href="#封装cookie操作" class="headerlink" title="封装cookie操作"></a>封装cookie操作</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getCookie</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> cookieName = <span class="string">`<span class="subst">$&#123;<span class="built_in">encodeURIComponent</span>(name)&#125;</span>=`</span>;</span><br><span class="line">  <span class="keyword">const</span> cookieStart = <span class="built_in">document</span>.cookie.indexOf(cookieName);</span><br><span class="line">  <span class="keyword">let</span> cookieValue = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">if</span> (cookieStart &gt; <span class="number">-1</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> cookieEnd = <span class="built_in">document</span>.cookie.indexOf(<span class="string">';'</span>, cookieStart);</span><br><span class="line">    <span class="keyword">if</span> (cookieEnd === <span class="number">-1</span>) &#123;</span><br><span class="line">      cookieEnd = <span class="built_in">document</span>.cookie.length;</span><br><span class="line">    &#125;</span><br><span class="line">    cookieValue = <span class="built_in">document</span>.cookie.substring(cookieStart + cookieName.length, cookieEnd);</span><br><span class="line">    cookieValue = <span class="built_in">decodeURIComponent</span>(cookieValue);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> cookieValue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setCookie</span>(<span class="params">name, value, expires, path, domain, secure</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> cookieText = <span class="string">`<span class="subst">$&#123;<span class="built_in">encodeURIComponent</span>(name)&#125;</span>=<span class="subst">$&#123;<span class="built_in">encodeURIComponent</span>(value)&#125;</span>`</span>;</span><br><span class="line">  <span class="keyword">if</span> (expires) &#123;</span><br><span class="line">    cookieText += <span class="string">`;expires=<span class="subst">$&#123;expires.toUTCString()&#125;</span>`</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (path) &#123;</span><br><span class="line">    cookieText += <span class="string">`;path=<span class="subst">$&#123;path&#125;</span>`</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (domain) &#123;</span><br><span class="line">    cookieText += <span class="string">`;domain=<span class="subst">$&#123;domain&#125;</span>`</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (secure) &#123;</span><br><span class="line">    cookieText += <span class="string">';secure'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">document</span>.cookie = cookieText;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delCookie</span>(<span class="params">name, path, domain, secure</span>) </span>&#123;</span><br><span class="line">  setCookie(name, <span class="string">''</span>, <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">0</span>), path, domain, secure);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>从setCookie来看，每个参数都暗藏玄机。</p><ul><li>name和value</li></ul><p>name和value自不必多说，cookie是存储的一个个键值对，name和value都需要encode之后存储，如果没有encode会怎么样呢？</p><p>在chrome中试验<code>document.cookie=&#39;%ddd=2=%#&amp;试试中文&#39;</code>依然可以设置cookie成功，读取时也可以读取到，但是为了规范存取，还是需要encode之后再读写。</p><ul><li>expires</li></ul><p>如果不设置expires，会得到<strong>session级别的cookie</strong>。一定要注意，session的定义是把<strong>整个浏览器关闭</strong>之后，这些cookie才会消失，而不是仅仅关闭所在的tab页。</p><ul><li>path</li></ul><p>如果不设置path的话，得到的cookie的path会是当前页面的path哦。比如在<code>eva.com/blog/page/1.html</code>中设置cookie，不设置path，得到的cookie的path会是<code>/blog/page/</code></p><ul><li>domain</li></ul><p>仔细观察可以发现，cookie中的domain有的是带点的比如<code>.eva.com</code>，有的是不带点的<code>eva.com</code>。它们的区别是什么？又是怎么设置成功的呢？</p><p><code>eva.com</code>和<code>.eva.com</code>的区别</p><p>cookie也符合<strong>同源策略</strong>，带点的表示子域如<code>account.eva.com</code>也可以访问，而不带点的要求严格，只能在本域名中访问。</p><p>如果不设置domain的话，就默认是当前不带点的域名。如果设置域名的话，会下发在带点的域名下，子域也可以共享cookie。</p><p>比如在<code>eva.com/blog/page/1.html</code>中设置cookie，不设置domain，得到的cookie的path会是eva.com，<code>setCookie(&#39;key&#39;,&#39;value&#39;,new Date(),&#39;/&#39;,&#39;eva.com&#39;)</code>设置了domain的话，会自动加上.变成<code>.eva.com</code>。</p><p>后端下发的cookie也同理，看是否设置域名。</p><p>带不带点需要视情况而定，看是否允许子域获取到cookie。</p><h4 id="cookie的使用场景"><a href="#cookie的使用场景" class="headerlink" title="cookie的使用场景"></a>cookie的使用场景</h4><p>1.登录态的记录</p><p>sso登录中需要用cookie来记录用户的登录态</p><p>2.已阅读标识</p><p>对于只出现一次的用户协议，我们需要一个已阅读的标识，这个时候其实可以不需要后端，前端设置一个cookie来作为已经出现过的标识。</p><p>其他待补充</p><h4 id="遇到的那些问题"><a href="#遇到的那些问题" class="headerlink" title="遇到的那些问题"></a>遇到的那些问题</h4><p>1.cookie大小的问题</p><p>有的时候后端为了全面追溯用户的状态下，发的cookie非常大，注意一般浏览器的cookie大小限制是4kb左右，保险起见最好不要超过4kb。过大的cookie会下发不成功，遇到问题不好定位。</p><p>有时候运维也会在ngnix对cookie设置大小限制，一般比4kb还小，这个时候问题就更难定位了，可以作为一个排查点。</p><p>另外过大的cookie还会造成严重的性能问题。一般没有特别做性能优化的网站js/css/img等静态资源都和接口共用一个域名，域名下如果有很多的cookie的话，每次获取静态资源时这些cookie也会带在了请求中，虽然有4kb的限制，但是还是会造成不必要的网络开销，如果条件允许，建议启动<strong>和主站不同的域名来放置静态资源</strong>。虽然采用不同的域名导致多次建立网络连接，会多耗费时间，可以权衡一下采用哪种方案。</p><p>和server端强调下最好不要下发没必要的cookie，注意cookie的大小。</p><p>2.cookie标志用户，用户切换时要注意避免cookie污染。</p><p>使用cookie进行交互时一定要注意各个用户切换时造成的问题。一定能覆盖成功才可以</p><p>3.熟练使用抓包工具避免推诿</p><p>chrome中network的追溯</p><p>一旦涉及到cookie的问题，特别是webview中的cookie，需要iOS，andriod，FE，server端一起来定位问题，这个时候非常需要一个工具来确定到底谁是罪魁祸首。熟练使用抓包工具会避免推诿，省心不少。</p><p>一定要看清楚到底是response cookie和request cookie，明确cookie是在哪个请求中下发的。</p>]]></content>
+    <content type="html"><![CDATA[<p>听小伙伴分享了下CSRF攻击的原理，这次真的弄明白了CSRF。<br><strong>CSRF(</strong>Cross Site Request Forgery) 跨站请求伪造。<br>可以做什么：冒用你的身份做任何的事情。这里的身份指的就是用户用户的登录态，而登录态一般都是通过cookie来存储在浏览器中，即使只是发起一个图片的请求，也会带上这个域下的所有cookie，用户完全无感知自己发起了这个请求。<br><a id="more"></a></p><h4 id="为啥钱被转走了"><a href="#为啥钱被转走了" class="headerlink" title="为啥钱被转走了"></a>为啥钱被转走了</h4><p>假设mi有个付钱的接口是<code>api.mi.com/pay?money=10000&amp;x=xx</code></p><p>要知道一般登录态（serviceToken）都是存在浏览器的cookie中，有的有效期还很长，如果有一个坏人的页面，页面中加载一个小图片</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=wwww.mi.com/pay?money=10000 style=&quot;display:none&quot;/&gt;</span><br></pre></td></tr></table></figure><p>只要我们访问这个页面，就会在我们不知情的情况下自动发请求<code>api.mi.com/pay?money=10000</code>出去，虽然只是一个图片，一样会带上存在你浏览器中的<code>mi.com</code>下的所有的cookie，如果这时候你已经登录了mi网，这个请求就轻松的得到了你的登录态，向服务器发出了付款的请求。坏人setInterval每秒发个请求，你的钱就哗哗的全被转走了。</p><p>作恶的核心是跨域。</p><p>但是我们都知道这种通过ping img 图片跨域的方式发起的是<strong>get请求</strong>，只管请求发出去，而不管响应。<br>get请求一般只是读取操作，像付款这种写操作如果还使用get请求，第一步就被人吃干抹净，所以在接口设计中一定要注意。<br>现在我们将<code>api.mi.com/pay?money=10000</code>升级为post请求，如果有坏人访问就统统405，就可以高枕无忧了吗？</p><p><strong>post请求可以跨域吗？</strong></p><p>ajax有跨域限制，但是通过form表单的方式，post请求一样可以跨域，再加上放在iframe里，还可以不跳转页面就发送表单post请求，用户毫无感知钱就被转走了。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe style=&quot;display:none&quot;&gt;</span><br><span class="line">　&lt;form method=&quot;POST&quot;　action=&quot;http://api.mi.com&quot;&gt;</span><br><span class="line">　　　　&lt;input type=&quot;hidden&quot; name=&quot;other&quot; value=&quot;XXX&quot;&gt;</span><br><span class="line">　　　　&lt;input type=&quot;hidden&quot; name=&quot;money&quot; value=&quot;10000&quot;&gt;</span><br><span class="line">　&lt;/form&gt;</span><br><span class="line">&lt;/iframe&gt;</span><br></pre></td></tr></table></figure><h4 id="防御CRSF"><a href="#防御CRSF" class="headerlink" title="防御CRSF"></a>防御CRSF</h4><ul><li>删改查操作使用post method是基础。</li><li><p>一般的做法是随着登录态下发一个crsf_token，在之后所有post操作中都要求带上这个crsf_token，axios有这个功能，不需要我们手动每次添加。 这种做法的原理是在坏人的页面中，虽然可以自动带上被攻击网站的cookie，但是他的代码在<code>badman.com</code>下，因为cookie的同源策略，他通过js是无法获取在mi.com域下的crsf_token cookie放在post 请求中的，crsf_token是个随机字符串都可以达到这个效果。</p></li><li><p>也可以在敏感操作中通过后端校验refer，refer白名单的方式来杜绝来自坏人网站的攻击。</p></li><li><p>在非常敏感的操作中可以（最好不要）牺牲一些体验要求验证码验证，要求用户必须有交互。</p></li><li><p>最好严格下发子域的cookie，避免全站通用的cookie。</p></li></ul><h4 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h4><p>为啥只在post请求下使用crsf_token呢？</p><p>之前回答post和get的区别的时候都回答的很浅，但是在这个场景下，安全无小事，你就能理解两者的区别了。</p><p>get请求你要加crsf_token其实也没问题吧，只不过一般get请求是读取操作，不会修改服务器数据，一般没啥影响，不加验证也还好，毕竟加token会影响性能。一个合格的后端开发应该不会用get请求来敏感操作的，如果有，你可以教训教训他。</p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;HTTP是无状态的协议，cookie可以用来存储用户的信息方便追踪。&lt;br&gt;
+      &lt;p&gt;听小伙伴分享了下CSRF攻击的原理，这次真的弄明白了CSRF。&lt;br&gt;&lt;strong&gt;CSRF(&lt;/strong&gt;Cross Site Request Forgery) 跨站请求伪造。&lt;br&gt;可以做什么：冒用你的身份做任何的事情。这里的身份指的就是用户用户的登录态，而登录态一般都是通过cookie来存储在浏览器中，即使只是发起一个图片的请求，也会带上这个域下的所有cookie，用户完全无感知自己发起了这个请求。&lt;br&gt;
     
     </summary>
     
@@ -251,29 +256,9 @@
   </entry>
   
   <entry>
-    <title>「 产品 」极简小程序产品设计笔记</title>
-    <link href="https://Evalotus.github.io/2018/10/12/%E6%9E%81%E7%AE%80%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0/"/>
-    <id>https://Evalotus.github.io/2018/10/12/极简小程序产品设计笔记/</id>
-    <published>2018-10-12T10:26:01.000Z</published>
-    <updated>2019-02-14T09:04:45.209Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近有小伙伴给介绍小程序的私活，虽然功能需求很简单，但是从0-1完全定制化搭建成本很高，需要租用服务器，专门进行UI设计等，还有后续维护的工作，其实对于个体商户本身他们并不需要如此高度的产品定制化。遂去看了下专门做这个的<a href="https://www.youzan.com" target="_blank" rel="noopener">有赞</a>的后台，做成一个产品完全可以复用，批量搭建速度快，成本低。<br>这次机会的错过引起了我的反思，工作这么多年尚未从0开始前后端自己一个人完成一整个平台，今年的OKR除了<strong>提高审美，学习成为一个设计师的基本技能</strong>，还希望能够为极简主义的同好们制作一个极简主义专用的小程序。</p><a id="more"></a><h4 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h4><p>从六年前开始接触极简主义生活方式，如果你要让我说极简主义的好，我可以说三天三夜，哈哈，这里就不赘述，留到产品中去体现。<br>因为最近经济形势不好，消费降级突然变得流行起来，现在我的豆瓣timeline中有无数的人开始安利极简生活。</p><p>如果你要问我极简是什么？我会说极简是寻找生活的最优解，入了极简主义可以大概率保证你的人生一直走上坡路，我相信极简一定会贯穿我整个生命。<br>一直想自己做个什么项目，想着热爱整理的我，每天整理一百遍，把自己所有的物品都进行统计盘点，希望有个方便的进行物品盘点的小程序。</p><p>产品方面，18年学习了<a href="https://book.douban.com/subject/25915629/" target="_blank" rel="noopener">破茧成蝶：用户体验设计师的成长之路</a>，妥协的完美主义，绝密原型档案，<a href="https://book.douban.com/subject/4723970/" target="_blank" rel="noopener">人人都是产品经理</a>，得到上的梁宁产品30讲，希望可以全面实践下。</p><h4 id="项目总览"><a href="#项目总览" class="headerlink" title="项目总览"></a>项目总览</h4><p>在平常的工作中项目大概也会分为这三个部分。<br>1.管理后台<br>CRUD，主要是增删改查数据，权限控制等。<br>技术栈：<br>vue的element-ui，有现成的管理后端的模版 <a href="https://github.com/PanJiaChen/vue-element-admin" target="_blank" rel="noopener">vue-element-admin</a><br>node express+mongoose<br>2.小程序<br><a href="https://github.com/Meituan-Dianping/mpvue" target="_blank" rel="noopener">mpvue</a> 和 <a href="https://github.com/Tencent/wepy" target="_blank" rel="noopener">wepy</a> 各有优劣，wepy因为是官方支持，用的会比较多一点。<br><a href="https://github.com/aben1188/awesome-wepy" target="_blank" rel="noopener">awesome-wepy</a> 有很多小程序源码可以学习。<br><a href="https://github.com/dyq086/wepy-mall" target="_blank" rel="noopener">一个电商小程序的全功能源码</a><br>3.web页<br>暂定只是一个介绍页，以后可以加入其他的信息。<br>前后端分离响应式。</p><p>本文会持续更新产品进度。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近有小伙伴给介绍小程序的私活，虽然功能需求很简单，但是从0-1完全定制化搭建成本很高，需要租用服务器，专门进行UI设计等，还有后续维护的工作，其实对于个体商户本身他们并不需要如此高度的产品定制化。遂去看了下专门做这个的&lt;a href=&quot;https://www.youzan.com&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;有赞&lt;/a&gt;的后台，做成一个产品完全可以复用，批量搭建速度快，成本低。&lt;br&gt;这次机会的错过引起了我的反思，工作这么多年尚未从0开始前后端自己一个人完成一整个平台，今年的OKR除了&lt;strong&gt;提高审美，学习成为一个设计师的基本技能&lt;/strong&gt;，还希望能够为极简主义的同好们制作一个极简主义专用的小程序。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="产品" scheme="https://Evalotus.github.io/tags/%E4%BA%A7%E5%93%81/"/>
-    
-  </entry>
-  
-  <entry>
     <title>「 微信开发 」手机浏览器唤起微信app登录的可行性</title>
-    <link href="https://Evalotus.github.io/2018/10/12/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E5%AE%9E%E7%94%A8%E6%8C%87%E5%8D%973-%E6%89%8B%E6%9C%BA%E6%B5%8F%E8%A7%88%E5%99%A8%E5%94%A4%E8%B5%B7%E5%BE%AE%E4%BF%A1app%E7%99%BB%E5%BD%95%E7%9A%84%E5%8F%AF%E8%A1%8C%E6%80%A7/"/>
-    <id>https://Evalotus.github.io/2018/10/12/微信开发实用指南3-手机浏览器唤起微信app登录的可行性/</id>
+    <link href="https://Evalotus.github.io/2018/10/12/wechat_dev_app_login/"/>
+    <id>https://Evalotus.github.io/2018/10/12/wechat_dev_app_login/</id>
     <published>2018-10-12T10:26:01.000Z</published>
     <updated>2019-01-09T01:58:28.807Z</updated>
     
@@ -292,9 +277,29 @@
   </entry>
   
   <entry>
+    <title>「 产品 」极简小程序产品设计笔记</title>
+    <link href="https://Evalotus.github.io/2018/10/12/minimalism_product_design/"/>
+    <id>https://Evalotus.github.io/2018/10/12/minimalism_product_design/</id>
+    <published>2018-10-12T10:26:01.000Z</published>
+    <updated>2019-02-14T09:04:45.209Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近有小伙伴给介绍小程序的私活，虽然功能需求很简单，但是从0-1完全定制化搭建成本很高，需要租用服务器，专门进行UI设计等，还有后续维护的工作，其实对于个体商户本身他们并不需要如此高度的产品定制化。遂去看了下专门做这个的<a href="https://www.youzan.com" target="_blank" rel="noopener">有赞</a>的后台，做成一个产品完全可以复用，批量搭建速度快，成本低。<br>这次机会的错过引起了我的反思，工作这么多年尚未从0开始前后端自己一个人完成一整个平台，今年的OKR除了<strong>提高审美，学习成为一个设计师的基本技能</strong>，还希望能够为极简主义的同好们制作一个极简主义专用的小程序。</p><a id="more"></a><h4 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h4><p>从六年前开始接触极简主义生活方式，如果你要让我说极简主义的好，我可以说三天三夜，哈哈，这里就不赘述，留到产品中去体现。<br>因为最近经济形势不好，消费降级突然变得流行起来，现在我的豆瓣timeline中有无数的人开始安利极简生活。</p><p>如果你要问我极简是什么？我会说极简是寻找生活的最优解，入了极简主义可以大概率保证你的人生一直走上坡路，我相信极简一定会贯穿我整个生命。<br>一直想自己做个什么项目，想着热爱整理的我，每天整理一百遍，把自己所有的物品都进行统计盘点，希望有个方便的进行物品盘点的小程序。</p><p>产品方面，18年学习了<a href="https://book.douban.com/subject/25915629/" target="_blank" rel="noopener">破茧成蝶：用户体验设计师的成长之路</a>，妥协的完美主义，绝密原型档案，<a href="https://book.douban.com/subject/4723970/" target="_blank" rel="noopener">人人都是产品经理</a>，得到上的梁宁产品30讲，希望可以全面实践下。</p><h4 id="项目总览"><a href="#项目总览" class="headerlink" title="项目总览"></a>项目总览</h4><p>在平常的工作中项目大概也会分为这三个部分。<br>1.管理后台<br>CRUD，主要是增删改查数据，权限控制等。<br>技术栈：<br>vue的element-ui，有现成的管理后端的模版 <a href="https://github.com/PanJiaChen/vue-element-admin" target="_blank" rel="noopener">vue-element-admin</a><br>node express+mongoose<br>2.小程序<br><a href="https://github.com/Meituan-Dianping/mpvue" target="_blank" rel="noopener">mpvue</a> 和 <a href="https://github.com/Tencent/wepy" target="_blank" rel="noopener">wepy</a> 各有优劣，wepy因为是官方支持，用的会比较多一点。<br><a href="https://github.com/aben1188/awesome-wepy" target="_blank" rel="noopener">awesome-wepy</a> 有很多小程序源码可以学习。<br><a href="https://github.com/dyq086/wepy-mall" target="_blank" rel="noopener">一个电商小程序的全功能源码</a><br>3.web页<br>暂定只是一个介绍页，以后可以加入其他的信息。<br>前后端分离响应式。</p><p>本文会持续更新产品进度。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近有小伙伴给介绍小程序的私活，虽然功能需求很简单，但是从0-1完全定制化搭建成本很高，需要租用服务器，专门进行UI设计等，还有后续维护的工作，其实对于个体商户本身他们并不需要如此高度的产品定制化。遂去看了下专门做这个的&lt;a href=&quot;https://www.youzan.com&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;有赞&lt;/a&gt;的后台，做成一个产品完全可以复用，批量搭建速度快，成本低。&lt;br&gt;这次机会的错过引起了我的反思，工作这么多年尚未从0开始前后端自己一个人完成一整个平台，今年的OKR除了&lt;strong&gt;提高审美，学习成为一个设计师的基本技能&lt;/strong&gt;，还希望能够为极简主义的同好们制作一个极简主义专用的小程序。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="产品" scheme="https://Evalotus.github.io/tags/%E4%BA%A7%E5%93%81/"/>
+    
+  </entry>
+  
+  <entry>
     <title>「 微信开发 」微信分享功能</title>
-    <link href="https://Evalotus.github.io/2018/09/28/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E5%AE%9E%E7%94%A8%E6%8C%87%E5%8D%973-%E5%BE%AE%E4%BF%A1%E5%88%86%E4%BA%AB%E5%8A%9F%E8%83%BD/"/>
-    <id>https://Evalotus.github.io/2018/09/28/微信开发实用指南3-微信分享功能/</id>
+    <link href="https://Evalotus.github.io/2018/09/28/wechat_dev_share/"/>
+    <id>https://Evalotus.github.io/2018/09/28/wechat_dev_share/</id>
     <published>2018-09-28T10:27:12.000Z</published>
     <updated>2019-01-09T02:03:16.301Z</updated>
     
@@ -313,8 +318,8 @@
   
   <entry>
     <title>「 微信开发 」小程序的入口</title>
-    <link href="https://Evalotus.github.io/2018/09/22/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E5%AE%9E%E7%94%A8%E6%8C%87%E5%8D%972-%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%85%A5%E5%8F%A3/"/>
-    <id>https://Evalotus.github.io/2018/09/22/微信开发实用指南2-小程序的入口/</id>
+    <link href="https://Evalotus.github.io/2018/09/22/wechat_dev_miniprogram_entrance/"/>
+    <id>https://Evalotus.github.io/2018/09/22/wechat_dev_miniprogram_entrance/</id>
     <published>2018-09-22T12:02:14.000Z</published>
     <updated>2019-02-14T09:49:46.785Z</updated>
     
@@ -334,8 +339,8 @@
   
   <entry>
     <title>「 微信开发 」前言</title>
-    <link href="https://Evalotus.github.io/2018/09/18/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E5%AE%9E%E7%94%A8%E6%8C%87%E5%8D%971-%E5%89%8D%E8%A8%80/"/>
-    <id>https://Evalotus.github.io/2018/09/18/微信开发实用指南1-前言/</id>
+    <link href="https://Evalotus.github.io/2018/09/18/wechat_dev_intro/"/>
+    <id>https://Evalotus.github.io/2018/09/18/wechat_dev_intro/</id>
     <published>2018-09-18T10:23:29.000Z</published>
     <updated>2019-01-09T01:59:00.373Z</updated>
     

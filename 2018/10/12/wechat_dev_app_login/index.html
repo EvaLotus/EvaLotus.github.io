@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next gemini" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=6.6.0">
+
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","width":300,"display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="微信的地位越来越高，隔不了多久就有大佬问，为什么你们的手机端H5没有微信登录的入口，压力很大呀。 可能是安全问题或者其他考虑，微信在网页端只提供了扫码登录的入口，即使在手机端集成了微信登录，用户点开也会很奇怪，这个码只有PC端的样式，看起来很奇怪，而且怎么用我的手机微信来扫这个手机浏览器这个码呢？而且即使可以扫码成功也无法登录成功，所以看了大部分的公司都选择在手机浏览器隐藏了微信登录的入口。">
+<meta name="keywords" content="微信开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「 微信开发 」手机浏览器唤起微信app登录的可行性">
+<meta property="og:url" content="https://Evalotus.github.io/2018/10/12/wechat_dev_app_login/index.html">
+<meta property="og:site_name" content="Eva&#39;s Blog">
+<meta property="og:description" content="微信的地位越来越高，隔不了多久就有大佬问，为什么你们的手机端H5没有微信登录的入口，压力很大呀。 可能是安全问题或者其他考虑，微信在网页端只提供了扫码登录的入口，即使在手机端集成了微信登录，用户点开也会很奇怪，这个码只有PC端的样式，看起来很奇怪，而且怎么用我的手机微信来扫这个手机浏览器这个码呢？而且即使可以扫码成功也无法登录成功，所以看了大部分的公司都选择在手机浏览器隐藏了微信登录的入口。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://evalotus.github.io/assets/wap_wxlogin.png">
+<meta property="og:image" content="https://evalotus.github.io/assets/wap_wxlogin2.png">
+<meta property="og:updated_time" content="2019-01-09T01:58:28.807Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="「 微信开发 」手机浏览器唤起微信app登录的可行性">
+<meta name="twitter:description" content="微信的地位越来越高，隔不了多久就有大佬问，为什么你们的手机端H5没有微信登录的入口，压力很大呀。 可能是安全问题或者其他考虑，微信在网页端只提供了扫码登录的入口，即使在手机端集成了微信登录，用户点开也会很奇怪，这个码只有PC端的样式，看起来很奇怪，而且怎么用我的手机微信来扫这个手机浏览器这个码呢？而且即使可以扫码成功也无法登录成功，所以看了大部分的公司都选择在手机浏览器隐藏了微信登录的入口。">
+<meta name="twitter:image" content="https://evalotus.github.io/assets/wap_wxlogin.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Eva's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://Evalotus.github.io/2018/10/12/wechat_dev_app_login/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>「 微信开发 」手机浏览器唤起微信app登录的可行性 | Eva's Blog</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ca3d224de40fbf734d1e623cf68e0fb4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Eva's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">进一寸有一寸的欢喜</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-movies">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/movies" rel="section"><i class="menu-item-icon fa fa-fw fa-film"></i> <br>Movies</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Evalotus.github.io/2018/10/12/wechat_dev_app_login/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Eva">
+      <meta itemprop="description" content="JavaScript, HTML, CSS, Node JS, Front-end Develop">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eva's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">「 微信开发 」手机浏览器唤起微信app登录的可行性
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-10-12 18:26:01" itemprop="dateCreated datePublished" datetime="2018-10-12T18:26:01+08:00">2018-10-12</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/12/wechat_dev_app_login/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/10/12/wechat_dev_app_login/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>微信的地位越来越高，隔不了多久就有大佬问，为什么你们的手机端H5没有微信登录的入口，压力很大呀。</p>
+<p>可能是安全问题或者其他考虑，微信在网页端只提供了扫码登录的入口，即使在手机端集成了微信登录，用户点开也会很奇怪，这个码只有PC端的样式，看起来很奇怪，而且怎么用我的手机微信来扫这个手机浏览器这个码呢？而且即使可以扫码成功也无法登录成功，所以看了大部分的公司都选择在手机浏览器隐藏了微信登录的入口。</p>
+<a id="more"></a>
+<p>但是细心的PM发现，京东居然有微信登录的入口，但是一般也只是在QQ浏览器或者系统浏览器中支持，可以直接打开手机上的微信app，但是在无痕模式或者其他的浏览器也无法成功。</p>
+<p>前端无隐私，让我们来F12来看看他们是怎么做到的。</p>
+<p><img src="/assets/wap_wxlogin.png" alt=""></p>
+<p>可以发现，京东的微信登录并没有什么特别的，也是各种302跳转最后到了 <a href="https://open.weixin.qq.com/sns/explorer_broker?appid=wx2f5d8f9715c59d10&amp;redirect_uri=https%3A%2F%2Fplogin.m.jd.com%2Fcgi-bin%2Fml%2Fwxcallback%3Flsid%3Dq9ibchzrnbivxypneji7r4sxusp24wrv&amp;response_type=code&amp;scope=snsapi_userinfo&amp;state=smr1qm3p&amp;connect_redirect=1的" target="_blank" rel="noopener">https://open.weixin.qq.com/sns/explorer_broker?appid=wx2f5d8f9715c59d10&amp;redirect_uri=https%3A%2F%2Fplogin.m.jd.com%2Fcgi-bin%2Fml%2Fwxcallback%3Flsid%3Dq9ibchzrnbivxypneji7r4sxusp24wrv&amp;response_type=code&amp;scope=snsapi_userinfo&amp;state=smr1qm3p&amp;connect_redirect=1 </a>这个页面。最重要的是这个是微信的域名，所以我们可以知道，这个跳转是微信主动触发的。</p>
+<p>怪不得说京东是微信亲儿子嘛。让我们看看这个页面做了什么事。</p>
+<p><img src="/assets/wap_wxlogin2.png" alt="">前面都是一些环境的判断，而且这些都是微信方帮忙实现的。最重要的是<code>location.href = &#39;weixin://dl/business/?ticket=tb15388ef1a6e07db69a0d57a87345f93&#39;</code></p>
+<p>前端是可以实现打开微信app的，但是如何打开某个特定的页面就需要app端来支持了，而微信端为京东做了特殊的处理，可以做到直接打开微信的app中京东的微信授权页面。</p>
+<p>所以如果我们的业务也需要实现这个功能，就需要向微信申请了。</p>
+<p>另外一个更激进的就是QQ了，公告说是为了一些不安全因素，在18年年初完全下掉了wap端网页登录的方式，现在wap端的QQ登录都采用直接打开QQ app的方式来授权登录。在某些非系统浏览器中因为无法打开app就悲剧了。还是觉得有些激进了些。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat_qrcode.jpg" alt="Eva wechat" style="width: 200px; max-width: 100%;">
+    <div>关注Eva的意如小馆，更方便的与我交流</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/微信开发/" rel="tag"># 微信开发</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/12/minimalism_product_design/" rel="next" title="「 产品 」极简小程序产品设计笔记">
+                <i class="fa fa-chevron-left"></i> 「 产品 」极简小程序产品设计笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/13/JS事件循环机制1/" rel="prev" title="JS事件循环机制1">
+                JS事件循环机制1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Eva">
+            
+              <p class="site-author-name" itemprop="name">Eva</p>
+              <p class="site-description motion-element" itemprop="description">JavaScript, HTML, CSS, Node JS, Front-end Develop</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/EvaLotus" title="GitHub &rarr; https://github.com/EvaLotus" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:evacoder@126.com" title="E-Mail &rarr; mailto:evacoder@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-Travel"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Eva</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+    
+  
+  <script src="//cdn.jsdelivr.net/npm/valine@1.3.3/dist/Valine.min.js"></script>
+
+  <script>
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '7Ck7B9LoU0iNuR7sVgC3Sscr-gzGzoHsz',
+        appKey: 'GURQk3swSriTo8QzVtgoUDnk',
+        placeholder: '有什么想对Eva说的呢？',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'5' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
