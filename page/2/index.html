@@ -34,6 +34,8 @@
 
 
 
+  <meta name="google-site-verification" content="UA-131198272-2">
+
 
 
 
@@ -136,6 +138,15 @@
 
 
 
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131198272-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-131198272-1');
+</script>
 
 
 
@@ -983,7 +994,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://evacoder.com/2018/12/20/cookie/">
+    <link itemprop="mainEntityOfPage" href="https://evacoder.com/2018/12/20/crsf/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Eva">
@@ -1003,7 +1014,7 @@
           <h2 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/12/20/cookie/" class="post-title-link" itemprop="https://evacoder.com/page/2/index.html">「 缓存 」cookie实践指南</a>
+                <a href="/2018/12/20/crsf/" class="post-title-link" itemprop="https://evacoder.com/page/2/index.html">「 安全 」这次，完全弄明白CSRF</a>
               
             
           </h2>
@@ -1043,8 +1054,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/12/20/cookie/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/20/cookie/" itemprop="commentCount"></span>
+                <a href="/2018/12/20/crsf/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/20/crsf/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1073,11 +1084,11 @@
 
       
         
-          <p>HTTP是无状态的协议，cookie可以用来存储用户的信息方便追踪。<br>
+          <p>听小伙伴分享了下CSRF攻击的原理，这次真的弄明白了CSRF。<br><strong>CSRF(</strong>Cross Site Request Forgery) 跨站请求伪造。<br>可以做什么：冒用你的身份做任何的事情。这里的身份指的就是用户用户的登录态，而登录态一般都是通过cookie来存储在浏览器中，即使只是发起一个图片的请求，也会带上这个域下的所有cookie，用户完全无感知自己发起了这个请求。<br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2018/12/20/cookie/#more" rel="contents">
+              <a class="btn" href="/2018/12/20/crsf/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
