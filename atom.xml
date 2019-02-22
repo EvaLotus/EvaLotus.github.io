@@ -5,9 +5,9 @@
   <subtitle>进一寸有一寸的欢喜</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://Evalotus.github.io/"/>
-  <updated>2019-02-21T02:05:38.190Z</updated>
-  <id>https://Evalotus.github.io/</id>
+  <link href="https://evacoder.com/"/>
+  <updated>2019-02-22T06:52:57.427Z</updated>
+  <id>https://evacoder.com/</id>
   
   <author>
     <name>Eva</name>
@@ -17,18 +17,39 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>「 工具 」前端远程调试及空白或404解决</title>
-    <link href="https://Evalotus.github.io/2019/02/17/remote_debugging/"/>
-    <id>https://Evalotus.github.io/2019/02/17/remote_debugging/</id>
-    <published>2019-02-17T12:11:15.000Z</published>
-    <updated>2019-02-21T02:05:38.190Z</updated>
+    <title>「 HTML 」iframe100问</title>
+    <link href="https://evacoder.com/2019/02/18/iframe/"/>
+    <id>https://evacoder.com/2019/02/18/iframe/</id>
+    <published>2019-02-18T14:51:35.000Z</published>
+    <updated>2019-02-22T06:52:57.427Z</updated>
     
-    <content type="html"><![CDATA[<p>因为自己的开发环境搭建的太舒适，在别人的电脑上查问题感觉完全无法展现自己的能力。</p><p>再加上已经习惯了chrome dev tool的每一种功能，一换到safari上查兼容性问题，感觉自己变成了白痴。</p><p>更不要说去测试webview里的问题，console都没法看，真的要一行一行alert吗？</p><p>啥？你居然不会remote debugging！</p><p>那你怎么证明到底是你还是native 开发的锅？啥证据都没有。</p><p>虽然模拟器也能完成调试的功能，但是不能完全依赖模拟的结果，而且有些特定的机型并没有模拟器，有时候必须要在真机上复现问题，最重要的是模拟器没有chrome devtools呀。</p><a id="more"></a><h4 id="Andriod"><a href="#Andriod" class="headerlink" title="Andriod"></a>Andriod</h4><p>其实这个配置非常简单，用起来也方便，小伙伴们主要遇到的就是打开页面空白或者404的问题。</p><p>所以最重要的是要检查下PC能否科学地 <strong>网上冲浪</strong></p><p>有时候能访问google都不一定成功，需要试下这个地址</p><p><a href="https://chrome-devtools-frontend.appspot.com/" target="_blank" rel="noopener">https://chrome-devtools-frontend.appspot.com/</a></p><p>如果不行的话，配置以下host</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">172.217.161.180 chrome-devtools-frontend.appspot.com</span><br><span class="line">172.217.161.180 chrometophone.appspot.com</span><br></pre></td></tr></table></figure><p>现在访问基本上是秒开啦。</p><p>访问：<code>chrome://inspect/#devices</code></p><p>然后就可以方便的调试了。</p><p>1.在开发者模式下允许通过usb来调试</p><p>2.重新连接下usb</p><p><img src="/images/remote_debugging1.png" alt=""></p><p>出现上图，点击inspect就可以开始调试啦。</p><p>不必安装chrome浏览器，其他的浏览器和webview都可以进行调试。</p><p>如果webview测试不了，还需要安卓端配置下允许调试</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WebView.setWebContentsDebuggingEnabled(<span class="keyword">true</span>);</span><br></pre></td></tr></table></figure><h4 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h4><p>iOS的remote debugging比较难，难在首先你需要一台mac哈哈哈，但是mac却可以直接调试Andriod。</p><p>1.iPhone上设置-&gt;Safari-&gt; 高级-&gt; Web 检查器，打开</p><p>2.mac 上 safara-&gt;偏好设置-&gt;高级-&gt;在菜单栏显示“开发”菜单</p><p>3.usb连接两者</p><p>4.打开 mac safari，顶部菜单中的开发，选择设备点开即可<br><img src="/images/remote_debugging2.png" alt=""></p><p>也是可以调试webview，safari</p><p>掌握了远程调试的技能，基本可以解决大部分问题了。</p>]]></content>
+    <content type="html"><![CDATA[<p>上篇说到iframe弹窗的登录安全，接下来我们带着问题出发，详细的了解下iframe这个历史的产物。</p><p>虽然足够古老，但是也能解决很多现代的问题。<br><a id="more"></a></p><h4 id="Frame-间的关系"><a href="#Frame-间的关系" class="headerlink" title="Frame 间的关系"></a>Frame 间的关系</h4><p>在页面中，window.top是最顶层的window，window和self都是当前window，window.parent是外层父window。</p><p>对于不存在 iframe 的页面，self，window，parent，top 这四者都相等，还有一个这 iframe中最常用的属性，frames</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span> === <span class="built_in">window</span>.frames <span class="comment">// 很奇怪的是这个一直都是true，在有子iframe的页面也是</span></span><br></pre></td></tr></table></figure><p>在有子 iframe 的页面中，这个<code>window.frames</code>就是本页面中包含的直接子frame的类数组，这个属性连接了frame 的parent，child，siblings，但是这个类数组中的元素不是直接的iframe dom，而是iframe的contentWindow，相当于是iframe环境下的window对象。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span> === <span class="built_in">window</span>.frames <span class="comment">// 一直都是true，所以在有子iframe的页面，window居然也是类array</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.getElementsByTagName(<span class="string">'iframe'</span>)[<span class="number">0</span>].contentWindow === <span class="built_in">window</span>.frames[<span class="number">0</span>]; <span class="comment">// true</span></span><br></pre></td></tr></table></figure><h4 id="父frame操作子frame"><a href="#父frame操作子frame" class="headerlink" title="父frame操作子frame"></a>父frame操作子frame</h4><p>主要通过window.frames来操作，有时候获取到子 frame 的属性为 undefined，那是因为子frame加载需要时间，要注意等子frame加载完成之后再获取。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fr1Window = <span class="built_in">window</span>.frames[<span class="number">0</span>]; <span class="comment">// 或者document.getElementsByTagName("iframe")[0].contentWindow;</span></span><br><span class="line"><span class="comment">// 操作dom</span></span><br><span class="line">fr1Window .document.getElementsByTagName(<span class="string">"body"</span>)[<span class="number">0</span>].style.backgroundColor = <span class="string">"#ff6700"</span>;</span><br><span class="line"><span class="comment">// 操作变量</span></span><br><span class="line">fr1Window.arr1=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">fr1Window.arr1.push(<span class="string">'Eva'</span>);</span><br><span class="line"><span class="comment">// 操作src</span></span><br><span class="line"><span class="built_in">document</span>.getElementsByTagName(<span class="string">"iframe"</span>)[<span class="number">0</span>].src=<span class="string">'https://evacoder.com'</span>;</span><br></pre></td></tr></table></figure><h4 id="子frame操作父frame"><a href="#子frame操作父frame" class="headerlink" title="子frame操作父frame"></a>子frame操作父frame</h4><p>主要通过window.parent来操作</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> parentWindow = <span class="built_in">window</span>.parent;<span class="comment">// window.top 是在多层级的页面中最顶层window</span></span><br><span class="line"><span class="comment">// 操作dom</span></span><br><span class="line">parentWindow .document.getElementsByTagName(<span class="string">"body"</span>)[<span class="number">0</span>].style.backgroundColor = <span class="string">"#ff6700"</span>;</span><br><span class="line"><span class="comment">// 操作变量</span></span><br><span class="line">parentWindow.arr1=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">parentWindow.arr1.push(<span class="string">'Eva'</span>);</span><br><span class="line"><span class="comment">// 也能直接操作父frame的location，所以一定要注意iframe安全</span></span><br><span class="line">parentWindow.location.href =<span class="string">'https://evacoder.com'</span>;</span><br></pre></td></tr></table></figure><h4 id="子frame操作相邻-frame"><a href="#子frame操作相邻-frame" class="headerlink" title="子frame操作相邻 frame"></a>子frame操作相邻 frame</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> siblingWindow = <span class="built_in">window</span>.parent.frames[<span class="number">1</span>];</span><br><span class="line">siblingWindow.document.body.style.backgroundColor = <span class="string">'#ff5700'</span>;</span><br><span class="line">siblingWindow.arr1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">siblingWindow.arr1.push(<span class="string">'Eva'</span>);</span><br><span class="line"><span class="comment">// 也能直接操作siblings frame的location，所以一定要注意iframe安全</span></span><br><span class="line">siblingWindow.location.href =<span class="string">'https://evacoder.com'</span>;</span><br></pre></td></tr></table></figure><p>如此看来也没什么特别的，互相都可以操作，但是加上跨域就有所限制了。</p><h4 id="iframe-FAQ"><a href="#iframe-FAQ" class="headerlink" title="iframe FAQ"></a>iframe FAQ</h4><p>1<strong>.跨域情况下父子frame可以修改互相操作dom么？</strong></p><p>不行，为了安全，父子frame之间都不可互相操作dom，遵循同源策略。</p><p>但是如果一定要实现父子通信的功能，就需要另开一篇来说iframe跨域的解决方案了，主要使用 post message，先不展开细说。</p><p>2<strong>.跨域情况下子frame可以修改父window的location吗？如何禁止？</strong></p><p>可以，虽然跨域情况下不能dom操作，读取<code>parent.location.href</code>都做不到，但神奇的是却可以直接设置parent.location.href，修改父window的location。</p><p>在新版chrome会提示需要有用户交互的时候才能触发跳转，只要加上按钮引导用户点击还是可以实现跳转。</p><p>总之不是自己管理的页面都不是可信的，为了防止我们内嵌的子页面被坏人篡改或有其他漏洞，我们最好要防止内嵌的iframe修改我们的页面。</p><p>可以通过HTML5的新特性<code>sandbox</code>属性来限制iframe的行为，这个属性是反向的，如果空字符串则会应用所有的限制，sandbox包含的属性会移除对应的限制。</p><table><thead><tr><th style="text-align:left">“”</th><th style="text-align:left">应用以下所有的限制。</th></tr></thead><tbody><tr><td style="text-align:left">allow-same-origin</td><td style="text-align:left">允许 iframe 内容被视为与包含文档有相同的来源。</td></tr><tr><td style="text-align:left">allow-top-navigation</td><td style="text-align:left">允许 iframe 内容从包含文档导航（加载）内容。</td></tr><tr><td style="text-align:left">allow-forms</td><td style="text-align:left">允许表单提交。</td></tr><tr><td style="text-align:left">allow-scripts</td><td style="text-align:left">允许脚本执行。</td></tr></tbody></table><p>如果不开放allow-scripts权限，iframe中的任何js都执行不了，那会造成功能失效，不是我们的初衷。</p><p>其他权限可以按需打开，只要不加上allow-top-navigation，内嵌iframe就无法操作我们的页面</p><p>所以我们需要在引入iframe处添加</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe src=<span class="string">"iframe.html"</span> sandbox=<span class="string">"allow-scripts allow-forms"</span>&gt;</span><br></pre></td></tr></table></figure><p>内嵌的iframe就无权限修改我们页面的地址了，如果加上了<code>sandbox=&quot;allow-top-navigation&quot;</code>则会恢复权限。</p><p>但是在实际中大部分 iframe 都没有设置 sandbox 属性。</p><p><code>allow-same-origin</code>一看就很有意思，我们将在后文中提到。</p><p>插播一个，这种父子 frame 的关系和 window.open()打开的页面也有相似之处，有一个注意点是如果使用<code>target=&#39;_blank&#39;</code>打开别人的网站，一定要注意别人同样可以通过<code>window.opener</code>来控制你的网站</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.opener.location=<span class="string">'https://evacoder.com'</span>;</span><br></pre></td></tr></table></figure><p>一般人都不会想到后打开的页面居然可以控制原始页面</p><p>为了限制<code>target=&#39;_blank&#39;</code>打开的页面通过<code>window.opener</code>控制父页面，可以加上以下代码，阻止被打开的页面控制原页面。</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">target</span>=<span class="string">'_blank'</span> <span class="attr">rel</span>=<span class="string">'noreferrer noopener'</span> <span class="attr">href</span>=<span class="string">'https://www.otherpage.com'</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">// noreferrer 针对firefox，noopener 针对其他</span><br></pre></td></tr></table></figure><p>3<strong>.如何防止自己的页面被嵌在iframe中？</strong></p><p>在上一篇文章中，我们提到了为了安全禁止了登录页被嵌在iframe中，但是一般更多的是为了预防点击劫持（clickjacking）的考虑。</p><p>如果我们有个广告页，需要靠点击量来计费，坏人把我们的页面放在一个透明度为0的iframe中，用户就可能无感知的情况下点击，广告费就猛增。</p><p>以前的做法一般是通过js在页面中加入</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (top !== self) &#123;</span><br><span class="line">top.location = location</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>就可以保证自己始终是在顶层窗口中显示，就避免了被内嵌在别人的页面中。</p><p>但是现在一般都通过服务端直接设置<code>X-Frame-Options：SAMEORIGIN</code>响应头来只允许被同域的页面内嵌。</p><p><strong>4.post请求可以跨域么？</strong></p><p>我们常说的浏览器有跨域请求限制，实际上是 ajax 不能跨域，但我们可以用 古老的form 表单来跨域呀，在 iframe 中提交，还可以做到form表单提交而且页面不刷新</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe style=<span class="string">"display:none"</span>&gt;</span><br><span class="line">　&lt;form method=<span class="string">"POST"</span>　action=<span class="string">"http://api.mi.com"</span>&gt;</span><br><span class="line">　　　　&lt;input type=<span class="string">"hidden"</span> name=<span class="string">"other"</span> value=<span class="string">"XXX"</span>&gt;</span><br><span class="line">　　　　&lt;input type=<span class="string">"hidden"</span> name=<span class="string">"money"</span> value=<span class="string">"10000"</span>&gt;</span><br><span class="line">　&lt;<span class="regexp">/form&gt;</span></span><br><span class="line"><span class="regexp">&lt;/i</span>frame&gt;</span><br></pre></td></tr></table></figure><p><strong>5.可以在iframe的引用页修改iframe元素的样式吗？</strong></p><p>比如我用了google reCAPTCHA的sdk，出来的验证码是通过iframe加载的，我想要修改google的样式。</p><p>如上文所述，跨域了是不能进行 DOM 操作的，不然会有严重的安全问题，post message 也只是能在页面间传递信息而已。</p><p><strong>6.iframe 影响了类型判断</strong></p><p>在使用 iframe 时，每个frame 定义的全局变量会自动成为该 frame 中window的全局属性，而每个window对象都包含原生类型的构造函数，window对象都不相等，window.Array 和 window.frames[0].Array当然是不等的，所以会出现古怪的bug。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> el = <span class="built_in">document</span>.createElement(<span class="string">'iframe'</span>);</span><br><span class="line"><span class="built_in">document</span>.body.appendChild(el);</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="built_in">console</span>.log(arr <span class="keyword">instanceof</span> <span class="built_in">Array</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(arr <span class="keyword">instanceof</span> <span class="built_in">window</span>.frames[<span class="number">0</span>].Array); <span class="comment">// false</span></span><br></pre></td></tr></table></figure><p>虽然我们一般不会如上面的例子那样去判断arr是不是别的frame下的Array，常用的场景是在iframe中获取parent frame的某个arr来进行类型判断，这样通过 instanceof 来判断对象的class就会出现出人意料的bug。</p><p>所以建议使用<code>Array.isArray(arr)</code>或者<code>toString.call(arr)===&#39;[object Array]&#39;</code>来判断类型。</p><p><strong>7.iframe的使用场景</strong></p><p>iframe 早已成为浏览器的规范实现，所以兼容性其实还可以，可以放心使用。</p><p>早年 iframe 经常被用在后台管理系统中的 navbar和 siderbar 的实现，主要是为了复用，现在早就不建议这么做了。</p><p>iframe 最大的好处是它一个独立的运行环境，邮箱框架中使用的比较多。</p><p>我接触到的有用在无刷新文件上传和登录页定制化（背景图开放给第三方上传管理）。</p><p><strong>8.<code>target=&quot;_blank&quot;</code></strong><br>今天突然发现引入的google reCAPTCHA iframe里的a链接：“常见问题”点完的效果是直接打开一个tab，原来<strong>iframe不仅能修改父frame的location，还可以打开一个新的tab</strong>，同样是如2中所述，加上sandbox属性可以禁止。</p><p>具体可以参考 <a href="https://www.zhihu.com/question/20653055" target="_blank" rel="noopener">知乎：iframe 的好处和坏处</a> 可以了解些历史故事，但是如果有其他替代方案最好还是不要使用 iframe。</p><p>参考</p><p><a href="https://www.zhihu.com/question/20653055" target="_blank" rel="noopener">知乎：iframe 的好处和坏处</a><br><a href="https://zhuanlan.zhihu.com/p/38538801" target="_blank" rel="noopener">Chrome 将默认屏蔽“非用户行为触发”的父页面跳转</a></p><p>想到其它有意思的点再补充吧~</p><p>今天真的很忙，一整天被呼来唤去的，想起每日一更的约定又难实现，真的要嘤嘤嘤的哭出来，压力大的每天晚上都睡不好，其实也没人逼我，就想试试自己能坚持多久。</p><p>可能要求数量的话会导致质量降低，但是有这样的约定挂在心头总比每日毫无追求来的好。</p><p>坚持一万小时训练法，等我变成三十岁的老阿姨，一定会有很大的变化。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;上篇说到iframe弹窗的登录安全，接下来我们带着问题出发，详细的了解下iframe这个历史的产物。&lt;/p&gt;
+&lt;p&gt;虽然足够古老，但是也能解决很多现代的问题。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="HTML" scheme="https://evacoder.com/tags/HTML/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「 工具 」前端远程调试及空白或404解决</title>
+    <link href="https://evacoder.com/2019/02/17/remote_debugging/"/>
+    <id>https://evacoder.com/2019/02/17/remote_debugging/</id>
+    <published>2019-02-17T12:11:15.000Z</published>
+    <updated>2019-02-22T02:53:06.876Z</updated>
+    
+    <content type="html"><![CDATA[<p>因为自己的开发环境搭建的太舒适，在别人的电脑上查问题感觉完全无法展现自己的能力。</p><p>再加上已经习惯了chrome dev tool的每一种功能，一换到safari上查兼容性问题，都感觉自己变成了白痴。</p><p>更不要说去测试webview里的问题，console都没法看，真的要一行一行alert吗？</p><p>啥？你居然不会remote debugging！</p><p>那你怎么证明到底是你还是native 开发的锅？啥证据都没有。</p><p>虽然模拟器也能完成调试的功能，但是不能完全依赖模拟的结果，而且有些特定的机型并没有模拟器，有时候必须要在真机上复现问题，最重要的是模拟器没有chrome devtools呀。</p><a id="more"></a><h4 id="Andriod"><a href="#Andriod" class="headerlink" title="Andriod"></a>Andriod</h4><p>其实这个配置非常简单，用起来也方便，小伙伴们主要遇到的就是打开页面空白或者404的问题。</p><p>所以最重要的是要检查下PC能否科学地 <strong>网上冲浪</strong></p><p>有时候能访问google都不一定成功，需要试下这个地址</p><p><a href="https://chrome-devtools-frontend.appspot.com/" target="_blank" rel="noopener">https://chrome-devtools-frontend.appspot.com/</a></p><p>如果不行的话，配置以下host</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">172.217.161.180 chrome-devtools-frontend.appspot.com</span><br><span class="line">172.217.161.180 chrometophone.appspot.com</span><br></pre></td></tr></table></figure><p>现在访问基本上是秒开啦。</p><p>访问：<code>chrome://inspect/#devices</code></p><p>然后就可以方便的调试了。</p><p>1.在开发者模式下允许通过usb来调试</p><p>2.重新连接下usb</p><p><img src="/images/remote_debugging1.png" alt=""></p><p>出现上图，点击inspect就可以开始调试啦。</p><p>不必安装chrome浏览器，其他的浏览器和webview都可以进行调试。</p><p>如果webview测试不了，还需要安卓端配置下允许调试</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WebView.setWebContentsDebuggingEnabled(<span class="keyword">true</span>);</span><br></pre></td></tr></table></figure><h4 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h4><p>iOS的remote debugging比较难，难在首先你需要一台mac哈哈哈，但是mac却可以直接调试Andriod。</p><p>1.iPhone上设置-&gt;Safari-&gt; 高级-&gt; Web 检查器，打开</p><p>2.mac 上 safara-&gt;偏好设置-&gt;高级-&gt;在菜单栏显示“开发”菜单</p><p>3.usb连接两者</p><p>4.打开 mac safari，顶部菜单中的开发，选择设备点开即可<br><img src="/images/remote_debugging2.png" alt=""></p><p>也是可以调试webview，safari</p><p>掌握了远程调试的技能，基本可以解决大部分问题了。</p>]]></content>
     
     <summary type="html">
     
       &lt;p&gt;因为自己的开发环境搭建的太舒适，在别人的电脑上查问题感觉完全无法展现自己的能力。&lt;/p&gt;
-&lt;p&gt;再加上已经习惯了chrome dev tool的每一种功能，一换到safari上查兼容性问题，感觉自己变成了白痴。&lt;/p&gt;
+&lt;p&gt;再加上已经习惯了chrome dev tool的每一种功能，一换到safari上查兼容性问题，都感觉自己变成了白痴。&lt;/p&gt;
 &lt;p&gt;更不要说去测试webview里的问题，console都没法看，真的要一行一行alert吗？&lt;/p&gt;
 &lt;p&gt;啥？你居然不会remote debugging！&lt;/p&gt;
 &lt;p&gt;那你怎么证明到底是你还是native 开发的锅？啥证据都没有。&lt;/p&gt;
@@ -37,14 +58,43 @@
     </summary>
     
     
-      <category term="Tool" scheme="https://Evalotus.github.io/tags/Tool/"/>
+      <category term="Tool" scheme="https://evacoder.com/tags/Tool/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「 前端团队建设 」 技术选型之路</title>
+    <link href="https://evacoder.com/2019/02/16/frameworks_selection/"/>
+    <id>https://evacoder.com/2019/02/16/frameworks_selection/</id>
+    <published>2019-02-16T14:46:53.000Z</published>
+    <updated>2019-02-22T03:14:01.397Z</updated>
+    
+    <content type="html"><![CDATA[<p>这篇文章是个吐槽文，小伙伴们看着玩儿吧，更希望你们能跟我分享你的观点。</p><h4 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h4><p>之前有个四年换了五份工作的技术leader，过来给我们技术分享，实际也没讲什么技术，因为主要是内部后台管理系统，主要分享了下团队管理。</p><p>他说我的团队成员很幸福，我们不用antd，不好用，我自研了ui框架，小弟们只需要搭积木一样搭起来就可以了。我招的人都学会了这个框架，每次我换工作都带着他们一起换。</p><p>因为是自研框架，自己很清楚哪里有问题，很easy就改了。</p><p>之前上一个前端团队说，这个实现不了，那个也实现不了，我们每次都能保质保量的完成，让大家都很满意。</p><p>老板问我工期，我说四周，老板说四周能行吗？给你六周吧。（下面的人说，你们老大一定不懂前端哈哈哈）</p><p>实际上我们一周就完成了，剩下的时间想干啥就干啥，这就是自己造的轮子的好处。</p><p>（时间比较久了，可能记得没那么清楚了，如果这位兄弟出来辟谣，请以他说的为准）</p><p>那我们就假设有这么个人吧，反正肯定有这样的人。</p><p>听完真的很刷新我的三观，可能这就是这位兄弟的目的，总是这么语出惊人。虽然带了调侃的语气，但是还是有些不能接受。</p><a id="more"></a><h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><p>一可能是我也工作快三年了，还觉得自己是个小白，有好多知识需要学习，总是带着谦卑的心去跟任何人学习，依然是一线码农（倒也并不是排斥这个身份），身边的同事们也都是这样啊，没什么好狂的，可能是有些羡慕？</p><p>二是真心觉得这样和包工头带着工程队有啥区别呢？看看这个leader四年换五份工作，轻轻松松走上人生巅峰，那自研框架的文档完善吗？代码质量值得信赖吗？测试都跑通了吗？你觉得你的框架写的好，又没有开源接受大家的检验。接手者为了扩展新需求还要去学习你写的代码，而且更惨的是他们写了好多系统，如果是不同的人来维护接手，都需要来搞懂他们的代码。</p><p>三是这对他的小弟和未来的接手者都不是好事，搞懂他的代码有啥用呢？有这时间还不如去研究vue，react的源码。小弟们天天搭积木有啥进步呢？换下一家公司之后之前的工作经验都化为灰烬，你再知道那个自研框架哪里有坑都等于0，还不如和别的前端小伙伴津津乐道下当前最流行的框架有什么坑呢！如果小弟们带着这个自研框架去别的公司那就更可怕了，又去祸害别人？</p><p>四是虽然之前觉得狗东的二五原则有点扯，但是有些东西你不深入dive in 进去研究几年，总是浮在最表层，只是自己的简历上增加几个无意义的项目而已。超哥老是吐槽我，你怎么还在写登录页啊，我只能说嗯，我以后就有十年写登录页的经验了，花式写登录页。</p><p>跟着这样的老大可能工作很愉快，天天有段子听，有时间学习，但是并不是每个人都能保持学习的，有时候很多人的学习也就是只在工作中学习，而且他说招的都是应届生，这对应届生的发展更是非常不利。</p><p>反正我们真的应该警惕这样的老大。</p><h4 id="期望"><a href="#期望" class="headerlink" title="期望"></a>期望</h4><p>我的第一份工作虽然不是什么大厂，但是很庆幸一开始就遇到拎得清的老大，实名感谢。他虽然是个后端架构师，但是一开始就主张不要使用内部框架而是领先使用Angular，有什么坑他来扛。</p><p>虽然他也跟我说这有点面向简历编程，但是这对你们来说是好事，虽然大部分人的工作其实都是搬砖，内部框架你玩得再6，一换工作，你所有的积累都化为0，如果一直使用的是有影响力的开源框架，至少下一份工作你能说你最起码用过某个主流框架。</p><p>最开始就听leader说赶进度三个人一天写了三百个页面还觉得很震惊。其实即使不使用任何框架，大牛们写好基础组件，搭积木一样，天天ctrl +C+V，完全是正常的。</p><p>超哥也跟我说，一般人工作到一定的阶段都会感觉到没开始那么难，因为你对代码越来越熟悉，你知道哪里有坑，不可能一直都是搬砖状态。想想也是，上文中如果直接使用antd，只不过需要写些扩展组件，小弟们后来也一样能六周变一周，有时间读源码，再安排些真正的技术分享，简直是一个应届生最大的幸运。</p><p>小伙伴吐槽来了个领导是阿里的，之前用weex，所以现在他们也开始招weex开发，好歹weex也是开源的，（他说其实阿里自己都快不用weex了？不了解，待考）。技术选型用啥其实我们作为小白的时候也做不了主，但是可以用来做找工作的重要考核，而且希望看到这篇文章的你们以后当了leader之后在技术选型上也能慎重。</p><p>再就是我虽然建议选主流框架，但并不是说原生js的实践能力不重要，作为一个前端，<strong>这是最最重要的基本功。</strong></p><p>只是有的时候你会发现自己写的框架自己看了都恶心，最重要的是还特别大，实际上你清醒一点，vue只有39kb，jquery只有36kb，比你自己写的东一榔头西一锤子要好。当然啦，你可以写着玩儿，但是公司雇你来不是让你玩儿的哈哈哈。为了提高技术我们真的应该自己研究下框架是咋实现的，但是要对自己的实现负责，不要强迫别人来研究你写的框架，使用了框架自己整理util，mixin还是必不可少的。</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>有人说，你们前端的kpi就是隔几年就换个框架全部重构一遍来完成的，哟呵，这都被你发现了。</p><p>其实也不是我们的问题，只是JS不像其他语言那样有自己的核心库，需要依赖一些外部框架，二是前端发展确实太快了，总有新框架新方案解决新问题，但是每年重构换框架，哪有那么容易。</p><p>为了不被别人鄙视，真的应该好好读读源码。</p><p>今天吐槽先到这里吧，最后的结论是啥呢。</p><p>老是有小伙伴说没有机会去实践主流框架，内部管理系统是干啥的？</p><p>总之记住一条原则：<strong>不要拿外部有影响力的项目来练手，在内部系统中使用新技术做一些有趣的尝试，积累经验踩过坑之后再用在外部系统中。</strong></p><p>每日写文吐槽：</p><p>吐槽文写的就是畅快，很easy就写完了。其实很喜欢现在的工作状态，有时间全面了解知识并实践，和刚开始写不出来文章相比，已经积累了很多选题，就是需要时间完善整理。</p><p>我知道我的排版丑，如果有思维导图就更好，也知道哪里去找好看不侵权的图，用什么工具来画图，作为一个前端还想做自己的主题（答应超哥2年了也没写），还准备要咨询专业写公众号的毛毛来学习排版。</p><p>先弱弱地找个借口，现在还没走上正轨，但我一向是一个守诺的人，周末了，能有个时间来缓冲，希望大家监督</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这篇文章是个吐槽文，小伙伴们看着玩儿吧，更希望你们能跟我分享你的观点。&lt;/p&gt;
+&lt;h4 id=&quot;引子&quot;&gt;&lt;a href=&quot;#引子&quot; class=&quot;headerlink&quot; title=&quot;引子&quot;&gt;&lt;/a&gt;引子&lt;/h4&gt;&lt;p&gt;之前有个四年换了五份工作的技术leader，过来给我们技术分享，实际也没讲什么技术，因为主要是内部后台管理系统，主要分享了下团队管理。&lt;/p&gt;
+&lt;p&gt;他说我的团队成员很幸福，我们不用antd，不好用，我自研了ui框架，小弟们只需要搭积木一样搭起来就可以了。我招的人都学会了这个框架，每次我换工作都带着他们一起换。&lt;/p&gt;
+&lt;p&gt;因为是自研框架，自己很清楚哪里有问题，很easy就改了。&lt;/p&gt;
+&lt;p&gt;之前上一个前端团队说，这个实现不了，那个也实现不了，我们每次都能保质保量的完成，让大家都很满意。&lt;/p&gt;
+&lt;p&gt;老板问我工期，我说四周，老板说四周能行吗？给你六周吧。（下面的人说，你们老大一定不懂前端哈哈哈）&lt;/p&gt;
+&lt;p&gt;实际上我们一周就完成了，剩下的时间想干啥就干啥，这就是自己造的轮子的好处。&lt;/p&gt;
+&lt;p&gt;（时间比较久了，可能记得没那么清楚了，如果这位兄弟出来辟谣，请以他说的为准）&lt;/p&gt;
+&lt;p&gt;那我们就假设有这么个人吧，反正肯定有这样的人。&lt;/p&gt;
+&lt;p&gt;听完真的很刷新我的三观，可能这就是这位兄弟的目的，总是这么语出惊人。虽然带了调侃的语气，但是还是有些不能接受。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Team" scheme="https://evacoder.com/tags/Team/"/>
     
   </entry>
   
   <entry>
     <title>「 安全 」从iframe说到万物皆可hook</title>
-    <link href="https://Evalotus.github.io/2019/02/15/iframe_security/"/>
-    <id>https://Evalotus.github.io/2019/02/15/iframe_security/</id>
+    <link href="https://evacoder.com/2019/02/15/iframe_security/"/>
+    <id>https://evacoder.com/2019/02/15/iframe_security/</id>
     <published>2019-02-15T09:06:31.000Z</published>
     <updated>2019-02-18T08:53:30.695Z</updated>
     
@@ -62,14 +112,14 @@
     </summary>
     
     
-      <category term="安全" scheme="https://Evalotus.github.io/tags/%E5%AE%89%E5%85%A8/"/>
+      <category term="安全" scheme="https://evacoder.com/tags/%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
   <entry>
     <title>「 puppeteer 」从puppeteer谈前端爬虫检测和绕过</title>
-    <link href="https://Evalotus.github.io/2019/02/14/JS%E6%A3%80%E6%B5%8B%E7%88%AC%E8%99%AB/"/>
-    <id>https://Evalotus.github.io/2019/02/14/JS检测爬虫/</id>
+    <link href="https://evacoder.com/2019/02/14/JS%E6%A3%80%E6%B5%8B%E7%88%AC%E8%99%AB/"/>
+    <id>https://evacoder.com/2019/02/14/JS检测爬虫/</id>
     <published>2019-02-14T10:20:35.000Z</published>
     <updated>2019-02-14T09:40:14.954Z</updated>
     
@@ -85,14 +135,14 @@
     </summary>
     
     
-      <category term="puppeteer" scheme="https://Evalotus.github.io/tags/puppeteer/"/>
+      <category term="puppeteer" scheme="https://evacoder.com/tags/puppeteer/"/>
     
   </entry>
   
   <entry>
     <title>「 puppeteer 」puppeteer初尝试</title>
-    <link href="https://Evalotus.github.io/2019/02/13/puppeteer_try/"/>
-    <id>https://Evalotus.github.io/2019/02/13/puppeteer_try/</id>
+    <link href="https://evacoder.com/2019/02/13/puppeteer_try/"/>
+    <id>https://evacoder.com/2019/02/13/puppeteer_try/</id>
     <published>2019-02-13T10:20:35.000Z</published>
     <updated>2019-02-14T09:27:15.880Z</updated>
     
@@ -107,14 +157,14 @@
     </summary>
     
     
-      <category term="puppeteer" scheme="https://Evalotus.github.io/tags/puppeteer/"/>
+      <category term="puppeteer" scheme="https://evacoder.com/tags/puppeteer/"/>
     
   </entry>
   
   <entry>
     <title>「 puppeteer 」前端如何爬虫</title>
-    <link href="https://Evalotus.github.io/2019/02/12/js_spider/"/>
-    <id>https://Evalotus.github.io/2019/02/12/js_spider/</id>
+    <link href="https://evacoder.com/2019/02/12/js_spider/"/>
+    <id>https://evacoder.com/2019/02/12/js_spider/</id>
     <published>2019-02-12T10:20:35.000Z</published>
     <updated>2019-02-14T09:31:23.187Z</updated>
     
@@ -130,14 +180,14 @@
     </summary>
     
     
-      <category term="puppeteer" scheme="https://Evalotus.github.io/tags/puppeteer/"/>
+      <category term="puppeteer" scheme="https://evacoder.com/tags/puppeteer/"/>
     
   </entry>
   
   <entry>
     <title>「 效率 」前后端分离项目的本地代理及登录态绕过</title>
-    <link href="https://Evalotus.github.io/2019/01/05/proxy_login_state/"/>
-    <id>https://Evalotus.github.io/2019/01/05/proxy_login_state/</id>
+    <link href="https://evacoder.com/2019/01/05/proxy_login_state/"/>
+    <id>https://evacoder.com/2019/01/05/proxy_login_state/</id>
     <published>2019-01-05T04:44:27.000Z</published>
     <updated>2019-02-20T09:30:30.131Z</updated>
     
@@ -151,14 +201,14 @@
     </summary>
     
     
-      <category term="Tool" scheme="https://Evalotus.github.io/tags/Tool/"/>
+      <category term="Tool" scheme="https://evacoder.com/tags/Tool/"/>
     
   </entry>
   
   <entry>
     <title>JS检测是否打开了控制台（devtool）</title>
-    <link href="https://Evalotus.github.io/2018/12/28/JS%E6%A3%80%E6%B5%8B%E6%98%AF%E5%90%A6%E6%89%93%E5%BC%80%E6%8E%A7%E5%88%B6%E5%8F%B0/"/>
-    <id>https://Evalotus.github.io/2018/12/28/JS检测是否打开控制台/</id>
+    <link href="https://evacoder.com/2018/12/28/JS%E6%A3%80%E6%B5%8B%E6%98%AF%E5%90%A6%E6%89%93%E5%BC%80%E6%8E%A7%E5%88%B6%E5%8F%B0/"/>
+    <id>https://evacoder.com/2018/12/28/JS检测是否打开控制台/</id>
     <published>2018-12-28T12:11:15.000Z</published>
     <updated>2019-02-20T08:54:55.815Z</updated>
     
@@ -171,34 +221,14 @@
     </summary>
     
     
-      <category term="javascript" scheme="https://Evalotus.github.io/tags/javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>「 安全 」这次，完全弄明白CSRF</title>
-    <link href="https://Evalotus.github.io/2018/12/20/crsf/"/>
-    <id>https://Evalotus.github.io/2018/12/20/crsf/</id>
-    <published>2018-12-20T12:11:15.000Z</published>
-    <updated>2019-02-20T06:24:02.327Z</updated>
-    
-    <content type="html"><![CDATA[<p>听小伙伴分享了下CSRF攻击的原理，这次真的弄明白了CSRF。<br><strong>CSRF(</strong>Cross Site Request Forgery) 跨站请求伪造。<br>可以做什么：冒用你的身份做任何的事情。这里的身份指的就是用户用户的登录态，而登录态一般都是通过cookie来存储在浏览器中，即使只是发起一个图片的请求，也会带上这个域下的所有cookie，用户完全无感知自己发起了这个请求。<br><a id="more"></a></p><h4 id="为啥钱被转走了"><a href="#为啥钱被转走了" class="headerlink" title="为啥钱被转走了"></a>为啥钱被转走了</h4><p>假设mi有个付钱的接口是<code>api.mi.com/pay?money=10000&amp;x=xx</code></p><p>要知道一般登录态（serviceToken）都是存在浏览器的cookie中，有的有效期还很长，如果有一个坏人的页面，页面中加载一个小图片</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=wwww.mi.com/pay?money=10000 style=&quot;display:none&quot;/&gt;</span><br></pre></td></tr></table></figure><p>只要我们访问这个页面，就会在我们不知情的情况下自动发请求<code>api.mi.com/pay?money=10000</code>出去，虽然只是一个图片，一样会带上存在你浏览器中的<code>mi.com</code>下的所有的cookie，如果这时候你已经登录了mi网，这个请求就轻松的得到了你的登录态，向服务器发出了付款的请求。坏人setInterval每秒发个请求，你的钱就哗哗的全被转走了。</p><p>作恶的核心是跨域。</p><p>但是我们都知道这种通过ping img 图片跨域的方式发起的是<strong>get请求</strong>，只管请求发出去，而不管响应。<br>get请求一般只是读取操作，像付款这种写操作如果还使用get请求，第一步就被人吃干抹净，所以在接口设计中一定要注意。<br>现在我们将<code>api.mi.com/pay?money=10000</code>升级为post请求，如果有坏人访问就统统405，就可以高枕无忧了吗？</p><p><strong>post请求可以跨域吗？</strong></p><p>ajax有跨域限制，但是通过form表单的方式，post请求一样可以跨域，再加上放在iframe里，还可以不跳转页面就发送表单post请求，用户毫无感知钱就被转走了。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe style=&quot;display:none&quot;&gt;</span><br><span class="line">　&lt;form method=&quot;POST&quot;　action=&quot;http://api.mi.com&quot;&gt;</span><br><span class="line">　　　　&lt;input type=&quot;hidden&quot; name=&quot;other&quot; value=&quot;XXX&quot;&gt;</span><br><span class="line">　　　　&lt;input type=&quot;hidden&quot; name=&quot;money&quot; value=&quot;10000&quot;&gt;</span><br><span class="line">　&lt;/form&gt;</span><br><span class="line">&lt;/iframe&gt;</span><br></pre></td></tr></table></figure><h4 id="防御CRSF"><a href="#防御CRSF" class="headerlink" title="防御CRSF"></a>防御CRSF</h4><ul><li>删改查操作使用post method是基础。</li><li><p>一般的做法是随着登录态下发一个crsf_token，在之后所有post操作中都要求带上这个crsf_token，axios有这个功能，不需要我们手动每次添加。 这种做法的原理是在坏人的页面中，虽然可以自动带上被攻击网站的cookie，但是他的代码在<code>badman.com</code>下，因为cookie的同源策略，他通过js是无法获取在mi.com域下的crsf_token cookie放在post 请求中的，crsf_token是个随机字符串都可以达到这个效果。</p></li><li><p>也可以在敏感操作中通过后端校验refer，refer白名单的方式来杜绝来自坏人网站的攻击。</p></li><li><p>在非常敏感的操作中可以（最好不要）牺牲一些体验要求验证码验证，要求用户必须有交互。</p></li><li><p>最好严格下发子域的cookie，避免全站通用的cookie。</p></li></ul><h4 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h4><p>为啥只在post请求下使用crsf_token呢？</p><p>之前回答post和get的区别的时候都回答的很浅，但是在这个场景下，安全无小事，你就能理解两者的区别了。</p><p>get请求你要加crsf_token其实也没问题吧，只不过一般get请求是读取操作，不会修改服务器数据，一般没啥影响，不加验证也还好，毕竟加token会影响性能。一个合格的后端开发应该不会用get请求来敏感操作的，如果有，你可以教训教训他。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;听小伙伴分享了下CSRF攻击的原理，这次真的弄明白了CSRF。&lt;br&gt;&lt;strong&gt;CSRF(&lt;/strong&gt;Cross Site Request Forgery) 跨站请求伪造。&lt;br&gt;可以做什么：冒用你的身份做任何的事情。这里的身份指的就是用户用户的登录态，而登录态一般都是通过cookie来存储在浏览器中，即使只是发起一个图片的请求，也会带上这个域下的所有cookie，用户完全无感知自己发起了这个请求。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="HTTP" scheme="https://Evalotus.github.io/tags/HTTP/"/>
+      <category term="javascript" scheme="https://evacoder.com/tags/javascript/"/>
     
   </entry>
   
   <entry>
     <title>「 缓存 」cookie实践指南</title>
-    <link href="https://Evalotus.github.io/2018/12/20/cookie/"/>
-    <id>https://Evalotus.github.io/2018/12/20/cookie/</id>
+    <link href="https://evacoder.com/2018/12/20/cookie/"/>
+    <id>https://evacoder.com/2018/12/20/cookie/</id>
     <published>2018-12-20T12:11:15.000Z</published>
     <updated>2019-02-14T09:12:17.529Z</updated>
     
@@ -211,14 +241,34 @@
     </summary>
     
     
-      <category term="HTTP" scheme="https://Evalotus.github.io/tags/HTTP/"/>
+      <category term="HTTP" scheme="https://evacoder.com/tags/HTTP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「 安全 」这次，完全弄明白CSRF</title>
+    <link href="https://evacoder.com/2018/12/20/crsf/"/>
+    <id>https://evacoder.com/2018/12/20/crsf/</id>
+    <published>2018-12-20T12:11:15.000Z</published>
+    <updated>2019-02-20T06:24:02.327Z</updated>
+    
+    <content type="html"><![CDATA[<p>听小伙伴分享了下CSRF攻击的原理，这次真的弄明白了CSRF。<br><strong>CSRF(</strong>Cross Site Request Forgery) 跨站请求伪造。<br>可以做什么：冒用你的身份做任何的事情。这里的身份指的就是用户用户的登录态，而登录态一般都是通过cookie来存储在浏览器中，即使只是发起一个图片的请求，也会带上这个域下的所有cookie，用户完全无感知自己发起了这个请求。<br><a id="more"></a></p><h4 id="为啥钱被转走了"><a href="#为啥钱被转走了" class="headerlink" title="为啥钱被转走了"></a>为啥钱被转走了</h4><p>假设mi有个付钱的接口是<code>api.mi.com/pay?money=10000&amp;x=xx</code></p><p>要知道一般登录态（serviceToken）都是存在浏览器的cookie中，有的有效期还很长，如果有一个坏人的页面，页面中加载一个小图片</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=wwww.mi.com/pay?money=10000 style=&quot;display:none&quot;/&gt;</span><br></pre></td></tr></table></figure><p>只要我们访问这个页面，就会在我们不知情的情况下自动发请求<code>api.mi.com/pay?money=10000</code>出去，虽然只是一个图片，一样会带上存在你浏览器中的<code>mi.com</code>下的所有的cookie，如果这时候你已经登录了mi网，这个请求就轻松的得到了你的登录态，向服务器发出了付款的请求。坏人setInterval每秒发个请求，你的钱就哗哗的全被转走了。</p><p>作恶的核心是跨域。</p><p>但是我们都知道这种通过ping img 图片跨域的方式发起的是<strong>get请求</strong>，只管请求发出去，而不管响应。<br>get请求一般只是读取操作，像付款这种写操作如果还使用get请求，第一步就被人吃干抹净，所以在接口设计中一定要注意。<br>现在我们将<code>api.mi.com/pay?money=10000</code>升级为post请求，如果有坏人访问就统统405，就可以高枕无忧了吗？</p><p><strong>post请求可以跨域吗？</strong></p><p>ajax有跨域限制，但是通过form表单的方式，post请求一样可以跨域，再加上放在iframe里，还可以不跳转页面就发送表单post请求，用户毫无感知钱就被转走了。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe style=&quot;display:none&quot;&gt;</span><br><span class="line">　&lt;form method=&quot;POST&quot;　action=&quot;http://api.mi.com&quot;&gt;</span><br><span class="line">　　　　&lt;input type=&quot;hidden&quot; name=&quot;other&quot; value=&quot;XXX&quot;&gt;</span><br><span class="line">　　　　&lt;input type=&quot;hidden&quot; name=&quot;money&quot; value=&quot;10000&quot;&gt;</span><br><span class="line">　&lt;/form&gt;</span><br><span class="line">&lt;/iframe&gt;</span><br></pre></td></tr></table></figure><h4 id="防御CRSF"><a href="#防御CRSF" class="headerlink" title="防御CRSF"></a>防御CRSF</h4><ul><li>删改查操作使用post method是基础。</li><li><p>一般的做法是随着登录态下发一个crsf_token，在之后所有post操作中都要求带上这个crsf_token，axios有这个功能，不需要我们手动每次添加。 这种做法的原理是在坏人的页面中，虽然可以自动带上被攻击网站的cookie，但是他的代码在<code>badman.com</code>下，因为cookie的同源策略，他通过js是无法获取在mi.com域下的crsf_token cookie放在post 请求中的，crsf_token是个随机字符串都可以达到这个效果。</p></li><li><p>也可以在敏感操作中通过后端校验refer，refer白名单的方式来杜绝来自坏人网站的攻击。</p></li><li><p>在非常敏感的操作中可以（最好不要）牺牲一些体验要求验证码验证，要求用户必须有交互。</p></li><li><p>最好严格下发子域的cookie，避免全站通用的cookie。</p></li></ul><h4 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h4><p>为啥只在post请求下使用crsf_token呢？</p><p>之前回答post和get的区别的时候都回答的很浅，但是在这个场景下，安全无小事，你就能理解两者的区别了。</p><p>get请求你要加crsf_token其实也没问题吧，只不过一般get请求是读取操作，不会修改服务器数据，一般没啥影响，不加验证也还好，毕竟加token会影响性能。一个合格的后端开发应该不会用get请求来敏感操作的，如果有，你可以教训教训他。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;听小伙伴分享了下CSRF攻击的原理，这次真的弄明白了CSRF。&lt;br&gt;&lt;strong&gt;CSRF(&lt;/strong&gt;Cross Site Request Forgery) 跨站请求伪造。&lt;br&gt;可以做什么：冒用你的身份做任何的事情。这里的身份指的就是用户用户的登录态，而登录态一般都是通过cookie来存储在浏览器中，即使只是发起一个图片的请求，也会带上这个域下的所有cookie，用户完全无感知自己发起了这个请求。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="HTTP" scheme="https://evacoder.com/tags/HTTP/"/>
     
   </entry>
   
   <entry>
     <title>JS事件循环机制2-throttle和debounce</title>
-    <link href="https://Evalotus.github.io/2018/10/15/JS%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B62-throttle%E5%92%8Cdebounce/"/>
-    <id>https://Evalotus.github.io/2018/10/15/JS事件循环机制2-throttle和debounce/</id>
+    <link href="https://evacoder.com/2018/10/15/JS%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B62-throttle%E5%92%8Cdebounce/"/>
+    <id>https://evacoder.com/2018/10/15/JS事件循环机制2-throttle和debounce/</id>
     <published>2018-10-15T05:10:28.000Z</published>
     <updated>2019-01-07T12:48:56.502Z</updated>
     
@@ -231,14 +281,14 @@
     </summary>
     
     
-      <category term="javascript" scheme="https://Evalotus.github.io/tags/javascript/"/>
+      <category term="javascript" scheme="https://evacoder.com/tags/javascript/"/>
     
   </entry>
   
   <entry>
     <title>JS事件循环机制1</title>
-    <link href="https://Evalotus.github.io/2018/10/13/JS%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B61/"/>
-    <id>https://Evalotus.github.io/2018/10/13/JS事件循环机制1/</id>
+    <link href="https://evacoder.com/2018/10/13/JS%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B61/"/>
+    <id>https://evacoder.com/2018/10/13/JS事件循环机制1/</id>
     <published>2018-10-13T06:09:20.000Z</published>
     <updated>2019-01-07T12:48:56.501Z</updated>
     
@@ -251,14 +301,34 @@
     </summary>
     
     
-      <category term="javascript" scheme="https://Evalotus.github.io/tags/javascript/"/>
+      <category term="javascript" scheme="https://evacoder.com/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「 产品 」极简小程序产品设计笔记</title>
+    <link href="https://evacoder.com/2018/10/12/minimalism_product_design/"/>
+    <id>https://evacoder.com/2018/10/12/minimalism_product_design/</id>
+    <published>2018-10-12T10:26:01.000Z</published>
+    <updated>2019-02-14T09:04:45.209Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近有小伙伴给介绍小程序的私活，虽然功能需求很简单，但是从0-1完全定制化搭建成本很高，需要租用服务器，专门进行UI设计等，还有后续维护的工作，其实对于个体商户本身他们并不需要如此高度的产品定制化。遂去看了下专门做这个的<a href="https://www.youzan.com" target="_blank" rel="noopener">有赞</a>的后台，做成一个产品完全可以复用，批量搭建速度快，成本低。<br>这次机会的错过引起了我的反思，工作这么多年尚未从0开始前后端自己一个人完成一整个平台，今年的OKR除了<strong>提高审美，学习成为一个设计师的基本技能</strong>，还希望能够为极简主义的同好们制作一个极简主义专用的小程序。</p><a id="more"></a><h4 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h4><p>从六年前开始接触极简主义生活方式，如果你要让我说极简主义的好，我可以说三天三夜，哈哈，这里就不赘述，留到产品中去体现。<br>因为最近经济形势不好，消费降级突然变得流行起来，现在我的豆瓣timeline中有无数的人开始安利极简生活。</p><p>如果你要问我极简是什么？我会说极简是寻找生活的最优解，入了极简主义可以大概率保证你的人生一直走上坡路，我相信极简一定会贯穿我整个生命。<br>一直想自己做个什么项目，想着热爱整理的我，每天整理一百遍，把自己所有的物品都进行统计盘点，希望有个方便的进行物品盘点的小程序。</p><p>产品方面，18年学习了<a href="https://book.douban.com/subject/25915629/" target="_blank" rel="noopener">破茧成蝶：用户体验设计师的成长之路</a>，妥协的完美主义，绝密原型档案，<a href="https://book.douban.com/subject/4723970/" target="_blank" rel="noopener">人人都是产品经理</a>，得到上的梁宁产品30讲，希望可以全面实践下。</p><h4 id="项目总览"><a href="#项目总览" class="headerlink" title="项目总览"></a>项目总览</h4><p>在平常的工作中项目大概也会分为这三个部分。<br>1.管理后台<br>CRUD，主要是增删改查数据，权限控制等。<br>技术栈：<br>vue的element-ui，有现成的管理后端的模版 <a href="https://github.com/PanJiaChen/vue-element-admin" target="_blank" rel="noopener">vue-element-admin</a><br>node express+mongoose<br>2.小程序<br><a href="https://github.com/Meituan-Dianping/mpvue" target="_blank" rel="noopener">mpvue</a> 和 <a href="https://github.com/Tencent/wepy" target="_blank" rel="noopener">wepy</a> 各有优劣，wepy因为是官方支持，用的会比较多一点。<br><a href="https://github.com/aben1188/awesome-wepy" target="_blank" rel="noopener">awesome-wepy</a> 有很多小程序源码可以学习。<br><a href="https://github.com/dyq086/wepy-mall" target="_blank" rel="noopener">一个电商小程序的全功能源码</a><br>3.web页<br>暂定只是一个介绍页，以后可以加入其他的信息。<br>前后端分离响应式。</p><p>本文会持续更新产品进度。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近有小伙伴给介绍小程序的私活，虽然功能需求很简单，但是从0-1完全定制化搭建成本很高，需要租用服务器，专门进行UI设计等，还有后续维护的工作，其实对于个体商户本身他们并不需要如此高度的产品定制化。遂去看了下专门做这个的&lt;a href=&quot;https://www.youzan.com&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;有赞&lt;/a&gt;的后台，做成一个产品完全可以复用，批量搭建速度快，成本低。&lt;br&gt;这次机会的错过引起了我的反思，工作这么多年尚未从0开始前后端自己一个人完成一整个平台，今年的OKR除了&lt;strong&gt;提高审美，学习成为一个设计师的基本技能&lt;/strong&gt;，还希望能够为极简主义的同好们制作一个极简主义专用的小程序。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="产品" scheme="https://evacoder.com/tags/%E4%BA%A7%E5%93%81/"/>
     
   </entry>
   
   <entry>
     <title>「 微信开发 」手机浏览器唤起微信app登录的可行性</title>
-    <link href="https://Evalotus.github.io/2018/10/12/wechat_dev_app_login/"/>
-    <id>https://Evalotus.github.io/2018/10/12/wechat_dev_app_login/</id>
+    <link href="https://evacoder.com/2018/10/12/wechat_dev_app_login/"/>
+    <id>https://evacoder.com/2018/10/12/wechat_dev_app_login/</id>
     <published>2018-10-12T10:26:01.000Z</published>
     <updated>2019-01-09T01:58:28.807Z</updated>
     
@@ -272,34 +342,14 @@
     </summary>
     
     
-      <category term="微信开发" scheme="https://Evalotus.github.io/tags/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>「 产品 」极简小程序产品设计笔记</title>
-    <link href="https://Evalotus.github.io/2018/10/12/minimalism_product_design/"/>
-    <id>https://Evalotus.github.io/2018/10/12/minimalism_product_design/</id>
-    <published>2018-10-12T10:26:01.000Z</published>
-    <updated>2019-02-14T09:04:45.209Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近有小伙伴给介绍小程序的私活，虽然功能需求很简单，但是从0-1完全定制化搭建成本很高，需要租用服务器，专门进行UI设计等，还有后续维护的工作，其实对于个体商户本身他们并不需要如此高度的产品定制化。遂去看了下专门做这个的<a href="https://www.youzan.com" target="_blank" rel="noopener">有赞</a>的后台，做成一个产品完全可以复用，批量搭建速度快，成本低。<br>这次机会的错过引起了我的反思，工作这么多年尚未从0开始前后端自己一个人完成一整个平台，今年的OKR除了<strong>提高审美，学习成为一个设计师的基本技能</strong>，还希望能够为极简主义的同好们制作一个极简主义专用的小程序。</p><a id="more"></a><h4 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h4><p>从六年前开始接触极简主义生活方式，如果你要让我说极简主义的好，我可以说三天三夜，哈哈，这里就不赘述，留到产品中去体现。<br>因为最近经济形势不好，消费降级突然变得流行起来，现在我的豆瓣timeline中有无数的人开始安利极简生活。</p><p>如果你要问我极简是什么？我会说极简是寻找生活的最优解，入了极简主义可以大概率保证你的人生一直走上坡路，我相信极简一定会贯穿我整个生命。<br>一直想自己做个什么项目，想着热爱整理的我，每天整理一百遍，把自己所有的物品都进行统计盘点，希望有个方便的进行物品盘点的小程序。</p><p>产品方面，18年学习了<a href="https://book.douban.com/subject/25915629/" target="_blank" rel="noopener">破茧成蝶：用户体验设计师的成长之路</a>，妥协的完美主义，绝密原型档案，<a href="https://book.douban.com/subject/4723970/" target="_blank" rel="noopener">人人都是产品经理</a>，得到上的梁宁产品30讲，希望可以全面实践下。</p><h4 id="项目总览"><a href="#项目总览" class="headerlink" title="项目总览"></a>项目总览</h4><p>在平常的工作中项目大概也会分为这三个部分。<br>1.管理后台<br>CRUD，主要是增删改查数据，权限控制等。<br>技术栈：<br>vue的element-ui，有现成的管理后端的模版 <a href="https://github.com/PanJiaChen/vue-element-admin" target="_blank" rel="noopener">vue-element-admin</a><br>node express+mongoose<br>2.小程序<br><a href="https://github.com/Meituan-Dianping/mpvue" target="_blank" rel="noopener">mpvue</a> 和 <a href="https://github.com/Tencent/wepy" target="_blank" rel="noopener">wepy</a> 各有优劣，wepy因为是官方支持，用的会比较多一点。<br><a href="https://github.com/aben1188/awesome-wepy" target="_blank" rel="noopener">awesome-wepy</a> 有很多小程序源码可以学习。<br><a href="https://github.com/dyq086/wepy-mall" target="_blank" rel="noopener">一个电商小程序的全功能源码</a><br>3.web页<br>暂定只是一个介绍页，以后可以加入其他的信息。<br>前后端分离响应式。</p><p>本文会持续更新产品进度。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近有小伙伴给介绍小程序的私活，虽然功能需求很简单，但是从0-1完全定制化搭建成本很高，需要租用服务器，专门进行UI设计等，还有后续维护的工作，其实对于个体商户本身他们并不需要如此高度的产品定制化。遂去看了下专门做这个的&lt;a href=&quot;https://www.youzan.com&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;有赞&lt;/a&gt;的后台，做成一个产品完全可以复用，批量搭建速度快，成本低。&lt;br&gt;这次机会的错过引起了我的反思，工作这么多年尚未从0开始前后端自己一个人完成一整个平台，今年的OKR除了&lt;strong&gt;提高审美，学习成为一个设计师的基本技能&lt;/strong&gt;，还希望能够为极简主义的同好们制作一个极简主义专用的小程序。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="产品" scheme="https://Evalotus.github.io/tags/%E4%BA%A7%E5%93%81/"/>
+      <category term="微信开发" scheme="https://evacoder.com/tags/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/"/>
     
   </entry>
   
   <entry>
     <title>「 微信开发 」微信分享功能</title>
-    <link href="https://Evalotus.github.io/2018/09/28/wechat_dev_share/"/>
-    <id>https://Evalotus.github.io/2018/09/28/wechat_dev_share/</id>
+    <link href="https://evacoder.com/2018/09/28/wechat_dev_share/"/>
+    <id>https://evacoder.com/2018/09/28/wechat_dev_share/</id>
     <published>2018-09-28T10:27:12.000Z</published>
     <updated>2019-01-09T02:03:16.301Z</updated>
     
@@ -312,14 +362,14 @@
     </summary>
     
     
-      <category term="微信开发" scheme="https://Evalotus.github.io/tags/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/"/>
+      <category term="微信开发" scheme="https://evacoder.com/tags/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/"/>
     
   </entry>
   
   <entry>
     <title>「 微信开发 」小程序的入口</title>
-    <link href="https://Evalotus.github.io/2018/09/22/wechat_dev_miniprogram_entrance/"/>
-    <id>https://Evalotus.github.io/2018/09/22/wechat_dev_miniprogram_entrance/</id>
+    <link href="https://evacoder.com/2018/09/22/wechat_dev_miniprogram_entrance/"/>
+    <id>https://evacoder.com/2018/09/22/wechat_dev_miniprogram_entrance/</id>
     <published>2018-09-22T12:02:14.000Z</published>
     <updated>2019-02-14T09:49:46.785Z</updated>
     
@@ -333,14 +383,14 @@
     </summary>
     
     
-      <category term="微信开发" scheme="https://Evalotus.github.io/tags/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/"/>
+      <category term="微信开发" scheme="https://evacoder.com/tags/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/"/>
     
   </entry>
   
   <entry>
     <title>「 微信开发 」前言</title>
-    <link href="https://Evalotus.github.io/2018/09/18/wechat_dev_intro/"/>
-    <id>https://Evalotus.github.io/2018/09/18/wechat_dev_intro/</id>
+    <link href="https://evacoder.com/2018/09/18/wechat_dev_intro/"/>
+    <id>https://evacoder.com/2018/09/18/wechat_dev_intro/</id>
     <published>2018-09-18T10:23:29.000Z</published>
     <updated>2019-01-09T01:59:00.373Z</updated>
     
@@ -354,14 +404,14 @@
     </summary>
     
     
-      <category term="微信开发" scheme="https://Evalotus.github.io/tags/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/"/>
+      <category term="微信开发" scheme="https://evacoder.com/tags/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/"/>
     
   </entry>
   
   <entry>
     <title>JS异步加载和script标签属性的深层解析</title>
-    <link href="https://Evalotus.github.io/2018/09/18/JS%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD%E5%92%8Cscript%E6%A0%87%E7%AD%BE%E5%B1%9E%E6%80%A7%E7%9A%84%E6%B7%B1%E5%B1%82%E8%A7%A3%E6%9E%90/"/>
-    <id>https://Evalotus.github.io/2018/09/18/JS异步加载和script标签属性的深层解析/</id>
+    <link href="https://evacoder.com/2018/09/18/JS%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD%E5%92%8Cscript%E6%A0%87%E7%AD%BE%E5%B1%9E%E6%80%A7%E7%9A%84%E6%B7%B1%E5%B1%82%E8%A7%A3%E6%9E%90/"/>
+    <id>https://evacoder.com/2018/09/18/JS异步加载和script标签属性的深层解析/</id>
     <published>2018-09-18T06:07:59.000Z</published>
     <updated>2019-01-07T12:48:56.504Z</updated>
     
@@ -374,14 +424,14 @@
     </summary>
     
     
-      <category term="javascript" scheme="https://Evalotus.github.io/tags/javascript/"/>
+      <category term="javascript" scheme="https://evacoder.com/tags/javascript/"/>
     
   </entry>
   
   <entry>
     <title>JS中的面向对象5-Object.create和new Object</title>
-    <link href="https://Evalotus.github.io/2018/07/18/JS%E4%B8%AD%E7%9A%84%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A15-Object-create%E5%92%8Cnew-Object/"/>
-    <id>https://Evalotus.github.io/2018/07/18/JS中的面向对象5-Object-create和new-Object/</id>
+    <link href="https://evacoder.com/2018/07/18/JS%E4%B8%AD%E7%9A%84%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A15-Object-create%E5%92%8Cnew-Object/"/>
+    <id>https://evacoder.com/2018/07/18/JS中的面向对象5-Object-create和new-Object/</id>
     <published>2018-07-18T06:02:40.000Z</published>
     <updated>2019-02-14T09:20:57.836Z</updated>
     
@@ -397,47 +447,7 @@
     </summary>
     
     
-      <category term="javascript" scheme="https://Evalotus.github.io/tags/javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JS中的面向对象4-继承的实现</title>
-    <link href="https://Evalotus.github.io/2018/07/15/JS%E4%B8%AD%E7%9A%84%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A14-%E7%BB%A7%E6%89%BF%E7%9A%84%E5%AE%9E%E7%8E%B0/"/>
-    <id>https://Evalotus.github.io/2018/07/15/JS中的面向对象4-继承的实现/</id>
-    <published>2018-07-15T05:05:02.000Z</published>
-    <updated>2019-02-14T09:20:15.420Z</updated>
-    
-    <content type="html"><![CDATA[<p>理解了基本发展历史和深层原理，接下来就是生生不息的原因，继承部分啦。<br><a id="more"></a></p><p>我们知道JS是单继承的，Object.prototype是原型链的顶端，所有对象从它继承了包括toString等方法和属性。</p><p>Object本身是类当然也是构造函数，构造函数嘛当然是继承自Function.prototype</p><p>而Function也是对象，继承自Object.prototype。</p><p>这里就有一个鸡和蛋的问题：到底是先有Object还是先有Function。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span> <span class="keyword">instanceof</span> <span class="built_in">Function</span> <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Function</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span> <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Function</span>.prototype===<span class="built_in">Function</span>.__proto__ <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.__proto__ === <span class="literal">null</span> <span class="comment">// true 说明原型链到Object.prototype终止。</span></span><br></pre></td></tr></table></figure><p>上篇中我们了解到原型链是实现继承的主要方法</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.property = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype = &#123;</span><br><span class="line">  <span class="keyword">constructor</span>: SubType,</span><br><span class="line">  getSuperVal: function() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.property;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.subProperty = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line">SubType.prototype = <span class="keyword">new</span> SuperType(); <span class="comment">// 重点</span></span><br><span class="line">SubType.property.getSubVal = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.subProperty;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sub1 = <span class="keyword">new</span> SubType();</span><br><span class="line">sub1.getSuperVal(); <span class="comment">// true</span></span><br><span class="line">sub1.getSubVal(); <span class="comment">// false</span></span><br><span class="line">sub1 <span class="keyword">instanceof</span> SubType; <span class="comment">// true</span></span><br><span class="line">sub1 <span class="keyword">instanceof</span> SuperType; <span class="comment">// true</span></span><br></pre></td></tr></table></figure><p>回顾下new的作用</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> instance=<span class="keyword">new</span> Person();</span><br><span class="line"><span class="comment">// 实际经历了如下四步：</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1.创建空对象</span></span><br><span class="line"><span class="keyword">var</span> instance = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.设置原型链，指向类【构造函数】的原型</span></span><br><span class="line">instance.__proto__ = Person.prototype;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3.让构造函数Person的this指向实例instance,执行构造函数Person的函数体</span></span><br><span class="line"><span class="keyword">var</span> p = Person.call(instance);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4.判断Person的返回值类型</span></span><br><span class="line"><span class="comment">// 值类型就不要了，还是返回instance</span></span><br><span class="line"><span class="comment">// 如果是引用类型，替换掉instance返回引用类型</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">typeof</span> p ==<span class="string">'object'</span>)&#123;</span><br><span class="line"> <span class="keyword">return</span> p </span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"> <span class="keyword">return</span> instance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>所以上文中重点new实现了如下：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">SubType.prototype.__proto__ = SuperType.prototype;</span><br><span class="line">SuperType.call(SubType.prototype);</span><br><span class="line"><span class="keyword">var</span> Animal = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.wow = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">':wow'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Dog = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.run = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">':run'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Dog.prototype = <span class="keyword">new</span> Animal(); <span class="comment">// 继承的实现：将父类原型指向子类</span></span><br><span class="line">Dog.prototype=Animal.prototype; <span class="comment">// 为啥不是这样？</span></span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;理解了基本发展历史和深层原理，接下来就是生生不息的原因，继承部分啦。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="javascript" scheme="https://Evalotus.github.io/tags/javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JS中的面向对象3-原型和构造函数的关系</title>
-    <link href="https://Evalotus.github.io/2018/06/30/JS%E4%B8%AD%E7%9A%84%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A13-%E5%8E%9F%E5%9E%8B%E5%92%8C%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E5%85%B3%E7%B3%BB/"/>
-    <id>https://Evalotus.github.io/2018/06/30/JS中的面向对象3-原型和构造函数的关系/</id>
-    <published>2018-06-30T10:02:09.000Z</published>
-    <updated>2019-02-14T09:19:27.097Z</updated>
-    
-    <content type="html"><![CDATA[<p>本系列是学习整理js中的面向对象的第3篇，原型和构造函数的关系，接下来就要更深入的探究其中的原理了。<br><a id="more"></a></p><h4 id="原型和构造函数到底有什么关系？"><a href="#原型和构造函数到底有什么关系？" class="headerlink" title="原型和构造函数到底有什么关系？"></a>原型和构造函数到底有什么关系？</h4><p><img src="/assets/proto3.png" alt=""></p><p>构造函数有原型对象，Person.prototype，此对象中有属性constructor，指向了构造函数Person，构造函数又有原型…。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Person.prototype.constructor===Person;//true</span><br><span class="line">Person.prototype.constructor.prototype.constructor.prototype===Person.prototype; // true 两者相依相存</span><br></pre></td></tr></table></figure><p>构造函数是为了方便创建对象。</p><p>构造函数通过prototype来存储要共享的属性和方法。</p><h4 id="prototype和-proto-（-Prototype-）又有什么关系？"><a href="#prototype和-proto-（-Prototype-）又有什么关系？" class="headerlink" title="prototype和__proto__（[[Prototype]]）又有什么关系？"></a>prototype和__proto__（[[Prototype]]）又有什么关系？</h4><p><strong>类和构造函数</strong>：比如Array你可以看做一个类，也可以看成是Array的构造函数。</p><p><code>__proto__</code>:是<strong>实例</strong>的属性，指向构造函数的原型 constructor.prototype，每个对象都有。所以我们暂且称它为原型引用。</p><p><code>prototype</code>:原型对象，只有函数才有prototype，所以<strong>原型是构造函数（类）的原型</strong>。</p><p>我们先来回忆下new操作符到底做了什么【参见js中的面向对象2】。</p><p>就是new操作符实现了实例的<code>__proto__</code>指向类的原型。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// __proto__是new出来的实例内部包含的一个指针，指向constructor.prototype。每个对象都有</span></span><br><span class="line">p.__proto__ === Person.prototype <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">p.prototype <span class="comment">// undefined 只有函数才有prototype</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.getPrototypeOf(p)=== p.__proto__===Person.prototype <span class="comment">// Object.getPrototypeOf得到实例的__proto__</span></span><br><span class="line"><span class="comment">// 字面意思是获取实例的原型prototype，实际是获取原型的引用。</span></span><br><span class="line"><span class="comment">// 因为实例没有原型，只有原型引用__proto__，类（构造函数）才有原型prototype</span></span><br><span class="line"></span><br><span class="line">Person.prototype.isPrototypeOf(p) <span class="comment">// true isPrototypeOf 原型对象是构造函数的原型</span></span><br></pre></td></tr></table></figure><h4 id="prototype和实例又有什么关系呢？"><a href="#prototype和实例又有什么关系呢？" class="headerlink" title="prototype和实例又有什么关系呢？"></a>prototype和实例又有什么关系呢？</h4><p>prototype是用来保存类的公共属性和方法的，其实也是个特殊的对象，可以理解为和实例是一个level的。但是他们之间有什么关系和区别呢</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 联系</span><br><span class="line">p.constructor === Person.prototype.constructor === Person; // true 两者具有相同的构造函数</span><br><span class="line"></span><br><span class="line">p.__proto__ === Person.prototype; // true 实例的原型引用指向了原型对象</span><br><span class="line"></span><br><span class="line">// 区别</span><br><span class="line">Person.prototype.__proto__===Person.prototype; // flase 原型的原型引用不再是原型对象啦</span><br></pre></td></tr></table></figure><p>既然是一个level为啥不相等呢？因为原型肩负了继承的重要责任。</p><p>正是通过<code>Person.prototype.__proto__.__proto__.__proto__.__proto__.__proto__</code>来一层层向上查找父类，这就是所谓的<strong>原型链</strong></p><p>所以继承的写法就是</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Person.prototype=new Parent();</span><br></pre></td></tr></table></figure><p>结合前面new的作用，可以明白此处实际上的最重要的作用就是</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Person.prototype.__proto__=Parent.prototype;// 将原型引用指向父类的原型</span><br><span class="line">// Person.__proto__总是指向父类</span><br></pre></td></tr></table></figure><p>调用p.name时，会从p自身的属性中寻找是否有name，没有则到p对应的原型中寻找<br><code>obj.__proto__.__proto__.__proto__</code>形成原型链，可以通过instanceof来验证obj是否是构造函数（类）的实例</p><p>继承的细节将在下节来详细解释</p><h4 id="Object和Function的关系及特殊的原型对象"><a href="#Object和Function的关系及特殊的原型对象" class="headerlink" title="Object和Function的关系及特殊的原型对象"></a>Object和Function的关系及特殊的原型对象</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1= &#123;<span class="attr">x</span>: <span class="number">1</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> obj2= <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">obj1.__proto__ === <span class="built_in">Object</span>.prototype <span class="comment">// true 指向构造函数的原型</span></span><br><span class="line">obj2.__proto__ === <span class="built_in">Object</span>.prototype <span class="comment">// true</span></span><br><span class="line">obj1.toString === <span class="built_in">Object</span>.prototype.toString === obj2.__proto__.toString <span class="comment">// true 调用实例方法实际上是调用原型的方法</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fn1=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> fn2=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line"></span><br><span class="line">fn1.constructor===<span class="built_in">Function</span></span><br><span class="line">fn1.__proto__===<span class="built_in">Function</span>.prototype </span><br><span class="line">fn1__proto__===fn2.__proto__ <span class="comment">// true </span></span><br><span class="line"></span><br><span class="line">fn1.prototype.constructor=fn1;</span><br><span class="line">fn1.prototype.constructor.name <span class="comment">// fn1</span></span><br><span class="line">fn2.prototype.constructor.name <span class="comment">// fn2</span></span><br><span class="line">fn1.prototype===fn2.prototype <span class="comment">// false </span></span><br><span class="line">fn1.prototype===&#123;</span><br><span class="line">    <span class="comment">// fn1</span></span><br><span class="line">    <span class="keyword">constructor</span>:function()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="comment">// 指向了Object.prototype</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">fn1.prototype.__proto__ === <span class="built_in">Object</span>.prototype</span><br><span class="line"><span class="comment">// 所以Function 继承自Object</span></span><br></pre></td></tr></table></figure><h4 id="原型的相关方法"><a href="#原型的相关方法" class="headerlink" title="原型的相关方法"></a>原型的相关方法</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.getPrototypeOf(p) === Person.prototype; <span class="comment">// true</span></span><br><span class="line">Person.prototype.isPrototypeOf(p); <span class="comment">// true</span></span><br><span class="line">p.hasOwnProperty(<span class="string">'name'</span>); <span class="comment">// false 是原型属性</span></span><br><span class="line">p.salary = <span class="number">25000</span>;</span><br><span class="line">p.hasOwnProperty(<span class="string">'salary'</span>); <span class="comment">// true 是实例属性</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过in操作符和hasOwnProperty可以判断属性到底是在实例还是原型中</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hasPrototypeProperty</span>(<span class="params">obj, name</span>) </span>&#123; <span class="comment">// 判断是否是原型属性</span></span><br><span class="line">  <span class="keyword">return</span> !obj.hasOwnProperty(name) &amp;&amp; (name <span class="keyword">in</span> obj);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 因为in操作符包括原型属性，所以在遍历时eslint不建议使用for-in，如果必须使用也需要用hasOwnProperty来过滤下</span></span><br><span class="line"></span><br><span class="line">p <span class="keyword">instanceof</span> Person; <span class="comment">// true 实例是否是类的实例</span></span><br></pre></td></tr></table></figure><h4 id="基本类型判断"><a href="#基本类型判断" class="headerlink" title="基本类型判断"></a>基本类型判断</h4><p>但是instanceof也有力不从心的时候，回忆下我们判断isArray，isDate等类型的方法，instanceof假定只有一个全局作用域，在页面中有多个frame时，存在两个以上的全局执行环境，一个框架向另一个框架传值时，会有不一样的构造函数。建议使用以下方式来判断。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isType</span>(<span class="params">type</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="params">obj</span> =&gt;</span> <span class="built_in">Object</span>.prototype.toString.call(obj) === <span class="string">`[object <span class="subst">$&#123;type&#125;</span>]`</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> isObject = isType(<span class="string">'Object'</span>);</span><br><span class="line"><span class="keyword">const</span> isString = isType(<span class="string">'String'</span>);</span><br><span class="line"><span class="keyword">const</span> isArray = <span class="built_in">Array</span>.isArray || isType(<span class="string">'Array'</span>);</span><br><span class="line"><span class="keyword">const</span> isFunction = isType(<span class="string">'Function'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; isObject, isString, isArray, isFunction &#125;;</span><br><span class="line"><span class="comment">// toString只能通过Object.prototype.toString.call来调用才能判断类型</span></span><br></pre></td></tr></table></figure><h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">age, name, friends</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.age = age;</span><br><span class="line">  <span class="keyword">this</span>.friends = friends;</span><br><span class="line">  <span class="comment">// 只在初始化时判断，不需要把每个方法都判断TODO</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span>.sayName != <span class="string">'function'</span>) &#123;</span><br><span class="line">    Person.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 局部添加方法和属性会立即生效，重写整个原型对象会切断现有实例和原型的关系</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在已经创建实例的情况下，使用Person.prototype=&#123;&#125;这种对象字面量，相当于重写原型</span></span><br><span class="line">    <span class="comment">// 会切断现有实例和原型之间的关联</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>参考<br><a href="https://github.com/creeperyang/blog/issues/9" target="_blank" rel="noopener">https://github.com/creeperyang/blog/issues/9</a><br><a href="https://www.zhihu.com/question/34183746" target="_blank" rel="noopener">https://www.zhihu.com/question/34183746</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本系列是学习整理js中的面向对象的第3篇，原型和构造函数的关系，接下来就要更深入的探究其中的原理了。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="javascript" scheme="https://Evalotus.github.io/tags/javascript/"/>
+      <category term="javascript" scheme="https://evacoder.com/tags/javascript/"/>
     
   </entry>
   

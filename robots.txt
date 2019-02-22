@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+Allow: /2016/
+Allow: /2017/
+Allow: /2018/
+Allow: /2019/
+Allow: /archives/
+
+Disallow: /about/
+Disallow: /assets/
+Disallow: /js/
+Disallow: /css/
+Disallow: /lib/
+Disallow: /movies/
+Disallow: /page/
+
+Sitemap: http://www.arao.me/sitemap.xml
+Sitemap: http://www.arao.me/baidusitemap.xml
