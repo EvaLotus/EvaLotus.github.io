@@ -12,7 +12,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://Evalotus.github.io/
+url: https://evacoder.com/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -88,6 +88,8 @@ feed:
 #type 表示类型, 是 atom 还是 rss2.
 #path 表示 Feed 路径
 #limit 最多多少篇最近文章
+
+# for seo
 sitemap:
    path: sitemap.xml
    #path 表示 Sitemap 的路径. 默认为 sitemap.xml.

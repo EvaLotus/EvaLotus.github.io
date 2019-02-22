@@ -60,7 +60,7 @@ rss:
 footer:
   # Specify the date when the site was setup.
   # If not defined, current year will be used.
-  since: 2016
+  since: 2015
 
   # Icon between year and copyright info.
   icon:
@@ -203,11 +203,11 @@ social_icons:
 
 # Blog rolls
 links_icon: link
-links_title: Links
-links_layout: block
-#links_layout: inline
-#links:
-  #Title: http://example.com
+links_title: Friends
+#links_layout: block
+links_layout: inline
+links:
+  指间生活: https://zhenchao.org
 
 # Sidebar Avatar
 avatar:
@@ -1041,6 +1041,7 @@ vendors:
   # See: https://github.com/theme-next/theme-next-reading-progress
   # Example:
   # reading_progress: //cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1.1/reading_progress.min.js
+  reading_progress:
 
   # valine comment
   # See: https://github.com/xCss/Valine

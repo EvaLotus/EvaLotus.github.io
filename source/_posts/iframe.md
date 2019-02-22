@@ -33,7 +33,7 @@ document.getElementsByTagName('iframe')[0].contentWindow === window.frames[0]; /
 主要通过window.frames来操作，有时候获取到子 frame 的属性为 undefined，那是因为子frame加载需要时间，要注意等子frame加载完成之后再获取。
 
 ```js
-var fr1Window = window.frames[0]; // 或者document.getElementsByTagName("iframe")[0].contentWindow; 
+var fr1Window = window.frames[0]; // 或者document.getElementsByTagName("iframe")[0].contentWindow;
 // 操作dom
 fr1Window .document.getElementsByTagName("body")[0].style.backgroundColor = "#ff6700";
 // 操作变量
@@ -89,12 +89,12 @@ siblingWindow.location.href ='https://evacoder.com';
 
 可以通过HTML5的新特性`sandbox`属性来限制iframe的行为，这个属性是反向的，如果空字符串则会应用所有的限制，sandbox包含的属性会移除对应的限制。
 
-| ""                   | 应用以下所有的限制。                           |
+| "" | 应用以下所有的限制。 |
 | :------------------- | :--------------------------------------------- |
-| allow-same-origin    | 允许 iframe 内容被视为与包含文档有相同的来源。 |
-| allow-top-navigation | 允许 iframe 内容从包含文档导航（加载）内容。   |
-| allow-forms          | 允许表单提交。                                 |
-| allow-scripts        | 允许脚本执行。                                 |
+| allow-same-origin | 允许 iframe 内容被视为与包含文档有相同的来源。 |
+| allow-top-navigation | 允许 iframe 内容从包含文档导航（加载）内容。 |
+| allow-forms | 允许表单提交。 |
+| allow-scripts | 允许脚本执行。 |
 
 如果不开放allow-scripts权限，iframe中的任何js都执行不了，那会造成功能失效，不是我们的初衷。
 
@@ -137,7 +137,7 @@ window.opener.location='https://evacoder.com';
 
 ```js
 if (top !== self) {
-  top.location = location
+top.location = location
 }
 ```
 
@@ -190,7 +190,11 @@ iframe 最大的好处是它一个独立的运行环境，邮箱框架中使用�
 
 我接触到的有用在无刷新文件上传和登录页定制化（背景图开放给第三方上传管理）。
 
-具体可以参考  [知乎：iframe 的好处和坏处](https://www.zhihu.com/question/20653055) 可以了解些历史故事，但是如果有其他替代方案最好还是不要使用 iframe。
+**8.`target="_blank"`**
+今天突然发现引入的google reCAPTCHA iframe里的a链接：“常见问题”点完的效果是直接打开一个tab，原来**iframe不仅能修改父frame的location，还可以打开一个新的tab**，同样是如2中所述，加上sandbox属性可以禁止。
+
+
+具体可以参考 [知乎：iframe 的好处和坏处](https://www.zhihu.com/question/20653055) 可以了解些历史故事，但是如果有其他替代方案最好还是不要使用 iframe。
 
 参考
 
