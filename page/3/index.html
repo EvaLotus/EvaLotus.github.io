@@ -202,7 +202,7 @@
 
   <div class="container sidebar-position-left 
   page-home">
-    <div class="headband"></div>
+    
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
@@ -372,7 +372,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://evacoder.com/2018/12/20/cookie/">
+    <link itemprop="mainEntityOfPage" href="https://evacoder.com/2018/12/20/crsf/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Eva">
@@ -392,7 +392,7 @@
           <h2 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/12/20/cookie/" class="post-title-link" itemprop="https://evacoder.com/page/3/index.html">「 缓存 」cookie实践指南</a>
+                <a href="/2018/12/20/crsf/" class="post-title-link" itemprop="https://evacoder.com/page/3/index.html">「 安全 」这次，完全弄明白CSRF</a>
               
             
           </h2>
@@ -432,8 +432,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/12/20/cookie/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/20/cookie/" itemprop="commentCount"></span>
+                <a href="/2018/12/20/crsf/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/20/crsf/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -462,11 +462,12 @@
 
       
         
-          <p>HTTP是无状态的协议，cookie可以用来存储用户的信息方便追踪。<br>
+          <p>今天听小伙伴分享了下CSRF攻击的原理，这次真的弄明白了CSRF。<br><strong>CSRF(</strong>Cross Site Request Forgery) 是什么？跨站请求伪造。</p>
+<p>通过CSRF攻击，坏人可以冒用你的身份（登录态）来做任何事情。因为登录态一般都是通过cookie来存储在浏览器中，要知道即使只是发起一个图片的请求，也会带上这个域下的所有cookie，可以做到用户完全无感知的情况下发起用户不想发出的请求。<br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2018/12/20/cookie/#more" rel="contents">
+              <a class="btn" href="/2018/12/20/crsf/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -526,7 +527,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://evacoder.com/2018/10/15/JS事件循环机制2-throttle和debounce/">
+    <link itemprop="mainEntityOfPage" href="https://evacoder.com/2018/10/12/minimalism_product_design/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Eva">
@@ -546,7 +547,7 @@
           <h2 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/10/15/JS事件循环机制2-throttle和debounce/" class="post-title-link" itemprop="https://evacoder.com/page/3/index.html">JS事件循环机制2-throttle和debounce</a>
+                <a href="/2018/10/12/minimalism_product_design/" class="post-title-link" itemprop="https://evacoder.com/page/3/index.html">「 产品 」极简小程序产品设计笔记</a>
               
             
           </h2>
@@ -571,7 +572,7 @@
                 
               
 
-              <time title="Created: 2018-10-15 13:10:28" itemprop="dateCreated datePublished" datetime="2018-10-15T13:10:28+08:00">2018-10-15</time>
+              <time title="Created: 2018-10-12 18:26:01" itemprop="dateCreated datePublished" datetime="2018-10-12T18:26:01+08:00">2018-10-12</time>
             
 
             
@@ -586,8 +587,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/10/15/JS事件循环机制2-throttle和debounce/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/10/15/JS事件循环机制2-throttle和debounce/" itemprop="commentCount"></span>
+                <a href="/2018/10/12/minimalism_product_design/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/10/12/minimalism_product_design/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -616,165 +617,11 @@
 
       
         
-          <p>函数的debounce和throttle<br>
+          <p>最近有小伙伴给介绍小程序的私活，虽然功能需求很简单，但是从0-1完全定制化搭建成本很高，需要租用服务器，专门进行UI设计等，还有后续维护的工作，其实对于个体商户本身他们并不需要如此高度的产品定制化。遂去看了下专门做这个的<a href="https://www.youzan.com" target="_blank" rel="noopener">有赞</a>的后台，做成一个产品完全可以复用，批量搭建速度快，成本低。<br>这次机会的错过引起了我的反思，工作这么多年尚未从0开始前后端自己一个人完成一整个平台，今年的OKR除了<strong>提高审美，学习成为一个设计师的基本技能</strong>，还希望能够为极简主义的同好们制作一个极简主义专用的小程序。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2018/10/15/JS事件循环机制2-throttle和debounce/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </p></div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://evacoder.com/2018/10/13/JS事件循环机制1/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Eva">
-      <meta itemprop="description" content="JavaScript, HTML, CSS, Node JS, Front-end Develop">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eva's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/10/13/JS事件循环机制1/" class="post-title-link" itemprop="https://evacoder.com/page/3/index.html">JS事件循环机制1</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-10-13 14:09:20" itemprop="dateCreated datePublished" datetime="2018-10-13T14:09:20+08:00">2018-10-13</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/10/13/JS事件循环机制1/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/10/13/JS事件循环机制1/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>单线程和异步</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/10/13/JS事件循环机制1/#more" rel="contents">
+              <a class="btn" href="/2018/10/12/minimalism_product_design/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -989,7 +836,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://evacoder.com/2018/10/12/minimalism_product_design/">
+    <link itemprop="mainEntityOfPage" href="https://evacoder.com/2018/09/28/wechat_dev_share/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Eva">
@@ -1009,7 +856,7 @@
           <h2 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/10/12/minimalism_product_design/" class="post-title-link" itemprop="https://evacoder.com/page/3/index.html">「 产品 」极简小程序产品设计笔记</a>
+                <a href="/2018/09/28/wechat_dev_share/" class="post-title-link" itemprop="https://evacoder.com/page/3/index.html">「 微信开发 」微信分享功能</a>
               
             
           </h2>
@@ -1034,7 +881,7 @@
                 
               
 
-              <time title="Created: 2018-10-12 18:26:01" itemprop="dateCreated datePublished" datetime="2018-10-12T18:26:01+08:00">2018-10-12</time>
+              <time title="Created: 2018-09-28 18:27:12" itemprop="dateCreated datePublished" datetime="2018-09-28T18:27:12+08:00">2018-09-28</time>
             
 
             
@@ -1049,8 +896,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/10/12/minimalism_product_design/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/10/12/minimalism_product_design/" itemprop="commentCount"></span>
+                <a href="/2018/09/28/wechat_dev_share/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/09/28/wechat_dev_share/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1079,11 +926,11 @@
 
       
         
-          <p>最近有小伙伴给介绍小程序的私活，虽然功能需求很简单，但是从0-1完全定制化搭建成本很高，需要租用服务器，专门进行UI设计等，还有后续维护的工作，其实对于个体商户本身他们并不需要如此高度的产品定制化。遂去看了下专门做这个的<a href="https://www.youzan.com" target="_blank" rel="noopener">有赞</a>的后台，做成一个产品完全可以复用，批量搭建速度快，成本低。<br>这次机会的错过引起了我的反思，工作这么多年尚未从0开始前后端自己一个人完成一整个平台，今年的OKR除了<strong>提高审美，学习成为一个设计师的基本技能</strong>，还希望能够为极简主义的同好们制作一个极简主义专用的小程序。</p>
+          <p>实践微信的分享功能<br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2018/10/12/minimalism_product_design/#more" rel="contents">
+              <a class="btn" href="/2018/09/28/wechat_dev_share/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1091,7 +938,162 @@
           <!--/noindex-->
         
       
-    </div>
+    </p></div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://evacoder.com/2018/09/22/wechat_dev_miniprogram_entrance/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Eva">
+      <meta itemprop="description" content="JavaScript, HTML, CSS, Node JS, Front-end Develop">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eva's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/09/22/wechat_dev_miniprogram_entrance/" class="post-title-link" itemprop="https://evacoder.com/page/3/index.html">「 微信开发 」小程序的入口</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-09-22 20:02:14" itemprop="dateCreated datePublished" datetime="2018-09-22T20:02:14+08:00">2018-09-22</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/22/wechat_dev_miniprogram_entrance/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/09/22/wechat_dev_miniprogram_entrance/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>用户在使用微信时，打开小程序的体验要比打开H5页面的体验要好得多，老板希望在H5页面可以直接打开小程序。</p>
+<p>查阅资料发现，至目前为止，现在H5和小程序互相跳转的唯二方式如下：<br>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/09/22/wechat_dev_miniprogram_entrance/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </p></div>
 
     
 
@@ -1132,7 +1134,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1177,7 +1179,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

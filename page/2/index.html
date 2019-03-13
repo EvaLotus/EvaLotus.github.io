@@ -202,7 +202,7 @@
 
   <div class="container sidebar-position-left 
   page-home">
-    <div class="headband"></div>
+    
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
@@ -776,7 +776,7 @@
       
         
           <p>在开发新需求或者复现bug时，前端经常会通过代理工具将被本地修改的js，css代理到线上，这样可以不用一次一次的上线测试，在本地就可以随改随生效。</p>
-<p>vue项目可以<code>npm run dev</code>本地跑起来，开发阶段接口调试时，最好能把所有localhost的本地接口全代理到【线上】，有很多方法。</p>
+<p>vue项目可以 <code>npm run serve</code> 本地跑起来，开发阶段接口调试时，最好能把所有localhost的本地接口全代理到【线上】，有很多方法。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -840,7 +840,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://evacoder.com/2018/12/28/JS检测是否打开控制台/">
+    <link itemprop="mainEntityOfPage" href="https://evacoder.com/2018/12/28/js_devtool/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Eva">
@@ -860,7 +860,7 @@
           <h2 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/12/28/JS检测是否打开控制台/" class="post-title-link" itemprop="https://evacoder.com/page/2/index.html">JS检测是否打开了控制台（devtool）</a>
+                <a href="/2018/12/28/js_devtool/" class="post-title-link" itemprop="https://evacoder.com/page/2/index.html">JS检测是否打开了控制台（devtool）</a>
               
             
           </h2>
@@ -900,8 +900,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/12/28/JS检测是否打开控制台/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/28/JS检测是否打开控制台/" itemprop="commentCount"></span>
+                <a href="/2018/12/28/js_devtool/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/28/js_devtool/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -934,7 +934,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2018/12/28/JS检测是否打开控制台/#more" rel="contents">
+              <a class="btn" href="/2018/12/28/js_devtool/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -994,7 +994,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://evacoder.com/2018/12/20/crsf/">
+    <link itemprop="mainEntityOfPage" href="https://evacoder.com/2018/12/20/cookie/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Eva">
@@ -1014,7 +1014,7 @@
           <h2 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/12/20/crsf/" class="post-title-link" itemprop="https://evacoder.com/page/2/index.html">「 安全 」这次，完全弄明白CSRF</a>
+                <a href="/2018/12/20/cookie/" class="post-title-link" itemprop="https://evacoder.com/page/2/index.html">「 缓存 」cookie实践指南</a>
               
             
           </h2>
@@ -1054,8 +1054,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/12/20/crsf/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/20/crsf/" itemprop="commentCount"></span>
+                <a href="/2018/12/20/cookie/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/20/cookie/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1084,11 +1084,11 @@
 
       
         
-          <p>听小伙伴分享了下CSRF攻击的原理，这次真的弄明白了CSRF。<br><strong>CSRF(</strong>Cross Site Request Forgery) 跨站请求伪造。<br>可以做什么：冒用你的身份做任何的事情。这里的身份指的就是用户用户的登录态，而登录态一般都是通过cookie来存储在浏览器中，即使只是发起一个图片的请求，也会带上这个域下的所有cookie，用户完全无感知自己发起了这个请求。<br>
+          <p>HTTP是无状态的协议，cookie可以用来存储用户的信息方便追踪。<br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2018/12/20/crsf/#more" rel="contents">
+              <a class="btn" href="/2018/12/20/cookie/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1137,7 +1137,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1182,7 +1182,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

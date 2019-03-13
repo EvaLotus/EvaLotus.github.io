@@ -113,13 +113,13 @@
 <meta property="og:site_name" content="Eva&#39;s Blog">
 <meta property="og:description" content="微信的地位越来越高，隔不了多久就有大佬问，为什么你们的手机端H5没有微信登录的入口，压力很大呀。 可能是安全问题或者其他考虑，微信在网页端只提供了扫码登录的入口，即使在手机端集成了微信登录，用户点开也会很奇怪，这个码只有PC端的样式，看起来很奇怪，而且怎么用我的手机微信来扫这个手机浏览器这个码呢？而且即使可以扫码成功也无法登录成功，所以看了大部分的公司都选择在手机浏览器隐藏了微信登录的入口。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://evacoder.com/assets/wap_wxlogin.png">
-<meta property="og:image" content="https://evacoder.com/assets/wap_wxlogin2.png">
-<meta property="og:updated_time" content="2019-01-09T01:58:28.807Z">
+<meta property="og:image" content="https://evacoder.com/images/wap_wxlogin.png">
+<meta property="og:image" content="https://evacoder.com/images/wap_wxlogin2.png">
+<meta property="og:updated_time" content="2019-03-13T11:58:52.345Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="「 微信开发 」手机浏览器唤起微信app登录的可行性">
 <meta name="twitter:description" content="微信的地位越来越高，隔不了多久就有大佬问，为什么你们的手机端H5没有微信登录的入口，压力很大呀。 可能是安全问题或者其他考虑，微信在网页端只提供了扫码登录的入口，即使在手机端集成了微信登录，用户点开也会很奇怪，这个码只有PC端的样式，看起来很奇怪，而且怎么用我的手机微信来扫这个手机浏览器这个码呢？而且即使可以扫码成功也无法登录成功，所以看了大部分的公司都选择在手机浏览器隐藏了微信登录的入口。">
-<meta name="twitter:image" content="https://evacoder.com/assets/wap_wxlogin.png">
+<meta name="twitter:image" content="https://evacoder.com/images/wap_wxlogin.png">
 
 
 
@@ -206,7 +206,7 @@
   
 
   <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
+    
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
@@ -473,15 +473,18 @@
         <p>微信的地位越来越高，隔不了多久就有大佬问，为什么你们的手机端H5没有微信登录的入口，压力很大呀。</p>
 <p>可能是安全问题或者其他考虑，微信在网页端只提供了扫码登录的入口，即使在手机端集成了微信登录，用户点开也会很奇怪，这个码只有PC端的样式，看起来很奇怪，而且怎么用我的手机微信来扫这个手机浏览器这个码呢？而且即使可以扫码成功也无法登录成功，所以看了大部分的公司都选择在手机浏览器隐藏了微信登录的入口。</p>
 <a id="more"></a>
-<p>但是细心的PM发现，京东居然有微信登录的入口，但是一般也只是在QQ浏览器或者系统浏览器中支持，可以直接打开手机上的微信app，但是在无痕模式或者其他的浏览器也无法成功。</p>
+<h4 id="jd唤起微信app登录"><a href="#jd唤起微信app登录" class="headerlink" title="jd唤起微信app登录"></a>jd唤起微信app登录</h4><p>但是细心的PM发现，京东居然有微信登录的入口，但是一般也只是在QQ浏览器或者系统浏览器中支持，可以直接打开手机上的微信app，但是在无痕模式或者其他的浏览器也无法成功。</p>
 <p>前端无隐私，让我们来F12来看看他们是怎么做到的。</p>
-<p><img src="/assets/wap_wxlogin.png" alt=""></p>
+<p><img src="/images/wap_wxlogin.png" alt=""></p>
 <p>可以发现，京东的微信登录并没有什么特别的，也是各种302跳转最后到了 <a href="https://open.weixin.qq.com/sns/explorer_broker?appid=wx2f5d8f9715c59d10&amp;redirect_uri=https%3A%2F%2Fplogin.m.jd.com%2Fcgi-bin%2Fml%2Fwxcallback%3Flsid%3Dq9ibchzrnbivxypneji7r4sxusp24wrv&amp;response_type=code&amp;scope=snsapi_userinfo&amp;state=smr1qm3p&amp;connect_redirect=1的" target="_blank" rel="noopener">https://open.weixin.qq.com/sns/explorer_broker?appid=wx2f5d8f9715c59d10&amp;redirect_uri=https%3A%2F%2Fplogin.m.jd.com%2Fcgi-bin%2Fml%2Fwxcallback%3Flsid%3Dq9ibchzrnbivxypneji7r4sxusp24wrv&amp;response_type=code&amp;scope=snsapi_userinfo&amp;state=smr1qm3p&amp;connect_redirect=1 </a>这个页面。最重要的是这个是微信的域名，所以我们可以知道，这个跳转是微信主动触发的。</p>
 <p>怪不得说京东是微信亲儿子嘛。让我们看看这个页面做了什么事。</p>
-<p><img src="/assets/wap_wxlogin2.png" alt="">前面都是一些环境的判断，而且这些都是微信方帮忙实现的。最重要的是<code>location.href = &#39;weixin://dl/business/?ticket=tb15388ef1a6e07db69a0d57a87345f93&#39;</code></p>
-<p>前端是可以实现打开微信app的，但是如何打开某个特定的页面就需要app端来支持了，而微信端为京东做了特殊的处理，可以做到直接打开微信的app中京东的微信授权页面。</p>
+<p><img src="/images/wap_wxlogin2.png" alt="">前面都是一些环境的判断，而且这些都是微信方帮忙实现的。最重要的是<code>location.href = &#39;weixin://dl/business/?ticket=tb15388ef1a6e07db69a0d57a87345f93&#39;</code></p>
+<p>前端是可以实现打开微信app的，但是如何打开微信中某个特定的页面就需要微信app来支持了，而微信为京东做了特殊的处理，可以做到直接打开微信的app中京东的微信授权页面。</p>
 <p>所以如果我们的业务也需要实现这个功能，就需要向微信申请了。</p>
-<p>另外一个更激进的就是QQ了，公告说是为了一些不安全因素，在18年年初完全下掉了wap端网页登录的方式，现在wap端的QQ登录都采用直接打开QQ app的方式来授权登录。在某些非系统浏览器中因为无法打开app就悲剧了。还是觉得有些激进了些。</p>
+<p>后来沟通发现微信是有开放的H5唤起微信app登录功能的。</p>
+<p>PC端需要使用web app的appid来进行扫码登录</p>
+<p>H5端（手机浏览器，微信的webview）需要申请一个公众号来完成这个功能，只支持safari，QQ浏览器和UC浏览器。</p>
+<p>另外一个更激进的就是QQ了，公告说是为了一些不安全因素，在18年年初完全下掉了wap端网页登录的方式，现在wap端的QQ登录都采用直接打开QQ app的方式来授权登录。在某些非系统浏览器中因为无法打开app就悲剧了。</p>
 
       
     </div>
@@ -526,8 +529,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/12/minimalism_product_design/" rel="next" title="「 产品 」极简小程序产品设计笔记">
-                <i class="fa fa-chevron-left"></i> 「 产品 」极简小程序产品设计笔记
+              <a href="/2018/09/28/wechat_dev_share/" rel="next" title="「 微信开发 」微信分享功能">
+                <i class="fa fa-chevron-left"></i> 「 微信开发 」微信分享功能
               </a>
             
           </div>
@@ -536,8 +539,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/10/13/JS事件循环机制1/" rel="prev" title="JS事件循环机制1">
-                JS事件循环机制1 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/10/12/minimalism_product_design/" rel="prev" title="「 产品 」极简小程序产品设计笔记">
+                「 产品 」极简小程序产品设计笔记 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -587,8 +590,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -605,7 +617,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -722,6 +734,22 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#jd唤起微信app登录"><span class="nav-number">1.</span> <span class="nav-text">jd唤起微信app登录</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       

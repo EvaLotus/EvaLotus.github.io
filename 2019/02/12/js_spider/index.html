@@ -116,7 +116,7 @@
 <meta property="og:image" content="https://evacoder.com/images/ctrip1.png">
 <meta property="og:image" content="https://evacoder.com/images/ctrip2.png">
 <meta property="og:image" content="https://evacoder.com/images/ctrip3.png">
-<meta property="og:updated_time" content="2019-02-14T09:31:23.187Z">
+<meta property="og:updated_time" content="2019-03-13T10:53:30.979Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="「 puppeteer 」前端如何爬虫">
 <meta name="twitter:description" content="本文又名十行代码帮你撩妹。 需求今天沙沙在群里向我们紧急求助，领导让她整理【携程江湾五角场地区的260家酒店的名称，价格，地址，网址，评分信息制成excel】。 PM（也是前php开发者）咕咕推荐了【八爪鱼】这个工具，不懂技术的小白也能抓取数据。 作为一个程序员，很惭愧的说自己其实没接触过爬虫，之前说的要学python也没学几天就放弃了，现学肯定来不及了，作为一个不懂python的前端，如何帮上沙">
@@ -207,7 +207,7 @@
   
 
   <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
+    
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
@@ -486,18 +486,20 @@
 <p>但是酒店数据是分页显示的，只好手动一页一页的点击运行来获取。<br>Tips：<br>1.这里用到了chrome devtool的snippet，可以保存在chrome里，直接右键run一下就可以运行。比直接粘在console里要灵活。<br>2.携程本身的页面有jQuery，所以我们可以直接使用jQuery。<br><img src="/images/ctrip2.png" alt=""></p>
 <h4 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h4><p>手动翻页也太low了吧，后来惊喜的发现居然是单页应用，点击下一页并没有刷新页面，我们可以用代码来帮我们直接点击。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> t = <span class="string">'名字,地址,网址,评分,价格\n'</span>;</span><br><span class="line">    <span class="keyword">let</span> timer = <span class="literal">null</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">getData</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">let</span> num = $(<span class="string">'.hotel_item'</span>).length;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; num; i++) &#123;</span><br><span class="line">        <span class="keyword">const</span> item = $(<span class="string">'.hotel_item:eq('</span> + i + <span class="string">')'</span>);</span><br><span class="line">        t += <span class="string">`<span class="subst">$&#123;item.find(<span class="string">'.hotel_name a'</span>).attr(<span class="string">'title'</span>)&#125;</span>,</span></span><br><span class="line"><span class="string">        <span class="subst">$&#123;item.find(<span class="string">'.hotel_item_htladdress'</span>).text().replace(<span class="regexp">/地图|街景/g</span>,<span class="string">''</span>)&#125;</span>,</span></span><br><span class="line"><span class="string">        <span class="subst">$&#123;item.find(<span class="string">'.hotel_name a'</span>).attr(<span class="string">'href'</span>).replace(<span class="regexp">/\?.*/g</span>, <span class="string">''</span>)&#125;</span>,</span></span><br><span class="line"><span class="string">        <span class="subst">$&#123;item.find(<span class="string">'.hotel_value'</span>).text()&#125;</span>,<span class="subst">$&#123;item.find(<span class="string">'.J_price_lowList'</span>).text()&#125;</span>\n`</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">let</span> $nextBtn = $(<span class="string">'.c_down'</span>);</span><br><span class="line">      <span class="keyword">if</span> ($nextBtn.length) &#123;</span><br><span class="line">        $nextBtn.click();</span><br><span class="line">        timer = setTimeout(getData, <span class="number">1000</span>);</span><br><span class="line">      <span class="comment">// 分页结束啦</span></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        clearTimeout(timer);</span><br><span class="line">        <span class="built_in">console</span>.log(t);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    getData();</span><br><span class="line">  &#125;)();</span><br></pre></td></tr></table></figure>
-<p>这样就可以自动翻译，完成时会把我们想要的数据直接console出来。</p>
+<p>这样就可以自动翻页，完成时会把我们想要的数据直接console出来。</p>
 <p>然后再找个转csv的工具就可以啦，时间紧张，先发给沙沙吧。</p>
 <h4 id="讨论"><a href="#讨论" class="headerlink" title="讨论"></a>讨论</h4><p>虽然这篇的技术知识很简单，可能算不上爬虫，但我们可以回过头来分析下这个例子中携程是如何做反爬的。<br>首页的数据太多太杂，点了第二页，查看了下</p>
 <p><img src="/images/ctrip3.png" alt=""><br>/AjaxHotelList.aspx才是真正的接口，我们需要的数据实际也不是json，而直接是html信息，这样坏人需要写很多的正则来获取，需要懂一些前端知识，而且作恶成本很高。</p>
 <p>这个接口足足有182kb的大小，性能优化和反爬需要有个平衡。</p>
 <p>所以这种数据量比较小的，没有时间要求的，还是从前端的角度来抓取数据会更靠谱一些。</p>
+<p>思考下首页为啥没有这个请求数据的接口呢？</p>
+<p>可能是考虑到首页SEO及渲染速度选择了服务端直出，所以有经验了我们就是应该直奔第二页，明白套路就能少走弯路。</p>
 <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>1.接口返回的并不是规则的json数据，并不好解析，我们可以使用前端的jquery直接获取需要dom属性。</p>
 <p>2.我们使用了chrome的<strong>Snippet</strong>功能，直接在页面中运行代码即可，还可以保存常用的util代码，比直接写在console中会优雅一些。</p>
 <p>3.观察到是单页应用，可以自己写代码来点击切换到下一页。</p>
 <p>4.json如何导出成excel呢？其实我们常用的一般都是csv文件，只要通过tab来分隔就可以了。</p>
 <p>5.读取本地json文件$.getJSON</p>
-<h4 id="思考-1"><a href="#思考-1" class="headerlink" title="思考"></a>思考</h4><p>虽然完成了，得到了技术小白沙沙的赞美，但是心里还是很虚。<br>主要问题有：<br>1.手动的可以全部自动化吗？<br>可以直接写入文件而不是copy console里的内容吗？<br>虽然传统的js是运行在浏览器中的，为了安全起见是不可以读写本地文件的，但是发现HTML5有新的API可以导出文件。但是这样还是勉强了些。</p>
+<h4 id="思考-1"><a href="#思考-1" class="headerlink" title="思考"></a>思考</h4><p>虽然完成了，得到了技术小白沙沙的赞美，但是心里还是很虚。<br>主要问题有：<br>1.手动的可以全部自动化吗？<br>可以直接写入csv文件而不是copy console里的内容吗？<br>虽然传统的js是运行在浏览器中的，为了安全起见是不可以读写本地文件的，但是发现HTML5有新的API可以导出文件。但是这样还是勉强了些。</p>
 <p>2.沙沙弱弱地说如果可以获取酒店的开业时间和房间数就好了。<br>嗷的，那还得点进去每个酒店的detail去查看，十行代码搞不定啦。<br>我知道可以使用webdriver，phantomJS等来模拟点击，具体的还有待研究。</p>
 <p>不用担心，下篇文章我们会鸟枪换炮！</p>
 <h4 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h4><p>只需要很少的代码量就可以达到我们的需求，js真的很强大呢！前端很好玩，能把前端用在生活中那就更美妙了，可以抢火车票啥的。</p>
@@ -635,7 +637,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
