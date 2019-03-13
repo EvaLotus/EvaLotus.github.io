@@ -103,7 +103,7 @@ const puppeteer = require('puppeteer');
 })();
 ```
 
-以上功能都可以直接按上一篇在chrome snippet中实现，但是如果需要自动获取detail信息，就需要puppet来帮我们操作了。
+以上功能都可以直接按上一篇在chrome snippet中实现，但是如果需要自动获取detail信息，就需要puppeteer来帮我们操作了。
 
 ```js
 // 开始获取detail
@@ -140,7 +140,7 @@ fs.writeFile('hotels.csv', hotels, function(err) {
 
 以上只是puppet的最基本常用的功能，还可以做很多诸如：自动化测试，前端性能测试，异常监控等。
 
-如果你在尝试过程中也对异步操作比较困惑，可以一起复习下async和await和promise，参见这篇。
+如果你在尝试过程中也对异步操作比较困惑，可以一起复习下async和await和promise，参见这篇（TODO async和await）。
 
 puppeteer和Selenium/WebDriver的主要区别：
 

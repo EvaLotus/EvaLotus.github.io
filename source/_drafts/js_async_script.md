@@ -5,21 +5,26 @@ tags: javascript
 ---
 JS异步加载和script标签属性的深层解析
 <!-- more -->
-```
+```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Document</title>
+  <meta charset="UTF-8">
+  <title>Document</title>
 </head>
+
 <body>
-<script src="https://www.evacoder.com/404.js"></script>
-<script>
-// console还是会执行，但是会先返回js 404之后才执行。
-// 浏览器确实是按script标签的顺序，依次加载执行的，所以经常说需要将script放在body的底部，防止阻塞页面。
-console.log(1);
-</script>
+  <script src="https://www.evacoder.com/404.js"></script>
+  <script>
+  // console还是会执行，但是会先返回js 404之后才执行。
+  // 浏览器确实是按script标签的顺序，依次加载执行的
+  // 所以经常说需要将script放在body的底部，防止阻塞页面。
+  console.log(1);
+
+  </script>
 </body>
+
 </html>
 ```
 
@@ -27,7 +32,7 @@ console.log(1);
 
 script加上defer或async属性之后，会先console，才返回404
 
-```
+```html
 <script src="https://www.evacoder.com/b.js" async defer="defer"></script>
 ```
 
@@ -53,7 +58,7 @@ IE4-不支持，兼容性不错，但是最好还是将defer script放在body底
 
 async的意思是应该立即下载脚本，但是不应妨碍页面其他的操作。注意是**下载**而不是**加载**。
 
-```
+```html
 <script src="https://www.evacoder.com/1.js" async></script>
 <script src="https://www.evacoder.com/2.js" async></script>
 ```
@@ -90,7 +95,7 @@ DOMContentLoaded：同步的js执行完毕
 
 JS sdk load完成之前，如何调用
 
-```
+```js
 load js
 
 loadSDK(function(){
@@ -113,7 +118,7 @@ async是html5的新属性，async 属性规定一旦脚本可用，则会异步�
 
 noscript 元素用来定义在脚本未被执行时的替代内容（文本）。
 
-```
+```html
 <noscript>Your browser does not support JavaScript!</noscript>
 ```
 

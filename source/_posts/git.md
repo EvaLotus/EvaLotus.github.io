@@ -6,28 +6,8 @@ tags: Tool
 ---
 最近全面整理下工作中遇到的git问题，了解了下git工作的原理。
 <!-- more -->
-### TODO概念解析
-
-工作区，暂存区，远端
-
-一些blob，tree，commit对象的内部概念
-
-.git文件夹下的内容
-
-git merge origin/other\_branch时有时会自动merge
-可以故意commit一个有冲突的再merge就可以显示merge的全部内容了
-
-WIP：在进行中，避免被merge
 
 参考书籍[http://iissnan.com/progit/](http://iissnan.com/progit/)
-
-#### HEAD
-
-可以看到`.git/HEAD`中内容
-
-当在master分支时，内容为`ref: refs/heads/master`
-
-当在master分支时，内容为`ref: refs/heads/master`
 
 ### 配置
 
@@ -35,32 +15,30 @@ WIP：在进行中，避免被merge
 # 列出所有config
 git config --list
 
+# 配置
 git config --global user.name 'Eva'
-
 git config --global user.email 'eva@163.com'
 
 # 换行符转为crlf
 git config --global core.autocrlf ture
 
-# 配置git last为显示上次提交信息，git last -p
+# 配置别名：git last为显示上次提交信息，git last -p
 git config --global alias.last 'log -1 HEAD'
 ```
 
 ### 生成私钥，添加在setting里
-
+有时候提交时一直要求输入密码，我们需要在git clone时选择ssh的方式，这样就免去了每次提交输密码
 ```bash
-# git clone时ssh的方式，这样就免去了每次提交输密码
-
 # 查看私钥
 cd ~/.ssh
 
 # 生成私钥
-ssh-keygen -t rsa -C "zhangchu@xiaomi.com"
+ssh-keygen -t rsa -C "eva@163.com"
 ```
 
 ### 新建repository
 
-```
+```bash
 cd d/workspace
 
 mkdir demo
@@ -75,7 +53,7 @@ git push -u origin/master
 
 ### commit
 
-```
+```bash
 # 查看修改新增了哪些文件
 git status
 
@@ -105,40 +83,45 @@ git rm
 git rm --cached # 从tracked变成untracked
 git rm -f # 必须是tracked的才能使用，直接删除文件
 
-//暂存
+# 暂存
 
 git stash
 
-git stash pop//恢复暂存
+# 恢复暂存
+git stash pop
 
-git status//查看哪些没提交的
+# 查看哪些没提交的
+git status
 
 git commit -m "my 这里是注释"
-
-git commit -am "这里是注释"//多个提交时用-a
+# 多个提交时用-a
+git commit -am "这里是注释"
 ```
 
 ### 回退
 
 ```
-git log//先查看log
+# 回退前都先查看log
+git log
 
 # reset
-git reset --hard HEAD~~几个~就是回退几个版本，此处是本地回退
-
-git reset –hard HEAD^ //回退到上个版本
-
-git reset -hard HEAD~100//回退到上100个版本
+# 几个~就是回退几个版本，此处是本地回退
+git reset --hard HEAD~~
+# 回退到上个版本
+git reset –hard HEAD^
+# 回退到上100个版本
+git reset -hard HEAD~100
 
 # revert
-
 git push -f origin master就是强制push到远端
 ```
 
 ### Branch
 
 ```
-git branch -a //查看所有分支（包括远端和本地）
+# 查看所有分支（包括远端和本地）
+git branch -a 
+
 # 查看本地分支
 git branch
 
@@ -153,6 +136,9 @@ git branch --no-merged
 
 # 新建分支，但是不切换到此分支
 git branch mybranch
+
+# 从当前分支新建并切换到此分支
+git checkout -b mybranch
 
 # 删除本地分支，可删除多个
 git branch -d mybranch1 mybranch2
@@ -174,7 +160,7 @@ git push origin --delete mybranch
 
 可以通过`git remote show origin`来查看，会列出所有分支状态
 
-```
+```bash
 branchA tracked
 refs/remotes/origin/deletedBranchA stale (use 'git remote prune' to remove)
 refs/remotes/origin/deletedBranchB stale (use 'git remote prune' to remove)
@@ -211,7 +197,7 @@ git stash apply stash@{0}
 
 ### checkout
 
-```
+```bash
 # 在本地新建一个分支test并切换到此分支
 git checkout -b test
 
@@ -227,23 +213,25 @@ git checkout -- .
 
 ### merge
 
-```
+```bash
 git checkout dev
 
-git merge origin/master //把master merge到 dev
+# 把master merge到 dev
+git merge origin/master 
 
-git push origin test //在远程仓库也新建一个分支test
+# 在远程仓库也新建一个分支test
+git push origin test
 
 # cherry-pick
 git cherry-pick commitId
 
 # 和rebase的区别是？rebase的commit history会更干净一点
-git rabase
+git rebase
 ```
 
 ### Reflog和log
 
-```
+```bash
 # 只列出commit的log
 git log
 
@@ -256,53 +244,37 @@ git blame file
 
 git的HEAD是当前活跃分支游标
 
-全局问题
-
-git log
-
-退出git log在英文状态下按Q
-
 使用小乌龟的log来查看历史
 
-```
-git fetch //fetch和pull的区别，fetch不会自动merge更安全点
-
-git log //在英文状态下按Q退出
-
+```bash
+# fetch和pull的区别，fetch不会自动merge更安全点
+git fetch
+# 在英文状态下按Q退出日志模式
+git log 
 git rm
 
-origin算是仓库名，可以命名为其他的
+# origin算是仓库名，可以命名为其他的
 
 git pull origin
 
+# git的origin指向的是本地的代码库托管在github的版本
 
-
-关于git remote对应的都是仓库
-
-git的origin指向的是本地的代码库托管在github的版本
-
+# 列出对应的都是仓库
 git remote -v
 
-git remote存在的远端分支 origin
-
-git remote add 就是说可以创建多个远程仓库
-
-git remote rm repositoryName删除远程仓库
-
-git remote rename eva origin 重命名远程仓库
-
-git remote add https://github.com/EvaLotus/test.git 在本地仓库添加一个远程仓库，并将master跟踪到远程分支
-
-
-
-git push origin mybranch:master把我的分支push到远端哪个分支上
-
+# git remote存在的远端分支 origin
+# 创建多个远端仓库
+git remote add
+# 删除远端仓库
+git remote rm repositoryName
+# 重命名远端仓库
+git remote rename eva origin 
+# 在本地仓库添加一个远程仓库，并将master跟踪到远程分支
+git remote add https://github.com/EvaLotus/test.git 
+# 把我的分支push到远端哪个分支上
+git push origin mybranch:master
 git push origin mybranch:staging
-```
 
-gitlab网站上发出merge request
-
-```
 # 带*的表示当前分支
 # 回退到merge前
 git reset --merge
@@ -313,6 +285,8 @@ git reset --merge
 #### gitlab中的权限管理
 
 只有owner在setting里可以邀请member，给member设置master的权限，否则是protected状态
+
+gitlab网站上发出merge request
 
 #### svn和git的区别
 
@@ -405,21 +379,14 @@ git pull = git fetch +git merge
 
 两者都是用来合并分支，细节处理上有些不一样
 
-\[rebase\]\([https://mp.weixin.qq.com/s?\_\_biz=MzAwNDYwNzU2MQ==∣=400938481&idx=1&sn=f4d92674ebf00c0a208936e6467c3da1&scene=21\#wechat\_redirect\](https://mp.weixin.qq.com/s?__biz=MzAwNDYwNzU2MQ==&mid=400938481&idx=1&sn=f4d92674ebf00c0a208936e6467c3da1&scene=21#wechat_redirect%29\)
-### git迁移
-
-```
-git remote set-url origin git@v9.git.n.xiaomi.com:infosec/midun_ui_web.git
-git remote set-url --push origin git@v9.git.n.xiaomi.com:infosec/midun_ui_web.git
-```
+[rebase]([https://mp.weixin.qq.com/s?\_\_biz=MzAwNDYwNzU2MQ==∣=400938481&idx=1&sn=f4d92674ebf00c0a208936e6467c3da1&scene=21\#wechat\_redirect\](https://mp.weixin.qq.com/s?__biz=MzAwNDYwNzU2MQ==&mid=400938481&idx=1&sn=f4d92674ebf00c0a208936e6467c3da1&scene=21#wechat_redirect%29)
 
 ### git hook自动部署
 
 ssh git@gitlab.com -T
 
-#### git迁移
-
-#!/bin/bash
+### git迁移
+```bash
 git checkout master
 git pull origin master --all
 
@@ -433,7 +400,25 @@ git remote set-url --push origin $new_repo
 git remote -v
 git push -u origin --all
 git push -u origin --tags
+```
 
-mind map
+### TODO概念解析
 
-![](/assets/git.png)
+工作区，暂存区，远端
+
+一些blob，tree，commit对象的内部概念
+
+.git文件夹下的内容
+
+git merge origin/other\_branch时有时会自动merge
+可以故意commit一个有冲突的再merge就可以显示merge的全部内容了
+
+WIP：在进行中，避免被merge
+
+### HEAD
+
+可以看到`.git/HEAD`中内容
+
+当在master分支时，内容为`ref: refs/heads/master`
+
+当在master分支时，内容为`ref: refs/heads/master`

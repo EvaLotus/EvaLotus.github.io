@@ -4,9 +4,9 @@ date: 2017-05-18 17:46:53
 tags: HTTP
 ---
 
-刚开始做小程序对接的时候，很多人一上来就问为啥这个接口请求不成功，完全都不知道自己看看HTTP的请求信息，因为`wx.request`没有设置`content-type`，默认的`content-type`是`application/json`。但是我们平常后端接受的一般都是`application/x-www-form-urlencoded`。有些人表面上开口闭口就vue，react，其实连最基本的http请求都没弄明白哦。
+刚开始做小程序对接的时候，很多人一上来就问为啥这个接口请求不成功，完全都不知道自己看看HTTP的请求信息，因为 `wx.request` 没有设置`content-type`，默认的 `content-type` 是 `application/json`。但是我们平常后端接受的一般都是 `application/x-www-form-urlencoded`。用惯了jQuery的$.ajax今天来说说请求的细节。
 <!-- more -->
-#### 1.Request Payload& FormData
+#### Request Payload& FormData
 
 1. Request Payload
 
@@ -22,7 +22,7 @@ view source：{ "foo" : "bar", "name" : "John" }
 ```
 
 content-type：application/json上传数据可以更多样，可以直接传递数组，对象
-{ "foo" : "bar", "name" : "John"，goods:\['fish','beef'\] }
+`{ "foo" : "bar", "name" : "John"，goods:['fish','beef'] }`
 
 **后台处理**
 
@@ -58,7 +58,7 @@ public ResponseEntity<?> createAccount(SysAccount account) {
 
 前端可以通过qs来将request payload转为form data上送
 
-```javascript
+```js
 import 'Qs';
 // axios默认将Content-type设为`application/json`
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -70,12 +70,12 @@ resolve(res);
 
 Qs.stringify和JSON.stringify的区别
 
-```
+```js
 Qs.stringify( {name:'hehe',age:10})=> name=hehe&age=10
 JSON.stringify( {name:'hehe',age:10})=>"{"a":"hehe","age":10}"
 ```
 
-#### 2.上传文件
+#### 上传文件
 
 需要在header中设置`{ 'Content-Type': 'multipart/form-data' }`
 
@@ -104,7 +104,7 @@ Content-Type: text/plain
 
 调用示例：
 
-```javascript
+```js
 const formData = new FormData();
 formData.append('file', file);
 formData.append('id', id);
@@ -119,11 +119,11 @@ headers: { 'Content-Type': 'multipart/form-data' },//需要设置Content-Type
 });
 ```
 
-#### 3.DELETE的使用
+#### DELETE的使用
 
 可以看到axios中传参config中可以使用data和params
 
-```javascript
+```js
 // `params` are the URL parameters to be sent with the request
 // Must be a plain object or a URLSearchParams object
 //
@@ -169,7 +169,7 @@ GET请求对应Query String Parameters，是没有对应的Content-type的
 
 在request body中传递是对应Request Payload或FormData
 
-#### 4.支持CSRF攻击
+#### 支持CSRF攻击
 
 ```
 // 设置CSRFToken
@@ -177,17 +177,15 @@ axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 ```
 
-#### 5.关于urlencode
+#### 关于urlencode
 
 前文提到FormData对应的Content-type为application/x-www-form-urlencoded以及GET请求对应的Query String Parameters，此类请求中上送参数都会被浏览器自动encode后上送
 
 但是需要注意的是有时候浏览器encode的并不是我们想要的，比如下面这个陈年老坑
 
-[https://mi.com?id=1+2+3](https://mi.com?id=1+2+3)
-实际后台收到的参数是id=1 2 3,上送时+变成了空格，所以需要前端encodeURIComponent\('1+2+3'\)=&gt;1%2B2%2B3再上送
-
-[https://mi.com?id=1](https://mi.com?id=1) 2 3
-实际上会encode成[https://mi.com?id=1 2 3，参数还是id=1](https://mi.com?id=1 2 3，参数还是id=1) 2 3
+https://mi.com?id=1+2+3
+实际后台收到的参数是id=1 2 3,上送时+变成了空格，所以需要前端`encodeURIComponent('1+2+3')=&gt;1%2B2%2B3`再上送
+实际上会encode成https://mi.com?id=1 2 3，参数还是id=1 2 3
 
 总之遇上+号时，前端最好encodeURIComponent后上送
 

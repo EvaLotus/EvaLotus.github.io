@@ -8,11 +8,11 @@ tags: javascript
 
 #### 原型和构造函数到底有什么关系？
 
-![](/assets/proto3.png)
+![](/images/proto3.png)
 
-构造函数有原型对象，Person.prototype，此对象中有属性constructor，指向了构造函数Person，构造函数又有原型...。
+构造函数有原型对象，Person.prototype，此对象中有属性constructor，指向了构造函数Person，构造函数又有原型...
 
-```
+```js
 Person.prototype.constructor===Person;//true
 Person.prototype.constructor.prototype.constructor.prototype===Person.prototype; // true 两者相依相存
 ```
@@ -33,7 +33,7 @@ Person.prototype.constructor.prototype.constructor.prototype===Person.prototype;
 
 就是new操作符实现了实例的`__proto__`指向类的原型。
 
-```javascript
+```js
 // __proto__是new出来的实例内部包含的一个指针，指向constructor.prototype。每个对象都有
 p.__proto__ === Person.prototype // true
 
@@ -50,7 +50,7 @@ Person.prototype.isPrototypeOf(p) // true isPrototypeOf 原型对象是构造函
 
 prototype是用来保存类的公共属性和方法的，其实也是个特殊的对象，可以理解为和实例是一个level的。但是他们之间有什么关系和区别呢
 
-```
+```js
 // 联系
 p.constructor === Person.prototype.constructor === Person; // true 两者具有相同的构造函数
 
@@ -66,13 +66,13 @@ Person.prototype.__proto__===Person.prototype; // flase 原型的原型引用不
 
 所以继承的写法就是
 
-```
+```js
 Person.prototype=new Parent();
 ```
 
 结合前面new的作用，可以明白此处实际上的最重要的作用就是
 
-```
+```js
 Person.prototype.__proto__=Parent.prototype;// 将原型引用指向父类的原型
 // Person.__proto__总是指向父类
 ```
@@ -84,7 +84,7 @@ Person.prototype.__proto__=Parent.prototype;// 将原型引用指向父类的原
 
 #### Object和Function的关系及特殊的原型对象
 
-```javascript
+```js
 var obj1= {x: 1};
 var obj2= new Object();
 obj1.__proto__ === Object.prototype // true 指向构造函数的原型

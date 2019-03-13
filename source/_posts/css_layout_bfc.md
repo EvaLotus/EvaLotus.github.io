@@ -173,7 +173,7 @@ IFC的inline-level box参与在IFC中，遵循IFC的规则。
 
 ##### 1.清浮动
 
-```
+```html
 <style>
 .parent{width: 200px;border: 1px solid #e8e8e8;}
 .child{float: left;width:100px;height: 100px;border: 1px solid #666;}
@@ -184,11 +184,11 @@ IFC的inline-level box参与在IFC中，遵循IFC的规则。
 </div>
 ```
 
-可以发现parent高度崩塌，根据**计算BFC的高度时，浮动元素也参与计算，**使parent成为BFC，加上`.parent{overflow:hidden}或float:not none;display:inline-block;position:absolute,fixed`都可清浮动
+可以发现parent高度崩塌，根据**计算BFC的高度时，浮动元素也参与计算，**使parent成为BFC，加上`.parent{overflow:hidden}`或`float:not none;display:inline-block;position:absolute,fixed`都可清浮动
 
 ##### 2.解决margin重叠
 
-```
+```html
 <style>
 .parent{width: 200px;border: 1px solid #e8e8e8;}
 .child{margin:100px;width:100px;height: 100px;border: 1px solid #666;}
@@ -203,7 +203,7 @@ IFC的inline-level box参与在IFC中，遵循IFC的规则。
 
 ##### 3.两栏自适应实现
 
-```
+```html
 <style>
 .content{width: 200px;border: 1px solid #e8e8e8;}
 .main{height:200px;background: #fcc;}
@@ -239,7 +239,7 @@ vertical-align对齐方式也多种多样：baseline，middle，top，bottom等�
 
 IFC的规则很复杂，所以经常遇到vertical-align根本不生效的情况，根本没有text-align那么好用。
 
-```
+```html
 <style>
 strong {
 margin: 20px;

@@ -43,9 +43,10 @@ setInterval(function () {
     }
 }, 500);
 ```
-主要思路是：一直500ms的间隔来监控是否出现内外宽高度差>160的情况，基本的场景都可以覆盖，除了将调试窗口从页面中拖出来的情况。虽然思路很简单，但是应该是测试工作在的。
+主要思路是：一直500ms的间隔来监控是否出现内外宽高度差>160的情况，基本的场景都可以覆盖，除了将调试窗口从页面中拖出来的情况。虽然思路很简单，但是人家的测试用例全呀！
 
-不得不说确实很有效，但我们可以升级下，将setInterval改为window.onresize，性能上应该会好很多
+不得不说确实很有效，但我们可以升级下，**将setInterval改为window.onresize**，性能上应该会好很多
+TODO补充代码
 
 3.特殊特征类
 ```js
@@ -65,6 +66,8 @@ if (window.console && window.console.log) {
   console.log("打开了控制台")
 }
 ```
-参考 https://stackoverflow.com/questions/7798748/find-out-whether-chrome-console-is-open
+参考 
+
+https://stackoverflow.com/questions/7798748/find-out-whether-chrome-console-is-open
 
 https://github.com/sindresorhus/devtools-detect

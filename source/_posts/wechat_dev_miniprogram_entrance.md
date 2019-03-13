@@ -26,5 +26,3 @@ tags: 微信开发
 [微信的web-view API](https://developers.weixin.qq.com/miniprogram/dev/component/web-view.html)
 
 [小程序内嵌网页的方法](https://www.jianshu.com/p/50657f9af5b4)
-
-这下可以不用担心啦。

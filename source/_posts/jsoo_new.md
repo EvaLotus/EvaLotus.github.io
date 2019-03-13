@@ -8,20 +8,21 @@ tags: javascript
 
 new运算符的作用是创建一个类的实例（类可以是我们自定义的对象类型Person，也可以是具有构造函数的内置对象（如Object，Array，Function））
 
-```
-function Person(age,name){
-	this.age = age;
-	this.name = name;
+```js
+function Person(age, name) {
+  this.age = age;
+  this.name = name;
 }
-var instance =new Person();
+var instance = new Person();
 
 var o1 = new Object();
+
 ```
 
 实际经历4个步骤
 
-```
-var instance=new Person();
+```js
+var instance = new Person();
 // 实际经历了如下四步：
 
 // 1.创建空对象
@@ -36,16 +37,17 @@ var p = Person.call(instance);
 // 4.判断Person的返回值类型
 // 值类型就不要了，还是返回instance
 // 如果是引用类型，替换掉instance返回引用类型
-if(typeof p =='object'){
- return p 
-}else{
- return instance;
+if (typeof p == 'object') {
+  return p
+} else {
+  return instance;
 }
+
 ```
 
 #### 如果把随便一个函数当作构造函数，用new来调用
 
-```
+```js
 // 返回值类型
 function say(name) {
   console.log(name);
@@ -69,7 +71,7 @@ p.__proto__ == CreatePerson.prototype // false;
 
 #### new的实现
 
-```
+```js
 function New(fn) {
 
   /*1*/
@@ -100,7 +102,7 @@ New(Person)(11, 'Eva');
 
 构造函数也是函数，可以直接调用，为了避免忘记通过new来调用构造函数，导致属性和方法添加在window对象上，污染全局变量，一般会在构造函数中检查当前作用域，这样即使不通过new来生成实例也可以得到正确的结果
 
-```
+```js
 function Person(age, name) {
   if (this instanceof Person) {
     this.age = age;

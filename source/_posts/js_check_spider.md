@@ -5,14 +5,14 @@ tags: puppeteer
 ---
 检测Headless Chrome/ webdriver/ selenium/ puppeteer
 
-这是一个攻防的过程，js是裸露在外的，在坏人手里的，我们只能想办法提高作恶的成本。
+爬虫检测是一个攻防的过程，js是裸露在外的，在坏人手里的，我们只能想办法提高作恶的成本。
 
 各处搜集整理信息了很久，后来发现 [这篇文章](https://intoli.com/blog/not-possible-to-block-chrome-headless/) 讲的非常清楚，本地化一下，加上一些自己的理解。
 
-各家都有设置的方法，本文主要从puppeteer来分析。
+phantom，webdriver，puppeteer等爬虫都有设置的方法，本文主要从puppeteer来分析。
 
 <!-- more -->
-1.navigator.userAgent
+#### 1.navigator.userAgent
 防：`/HeadlessChrome/.test(window.navigator.userAgent)`一般判断ua中有headless字样都没跑了，肯定是爬虫。
 攻：puppeteer可以设置ua，甚至直接设置device。
 
@@ -22,7 +22,7 @@ await page.setUserAgent(conf.ua);
 await page.emulate(conf.device);
 ```
 
-2.检测webdriver标志字段
+#### 2.检测webdriver标志字段
 
 防：检测window object中是否有任何`selenium/webdriver/$cdc_/$wdc_`等字样。
 
@@ -73,16 +73,16 @@ await page.evaluate(async () => {
 
 但是对于反爬方来说，一般在你进入页面的时候就已经开始检测是否是爬虫，立即停止服务了，在puppeteer中篡改已经晚了。
 
-这种时候可以通过代理工具，
+这种时候可以通过**代理工具**，fiddler，charles都可以完成js的注入。
 
 * 在检测爬虫的js前加上以上的篡改js。
 * 或者先在正常状态下分析下源码具体检测爬虫的代码，使用代理工具，去掉识别webdriver的js（或者直接返回不是爬虫）之后再继续爬，当然这很难。
 
-前面说了js是裸奔的，挺多代码混淆下，但是也是在坏人手里的，想怎么改怎么改，只能说提高坏人的成本。
+前面说了js是裸奔的，顶多代码混淆下，但是也是在坏人手里的，想怎么改怎么改，只能说提高坏人作恶的成本。
 
 防御方只能进行更大强度的代码混淆（其实也没啥用）。
 
-3.window.chrome
+#### 3.window.chrome
 
 防：`!window.chrome||!window.chrome.runtime`如果是自动化的话，window.chrome会是undefined
 

@@ -3,6 +3,7 @@ title: JS中的面向对象5-Object.create和new Object
 date: 2018-07-18 14:02:40
 tags: javascript
 ---
+```js
 var Person = function(age) {
     this.age=age;
     this.say=function(){console.log('hello');}
@@ -11,9 +12,9 @@ var p=new Person(11);
 var p1 = Object.create(p);
 ```
 
-![](/assets/proto1.png)
+![](/images/proto1.png)
 
-![](/assets/proto2.png)
+![](/images/proto2.png)
 
 从console中可以发现，p成了p1的原型对象，p中的属性和方法都成了p1的原型方法。
 
@@ -23,7 +24,7 @@ Object.create的作用就是传入一个对象，给创建的新对象提供`__p
 
 Object.create的实现方式
 
-```
+```js
 if (!Object.create) {
   Object.create = function(proto, propertiesObject) {
     if (typeof proto !== 'object' && typeof proto !== 'function') {

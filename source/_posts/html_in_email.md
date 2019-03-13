@@ -43,7 +43,7 @@ outlook客户端里：css统统不生效。
 3.图片是唯一可以引用的外部资源。其他的外部资源，比如样式表文件、字体文件、视频文件等，一概不能引用。
 
 遵循上面3条规则，代码越写φ\(≧ω≦\*\)♪越臃肿了，但是最可怕的是发现，自己根本不懂table！  
-![一个很复杂的表格](/source/images/complex_table.png)
+![一个很复杂的表格](/images/complex_table.png)
 
 ```html
   <table align="center" border="1" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
