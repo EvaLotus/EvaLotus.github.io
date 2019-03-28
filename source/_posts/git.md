@@ -7,9 +7,29 @@ tags: Tool
 最近全面整理下工作中遇到的git问题，了解了下git工作的原理。
 <!-- more -->
 
-参考书籍[http://iissnan.com/progit/](http://iissnan.com/progit/)
+#### 常用操作
 
-### 配置
+```bash
+# 查看增删改文件状态
+git status
+# 增删改进入暂存区
+git add .
+# 提交待push,staged area
+git commit -am 'comment'
+# 从staged area回到暂存区
+git reset HEAD . 
+git push
+```
+提示up-to-date是最新的
+
+#### 文件生命周期
+
+工作区（working tree，未add的，untracked）=&gt;暂存区（已add的，tracked,staged）=&gt;index（staging area）(commit未push的，staged)=&gt;远端仓库（repository）
+
+![](/images/git_file_life.png)
+
+HEAD，origin，remote这些概念后面再说
+#### 配置
 
 ```bash
 # 列出所有config
@@ -26,8 +46,10 @@ git config --global core.autocrlf ture
 git config --global alias.last 'log -1 HEAD'
 ```
 
-### 生成私钥，添加在setting里
+#### 生成私钥，添加在setting里
+
 有时候提交时一直要求输入密码，我们需要在git clone时选择ssh的方式，这样就免去了每次提交输密码
+
 ```bash
 # 查看私钥
 cd ~/.ssh
@@ -36,7 +58,7 @@ cd ~/.ssh
 ssh-keygen -t rsa -C "eva@163.com"
 ```
 
-### 新建repository
+#### 新建repository
 
 ```bash
 cd d/workspace
@@ -47,60 +69,69 @@ git init
 
 git remote add origin 'https://github.com/EvaLotus/EvaLotus.github.io'
 
-# 第一次需要-u
+# 第一次需要-u，用来set upstream
 git push -u origin/master
 ```
 
-### commit
+#### commit
+
+git command -h查看命令
 
 ```bash
-# 查看修改新增了哪些文件
+# 提交的主要有：新增，修改，删除
+
+# 查看新增，修改，删除了哪些文件
 git status
 
-# 提交之前查看下修改了啥，不会列出新增的文件
+# 查看具体新增，修改，删除
 git diff
-
 # 具体文件修改了啥
 git diff a.txt
 
-
-# 丢弃所有修改
+# 丢弃单文件修改，删除
+git checkout -- a.txt
+# 丢弃所有修改，删除
 git checkout -- .
 
-# 只是添加到暂存区下管理，被管理
+# 添加单文件修改到暂存区下管理
 git add file.txt
+# 新增，修改，删除都添加到暂存区
+git add .
 
-git add . //新增和修改的文件都会有，删除不会有，所有文件添加到暂存区
+# 强制add，gitignore里的也会添加
+git add -f
 
-git add -u //已经被添加的文件的修改
-
-git add -A //是上面两个功能的合集（git add --all的缩写）
-
-git add -f//强制add，把gitignore里的也会添加
-
-# 删除某文件
+# rm都是对暂存区的文件来说的，工作区的直接rm就可以了
+# rm必须是在远端有的文件
 git rm
-git rm --cached # 从tracked变成untracked
-git rm -f # 必须是tracked的才能使用，直接删除文件
+# 从暂存区中移除，从tracked变成untracked
+git rm --cached
+# 直接删除文件
+git rm -f
+# 没有添加到暂存区的，还在工作区的直接
+rm a.txt
+
+# 只要git add .过的，就已经在暂存区了，checkout -- .就不管用了。只能git reset HEAD 了
+
+# 将所有新增，修改，删除都从commit中返回
+git reset HEAD .
 
 # 暂存
-
 git stash
 
 # 恢复暂存
 git stash pop
 
-# 查看哪些没提交的
-git status
-
 git commit -m "my 这里是注释"
+# 上次漏提交了文件，可以使用amend命令来修改上次的提交，使log更好看
+git commit -amend
 # 多个提交时用-a
 git commit -am "这里是注释"
 ```
 
-### 回退
+#### 回退
 
-```
+```bash
 # 回退前都先查看log
 git log
 
@@ -114,13 +145,15 @@ git reset -hard HEAD~100
 
 # revert
 git push -f origin master就是强制push到远端
+
+# log和reflog的区别
 ```
 
-### Branch
+#### Branch
 
-```
+```bash
 # 查看所有分支（包括远端和本地）
-git branch -a 
+git branch -a
 
 # 查看本地分支
 git branch
@@ -170,15 +203,15 @@ refs/remotes/origin/deletedBranchB stale (use 'git remote prune' to remove)
 
 后面有提示
 
-```
+```bash
 git remote prune origin
 # 或
 git fetch -p
 ```
 
-### Stash
+#### Stash
 
-```
+```bash
 # 暂存
 git stash
 
@@ -195,7 +228,7 @@ git stash pop stash@{0}
 git stash apply stash@{0}
 ```
 
-### checkout
+#### checkout
 
 ```bash
 # 在本地新建一个分支test并切换到此分支
@@ -204,20 +237,20 @@ git checkout -b test
 # 切换已有的远端分支或本地分支
 git checkout test
 
-# 放弃工作区修改的某文件
+# 放弃工作区修改，删除的某文件
 git checkout -- a.js
 
-# 放弃所有工作区文件的修改，未commit的，不影响未add的
+# 放弃所有工作区文件的删除，修改（不影响新增）
 git checkout -- .
 ```
 
-### merge
+#### merge
 
 ```bash
 git checkout dev
 
 # 把master merge到 dev
-git merge origin/master 
+git merge origin/master
 
 # 在远程仓库也新建一个分支test
 git push origin test
@@ -229,7 +262,7 @@ git cherry-pick commitId
 git rebase
 ```
 
-### Reflog和log
+#### Reflog和log
 
 ```bash
 # 只列出commit的log
@@ -238,7 +271,7 @@ git log
 # 列出所有操作，包括pull，checkout
 git reflog
 
-# 查看是谁修改的
+# 查看每一行最后是谁修改的
 git blame file
 ```
 
@@ -250,7 +283,7 @@ git的HEAD是当前活跃分支游标
 # fetch和pull的区别，fetch不会自动merge更安全点
 git fetch
 # 在英文状态下按Q退出日志模式
-git log 
+git log
 git rm
 
 # origin算是仓库名，可以命名为其他的
@@ -268,9 +301,9 @@ git remote add
 # 删除远端仓库
 git remote rm repositoryName
 # 重命名远端仓库
-git remote rename eva origin 
+git remote rename eva origin
 # 在本地仓库添加一个远程仓库，并将master跟踪到远程分支
-git remote add https://github.com/EvaLotus/test.git 
+git remote add https://github.com/EvaLotus/test.git
 # 把我的分支push到远端哪个分支上
 git push origin mybranch:master
 git push origin mybranch:staging
@@ -294,7 +327,7 @@ gitlab网站上发出merge request
 
 * Git是分布式版本控制系统，那么它就没有中央服务器，每个人的电脑就是一个完整的版本库，这样，工作的时候就不需要联网了，因为版本都是在自己的电脑上。既然每个人的电脑都有一个完整的版本库，那多个人如何协作呢？比如说自己在电脑上改了文件A，其他人也在电脑上改了文件A，这时，你们两之间只需把各自的修改推送给对方，就可以互相看到对方的修改了。
 
-### 基于 Git Flow 的开发流程
+#### 基于 Git Flow 的开发流程
 
 #### Git Flow 分支模型
 
@@ -379,13 +412,14 @@ git pull = git fetch +git merge
 
 两者都是用来合并分支，细节处理上有些不一样
 
-[rebase]([https://mp.weixin.qq.com/s?\_\_biz=MzAwNDYwNzU2MQ==∣=400938481&idx=1&sn=f4d92674ebf00c0a208936e6467c3da1&scene=21\#wechat\_redirect\](https://mp.weixin.qq.com/s?__biz=MzAwNDYwNzU2MQ==&mid=400938481&idx=1&sn=f4d92674ebf00c0a208936e6467c3da1&scene=21#wechat_redirect%29)
+\[rebase\]\([https://mp.weixin.qq.com/s?\_\_biz=MzAwNDYwNzU2MQ==∣=400938481&idx=1&sn=f4d92674ebf00c0a208936e6467c3da1&scene=21\#wechat\_redirect\](https://mp.weixin.qq.com/s?__biz=MzAwNDYwNzU2MQ==&mid=400938481&idx=1&sn=f4d92674ebf00c0a208936e6467c3da1&scene=21#wechat_redirect%29)
 
-### git hook自动部署
+#### git hook自动部署
 
 ssh git@gitlab.com -T
 
-### git迁移
+#### git迁移
+
 ```bash
 git checkout master
 git pull origin master --all
@@ -402,9 +436,7 @@ git push -u origin --all
 git push -u origin --tags
 ```
 
-### TODO概念解析
-
-工作区，暂存区，远端
+#### TODO概念解析
 
 一些blob，tree，commit对象的内部概念
 
@@ -415,7 +447,11 @@ git merge origin/other\_branch时有时会自动merge
 
 WIP：在进行中，避免被merge
 
-### HEAD
+git rebase
+
+git cherry-pick
+
+#### HEAD
 
 可以看到`.git/HEAD`中内容
 
