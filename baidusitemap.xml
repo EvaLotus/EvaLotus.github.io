@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://evacoder.com/2019/02/20/static_deploy/</loc>
+    <lastmod>2019-03-29T10:34:50.041Z</lastmod>
+  </url>  <url>
+    <loc>https://evacoder.com/2019/02/19/sentry/</loc>
+    <lastmod>2019-03-29T10:10:53.534Z</lastmod>
+  </url>  <url>
     <loc>https://evacoder.com/2018/11/30/npm/</loc>
     <lastmod>2019-03-29T03:29:27.495Z</lastmod>
   </url>  <url>

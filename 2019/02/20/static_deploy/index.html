@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next gemini" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="UA-131198272-2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=6.6.0">
+
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","width":300,"display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="引子接手八年没重构的老项目，每个字符都透露着远古时期历史的气息，之前的你可能不懂那些性能优化上的思考，看了这种古老的项目，你马上就能get到现代文明之光的美好。 重写不是没想过的，一万次深呼吸准备大干一场，一万次管住了自己爪爪。 你还年轻，谁知道哪个页面是需要用的，哪里会藏着深坑。 加一些打点统计，熟悉代码好几年，终于可以开始重构了，但是当然不能操之过急，一下推倒重来，我们选择从新增页面开始，再慢">
+<meta name="keywords" content="前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「 基础设施 」现代化前端工程发布">
+<meta property="og:url" content="https://evacoder.com/2019/02/20/static_deploy/index.html">
+<meta property="og:site_name" content="Eva&#39;s Blog">
+<meta property="og:description" content="引子接手八年没重构的老项目，每个字符都透露着远古时期历史的气息，之前的你可能不懂那些性能优化上的思考，看了这种古老的项目，你马上就能get到现代文明之光的美好。 重写不是没想过的，一万次深呼吸准备大干一场，一万次管住了自己爪爪。 你还年轻，谁知道哪个页面是需要用的，哪里会藏着深坑。 加一些打点统计，熟悉代码好几年，终于可以开始重构了，但是当然不能操之过急，一下推倒重来，我们选择从新增页面开始，再慢">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-03-29T10:34:50.041Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="「 基础设施 」现代化前端工程发布">
+<meta name="twitter:description" content="引子接手八年没重构的老项目，每个字符都透露着远古时期历史的气息，之前的你可能不懂那些性能优化上的思考，看了这种古老的项目，你马上就能get到现代文明之光的美好。 重写不是没想过的，一万次深呼吸准备大干一场，一万次管住了自己爪爪。 你还年轻，谁知道哪个页面是需要用的，哪里会藏着深坑。 加一些打点统计，熟悉代码好几年，终于可以开始重构了，但是当然不能操之过急，一下推倒重来，我们选择从新增页面开始，再慢">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Eva's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://evacoder.com/2019/02/20/static_deploy/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>「 基础设施 」现代化前端工程发布 | Eva's Blog</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131198272-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-131198272-1');
+</script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ca3d224de40fbf734d1e623cf68e0fb4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Eva's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">进一寸有一寸的欢喜</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-movies">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/movies" rel="section"><i class="menu-item-icon fa fa-fw fa-film"></i> <br>Movies</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://evacoder.com/2019/02/20/static_deploy/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Eva">
+      <meta itemprop="description" content="Focus on Front-end Develop">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eva's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">「 基础设施 」现代化前端工程发布
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-20 19:37:12" itemprop="dateCreated datePublished" datetime="2019-02-20T19:37:12+08:00">2019-02-20</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/20/static_deploy/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/02/20/static_deploy/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h4><p>接手八年没重构的老项目，每个字符都透露着远古时期历史的气息，之前的你可能不懂那些性能优化上的思考，看了这种古老的项目，你马上就能get到现代文明之光的美好。</p>
+<p>重写不是没想过的，一万次深呼吸准备大干一场，一万次管住了自己爪爪。</p>
+<p>你还年轻，谁知道哪个页面是需要用的，哪里会藏着深坑。</p>
+<p>加一些打点统计，熟悉代码好几年，终于可以开始重构了，但是当然不能操之过急，一下推倒重来，我们选择从新增页面开始，再慢慢将老的部分迁移到新的现代化的开发模式。</p>
+<p>嗯，新项目开始啦。我们简单的选择vue+webpack+babel，完全<strong>前后端分离</strong>的开发模式，代码层面不深入展开来说，今天只讲前端静态发布。</p>
+<a id="more"></a>
+<p>vue-cli生成新项目，npm run buid得到dist目录。index.html（下文以入口文件相称），还有css，js等（下文以静态资源相称），前端说来说去就是HTML，js，css三剑客，让我们开始部署吧。</p>
+<h4 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h4><p>部署有啥好说的，全丢到静态服务器上，用户可以访问到就可以了呗。</p>
+<p>各种404，路径没配置好，改下vue.config.js的publicPath。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  publicPath: process.env.NODE_ENV === <span class="string">'production'</span> ? <span class="string">'//static.evacoder.com/userCenter/'</span> : <span class="string">''</span>,</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    disableHostCheck: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">// 所有匹配不到的请求都映射到此域名下</span></span><br><span class="line">    <span class="comment">// 1.配置host 127.0.0.1到 evacoder.com</span></span><br><span class="line">    <span class="comment">// 再将localhost:8080 nginx代理到 127.0.0.1:80 就可以绕过登录态了</span></span><br><span class="line">    proxy: <span class="string">'https://evacoder.com'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>ok~再部署一把。</p>
+<p>哦？可是我们静态服务器的域名是static.evacoder.com。</p>
+<blockquote>
+<p>Access to XMLHttpRequest at ‘<a href="https://evacoder.com/getData">https://evacoder.com/getData</a>‘ from origin ‘<a href="https://static.evacoder.com" target="_blank" rel="noopener">https://static.evacoder.com</a>‘ has been blocked by CORS policy: No ‘Access-Control-Allow-Origin’ header is present on the requested resource.</p>
+</blockquote>
+<p>又见到了我们的老朋友<strong>跨域</strong>，毕竟你不是native开发，不用管跨域的问题。</p>
+<h4 id="部署路径"><a href="#部署路径" class="headerlink" title="部署路径"></a>部署路径</h4><p>妥协吧，把dist文件夹直接丢到server端项目里吧，或者静态资源上cdn，至少把入口文件丢在人家的地盘下。</p>
+<p>将入口文件放在server端的项目主要有下面这些考虑：</p>
+<ul>
+<li>跨域</li>
+</ul>
+<p>静态项目发布之后一般都需要另一个域名来访问，比如static.evacoder.com。用户通过static.evacoder.com来访问的话会很丑陋很奇怪。</p>
+<p>更重要的是api接口在evacoder.com下会有跨域的问题。所以一般index.html放在server端的项目下就不会跨域了。</p>
+<p>但是实际上可以通过nginx的配置来解决这个问题，通过proxy_pass<strong>反向代理</strong>一下，将static.evacoder.com/center/index反向代理到evacoder.com下就不会跨域了，可以解决这个问题。</p>
+<p>nginx可以解决很多问题，感兴趣查看这篇（TODO，nginx加成，提升前端开发效率）。</p>
+<ul>
+<li>上线先后</li>
+</ul>
+<p>是有可能存在这样的需求，【修改某个api参数sex从0，1，2改为male，female，unknown】。</p>
+<p>如果前后端代码放在一起的话，开发完这个功能一起上线即可。</p>
+<p>（一起上线的意思是：因为代码放在一起，后端是一台一台机器的上线，比如有5台机器，上线的过程中上到第2台机器的时候，第2台机器就会被摘掉，用户只能访问到剩下4台，第2台机器自己就在后面悄咪咪的部署，部署完成了之后又回到用户可访问的状态，不会出现FE上完了，api没上完的情况）</p>
+<p>但是如果动静分离部署的话，就会存在谁先上线的问题。</p>
+<p>如果server先上线，FE还没修改，参数不匹配，会400错误。</p>
+<p>如果FE先上线，server不能接受新改的参数。</p>
+<p>一个功能需要前后端协同开发，功能上有依赖，如果不能一起发布的话，总是会出现用户暂时访问有问题的情况。</p>
+<p>正常情况下我们不能放弃任何一丝流量（当然也是为了自己，免得为了降低影响眼圈黑黑半夜上线）</p>
+<p>一般情况下只能server端做api参数兼容了，觉得冗余的话之后再去掉兼容的代码。</p>
+<p>（其实倒也不用想这个问题，前后端分离的好处之一就是：后端提供的接口也可以给提供给native客户端使用，他们的代码一发出去就永远在用户手中，总是会有用户没有更新版本，后端的兼容一定必须存在）。</p>
+<ul>
+<li>回滚先后</li>
+</ul>
+<p>同理，分离部署还涉及到分离回滚。反正如果有bug，谁先回滚谁后回滚还需要考虑吗？</p>
+<p>还是刚刚那个例子，将【修改某个api参数sex从0，1，2改为male，female，unknown】的功能回滚。</p>
+<p>希望后端上次的api兼容没有删掉，就可以让前端先回滚。如果删掉了，只能开发之后再回滚了。</p>
+<p>为了避免这种上线回滚先后的问题，我本来是希望能把前端打包的入口文件放在服务端来拒绝任何一点流量损失，但是我们经常会遇到前端只修改一个js，css甚至只是一行文案而已，都需要协同后端编译打包整体上线。</p>
+<p>本来是希望如果是简单的修改，就直接把前端入口文件index.html scp到线上机器，如果是前后端有依赖性的修改，则可以同时部署。</p>
+<p>但是上线有规范，操作不安全，没能达成希望，再考虑到下面分离部署的优点：</p>
+<p>1.前端把握主动权，分离部署不需要求后端同学帮忙部署了，充满了前端自豪感嘻嘻。</p>
+<p>2.保持服务稳定性，前端改一行文案都需要经过后端100台机器重新上线实在太不安全了。</p>
+<p>3.上线快，前端经常会被催着改行文案赶紧上线，静态部署分分钟就可以完成，而后端上线却需要很多台机器需要很长时间。</p>
+<p>4.权责分明，谁的问题谁负责。</p>
+<p>商量一下，后端同学回想起帮我们上线个文案要点100台机器的痛苦往事，肯定还是会选择动静分离部署，接口兼容这种比较少见的情况之后再说吧。我们还是选择了眼前的利益，<strong>先不过度设计</strong>，分开部署。</p>
+<p>一般的需求，后端先上线接口，前端再直接发布。</p>
+<h4 id="服务端渲染首屏直出"><a href="#服务端渲染首屏直出" class="headerlink" title="服务端渲染首屏直出"></a>服务端渲染首屏直出</h4><p>是否有必要SSR</p>
+<ul>
+<li>直出：数据填充好再返回</li>
+</ul>
+<p>对于不需要数据填充的呢？</p>
+<p>传统的后端是数据服务端</p>
+<p>中间层服务端去数据服务端请求数据，然后渲染完整的页面</p>
+<p>分离是分工，让每个人做自己专业的工作，发挥最大的作用，而不是为了分离而分离。</p>
+<p>这里说的首屏渲染速度并不是说页面加载的速度</p>
+<p>服务器渲染HTML，是因为能够提高用户第一次访问网站的感知性能，第一个HTTP请求就能够返回可以<strong>渲染完</strong>的HTML，用不着浏览器端多一个AJAX请求去获取数据再渲染，这样用户就会感觉到这网站性能挺快。</p>
+<p>这里重点在于展示的<strong>数据是ajax请求返回还是后端直接填充</strong>。</p>
+<p>现在的服务端渲染和以往的不一样的可能是，之前是脏乱的服务端填充模版引擎，现在依然是返回json数据前端来解析，分工依然很明确，只是从ajax转成了后端直接返回数据。</p>
+<p>不该SPA的也强行SPA，好在我们有code split &amp; aync loading</p>
+<p>SEO 本质是一个服务器向另一个服务器发起请求，解析请求内容。但一般来说搜索引擎是不回去执行请求到的js的。也就是说，如果一个单页应用，html在服务器端还没有渲染部分数据数据，在浏览器才渲染出数据，而搜索引擎请求到的html是没有渲染数据的。 这样就很不利于内容被搜索引擎搜索到。 所以服务端渲染就是尽量在服务器发送到浏览器前 页面上就是有数据的。</p>
+<h4 id="部署系统做了哪些事"><a href="#部署系统做了哪些事" class="headerlink" title="部署系统做了哪些事"></a>部署系统做了哪些事</h4><p>我司的部署系统封装了puppet等开源项目，在git项目中加上deploy文件之后，部署系统就可以从git上拉代码，（其实就是创建了用户，git clone下来），编译的时候选择git版本进行编译。</p>
+<p>deploy文件写明了copy git项目到哪个机器上。</p>
+<p>发布机提供了docker image，来提供稳定性和编译能力，可以选择安装node,npm,nginx等。</p>
+<p>1.git项目添加部署文件（deploy文件）</p>
+<p>2.创建部署任务，方便权限控制和追溯。</p>
+<p>基本上可以理解为在线上机器上执行以下操作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git@git.n.evacoder.com:demo/eva-blog.git</span><br><span class="line"><span class="built_in">cd</span> eva-blog</span><br><span class="line"><span class="comment"># 更新代码</span></span><br><span class="line">git pull</span><br><span class="line"><span class="comment"># 部署不同的分支及版本</span></span><br><span class="line">git checkout v2</span><br><span class="line">npm run build</span><br><span class="line"><span class="comment"># 将内容copy到线上路径</span></span><br><span class="line">mv dist ../online/dist</span><br></pre></td></tr></table></figure>
+<h4 id="缓存设置"><a href="#缓存设置" class="headerlink" title="缓存设置"></a>缓存设置</h4><p>静态发布很重要的一个考量是缓存设置。</p>
+<p>静态资源因为webpack生成了版本号，可以全部都设超长缓存时间。</p>
+<p>我们不仅仅可以使用webpack的基础功能，分离第三方资源成vendor.js，对于稳定的功能，也可以在webpack中抽离出来，分成经常改的文件和不经常修改的，保证最优的缓存策略。</p>
+<p>但是入口文件呢？静态资源更新的再好，入口文件有缓存，新版总是触达不到用户。</p>
+<p>html相比于后端return的jsp会有缓存？</p>
+<p>no，其实后端return的jsp也是设置之后才禁用了缓存，对于html，我们可以加上下面的meta信息：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=<span class="string">"pragma"</span> content=<span class="string">"no-cache"</span>&gt;</span><br><span class="line">&lt;meta http-equiv=<span class="string">"Cache-Control"</span> content=<span class="string">"no-cache, must-revalidate"</span>&gt;</span><br><span class="line">&lt;meta http-equiv=<span class="string">"expires"</span> content=<span class="string">"0"</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>经常听说前后端分离不利于SEO，</p>
+<p>no，没有差别，甚至因为分离之后，访问的url更清爽越短越利于seo。</p>
+<h4 id="覆盖or非覆盖式发布"><a href="#覆盖or非覆盖式发布" class="headerlink" title="覆盖or非覆盖式发布"></a>覆盖or非覆盖式发布</h4><p>一般情况下我们都是覆盖式发布，比如发布 <a href="http://evacode.com/static/a.js?v=1.0" target="_blank" rel="noopener">http://evacode.com/static/a.js?v=1.0</a> ，每次都覆盖原本的a.js，为了避免缓存，每次上线修改版本v来避免缓存。</p>
+<p>如果使用webpack，前端修改之后npm run build，如果相关文件有修改，webpack生成的hash值会改变，这样就有最优的缓存策略。</p>
+<p>每次生成的静态资源的路径不一样，那每个版本（至少上一个版本的js，css）需要保留下来吗？</p>
+<p>当然是为了回滚考虑，如果新build出来的有bug怎么办？</p>
+<p>如果使用非覆盖式发布，所有build出来的静态资源都放着，时间久了会很耗费资源，唯一的好处是方便回滚。</p>
+<p>如果使用覆盖式发布，回滚是不可能回滚了，因为原来的版本已经被删掉了，但是反正有git来版本管理，可以选择1.轻松revert之后再部署，2.徒手改bug之后重新build后部署。</p>
+<p>我司的部署系统是与git关联，可以直接选择对应的git版本，都不需要手动再次revert代码git提交，更没有必要选择非覆盖式发布了。</p>
+<p>前人使用的是和git commit号一致的版本号来非覆盖式发布，实际只需要210kb，但是存储以前的版本7年了，现在占用的磁盘资源有4.5g了，非常的浪费，而且年代久远也不敢贸然删除，非覆盖式其实意义并不大。</p>
+<p>覆盖式发布并没有太大的影响，而且更清爽。</p>
+<p>反正是静态资源不需编译，更有机智的小伙伴选择git-hook来发布，merge到master的时候自动覆盖服务器上的文件，瞬间完成部署，回滚时也是git reset下，但考虑到权限控制，查问题追溯方便，专门的部署系统存在肯定有其意义。（虽然仔细想想，仅就静态资源来说，gitlab也能提供这些功能，就是需要绕绕弯，专门的部署系统是为了提供所有语言代码的部署支持的）。</p>
+<h4 id="需要使用专门的发布机来build发布吗"><a href="#需要使用专门的发布机来build发布吗" class="headerlink" title="需要使用专门的发布机来build发布吗"></a>需要使用专门的发布机来build发布吗</h4><p>还有一个问题是是否有必要去本地化操作，使用发布机来进行npm run build。</p>
+<p>我个人觉得package.json已经写明了依赖的版本，所以可能意义不太大。</p>
+<p>虽然package.json保证了环境的一致性，但是还是会出现打包出来不一致的问题么？</p>
+<h4 id="cdn的使用"><a href="#cdn的使用" class="headerlink" title="cdn的使用"></a>cdn的使用</h4><p>如果使用cdn，非覆盖式发布更浪费资源，我们需要将js，css等放到cdn上，修改入口文件的路径。</p>
+<p>经常看了很多前端性能优化的方案，回答面试题时头头是道，动不动就上cdn，动静分域名部署等等，实则是纸上谈兵，道理是那个道理，但这次请教sre同学也有了新的思考，落地时真的应该和sre同学探讨一下。</p>
+<p>需要除前端之外的同学参与的性能优化方案，都需要评估。</p>
+<p>cdn能够提高访问速度，但是有没有容灾方案，收效与风险孰轻孰重。cdn回源带来的抖动也是很严重的，需要评估回滚的方案，不要蹭别人的用，因为别人的流量打满了最后也会导致我们的服务挂掉，分摊成本也要考虑。</p>
+<p>http2，ipv6他们都比我们专业，了解背后的故事。</p>
+<h4 id="路由的配置"><a href="#路由的配置" class="headerlink" title="路由的配置"></a>路由的配置</h4><p>需要配置nginx的还有：route使用history需要后端配置，使用hash会比较奇怪。</p>
+<p>参照<a href="https://router.vuejs.org/zh/guide/essentials/history-mode.html" target="_blank" rel="noopener">vue 文档</a>来处理。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat_qrcode.jpg" alt="Eva wechat" style="width: 200px; max-width: 100%;">
+    <div>关注Eva的意如小馆，更方便的与我交流</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/19/sentry/" rel="next" title="「 基础设施 」前端异常监控系统">
+                <i class="fa fa-chevron-left"></i> 「 基础设施 」前端异常监控系统
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Eva">
+            
+              <p class="site-author-name" itemprop="name">Eva</p>
+              <p class="site-description motion-element" itemprop="description">Focus on Front-end Develop</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">36</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/EvaLotus" title="GitHub &rarr; https://github.com/EvaLotus" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:evacoder@126.com" title="E-Mail &rarr; mailto:evacoder@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Friends
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://zhenchao.org" title="https://zhenchao.org" rel="noopener" target="_blank">指间生活</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#引子"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#部署"><span class="nav-number">2.</span> <span class="nav-text">部署</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#部署路径"><span class="nav-number">3.</span> <span class="nav-text">部署路径</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#服务端渲染首屏直出"><span class="nav-number">4.</span> <span class="nav-text">服务端渲染首屏直出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#部署系统做了哪些事"><span class="nav-number">5.</span> <span class="nav-text">部署系统做了哪些事</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缓存设置"><span class="nav-number">6.</span> <span class="nav-text">缓存设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#覆盖or非覆盖式发布"><span class="nav-number">7.</span> <span class="nav-text">覆盖or非覆盖式发布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#需要使用专门的发布机来build发布吗"><span class="nav-number">8.</span> <span class="nav-text">需要使用专门的发布机来build发布吗</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cdn的使用"><span class="nav-number">9.</span> <span class="nav-text">cdn的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#路由的配置"><span class="nav-number">10.</span> <span class="nav-text">路由的配置</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-Travel"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Eva</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+    
+  
+  <script src="//cdn.jsdelivr.net/npm/valine@1.3.3/dist/Valine.min.js"></script>
+
+  <script>
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '7Ck7B9LoU0iNuR7sVgC3Sscr-gzGzoHsz',
+        appKey: 'GURQk3swSriTo8QzVtgoUDnk',
+        placeholder: '有什么想对Eva说的呢？',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'5' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
