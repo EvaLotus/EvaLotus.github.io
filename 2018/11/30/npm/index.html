@@ -105,18 +105,18 @@
 
 
 
-  <meta name="description" content="函数的debounce和throttle">
-<meta name="keywords" content="javascript">
+  <meta name="description" content="npm笔记，纯粹记录下，哪天电脑坏了快速重装一遍不走弯路。">
+<meta name="keywords" content="tool">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS事件循环机制2-throttle和debounce">
-<meta property="og:url" content="https://evacoder.com/2018/10/15/JS事件循环机制2-throttle和debounce/index.html">
+<meta property="og:title" content="npm常用命令一网打尽">
+<meta property="og:url" content="https://evacoder.com/2018/11/30/npm/index.html">
 <meta property="og:site_name" content="Eva&#39;s Blog">
-<meta property="og:description" content="函数的debounce和throttle">
+<meta property="og:description" content="npm笔记，纯粹记录下，哪天电脑坏了快速重装一遍不走弯路。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-01-07T12:48:56.502Z">
+<meta property="og:updated_time" content="2019-03-29T03:29:27.495Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JS事件循环机制2-throttle和debounce">
-<meta name="twitter:description" content="函数的debounce和throttle">
+<meta name="twitter:title" content="npm常用命令一网打尽">
+<meta name="twitter:description" content="npm笔记，纯粹记录下，哪天电脑坏了快速重装一遍不走弯路。">
 
 
 
@@ -125,7 +125,7 @@
 
 
 
-  <link rel="canonical" href="https://evacoder.com/2018/10/15/JS事件循环机制2-throttle和debounce/">
+  <link rel="canonical" href="https://evacoder.com/2018/11/30/npm/">
 
 
 
@@ -135,7 +135,7 @@
   };
 </script>
 
-  <title>JS事件循环机制2-throttle和debounce | Eva's Blog</title>
+  <title>npm常用命令一网打尽 | Eva's Blog</title>
   
 
 
@@ -203,7 +203,7 @@
   
 
   <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
+    
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
@@ -373,11 +373,11 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://evacoder.com/2018/10/15/JS事件循环机制2-throttle和debounce/">
+    <link itemprop="mainEntityOfPage" href="https://evacoder.com/2018/11/30/npm/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Eva">
-      <meta itemprop="description" content="JavaScript, HTML, CSS, Node JS, Front-end Develop">
+      <meta itemprop="description" content="Focus on Front-end Develop">
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
@@ -390,7 +390,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">JS事件循环机制2-throttle和debounce
+          <h2 class="post-title" itemprop="name headline">npm常用命令一网打尽
 
               
             
@@ -416,7 +416,7 @@
                 
               
 
-              <time title="Created: 2018-10-15 13:10:28" itemprop="dateCreated datePublished" datetime="2018-10-15T13:10:28+08:00">2018-10-15</time>
+              <time title="Created: 2018-11-30 18:02:09" itemprop="dateCreated datePublished" datetime="2018-11-30T18:02:09+08:00">2018-11-30</time>
             
 
             
@@ -431,8 +431,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/10/15/JS事件循环机制2-throttle和debounce/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/10/15/JS事件循环机制2-throttle和debounce/" itemprop="commentCount"></span>
+                <a href="/2018/11/30/npm/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/11/30/npm/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -467,88 +467,44 @@
       
 
       
-        <p>函数的debounce和throttle<br><a id="more"></a></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left"></th>
-<th style="text-align:left">throttle</th>
-<th style="text-align:left">debounce</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">释义</td>
-<td style="text-align:left">节流（整个事件所用的时间）</td>
-<td style="text-align:left">去抖动（整个事件的单次循环之间的时间间隔）</td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left">水龙头打开本来是连续不断的出水，但是我们将水龙头不断拧紧，直到水龙头以一滴一滴的形式流出。使某个连续不断的动作在某个规定时间段只调用一次，叫做节流throttle</td>
-<td style="text-align:left">从按下弹簧到弹簧恢复松弛状态需要一定的时间，每次按下弹簧必须要一定时间等其恢复到原状之后才可以进行下一次按压，这才是一次完整的循环。为两次循环动作设定最短的时间间隔，叫做防抖debounce</td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left">在某时间段只调用一次</td>
-<td style="text-align:left">两次触发时间间隔超过设定值才会调用</td>
-</tr>
-<tr>
-<td style="text-align:left">实例</td>
-<td style="text-align:left">window.resize事件虽然一直触发，但是我们其实只需要某时间段内最后一次</td>
-<td style="text-align:left">图形验证码刷新，用户一直点击刷新，但是我们设定只有点击间隔大于500ms时才会触发</td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left">window.scroll事件滑动时一直触发，但是我们需要控制</td>
-<td style="text-align:left">input中输入关键字查询，每次keydown输入关键字都触发ajax查询，我们可以设定两次请求的最小间隔</td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left">mouseMove事件</td>
-<td style="text-align:left">多次点击按钮放重复提交</td>
-</tr>
-<tr>
-<td style="text-align:left">对于时间的理解</td>
-<td style="text-align:left">interval是对于整个事件所占用的时间</td>
-<td style="text-align:left">interval是对于不断循环往复的事件之间的时间间隔</td>
-</tr>
-<tr>
-<td style="text-align:left">调用方式</td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">差别</td>
-<td style="text-align:left">每3000ms只调用一次和两次调用时间间隔大于3000ms,差别在于前者两次调用时间可能很近</td>
-<td style="text-align:left">防抖用的多一点。还是要看具体的使用场景。其实很多场景差别并不那么大</td>
-</tr>
-</tbody>
-</table>
-<h4 id="基本实现"><a href="#基本实现" class="headerlink" title="基本实现"></a>基本实现</h4><h4 id="debounce"><a href="#debounce" class="headerlink" title="debounce"></a>debounce</h4><p>eg:input中输入字符来搜索，如果用户连续keydown，造成大量ajax，正确的做法是设置一个门槛值，两次请求的最小间隔</p>
-<p>debounce：返回一个新函数，两次触发的时间间隔大于事先设定的值才运行实际任务</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ========================</span></span><br><span class="line"><span class="comment">// debounce</span></span><br><span class="line"><span class="comment">// 一般是一些用户操作</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn, delay</span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> timer = <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> context = <span class="keyword">this</span>;</span><br><span class="line"><span class="keyword">var</span> args = <span class="built_in">arguments</span>;</span><br><span class="line">clearTimeout(timer);</span><br><span class="line">timer = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">fn.apply(context, args);</span><br><span class="line">&#125;, delay);</span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 得到fn的防抖版本</span></span><br><span class="line"><span class="keyword">var</span> lazyLayout = debounce(calLayout, <span class="number">3000</span>);</span><br><span class="line">$(<span class="built_in">window</span>).rezise(lazyLayout);</span><br></pre></td></tr></table></figure>
-<h4 id="Throttle"><a href="#Throttle" class="headerlink" title="Throttle"></a>Throttle</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ========================</span></span><br><span class="line"><span class="comment">// throttle</span></span><br><span class="line"><span class="comment">// 一般是对于一些延续性的动作</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">fn,interval</span>) </span>&#123;</span><br><span class="line"><span class="keyword">var</span> last;</span><br><span class="line"><span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">var</span> curr = <span class="keyword">new</span> <span class="built_in">Date</span>().valueOf();</span><br><span class="line"><span class="keyword">if</span> (curr - last &gt; interval) &#123;</span><br><span class="line">fn.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">last = curr;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> throttle = throttle(updatePosition, <span class="number">3000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 一个延续性动作的停止时间</span></span><br><span class="line"><span class="comment">// TODO 注意延续性动作的停止时间和debounce也是差不多的</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">end</span>(<span class="params">func</span>) </span>&#123;</span><br><span class="line"><span class="keyword">var</span> timer;</span><br><span class="line"><span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (timer) clearTimeout(timer);</span><br><span class="line">timer = setTimeout(func, <span class="number">100</span>, event);</span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>不要设置太多setTimeout，因为其特别耗费CPU，比较理想的做法是，将要推迟执行的代码都放在一个函数里，然后只对这个函数使用setTimeout或setInterval。</p>
-<p>可以用于模块的生命周期<br>_.defer:延迟调用fn直到当前调用栈清空，类似setTimeout(fn,0)。对于执行开销大的计算和无阻塞UI线程的HTML渲染时候非常有用</p>
-<p>由于事件频繁被触发，因而频繁执行DOM操作、资源加载等重行为，导致UI停顿甚至浏览器崩溃</p>
-<p>比如：</p>
-<ol>
-<li><p>window对象的resize、scroll事件</p>
-</li>
-<li><p>拖拽时的mousemove事件</p>
-</li>
-<li><p>射击游戏中的mousedown、keydown事件</p>
-</li>
-<li><p>文字输入、自动完成的keyup事件</p>
-</li>
-</ol>
-<p>实际上对于window的resize事件，实际需求大多为停止改变大小n毫秒后执行后续处理；而其他事件大多的需求是以一定的频率执行后续处理。针对这两种需求就出现了debounce和throttle两种解决办法。</p>
-<p>这两者本质都是函数调用的频度控制器。</p>
-<p>参考文献：</p>
-<p><a href="http://www.cnblogs.com/fsjohnhuang/p/4147810.html" target="_blank" rel="noopener">http://www.cnblogs.com/fsjohnhuang/p/4147810.html</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/26054718" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/26054718</a></p>
-<p>用于测试js的性能</p>
-<p><a href="https://jsperf.com/" target="_blank" rel="noopener">https://jsperf.com/</a><br><a href="http://www.alloyteam.com/2012/11/javascript-throttle/" target="_blank" rel="noopener">http://www.alloyteam.com/2012/11/javascript-throttle/</a></p>
+        <p>npm笔记，纯粹记录下，哪天电脑坏了快速重装一遍不走弯路。<br><a id="more"></a></p>
+<h4 id="nvm-管理-node-版本"><a href="#nvm-管理-node-版本" class="headerlink" title="nvm 管理 node 版本"></a>nvm 管理 node 版本</h4><p>首先先把全局安装的 packages 记录下来</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 列出所有全局安装 package</span></span><br><span class="line">npm ls -g --depth=0</span><br></pre></td></tr></table></figure>
+<p>/Users/eva/.nvm/versions/node/v10.15.3/lib<br>├── @<a href="mailto:vue/cli@3.5.2" target="_blank" rel="noopener">vue/cli@3.5.2</a><br>├── <a href="mailto:eslint@5.15.3" target="_blank" rel="noopener">eslint@5.15.3</a><br>├── <a href="mailto:express@4.16.4" target="_blank" rel="noopener">express@4.16.4</a><br>├── <a href="mailto:gulp-cli@2.1.0" target="_blank" rel="noopener">gulp-cli@2.1.0</a><br>├── <a href="mailto:hexo-cli@1.1.0" target="_blank" rel="noopener">hexo-cli@1.1.0</a><br>├── <a href="mailto:npm@6.9.0" target="_blank" rel="noopener">npm@6.9.0</a><br>├── <a href="mailto:nrm@1.1.0" target="_blank" rel="noopener">nrm@1.1.0</a><br>├── <a href="mailto:webpack@4.29.6" target="_blank" rel="noopener">webpack@4.29.6</a><br>├── <a href="mailto:webpack-cli@3.3.0" target="_blank" rel="noopener">webpack-cli@3.3.0</a><br>└── <a href="mailto:yo@2.0.5" target="_blank" rel="noopener">yo@2.0.5</a></p>
+<p>然后把原来全局安装的 node 删掉，反正以后也不用了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除全局安装的 package</span></span><br><span class="line">sudo rm -rf /usr/<span class="built_in">local</span>/lib/node_modules</span><br><span class="line"><span class="comment"># 删除 node</span></span><br><span class="line">sudo rm /usr/<span class="built_in">local</span>/bin/node</span><br><span class="line"><span class="comment"># 删除全局 node 模块注册的软链</span></span><br><span class="line"><span class="built_in">cd</span>  /usr/<span class="built_in">local</span>/bin &amp;&amp; ls -l | grep <span class="string">"../lib/node_modules/"</span> | awk <span class="string">'&#123;print $9&#125;'</span>| xargs rm</span><br></pre></td></tr></table></figure>
+<p>安装 nvm</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash</span><br></pre></td></tr></table></figure>
+<p>修改环境变量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> NVM_DIR=<span class="string">"<span class="variable">$HOME</span>/.nvm"</span></span><br><span class="line">[ -s <span class="string">"<span class="variable">$NVM_DIR</span>/nvm.sh"</span> ] &amp;&amp; . <span class="string">"<span class="variable">$NVM_DIR</span>/nvm.sh"</span></span><br></pre></td></tr></table></figure>
+<p>查看手册</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 列出所有命令</span></span><br><span class="line">nvm -h</span><br><span class="line"><span class="comment"># 安装最新Long-term-support版</span></span><br><span class="line">nvm install --lts</span><br><span class="line"><span class="comment"># 比如10.5.3</span></span><br><span class="line">nvm use 10.5.3</span><br></pre></td></tr></table></figure>
+<p>LTS是基础库的开发者对库的使用者的一个承诺，保证某个版本的库发布之后的很长一段事件之内都得到支持。如果此版本发现一些紧急问题需要修复，那么就会在这个版本上进行更新。通常这些问题的修复都不会导致 API 变化（API 保证长期兼容），所以版本号的前两位是不变的，通常只变化第三位。</p>
+<h4 id="安装全局-package"><a href="#安装全局-package" class="headerlink" title="安装全局 package"></a>安装全局 package</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm i -g @vue/cli eslint express nrm webpack webpack-cli gulp</span><br><span class="line"><span class="comment"># 自己安装自己来更新 npm</span></span><br><span class="line">npm i -g npm</span><br></pre></td></tr></table></figure>
+<p>一般不要随便切换 node 版本，如果要切换，记得把全局安装的 packge 重新安装在那个 node 版本下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm install v12.0.0 --reinstall-packages-from=8.0.0</span><br></pre></td></tr></table></figure>
+<h4 id="nrm-管理-npm-源"><a href="#nrm-管理-npm-源" class="headerlink" title="nrm 管理 npm 源"></a>nrm 管理 npm 源</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nrm ls</span><br><span class="line">nrm use cnpm</span><br></pre></td></tr></table></figure>
+<p>  npm —- <a href="https://registry.npmjs.org/" target="_blank" rel="noopener">https://registry.npmjs.org/</a></p>
+<p>* cnpm — <a href="http://r.cnpmjs.org/" target="_blank" rel="noopener">http://r.cnpmjs.org/</a><br>taobao - <a href="https://registry.npm.taobao.org/" target="_blank" rel="noopener">https://registry.npm.taobao.org/</a><br>nj —– <a href="https://registry.nodejitsu.com/" target="_blank" rel="noopener">https://registry.nodejitsu.com/</a><br>npmMirror  <a href="https://skimdb.npmjs.com/registry/" target="_blank" rel="noopener">https://skimdb.npmjs.com/registry/</a><br>edunpm - <a href="http://registry.enpmjs.org/" target="_blank" rel="noopener">http://registry.enpmjs.org/</a></p>
+<p>这样就可以方便的管理 npm 的源。</p>
+<h4 id="npm私服"><a href="#npm私服" class="headerlink" title="npm私服"></a>npm私服</h4><p>如果公司内部搭建了私有的 npm，也使用 nrm 也可以更好切换和管理。</p>
+<p>比如我有个 npm 私服</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nrm add eva http://registry.npm.evacoder.com/ </span><br><span class="line">npm use eva</span><br></pre></td></tr></table></figure>
+<p>指定好源之后，还是用 npm 命令，而不用使用 cnpm 等命令。</p>
+<p>私服不会全量同步 npm 包，有时候找不到时需要手动同步下 package。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -X PUT http://npm.evacoder.com/sync/[package] </span><br><span class="line"># 或者浏览器访问 http://npm.evacoder.com/sync/[package]</span><br></pre></td></tr></table></figure>
+<h4 id="发布自己的-npm-package"><a href="#发布自己的-npm-package" class="headerlink" title="发布自己的 npm package"></a>发布自己的 npm package</h4><p>其实 npm package 就是一个自己写的 js export 出来而已。发布一个 package 只需要</p>
+<p>1.写代码，2.注册 npm 帐号(私服就addUser)，3.发布</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 注册登录</span></span><br><span class="line">npm login</span><br><span class="line"><span class="comment"># 填写 username，password，email</span></span><br><span class="line"><span class="comment"># 新建项目</span></span><br><span class="line">npm init --yes</span><br></pre></td></tr></table></figure>
+<p>package.json</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"@eva/hello-world"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="attr">"description"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="attr">"main"</span>: <span class="string">"index.js"</span>,</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">  	<span class="attr">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"author"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="attr">"license"</span>: <span class="string">"ISC"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="string">'hello Eva'</span>;</span><br></pre></td></tr></table></figure>
+<p>发布</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 发布</span></span><br><span class="line">npm publish</span><br></pre></td></tr></table></figure>
+<p>使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> demo</span><br><span class="line"><span class="comment"># -S是保存到 package.json中</span></span><br><span class="line"><span class="comment"># -D 是指是 devDependency，只是工具，不会打包到代码中去的</span></span><br><span class="line">npm i -S -D @eva/hello-world</span><br><span class="line">node -e <span class="string">'console.log(require("@eva/hello-world"))'</span></span><br></pre></td></tr></table></figure>
+<p>具体的 编写高质量npm package 的详细内容将在 sdk 编写心得中展开来说</p>
 
       
     </div>
@@ -580,7 +536,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/javascript/" rel="tag"># javascript</a>
+            <a href="/tags/tool/" rel="tag"># tool</a>
           
         </div>
       
@@ -593,8 +549,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/13/JS事件循环机制1/" rel="next" title="JS事件循环机制1">
-                <i class="fa fa-chevron-left"></i> JS事件循环机制1
+              <a href="/2018/10/12/wechat_dev_app_login/" rel="next" title="「 微信开发 」手机浏览器唤起微信app登录的可行性">
+                <i class="fa fa-chevron-left"></i> 「 微信开发 」手机浏览器唤起微信app登录的可行性
               </a>
             
           </div>
@@ -671,7 +627,7 @@
               <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Eva">
             
               <p class="site-author-name" itemprop="name">Eva</p>
-              <p class="site-description motion-element" itemprop="description">JavaScript, HTML, CSS, Node JS, Front-end Develop</p>
+              <p class="site-description motion-element" itemprop="description">Focus on Front-end Develop</p>
           </div>
 
           
@@ -681,7 +637,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -726,7 +682,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -808,7 +764,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本实现"><span class="nav-number">1.</span> <span class="nav-text">基本实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#debounce"><span class="nav-number">2.</span> <span class="nav-text">debounce</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Throttle"><span class="nav-number">3.</span> <span class="nav-text">Throttle</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#nvm-管理-node-版本"><span class="nav-number">1.</span> <span class="nav-text">nvm 管理 node 版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装全局-package"><span class="nav-number">2.</span> <span class="nav-text">安装全局 package</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nrm-管理-npm-源"><span class="nav-number">3.</span> <span class="nav-text">nrm 管理 npm 源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#npm私服"><span class="nav-number">4.</span> <span class="nav-text">npm私服</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发布自己的-npm-package"><span class="nav-number">5.</span> <span class="nav-text">发布自己的 npm package</span></a></li></ol></div>
             
 
           </div>

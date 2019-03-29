@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://evacoder.com/2018/11/30/npm/</loc>
+    
+    <lastmod>2019-03-29T03:29:27.495Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evacoder.com/custom.css</loc>
+    
+    <lastmod>2019-03-29T02:48:00.433Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evacoder.com/about/index.html</loc>
+    
+    <lastmod>2019-03-29T02:43:44.879Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evacoder.com/2017/03/12/git/</loc>
+    
+    <lastmod>2019-03-28T07:27:57.143Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://evacoder.com/2017/07/18/html_in_email/</loc>
     
     <lastmod>2019-03-13T12:46:19.163Z</lastmod>
@@ -30,16 +58,16 @@
   </url>
   
   <url>
-    <loc>https://evacoder.com/2017/03/12/git/</loc>
+    <loc>https://evacoder.com/2016/12/10/html_if_annotate/</loc>
     
-    <lastmod>2019-03-13T12:38:43.522Z</lastmod>
+    <lastmod>2019-03-13T12:22:11.731Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://evacoder.com/2016/12/10/html_if_annotate/</loc>
+    <loc>https://evacoder.com/2016/11/28/display/</loc>
     
-    <lastmod>2019-03-13T12:22:11.731Z</lastmod>
+    <lastmod>2019-03-13T12:20:22.740Z</lastmod>
     
   </url>
   
@@ -170,13 +198,6 @@
   </url>
   
   <url>
-    <loc>https://evacoder.com/about/index.html</loc>
-    
-    <lastmod>2019-02-22T07:17:40.164Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://evacoder.com/2019/02/18/iframe/</loc>
     
     <lastmod>2019-02-22T06:52:57.427Z</lastmod>
@@ -257,13 +278,6 @@
     <loc>https://evacoder.com/2017/08/18/mobile_ui_flex/</loc>
     
     <lastmod>2019-01-07T12:48:56.520Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://evacoder.com/2016/11/28/display/</loc>
-    
-    <lastmod>2019-01-07T12:48:56.510Z</lastmod>
     
   </url>
   

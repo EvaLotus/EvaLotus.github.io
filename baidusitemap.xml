@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://evacoder.com/2018/11/30/npm/</loc>
+    <lastmod>2019-03-29T03:29:27.495Z</lastmod>
+  </url>  <url>
+    <loc>https://evacoder.com/2017/03/12/git/</loc>
+    <lastmod>2019-03-28T07:27:57.143Z</lastmod>
+  </url>  <url>
     <loc>https://evacoder.com/2017/07/18/html_in_email/</loc>
     <lastmod>2019-03-13T12:46:19.163Z</lastmod>
   </url>  <url>
@@ -13,11 +19,11 @@
     <loc>https://evacoder.com/2017/04/18/css_layout_bfc/</loc>
     <lastmod>2019-03-13T12:40:25.289Z</lastmod>
   </url>  <url>
-    <loc>https://evacoder.com/2017/03/12/git/</loc>
-    <lastmod>2019-03-13T12:38:43.522Z</lastmod>
-  </url>  <url>
     <loc>https://evacoder.com/2016/12/10/html_if_annotate/</loc>
     <lastmod>2019-03-13T12:22:11.731Z</lastmod>
+  </url>  <url>
+    <loc>https://evacoder.com/2016/11/28/display/</loc>
+    <lastmod>2019-03-13T12:20:22.740Z</lastmod>
   </url>  <url>
     <loc>https://evacoder.com/2016/11/18/meta/</loc>
     <lastmod>2019-03-13T12:19:41.498Z</lastmod>
@@ -96,8 +102,5 @@
   </url>  <url>
     <loc>https://evacoder.com/2017/08/18/mobile_ui_flex/</loc>
     <lastmod>2019-01-07T12:48:56.520Z</lastmod>
-  </url>  <url>
-    <loc>https://evacoder.com/2016/11/28/display/</loc>
-    <lastmod>2019-01-07T12:48:56.510Z</lastmod>
   </url>
 </urlset>
