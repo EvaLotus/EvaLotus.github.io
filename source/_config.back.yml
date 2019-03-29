@@ -615,10 +615,10 @@ needmoreshare2:
 
 # Google Webmaster tools verification setting
 # See: https://www.google.com/webmasters
-#google_site_verification:
+google_site_verification: UA-131198272-2
 
 # Google Analytics
-#google_analytics: UA-131198272-1
+google_analytics: UA-131198272-1
 
 # Bing Webmaster tools verification setting
 # See: https://www.bing.com/webmaster
