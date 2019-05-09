@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next gemini" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="UA-131198272-2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=6.6.0">
+
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","width":300,"display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="思考写了那么多小程序，你思考过小程序的安全问题么？ 为什么小程序支持跨域？ 小程序中有xss，crsf攻击吗？ 为什么小程序只支持request cookie，不支持response set cookie呢？ 为什么小程序不支持动态加载js？什么叫动态加载js？eval和new Function有什么可怕之处？ 真的没有绕过小程序审核热更新的方法吗？ 小程序的登录设计有哪些安全考虑？ 可以肉眼区分">
+<meta name="keywords" content="微信开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「 微信开发 」深入分析微信小程序安全与管控">
+<meta property="og:url" content="https://evacoder.com/2019/04/24/wechat_security/index.html">
+<meta property="og:site_name" content="Eva&#39;s Blog">
+<meta property="og:description" content="思考写了那么多小程序，你思考过小程序的安全问题么？ 为什么小程序支持跨域？ 小程序中有xss，crsf攻击吗？ 为什么小程序只支持request cookie，不支持response set cookie呢？ 为什么小程序不支持动态加载js？什么叫动态加载js？eval和new Function有什么可怕之处？ 真的没有绕过小程序审核热更新的方法吗？ 小程序的登录设计有哪些安全考虑？ 可以肉眼区分">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-05-09T06:15:15.294Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="「 微信开发 」深入分析微信小程序安全与管控">
+<meta name="twitter:description" content="思考写了那么多小程序，你思考过小程序的安全问题么？ 为什么小程序支持跨域？ 小程序中有xss，crsf攻击吗？ 为什么小程序只支持request cookie，不支持response set cookie呢？ 为什么小程序不支持动态加载js？什么叫动态加载js？eval和new Function有什么可怕之处？ 真的没有绕过小程序审核热更新的方法吗？ 小程序的登录设计有哪些安全考虑？ 可以肉眼区分">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Eva's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://evacoder.com/2019/04/24/wechat_security/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>「 微信开发 」深入分析微信小程序安全与管控 | Eva's Blog</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131198272-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-131198272-1');
+</script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ca3d224de40fbf734d1e623cf68e0fb4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Eva's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">进一寸有一寸的欢喜</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-movies">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/movies" rel="section"><i class="menu-item-icon fa fa-fw fa-film"></i> <br>Movies</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://evacoder.com/2019/04/24/wechat_security/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Eva">
+      <meta itemprop="description" content="Focus on Front-end Develop">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eva's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">「 微信开发 」深入分析微信小程序安全与管控
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-24 18:27:12" itemprop="dateCreated datePublished" datetime="2019-04-24T18:27:12+08:00">2019-04-24</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/04/24/wechat_security/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/04/24/wechat_security/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h4><p>写了那么多小程序，你思考过小程序的安全问题么？</p>
+<p>为什么小程序支持跨域？</p>
+<p>小程序中有xss，crsf攻击吗？</p>
+<p>为什么小程序只支持request cookie，不支持response set cookie呢？</p>
+<p>为什么小程序不支持动态加载js？什么叫动态加载js？eval和new Function有什么可怕之处？</p>
+<p>真的没有绕过小程序审核热更新的方法吗？</p>
+<p>小程序的登录设计有哪些安全考虑？</p>
+<p>可以肉眼区分一个页面是小程序还是web-view吗？</p>
+<p>今天我们就来深入理解小程序的安全设计和管控。</p>
+<p>先限定下范围，虽然头条小程序，支付宝小程序，QQ小程序层出不穷，但本文主要从微信小程序说起。</p>
+<p>小程序中也支持web-view，内嵌网页这类不在本文讨论范围之中，因为和浏览器是一样的，还是不支持跨域，会有XSS等。<br><a id="more"></a></p>
+<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><p><strong>为什么小程序支持跨域？</strong></p>
+<p>我通常和后端小伙伴这样解释，我们可以理解小程序是类似native的，所以不需要考虑跨域问题。</p>
+<p>再解释清楚一点就是：小程序的网络请求是通过native的能力来中转后发出的，而不是直接在webview中发出的。</p>
+<p>那我们再思考下，<strong>为什么native支持跨域而前端限制那么多？</strong></p>
+<p>个人感觉原因如下：</p>
+<p>1.因为前端代码是裸奔状态，用户（或者坏人）输入网址后F12就可以一览无余你的源码，而客户端的代码是编译好的，没那么容易被反编译，看清源码，所以现在webpack打包会生成source map，上传时最好删掉source map文件，否则坏人轻轻松松就能get到你的源码。</p>
+<p>2.了解源码之后，前端代码存在各种被注入的可能性，一不小心就location.href到别的页面，一不小心就document.cookie获取走了cookie，或者给你做个假的登录页窃取你的密码，可以参照文章：万物皆可hook</p>
+<p>3.浏览器tab页的存在，用户身份通常通过cookie来存储，即使tab页之间没有关系，坏人页面依然有办法窃取你的cookie。攻击形式太多样了，非常需要同源策略（跨域）的限制。</p>
+<p>既然说到了cookie，小程序中有个重要的限制就是<strong>request中可以支持cookie但是response中不支持cookie</strong>，这又是什么考虑呢？</p>
+<p>我们知道，在浏览器中发出请求时会自动携带该域名下的cookie，同域名的js，img，css请求都会带上cookie，但是因为小程序的网络请求是通过native来转发的，并不是之前常用的ajax，实际上我们在请求中必须手动在header中设置cookie。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">wx.request(&#123;</span><br><span class="line">  method: <span class="string">'GET'</span>,</span><br><span class="line">  url: <span class="string">'evacoder.com/users'</span>,</span><br><span class="line">  data: &#123;&#125;,</span><br><span class="line">  header: &#123;</span><br><span class="line">    <span class="string">'content-type'</span>: <span class="string">'application/x-www-form-urlencoded'</span>,</span><br><span class="line">    <span class="string">'cookie'</span>: <span class="string">'userId=12345'</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>请求是native代为转发，那接受请求的实际是native，处理后再传递给webview，wx.request成功回调中没有返回cookie，也直接禁用了DOM，BOM相关的所有方法，document.cookie根本无法调用，没处理cookie微信爸爸不提供咱也没办法。</p>
+<p>发送cookie必须手动设置，获取不到cookie，小程序中应该是<strong>不存在CSRF</strong>了。</p>
+<p>当然还有更严格的限制，<strong>要调用接口必须在该域名下放校验文件</strong>，所以不经过同意别人的小程序没法调用你的接口，在你的小程序坏人也没法把窃取到的信息发到他的域名。</p>
+<p><strong>小程序是否存在xss呢？</strong></p>
+<p>xss即js代码注入，前端要做的是不信任任何用户的输入，将所有的特殊字符如&lt;&gt;/%都进行过滤，尽量不要使用eval，innerHTML。比如在博客留言中留下<code>&lt;script&gt;location.href=&#39;https://badman.com&#39;&lt;/script&gt;</code>后，这样每个访问这个页面的人都会被导流到坏人的页面（或者其他被窃取cookie等造成损失）。</p>
+<p>博客评论及论坛帖子这种富文本编辑器一向是xss的重灾区，在小程序中呢？</p>
+<p>我觉得总会有些小白不过滤吧，试了几个没啥用户的个人小程序，填写<code>&lt;script&gt;location.href=&#39;https://badman.com&#39;&lt;/script&gt;</code>果然可以提交成功，重新进入这个页面并没有得偿所愿。</p>
+<p>本来认为小程序最终也是编译成了html，那获取到的数据中的&lt;script&gt;确确实实是存在的，难道有啥奇妙之处？</p>
+<p>其实原因很简单，数据绑定模版语法大多类似，普通的<code></code>反显时使用的应该是<strong>innerText而不是innerHTML</strong>，所以即使没有过滤，反显的时候也依然无法注入成功。</p>
+<p>但是还是要注意，小程序中如果忘记过滤了，<strong>可能在网页中接口返回后XSS就可以成功了</strong>，也是一个攻击点，所以前后端都要好好过滤。</p>
+<p>小程序中也提供了富文本 <a href="https://developers.weixin.qq.com/miniprogram/dev/component/rich-text.html" target="_blank" rel="noopener">rich-text组件</a>，但是明确规定了只接受受信任的标签，当然是没有<code>&lt;script&gt;</code>的。</p>
+<p>但是极端一点如果小白把用户的输入eval了怎么办呢？</p>
+<p>不用担心，小程序也<strong>不支持eval和new Function动态加载</strong>。</p>
+<p>其实当然不是为了防止小白犯傻，更重要的是为了防止有人来进行热更新动态加载绕过审核，整个小程序是个壳，通过请求来返回非法内容把小程序改的面目全非。但是看到这篇 <a href="https://zhuanlan.zhihu.com/p/34191831" target="_blank" rel="noopener">懂编译原理真的可以为所欲为</a> 貌似还是有方法可以绕过。</p>
+<p>就目前来看，常见的xss已经被封死，可能还有没想到的欢迎补充。</p>
+<p><strong>有办法肉眼区分一个页面是小程序还是web-view吗?</strong></p>
+<p>可能网页在性能差的手机上渲染的慢一点，不要提肉眼区分，服务端都没有好办法直接判断。因为iOS的ua不规范，根本无法区分是小程序还是微信的浏览器。（所以说一开始多花点时间讨论再开工，不然要累死客服啊），请大家补充。</p>
+<p><strong>小程序编译完之后变成了什么？</strong></p>
+<p>编写小程序是使用类似HTML，JS，CSS的WXML，WXSS，JS来编写的，因为RN不稳定等原因，小程序最终没有选择类似RN的采用客户端原生渲染，还是采用了Web技术渲染，加上原生接口来提供原生能力，所以小程序最终还是打包成HTML运行在浏览器中，浏览器不识别小程序语言，所以需要一个编译过程，大概就是有wxml-loader，wxss-loader通过webpack打包成pp-service.js后，插入在一个page-frame的html中。</p>
+<p>我们可以抓包看到小程序的refer是<a href="https://servicewechat.com/{APPID}/{VERSION}/page-frame.html。" target="_blank" rel="noopener">https://servicewechat.com/{APPID}/{VERSION}/page-frame.html。</a></p>
+<p>小程序的写法和vue相似，但是vue中js，html，css可以写在一个vue文件中，但是小程序中必须拆分为三个文件，会不会有些多余呢？</p>
+<p>实际上这正是小程序的安全设计的用心之处，<strong>区分视图层和逻辑层，采用双线程的设计</strong>。（其实也可以一个页面，编译时做拆分即可，不过三个页面也更灵活）。</p>
+<p>官方提供的编译过程</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 【WXML】编译后得到以下函数，根据路径和数据自动生成virtualDom，然后通过组件系统比对差异渲染页面</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">$gwx</span>(<span class="params">pagePath</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">pageData</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 根据页面路径获取页面结构生成函数</span></span><br><span class="line"><span class="keyword">var</span> generateFun = $gwx(<span class="string">'name.wxml'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 页面结构生成函数从【js】接受页面数据，得到描述页面结构的JSON</span></span><br><span class="line"><span class="keyword">var</span> virtualTree = generateFun(&#123;</span><br><span class="line">  name: <span class="string">'Eva'</span>,</span><br><span class="line">  age: <span class="string">'6'</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">/* virtualTree == &#123;</span></span><br><span class="line"><span class="comment">  tag: 'view'，</span></span><br><span class="line"><span class="comment">  children: [&#123;</span></span><br><span class="line"><span class="comment">    tag: 'view',</span></span><br><span class="line"><span class="comment">    children: ['name:Eva', 'age:6']</span></span><br><span class="line"><span class="comment">  &#125;]</span></span><br><span class="line"><span class="comment">&#125;*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 小程序组件系统在虚拟树对比后将结果渲染到页面上</span></span><br><span class="line">virtualDom.render(virtualTree)</span><br></pre></td></tr></table></figure>
+<p>视图层通过WebView浏览器环境，逻辑层通过JsCore来执行。</p>
+<p><strong>视图层</strong>包括WXML和WXSS，使用<strong>WebView</strong>加载page-frame.html，在确定页面路径之后，WXML和WXSS文件生成了JS函数generateFun，结合逻辑层的页面数据得到virtualTree，小程序组件系统在虚拟树对比后将结果渲染到页面上。</p>
+<p><strong>逻辑层</strong>中包括所有JS代码，主要是页面的数据，和点击事件等处理，所有JS编译成appService.js。</p>
+<p>初次渲染：逻辑层将pageData和pagePath等通过Native传给视图层来渲染页面。</p>
+<p>更新数据：逻辑层发送数据给视图层</p>
+<p>用户事件：视图层收到用户事件根据绑定事件回调函数来反馈给逻辑层</p>
+<p>为啥要区分逻辑层和视图层呢？</p>
+<blockquote>
+<p>基于Web 技术来渲染小程序是存在一些不可控因素和安全风险的。这是因为Web技术是非常开放灵活的，我们可以利用JavaScript 脚本随意地跳转网页或者改变界面上的任意内容。</p>
+</blockquote>
+<p>开发者可以做的事太多了，比如现在用户授权必须用户手动点按钮，但是如果可以DOM操作开发者直接就能跳过这一步获取用户敏感信息了。而且会存在前面提到的很多的安全隐患。</p>
+<p>逻辑层使用的JsCore只是一个单纯的脚本解析器，浏览器中的BOM对象无法使用，正好可以完美解决这个问题。开发者工具并不是使用了真正的JSCore，而是直接用一个webview，有个很巧妙的设计，将开发者的代码包裹在define域的时候，<strong>将浏览器的BOM对象局部变量化</strong>，从而使得在开发阶段就能发现问题。</p>
+<p>如果在渲染层写了script代码，在webpack处理时因为不符合规范应该会直接被过滤，或者会报错无法执行。</p>
+<p>如果在逻辑层写了操作DOM的方法，因为JSCore环境下不识别，所以也会报错。</p>
+<h4 id="官方论证"><a href="#官方论证" class="headerlink" title="官方论证"></a>官方论证</h4><p>其实上面的问题官方都公布了答案：<a href="https://developers.weixin.qq.com/ebook?action=get_post_info&amp;token=935589521&amp;volumn=1&amp;lang=zh_CN&amp;book=miniprogram&amp;docid=000e84889907c00b0086b0a2f5b40a" target="_blank" rel="noopener">深入理解小程序架构</a>。</p>
+<p>这里真的有很多宝藏，快去探索吧。</p>
+<p>通过上文的分析，小程序通过这些限制来保证了安全和管控：</p>
+<p>1.逻辑层和渲染层的双线程架构</p>
+<p>2.不支持eval和new Function动态加载</p>
+<p>这篇文章的篇幅已经很长了，关于小程序的登录安全设计，我们将在下篇文章中介绍。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat_qrcode.jpg" alt="Eva wechat" style="width: 200px; max-width: 100%;">
+    <div>关注Eva的意如小馆，更方便的与我交流</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/微信开发/" rel="tag"># 微信开发</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/18/xmind/" rel="next" title="「 工具 」绘图工具指南">
+                <i class="fa fa-chevron-left"></i> 「 工具 」绘图工具指南
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Eva">
+            
+              <p class="site-author-name" itemprop="name">Eva</p>
+              <p class="site-description motion-element" itemprop="description">Focus on Front-end Develop</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/EvaLotus" title="GitHub &rarr; https://github.com/EvaLotus" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:evacoder@126.com" title="E-Mail &rarr; mailto:evacoder@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#思考"><span class="nav-number">1.</span> <span class="nav-text">思考</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分析"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#官方论证"><span class="nav-number">3.</span> <span class="nav-text">官方论证</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-Travel"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Eva</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+    
+  
+  <script src="//cdn.jsdelivr.net/npm/valine@1.3.3/dist/Valine.min.js"></script>
+
+  <script>
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '7Ck7B9LoU0iNuR7sVgC3Sscr-gzGzoHsz',
+        appKey: 'GURQk3swSriTo8QzVtgoUDnk',
+        placeholder: '有什么想对Eva说的呢？',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'5' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

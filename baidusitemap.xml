@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://evacoder.com/2019/02/20/static_deploy/</loc>
-    <lastmod>2019-03-29T10:34:50.041Z</lastmod>
+    <loc>https://evacoder.com/2019/03/18/xmind/</loc>
+    <lastmod>2019-05-09T06:48:31.093Z</lastmod>
+  </url>  <url>
+    <loc>https://evacoder.com/2019/04/24/wechat_security/</loc>
+    <lastmod>2019-05-09T06:15:15.294Z</lastmod>
   </url>  <url>
     <loc>https://evacoder.com/2019/02/19/sentry/</loc>
-    <lastmod>2019-03-29T10:10:53.534Z</lastmod>
+    <lastmod>2019-05-09T04:35:44.541Z</lastmod>
+  </url>  <url>
+    <loc>https://evacoder.com/2019/02/17/remote_debugging/</loc>
+    <lastmod>2019-05-09T04:29:27.333Z</lastmod>
+  </url>  <url>
+    <loc>https://evacoder.com/2017/04/18/i18n_thinking/</loc>
+    <lastmod>2019-04-10T08:16:01.143Z</lastmod>
+  </url>  <url>
+    <loc>https://evacoder.com/2019/02/20/static_deploy/</loc>
+    <lastmod>2019-03-29T10:34:50.041Z</lastmod>
   </url>  <url>
     <loc>https://evacoder.com/2018/11/30/npm/</loc>
     <lastmod>2019-03-29T03:29:27.495Z</lastmod>
@@ -18,9 +30,6 @@
   </url>  <url>
     <loc>https://evacoder.com/2017/05/18/axios_http/</loc>
     <lastmod>2019-03-13T12:45:40.553Z</lastmod>
-  </url>  <url>
-    <loc>https://evacoder.com/2017/04/18/i18n_thinking/</loc>
-    <lastmod>2019-03-13T12:41:26.625Z</lastmod>
   </url>  <url>
     <loc>https://evacoder.com/2017/04/18/css_layout_bfc/</loc>
     <lastmod>2019-03-13T12:40:25.289Z</lastmod>
@@ -72,9 +81,6 @@
   </url>  <url>
     <loc>https://evacoder.com/2019/02/16/frameworks_selection/</loc>
     <lastmod>2019-03-13T10:39:49.097Z</lastmod>
-  </url>  <url>
-    <loc>https://evacoder.com/2019/02/17/remote_debugging/</loc>
-    <lastmod>2019-03-13T10:39:04.161Z</lastmod>
   </url>  <url>
     <loc>https://evacoder.com/2019/01/05/proxy_login_state/</loc>
     <lastmod>2019-03-13T10:25:28.681Z</lastmod>

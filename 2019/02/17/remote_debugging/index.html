@@ -115,7 +115,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://evacoder.com/images/remote_debugging1.png">
 <meta property="og:image" content="https://evacoder.com/images/remote_debugging2.png">
-<meta property="og:updated_time" content="2019-03-13T10:39:04.161Z">
+<meta property="og:updated_time" content="2019-05-09T04:29:27.333Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="「 工具 」前端远程调试及空白或404解决">
 <meta name="twitter:description" content="因为自己的开发环境搭建的太舒适，在别人的电脑上查问题感觉完全无法展现自己的能力。 再加上已经习惯了chrome dev tool的每一种功能，一换到safari上查兼容性问题，都感觉自己变成了白痴。 更不要说去测试webview里的问题，console都没法看，真的要一行一行alert吗？ 啥？你居然不会remote debugging！ 那你怎么证明到底是你还是native 开发的锅？啥证据都没">
@@ -481,7 +481,7 @@
 <p>所以最重要的是要检查下PC能否科学地 <strong>网上冲浪</strong></p>
 <p>有时候能访问google都不一定成功，需要试下这个地址</p>
 <p><a href="https://chrome-devtools-frontend.appspot.com/" target="_blank" rel="noopener">https://chrome-devtools-frontend.appspot.com/</a></p>
-<p>如果不行的话，配置以下host</p>
+<p>如果不行的话，配置以下host(不定期失效，需要保证 <a href="https://chrome-devtools-frontend.appspot.com/" target="_blank" rel="noopener">https://chrome-devtools-frontend.appspot.com/</a> 可以访问即可)</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">172.217.161.180 chrome-devtools-frontend.appspot.com</span><br><span class="line">172.217.161.180 chrometophone.appspot.com</span><br></pre></td></tr></table></figure>
 <p>现在访问基本上是秒开啦。</p>
 <p>访问：<code>chrome://inspect/#devices</code></p>
@@ -491,7 +491,7 @@
 <p><img src="/images/remote_debugging1.png" alt=""></p>
 <p>出现上图，点击inspect就可以开始调试啦。</p>
 <p>不必安装chrome浏览器，其他的浏览器和webview都可以进行调试。</p>
-<p>如果webview测试不了，还需要安卓端配置下允许调试</p>
+<p>如果webview测试不了，还需要<strong>安卓开发同学配置下允许调试</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WebView.setWebContentsDebuggingEnabled(<span class="keyword">true</span>);</span><br></pre></td></tr></table></figure>
 <h4 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h4><p>iOS的remote debugging比较难，难在首先你需要一台mac哈哈哈，但是mac却可以直接调试Andriod。</p>
 <p>1.iPhone上设置-&gt;Safari-&gt; 高级-&gt; Web 检查器，打开</p>
@@ -632,7 +632,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">36</span>
+                    <span class="site-state-item-count">38</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -727,20 +727,6 @@
           
 
           
-          
-            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Friends
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://zhenchao.org" title="https://zhenchao.org" rel="noopener" target="_blank">指间生活</a>
-                  </li>
-                
-              </ul>
-            </div>
           
 
           
