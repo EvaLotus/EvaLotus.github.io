@@ -207,7 +207,7 @@ links_title: Friends
 #links_layout: block
 links_layout: inline
 links:
-  指间生活: https://zhenchao.org
+  #指间生活: https://zhenchao.org
 
 # Sidebar Avatar
 avatar:

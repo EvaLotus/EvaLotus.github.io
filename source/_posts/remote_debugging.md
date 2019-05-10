@@ -26,7 +26,7 @@ tags: Tool
 
 [https://chrome-devtools-frontend.appspot.com/](https://chrome-devtools-frontend.appspot.com/)
 
-如果不行的话，配置以下host
+如果不行的话，配置以下host(不定期失效，需要保证 https://chrome-devtools-frontend.appspot.com/ 可以访问即可)
 
 ```bash
 172.217.161.180 chrome-devtools-frontend.appspot.com
@@ -49,7 +49,7 @@ tags: Tool
 
 不必安装chrome浏览器，其他的浏览器和webview都可以进行调试。
 
-如果webview测试不了，还需要安卓端配置下允许调试
+如果webview测试不了，还需要**安卓开发同学配置下允许调试**
 
 ```java
 WebView.setWebContentsDebuggingEnabled(true);

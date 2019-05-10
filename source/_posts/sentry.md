@@ -53,8 +53,6 @@ window.addEventListener('unhandledrejection', (e) => {
 
 但是线上运行的代码都是打包压缩的，报错信息并不具体，不好定位，我们需要生成sourcemap文件便于debug。
 
-TODO sourcemap的原理。
-
 #### sentry的使用
 
 一般公司也不会自建异常监控系统，现在有很成熟的方案，这里推荐使用sentry。
@@ -78,10 +76,29 @@ TODO sourcemap的原理。
 
 咋hook你懂的，可以复习下我写的这篇 [万物皆可hook](https://www.evacoder.com/2019/02/15/iframe_security/)。
 
-但是需要注意的是我们的老朋友跨域，js报错也是会跨域的=\_=\#，&lt;script&gt;引入的不同源js中的错误，window.onerror只能捕获到Script error，需要在script标签添加`crossorigin`属性，并配置CORS。
+需要注意的是我们的老朋友跨域，js报错也是会跨域的=\_=\#，&lt;script&gt;引入的不同源js中的错误，window.onerror只能捕获到Script error，需要在script标签添加`crossorigin`属性，并配置CORS。
 
 iframe，css，img这些标签捕获不到错误。
 
+另外需要注意的是：sourcemap暴露在外网可能会导致源码泄漏，所以我们部署时一定要记得去掉sourcemap。有了sentry之后我们更可以直接去掉外网暴露的sourcemap，一样可以快速定位报错具体信息。
+
+配置sentry的sourcemap，以vue.config.js为例
+
+```js
+const SentryPlugin = require('@sentry/webpack-plugin');
+module.exports = {
+  productionSourceMap: false,
+  configureWebpack: {
+    plugins: [
+      new SentryPlugin({
+        include: './dist',
+      }),
+    ],
+  },
+};
+
+```
+#### 部署搭建sentry
 参考文档可以通过docker来部署sentry
 ```bash
 git clone https://github.com/getsentry/onpremise.git
