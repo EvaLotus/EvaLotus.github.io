@@ -343,23 +343,6 @@
     </entry>
     
     <entry>
-      <title>「 产品 」极简小程序产品设计笔记</title>
-      <link href="/2018/10/12/minimalism_product_design/"/>
-      <url>/2018/10/12/minimalism_product_design/</url>
-      
-        <content type="html"><![CDATA[<p>最近有小伙伴给介绍小程序的私活，虽然功能需求很简单，但是从0-1完全定制化搭建成本很高，需要租用服务器，专门进行UI设计等，还有后续维护的工作，其实对于个体商户本身他们并不需要如此高度的产品定制化。遂去看了下专门做这个的<a href="https://www.youzan.com" target="_blank" rel="noopener">有赞</a>的后台，做成一个产品完全可以复用，批量搭建速度快，成本低。<br>这次机会的错过引起了我的反思，工作这么多年尚未从0开始前后端自己一个人完成一整个平台，今年的OKR除了<strong>提高审美，学习成为一个设计师的基本技能</strong>，还希望能够为极简主义的同好们制作一个极简主义专用的小程序。</p><a id="more"></a><h4 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h4><p>从六年前开始接触极简主义生活方式，如果你要让我说极简主义的好，我可以说三天三夜，哈哈，这里就不赘述，留到产品中去体现。<br>因为最近经济形势不好，消费降级突然变得流行起来，现在我的豆瓣timeline中有无数的人开始安利极简生活。</p><p>如果你要问我极简是什么？我会说极简是寻找生活的最优解，入了极简主义可以大概率保证你的人生一直走上坡路，我相信极简一定会贯穿我整个生命。<br>一直想自己做个什么项目，想着热爱整理的我，每天整理一百遍，把自己所有的物品都进行统计盘点，希望有个方便的进行物品盘点的小程序。</p><p>产品方面，18年学习了<a href="https://book.douban.com/subject/25915629/" target="_blank" rel="noopener">破茧成蝶：用户体验设计师的成长之路</a>，妥协的完美主义，绝密原型档案，<a href="https://book.douban.com/subject/4723970/" target="_blank" rel="noopener">人人都是产品经理</a>，得到上的梁宁产品30讲，希望可以全面实践下。</p><h4 id="项目总览"><a href="#项目总览" class="headerlink" title="项目总览"></a>项目总览</h4><p>在平常的工作中项目大概也会分为这三个部分。<br>1.管理后台<br>CRUD，主要是增删改查数据，权限控制等。<br>技术栈：<br>vue的element-ui，有现成的管理后端的模版 <a href="https://github.com/PanJiaChen/vue-element-admin" target="_blank" rel="noopener">vue-element-admin</a><br>node express+mongoose<br>2.小程序<br><a href="https://github.com/Meituan-Dianping/mpvue" target="_blank" rel="noopener">mpvue</a> 和 <a href="https://github.com/Tencent/wepy" target="_blank" rel="noopener">wepy</a> 各有优劣，wepy因为是官方支持，用的会比较多一点。<br><a href="https://github.com/aben1188/awesome-wepy" target="_blank" rel="noopener">awesome-wepy</a> 有很多小程序源码可以学习。<br><a href="https://github.com/dyq086/wepy-mall" target="_blank" rel="noopener">一个电商小程序的全功能源码</a><br>3.web页<br>暂定只是一个介绍页，以后可以加入其他的信息。<br>前后端分离响应式。</p><p>本文会持续更新产品进度。</p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 产品 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
       <title>「 微信开发 」手机浏览器唤起微信app登录的可行性</title>
       <link href="/2018/10/12/wechat_dev_app_login/"/>
       <url>/2018/10/12/wechat_dev_app_login/</url>
@@ -371,6 +354,23 @@
         <tags>
             
             <tag> 微信开发 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>「 产品 」极简小程序产品设计笔记</title>
+      <link href="/2018/10/12/minimalism_product_design/"/>
+      <url>/2018/10/12/minimalism_product_design/</url>
+      
+        <content type="html"><![CDATA[<p>最近有小伙伴给介绍小程序的私活，虽然功能需求很简单，但是从0-1完全定制化搭建成本很高，需要租用服务器，专门进行UI设计等，还有后续维护的工作，其实对于个体商户本身他们并不需要如此高度的产品定制化。遂去看了下专门做这个的<a href="https://www.youzan.com" target="_blank" rel="noopener">有赞</a>的后台，做成一个产品完全可以复用，批量搭建速度快，成本低。<br>这次机会的错过引起了我的反思，工作这么多年尚未从0开始前后端自己一个人完成一整个平台，今年的OKR除了<strong>提高审美，学习成为一个设计师的基本技能</strong>，还希望能够为极简主义的同好们制作一个极简主义专用的小程序。</p><a id="more"></a><h4 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h4><p>从六年前开始接触极简主义生活方式，如果你要让我说极简主义的好，我可以说三天三夜，哈哈，这里就不赘述，留到产品中去体现。<br>因为最近经济形势不好，消费降级突然变得流行起来，现在我的豆瓣timeline中有无数的人开始安利极简生活。</p><p>如果你要问我极简是什么？我会说极简是寻找生活的最优解，入了极简主义可以大概率保证你的人生一直走上坡路，我相信极简一定会贯穿我整个生命。<br>一直想自己做个什么项目，想着热爱整理的我，每天整理一百遍，把自己所有的物品都进行统计盘点，希望有个方便的进行物品盘点的小程序。</p><p>产品方面，18年学习了<a href="https://book.douban.com/subject/25915629/" target="_blank" rel="noopener">破茧成蝶：用户体验设计师的成长之路</a>，妥协的完美主义，绝密原型档案，<a href="https://book.douban.com/subject/4723970/" target="_blank" rel="noopener">人人都是产品经理</a>，得到上的梁宁产品30讲，希望可以全面实践下。</p><h4 id="项目总览"><a href="#项目总览" class="headerlink" title="项目总览"></a>项目总览</h4><p>在平常的工作中项目大概也会分为这三个部分。<br>1.管理后台<br>CRUD，主要是增删改查数据，权限控制等。<br>技术栈：<br>vue的element-ui，有现成的管理后端的模版 <a href="https://github.com/PanJiaChen/vue-element-admin" target="_blank" rel="noopener">vue-element-admin</a><br>node express+mongoose<br>2.小程序<br><a href="https://github.com/Meituan-Dianping/mpvue" target="_blank" rel="noopener">mpvue</a> 和 <a href="https://github.com/Tencent/wepy" target="_blank" rel="noopener">wepy</a> 各有优劣，wepy因为是官方支持，用的会比较多一点。<br><a href="https://github.com/aben1188/awesome-wepy" target="_blank" rel="noopener">awesome-wepy</a> 有很多小程序源码可以学习。<br><a href="https://github.com/dyq086/wepy-mall" target="_blank" rel="noopener">一个电商小程序的全功能源码</a><br>3.web页<br>暂定只是一个介绍页，以后可以加入其他的信息。<br>前后端分离响应式。</p><p>本文会持续更新产品进度。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 产品 </tag>
             
         </tags>
       

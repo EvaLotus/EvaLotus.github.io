@@ -87,7 +87,7 @@
     <link href="https://evacoder.com/2019/03/18/xmind/"/>
     <id>https://evacoder.com/2019/03/18/xmind/</id>
     <published>2019-03-18T09:29:06.000Z</published>
-    <updated>2019-05-10T01:37:44.268Z</updated>
+    <updated>2019-05-10T04:14:46.872Z</updated>
     
     <content type="html"><![CDATA[<p>除了写出高性能的算法，面对复杂的业务逻辑，画出清晰的mind map 往往会达到事半功倍的效果。<br><a id="more"></a></p><h4 id="绘图工具"><a href="#绘图工具" class="headerlink" title="绘图工具"></a>绘图工具</h4><p>调研了下一般后端小伙伴使用 Office 的 visual 来绘图，也有使用chrome的gliffy在线就可以画图</p><p>用mac的PM用sketch画图</p><p>测试同学用XMind来画分支图</p><p>个人感觉还是XMind更清晰美观，今天系统的感受了下xmind，记录下如何画出清晰美丽的mind map。</p><h4 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h4><p>基本掌握三个快捷键就可以开始画图了</p><p>tab添加子主题</p><p>enter添加同级主题</p><p>space进入编辑状态</p><h4 id="模版风格"><a href="#模版风格" class="headerlink" title="模版风格"></a>模版风格</h4><p>系统默认提供了一些模版供我们使用，个人比较喜欢清爽和简单两个风格</p><p>选中某个风格之后，最好就不要过多更改内部色调了，否则看起来会杂乱</p><p>有的时候系统的走向不符合我们的需求，这个时候我们可以选中某个模块，右侧菜单会出现结构选项，我们就可以自由选择从左到右或者从上到下，子分支全都集中在一侧，鱼骨图以及SWOT分析等各个场景的结构</p><p>比较喜欢<strong>打开彩虹分支</strong>，色彩上会更清晰一些</p><p><strong>关掉线条渐细</strong>，因为写代码一般是时序图，并没有明显的层级关系，所以没必要打开线条渐细</p><p>这样组合起来，加上一些自己的设计基本就可以画出丰富多彩，美观清晰的mind map了。</p><p>一起来画精致的mind map，让pm对你刮目相看，自惭形秽吧~</p><h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><p>以后遇到实际例子再补充此文</p>]]></content>
     
