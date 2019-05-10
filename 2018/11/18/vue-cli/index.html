@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next gemini" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="UA-131198272-2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=6.6.0">
+
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","width":300,"display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="（啊！这篇文章写了快两个月了，涉及的东西太多了，逃~） 安利虽然现在已经是19年了，还不懂webpack，es6吗？可能每次的借口就是，没有实践的机会。 那么现在的我真的建议你，使用element-ui开始写你下一个后台管理系统吧。 但是一定要谨记一个开发的原则：不拿外部有影响力的项目来练手，而是先在内部系统中进行有趣的尝试，成熟踩坑之后再用在外部项目中。 这篇文章可能没那么高大上，如果你对web">
+<meta name="keywords" content="webpack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从vue-cli说到webpack浪漫史">
+<meta property="og:url" content="https://evacoder.com/2018/11/18/vue-cli/index.html">
+<meta property="og:site_name" content="Eva&#39;s Blog">
+<meta property="og:description" content="（啊！这篇文章写了快两个月了，涉及的东西太多了，逃~） 安利虽然现在已经是19年了，还不懂webpack，es6吗？可能每次的借口就是，没有实践的机会。 那么现在的我真的建议你，使用element-ui开始写你下一个后台管理系统吧。 但是一定要谨记一个开发的原则：不拿外部有影响力的项目来练手，而是先在内部系统中进行有趣的尝试，成熟踩坑之后再用在外部项目中。 这篇文章可能没那么高大上，如果你对web">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-05-10T01:37:15.149Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从vue-cli说到webpack浪漫史">
+<meta name="twitter:description" content="（啊！这篇文章写了快两个月了，涉及的东西太多了，逃~） 安利虽然现在已经是19年了，还不懂webpack，es6吗？可能每次的借口就是，没有实践的机会。 那么现在的我真的建议你，使用element-ui开始写你下一个后台管理系统吧。 但是一定要谨记一个开发的原则：不拿外部有影响力的项目来练手，而是先在内部系统中进行有趣的尝试，成熟踩坑之后再用在外部项目中。 这篇文章可能没那么高大上，如果你对web">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Eva's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://evacoder.com/2018/11/18/vue-cli/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>从vue-cli说到webpack浪漫史 | Eva's Blog</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131198272-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-131198272-1');
+</script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ca3d224de40fbf734d1e623cf68e0fb4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Eva's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">进一寸有一寸的欢喜</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-movies">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/movies" rel="section"><i class="menu-item-icon fa fa-fw fa-film"></i> <br>Movies</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://evacoder.com/2018/11/18/vue-cli/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Eva">
+      <meta itemprop="description" content="Focus on Front-end Develop">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eva's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">从vue-cli说到webpack浪漫史
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-11-18 17:29:06" itemprop="dateCreated datePublished" datetime="2018-11-18T17:29:06+08:00">2018-11-18</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/18/vue-cli/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/11/18/vue-cli/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>（啊！这篇文章写了快两个月了，涉及的东西太多了，逃~）</p>
+<h4 id="安利"><a href="#安利" class="headerlink" title="安利"></a>安利</h4><p>虽然现在已经是19年了，还不懂webpack，es6吗？可能每次的借口就是，没有实践的机会。</p>
+<p>那么现在的我真的建议你，<strong>使用element-ui开始写你下一个后台管理系统吧</strong>。</p>
+<p>但是一定要谨记一个开发的原则：<strong>不拿外部有影响力的项目来练手，而是先在内部系统中进行有趣的尝试，成熟踩坑之后再用在外部项目中</strong>。</p>
+<p>这篇文章可能没那么高大上，如果你对webpack已经烂熟于心，也可以看着玩玩，权当回顾webpack的历史，也可以帮我指出些问题。<br><a id="more"></a></p>
+<p>element-ui有多好用呢？其实还是搞安全的后端同学推荐给我的，你就能知道，完全不懂前端的人都能玩转。</p>
+<p>如果在看这篇文章的你是一个不懂前端的后端同学，也可以试试这个框架，以后开发后台管理系统不用再求人啦。</p>
+<p>element-ui 有完善的 <a href="http://element-cn.eleme.io/#/zh-CN/component/installation" target="_blank" rel="noopener">api文档</a>，比bootstrap复制粘贴起来还畅快，而且使用 <a href="https://github.com/PanJiaChen/vue-element-admin" target="_blank" rel="noopener">vue-element-admin</a> 更是分分钟能搭建一个后台管理系统。</p>
+<p>等你搭积木似的完成一个项目，以上那些新技术（vue，webpack，es6，nodeJS，npm）对你来说就不再陌生了（虽然不完全懂原理，但是至少算是碰过了）。</p>
+<p>vue的好，在于它是一个<strong>渐进式</strong>的丰俭由人的框架，可以直接html里引入vue.js开箱即用写起来，也可以使用vue-cli提供的一整套开发流程。使用了vue-cli，我们就可以轻轻松松窥见<strong>现代的先进的前端开发项目</strong>是怎么样的。</p>
+<p>这里是vue-cli的 <a href="https://cli.vuejs.org/guide/" target="_blank" rel="noopener">文档</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">npm i -g @vue/cli</span><br><span class="line"><span class="comment"># 新建项目</span></span><br><span class="line">vue create hello-world</span><br><span class="line"><span class="comment"># 选择默认的配置即可，安装好依赖之后，直接进入目录</span></span><br><span class="line"><span class="comment"># dev模式运行起项目</span></span><br><span class="line">npm run serve</span><br><span class="line"><span class="comment"># 打包项目发布</span></span><br><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+<h4 id="vue-cli做了什么？"><a href="#vue-cli做了什么？" class="headerlink" title="vue-cli做了什么？"></a>vue-cli做了什么？</h4><p>what，因为拖得太久，vue-cli现在都升级成3.0的@vue/cli把build文件直接去掉了，这篇文章就是为了介绍vue-cli的打包配置的，以后都看不到webpack的打包配置源代码了，这怎么学习哦。</p>
+<p>先抛开 vue 不谈，我们先思考一下最简单的完整前端项目可能会有哪些工程化方面需求。</p>
+<h5 id="js-方面："><a href="#js-方面：" class="headerlink" title="js 方面："></a>js 方面：</h5><p>1.eslint 代码规范，不以规矩不成方圆。</p>
+<p>2.通过 babel 将ES6+转为大多数浏览器可识别的ES5。</p>
+<p>3.文件拼接，如果是 ES5写的可能需要将多个js文件concat起来，外面套个</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">// here is the content</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>来通过IIFE自执行匿名函数来隔离作用域。</p>
+<p>如果是 ES6+写的，babel 转码也转不了<code>import &#39;a.js&#39;</code>，后面再说怎么办。</p>
+<p>4.js 压缩，为了性能优化，加快加载时间，节省用户流量。</p>
+<h5 id="css-方面："><a href="#css-方面：" class="headerlink" title="css 方面："></a>css 方面：</h5><p>1.scss/less 转为 css。</p>
+<p>2.自动处理浏览器兼容性，加前缀，autoprefixer。</p>
+<p>3.压缩 css</p>
+<p>这些需求并不过分吧，都是很常见的。</p>
+<p>其实vue-cli的webpack配置也主要实现了以下功能：</p>
+<p>1.使用vue-loader将vue文件转为js文件</p>
+<p>2.使用babel-loader将es6转es5</p>
+<p>3.帮忙本地起一个node server来运行代码</p>
+<p>4.使用eslint来规范我们的代码</p>
+<p>5.hot module replacement(HMR)可以做到在应用运行时无需刷新页面即可替换模块来热更新。简言之，每次写完代码按ctrl+s不用手动刷新，浏览器自动就更新了。</p>
+<p>6.production环境和dev环境的切换</p>
+<p>7.production环境帮忙压缩js，把用到的第三方库抽离出来生成vendor.js（动静分离，不常修改的抽离出来），为打包出来的js生成一个hash，用来防止缓存。</p>
+<p>8.css-loader，style-loader，sass-loader，将scss/less等转成浏览器可解析的css，postcss-loader给 css 加前缀autoprefixer保证兼容性，</p>
+<p>回顾一下你平常的前端项目，通过webpack的工程化配置，是不是把你想做的都帮你做好了。</p>
+<p>封装的越来越简单，看不到实现细节，以后前端真的变成搬砖工种啦。</p>
+<blockquote>
+<p>关于修改，Evan You 是这么说的</p>
+<p><a href="mailto:1.vue-cli@3.0" target="_blank" rel="noopener">1.vue-cli@3.0</a>修改的方向是逐步成为“config/script in a package”的模型</p>
+<p>2.为避免使用户预先做一些不可逆的设置，</p>
+<p>-我们将逐步移除browserify支持，webpack将只基于一个template</p>
+<p>-在预设时就可以配置常见的（pwa/ts/ssr）设置</p>
+<p>3.除了封装包，提供通过vue.config.js配置的可能</p>
+<p>-为高级功能 如 env variables, css extraction API proxying提供了一个集中的入口</p>
+<p>-如本地预设一样，提供了底层的webpack设置支持，可能是webpackchain</p>
+</blockquote>
+<h4 id="前端工程化历史"><a href="#前端工程化历史" class="headerlink" title="前端工程化历史"></a>前端工程化历史</h4><p>我们先忽略上文中的那些loaders，只看需求和目标，是不是每个前端项目总会有这些需求。</p>
+<p>你可能觉得没啥了不起的，即使没有webpack，我们也有各种scss转css，压缩文件等需求，比如css加前缀保证浏览器兼容性，保存文件自动刷新浏览器，js文件拼接。</p>
+<p>我们的项目现在还存在为了打包拼接文件写的<strong>shell</strong>脚本，再通过YUI Compress来压缩。</p>
+<p>有些工程化需求也可以使用<strong>sublime插件</strong>来完成，比如：</p>
+<p>1.保存文件自动刷新浏览器（livereload插件，需要配合chrome插件livereload来完成，监控ctrl+s就无脑刷新浏览器，或者其他配置）</p>
+<p>2.css加前缀保证浏览器兼容性（autoprefixer插件）</p>
+<p>3.scss转css（sass插件）</p>
+<p>通过编辑器来工程化一点儿也不靠谱，你没办法要求每个人都和你安装一样的环境，一样的版本，完全不可控制。 </p>
+<p>用shell脚本同样也一点儿都不cool，就不能有前端自己的构建工具吗？</p>
+<p>后来<strong>grunt/gulp</strong>应运而生。</p>
+<p>有了这些构建工具，这些构建任务都跟着代码项目走，写好gulpfile，每个人clone下来，只需<code>npm install</code>就可以保证环境一致，零碎的打包工作也可以精简成一句<code>gulp</code>即可完成。</p>
+<p>其实也能满足我的大部分需求了，但是后来我觉得es6写的爽啊，想要使用es6来开发。</p>
+<p>没有import/export还好说，这种难道还用gulp-concat吗？no，no，no，这个时候我们的webpack就闪亮登场了。</p>
+<p><code>npm run build</code>，写好一次webpack.conf.js之后再也不用每次手动操作，也不需要自己想办法去写shell脚本。</p>
+<p>最开始因为webpack的文档不太平易近人，而望而却步，但是通过阮老师的 <a href="https://github.com/ruanyf/webpack-demos" target="_blank" rel="noopener">webpack-demos</a> 很清晰的就能了解到webpack使用进阶，以及一些常用的plugins，非常推荐，有使用基础的同学大概使用十分钟就能看完。</p>
+<h4 id="webpack和gulp的区别"><a href="#webpack和gulp的区别" class="headerlink" title="webpack和gulp的区别"></a>webpack和gulp的区别</h4><h4 id="项目定位"><a href="#项目定位" class="headerlink" title="项目定位"></a>项目定位</h4><p>本质上简言之，Gulp是构建工具，webpack是模块化解决方案。</p>
+<p>Gulp自己的slogan是The streaming build system，定位是流式构建系统，写好一个个任务（concat，minify，rename等等），通过pipe语法可以自定义构建顺序。</p>
+<p>Webpack的介绍是webpack is a module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, or packaging just about any resource or asset.</p>
+<p>webpack的初衷是用来打包js（typescript，ES6等）成浏览器能识别的js，现在可以打包任何资源（css，images）。但是现在webpack有了更多的插件，也可以处理gulp中的大部分任务。</p>
+<h4 id="使用现状"><a href="#使用现状" class="headerlink" title="使用现状"></a>使用现状</h4><p>现在两者都可以用于前端构建，github上webpack的stars更多一点。</p>
+<p>因为大多数项目通过npm scripts + webpack，直接写好npm scripts，其他开发者不需要关心细节，只需要<code>npm run serve</code>就可以完成基本需求，如果无法满足还有其他自定义需求，你可以再叠加gulp来完成构建。</p>
+<p>gulp是构建工具，和grunt是一个level，grunt的效率比较低，大部分被gulp给取代了。</p>
+<p>webpack是模块化方案，和browserify是一个level。</p>
+<p>场景实例</p>
+<p>比如我需要将一些ES6写的单文件打包并压缩混淆成一个js</p>
+<p>最开始使用gulp</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</span><br><span class="line"><span class="keyword">const</span> babel = <span class="built_in">require</span>(<span class="string">'gulp-babel'</span>);</span><br><span class="line"><span class="keyword">const</span> concat = <span class="built_in">require</span>(<span class="string">'gulp-concat'</span>);</span><br><span class="line"><span class="keyword">const</span> uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>);</span><br><span class="line"><span class="keyword">const</span> pump = <span class="built_in">require</span>(<span class="string">'pump'</span>);</span><br><span class="line"><span class="keyword">const</span> rename = <span class="built_in">require</span>(<span class="string">'gulp-rename'</span>);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'default'</span>, () =&gt; &#123;</span><br><span class="line">  pump([</span><br><span class="line">    gulp.src([<span class="string">'src/js/*.js'</span>]),</span><br><span class="line">    babel(&#123;</span><br><span class="line">      presets: [<span class="string">'@babel/env'</span>],</span><br><span class="line">    &#125;),</span><br><span class="line">    concat(<span class="string">'sdk.min.js'</span>),</span><br><span class="line">    gulp.dest(<span class="string">'dist'</span>),</span><br><span class="line">    rename(&#123; <span class="attr">suffix</span>: <span class="string">'.min'</span> &#125;),</span><br><span class="line">    uglify(&#123;</span><br><span class="line">      compress: &#123;</span><br><span class="line">        ie8: <span class="literal">true</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      mangle: &#123;</span><br><span class="line">        ie8: <span class="literal">true</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      output: &#123;</span><br><span class="line">        ie8: <span class="literal">true</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;),</span><br><span class="line">    gulp.dest(<span class="string">'pack'</span>),</span><br><span class="line">  ]);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>当遇到ES6中的import时你会发现仅仅使用gulp无法解决我们的需求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &apos;a&apos;</span><br></pre></td></tr></table></figure>
+<p>babel转码之后依然保留了上面的原文。</p>
+<p>浏览器还是无法识别这样的语法，而且已经有了import的引入关系，我们不应该再使用gulp-concat这样简单粗暴的拼接方法了，因为ES6里都是文件作用域，并不需要使用IFFE这样的自执行匿名函数或者命名空间来保证作用域的互相影响。</p>
+<p>这个时候webpack就可以很简单的满足我们的需求。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  mode: <span class="string">'development'</span>,</span><br><span class="line">  entry: <span class="string">'./src/js/index.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'pack/'</span>),</span><br><span class="line">    filename: <span class="string">'bundle.js'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [&#123;</span><br><span class="line">      test: <span class="regexp">/\.js$/</span>,</span><br><span class="line">      exclude: <span class="regexp">/(node_modules|bower_components)/</span>,</span><br><span class="line">      use: &#123;</span><br><span class="line">        loader: <span class="string">'babel-loader'</span>,</span><br><span class="line">        options: &#123;</span><br><span class="line">          presets: [<span class="string">'@babel/preset-env'</span>],</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;],</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>只需要简单一句的<code>webpack</code>就可以完成所有的打包构建。</p>
+<p>而且gulp需要自己列出哪些文件被引用了，但是webpack会根据import来自动理清文件的依赖关系更符合实际需求。</p>
+<p>所以说前端发展的实在是太快了，好多人喊着学不动了，但是架不住确实好用啊，一次配置，终生受益。</p>
+<p>这篇文章已经很长了，webpack 的具体使用请参见下一篇，webpack 的使用优化。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat_qrcode.jpg" alt="Eva wechat" style="width: 200px; max-width: 100%;">
+    <div>关注Eva的意如小馆，更方便的与我交流</div>
+</div>
+
+      </div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/webpack/" rel="tag"># webpack</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/12/minimalism_product_design/" rel="next" title="「 产品 」极简小程序产品设计笔记">
+                <i class="fa fa-chevron-left"></i> 「 产品 」极简小程序产品设计笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/20/team_intro/" rel="prev" title="「 基础设施 」前言">
+                「 基础设施 」前言 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Eva">
+            
+              <p class="site-author-name" itemprop="name">Eva</p>
+              <p class="site-description motion-element" itemprop="description">Focus on Front-end Develop</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/EvaLotus" title="GitHub &rarr; https://github.com/EvaLotus" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:evacoder@126.com" title="E-Mail &rarr; mailto:evacoder@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#安利"><span class="nav-number">1.</span> <span class="nav-text">安利</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vue-cli做了什么？"><span class="nav-number">2.</span> <span class="nav-text">vue-cli做了什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#js-方面："><span class="nav-number">2.1.</span> <span class="nav-text">js 方面：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#css-方面："><span class="nav-number">2.2.</span> <span class="nav-text">css 方面：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前端工程化历史"><span class="nav-number">3.</span> <span class="nav-text">前端工程化历史</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#webpack和gulp的区别"><span class="nav-number">4.</span> <span class="nav-text">webpack和gulp的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#项目定位"><span class="nav-number">5.</span> <span class="nav-text">项目定位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用现状"><span class="nav-number">6.</span> <span class="nav-text">使用现状</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-Travel"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Eva</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+    
+  
+  <script src="//cdn.jsdelivr.net/npm/valine@1.3.3/dist/Valine.min.js"></script>
+
+  <script>
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '7Ck7B9LoU0iNuR7sVgC3Sscr-gzGzoHsz',
+        appKey: 'GURQk3swSriTo8QzVtgoUDnk',
+        placeholder: '有什么想对Eva说的呢？',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'5' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
