@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://evacoder.com/2019/03/19/refer_cors_sec/</loc>
+    <lastmod>2019-05-13T08:18:53.776Z</lastmod>
+  </url>  <url>
+    <loc>https://evacoder.com/2018/11/30/npm/</loc>
+    <lastmod>2019-05-13T06:07:23.056Z</lastmod>
+  </url>  <url>
+    <loc>https://evacoder.com/2019/02/15/iframe_security/</loc>
+    <lastmod>2019-05-13T06:07:01.393Z</lastmod>
+  </url>  <url>
+    <loc>https://evacoder.com/2018/12/20/crsf/</loc>
+    <lastmod>2019-05-13T06:06:35.905Z</lastmod>
+  </url>  <url>
+    <loc>https://evacoder.com/2019/04/24/wechat_security/</loc>
+    <lastmod>2019-05-13T02:18:30.913Z</lastmod>
+  </url>  <url>
+    <loc>https://evacoder.com/2017/05/18/blog/</loc>
+    <lastmod>2019-05-10T06:42:59.478Z</lastmod>
+  </url>  <url>
     <loc>https://evacoder.com/2019/03/18/xmind/</loc>
     <lastmod>2019-05-10T04:14:46.872Z</lastmod>
   </url>  <url>
@@ -16,23 +34,14 @@
     <loc>https://evacoder.com/2019/02/16/frameworks_selection/</loc>
     <lastmod>2019-05-10T04:04:20.430Z</lastmod>
   </url>  <url>
-    <loc>https://evacoder.com/2019/04/22/webpack_all/</loc>
-    <lastmod>2019-05-10T03:59:36.235Z</lastmod>
-  </url>  <url>
     <loc>https://evacoder.com/2019/04/18/i18n_thinking/</loc>
     <lastmod>2019-05-10T03:57:58.710Z</lastmod>
   </url>  <url>
     <loc>https://evacoder.com/2018/11/18/vue-cli/</loc>
     <lastmod>2019-05-10T01:37:15.149Z</lastmod>
   </url>  <url>
-    <loc>https://evacoder.com/2019/04/24/wechat_security/</loc>
-    <lastmod>2019-05-09T06:15:15.294Z</lastmod>
-  </url>  <url>
     <loc>https://evacoder.com/2019/02/17/remote_debugging/</loc>
     <lastmod>2019-05-09T04:29:27.333Z</lastmod>
-  </url>  <url>
-    <loc>https://evacoder.com/2018/11/30/npm/</loc>
-    <lastmod>2019-03-29T03:29:27.495Z</lastmod>
   </url>  <url>
     <loc>https://evacoder.com/2017/03/12/git/</loc>
     <lastmod>2019-03-28T07:27:57.143Z</lastmod>
@@ -76,9 +85,6 @@
     <loc>https://evacoder.com/2018/10/12/wechat_dev_app_login/</loc>
     <lastmod>2019-03-13T11:58:52.345Z</lastmod>
   </url>  <url>
-    <loc>https://evacoder.com/2018/12/20/crsf/</loc>
-    <lastmod>2019-03-13T11:49:55.889Z</lastmod>
-  </url>  <url>
     <loc>https://evacoder.com/2018/12/28/js_devtool/</loc>
     <lastmod>2019-03-13T10:59:11.057Z</lastmod>
   </url>  <url>
@@ -102,9 +108,6 @@
   </url>  <url>
     <loc>https://evacoder.com/2017/11/18/homebrew/</loc>
     <lastmod>2019-02-20T08:06:54.210Z</lastmod>
-  </url>  <url>
-    <loc>https://evacoder.com/2019/02/15/iframe_security/</loc>
-    <lastmod>2019-02-18T08:53:30.695Z</lastmod>
   </url>  <url>
     <loc>https://evacoder.com/2016/12/18/hexo/</loc>
     <lastmod>2019-02-18T07:58:46.377Z</lastmod>

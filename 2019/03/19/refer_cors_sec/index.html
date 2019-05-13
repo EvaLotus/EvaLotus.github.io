@@ -105,18 +105,18 @@
 
 
 
-  <meta name="description" content="遇上有人反馈bug你一般都怎么处理？">
-<meta name="keywords" content="team">
+  <meta name="description" content="看到一个抢红包的活动页，准备把接口copy出来自动测试却发现403了，这种情况一般都是因为有refer校验。我们也经常会通过refer来限制接口的盗用，今天来分析下refer中的攻击点。">
+<meta name="keywords" content="Security">
 <meta property="og:type" content="article">
-<meta property="og:title" content="「 基础设施 」前端异常监控系统">
-<meta property="og:url" content="https://evacoder.com/2019/02/19/sentry/index.html">
+<meta property="og:title" content="「 安全 」从refer白名单说到CORS攻击点">
+<meta property="og:url" content="https://evacoder.com/2019/03/19/refer_cors_sec/index.html">
 <meta property="og:site_name" content="Eva&#39;s Blog">
-<meta property="og:description" content="遇上有人反馈bug你一般都怎么处理？">
+<meta property="og:description" content="看到一个抢红包的活动页，准备把接口copy出来自动测试却发现403了，这种情况一般都是因为有refer校验。我们也经常会通过refer来限制接口的盗用，今天来分析下refer中的攻击点。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-05-10T04:04:39.229Z">
+<meta property="og:updated_time" content="2019-05-13T08:18:53.776Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="「 基础设施 」前端异常监控系统">
-<meta name="twitter:description" content="遇上有人反馈bug你一般都怎么处理？">
+<meta name="twitter:title" content="「 安全 」从refer白名单说到CORS攻击点">
+<meta name="twitter:description" content="看到一个抢红包的活动页，准备把接口copy出来自动测试却发现403了，这种情况一般都是因为有refer校验。我们也经常会通过refer来限制接口的盗用，今天来分析下refer中的攻击点。">
 
 
 
@@ -125,7 +125,7 @@
 
 
 
-  <link rel="canonical" href="https://evacoder.com/2019/02/19/sentry/">
+  <link rel="canonical" href="https://evacoder.com/2019/03/19/refer_cors_sec/">
 
 
 
@@ -135,7 +135,7 @@
   };
 </script>
 
-  <title>「 基础设施 」前端异常监控系统 | Eva's Blog</title>
+  <title>「 安全 」从refer白名单说到CORS攻击点 | Eva's Blog</title>
   
 
 
@@ -373,7 +373,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://evacoder.com/2019/02/19/sentry/">
+    <link itemprop="mainEntityOfPage" href="https://evacoder.com/2019/03/19/refer_cors_sec/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Eva">
@@ -390,7 +390,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">「 基础设施 」前端异常监控系统
+          <h2 class="post-title" itemprop="name headline">「 安全 」从refer白名单说到CORS攻击点
 
               
             
@@ -416,7 +416,7 @@
                 
               
 
-              <time title="Created: 2019-02-19 19:37:12" itemprop="dateCreated datePublished" datetime="2019-02-19T19:37:12+08:00">2019-02-19</time>
+              <time title="Created: 2019-03-19 18:27:12" itemprop="dateCreated datePublished" datetime="2019-03-19T18:27:12+08:00">2019-03-19</time>
             
 
             
@@ -431,8 +431,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/02/19/sentry/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/02/19/sentry/" itemprop="commentCount"></span>
+                <a href="/2019/03/19/refer_cors_sec/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/03/19/refer_cors_sec/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -467,42 +467,46 @@
       
 
       
-        <p>遇上有人反馈bug你一般都怎么处理？</p>
+        <p>看到一个抢红包的活动页，准备把接口copy出来自动测试却发现403了，这种情况一般都是因为有refer校验。我们也经常会通过refer来限制接口的盗用，今天来分析下refer中的攻击点。</p>
 <a id="more"></a>
-<h4 id="bug反馈"><a href="#bug反馈" class="headerlink" title="bug反馈"></a>bug反馈</h4><p>先看看内网下自己的设备是否有报错，定位是线上问题or内网问题，内网报错：回滚内网分支。</p>
-<p>线上报错：查看是普遍问题还是兼容性问题</p>
+<h4 id="refer为空的情况"><a href="#refer为空的情况" class="headerlink" title="refer为空的情况"></a>refer为空的情况</h4><p>refer本来的作用是判断当前页面的来源页面的地址。服务端用来统计分析，日志记录，或者可以帮别人导流收钱，但是也存在没 refer 的的几种情况：</p>
 <ul>
-<li>普遍问题着手fix</li>
-<li>兼容性问题，询问用户设备信息，使用模拟器或者找测试同学使用相同测试机来复现，可以复现之后，如果是pc端可以f12来查看报错信息并定位（熟练使用devtool，最好有sourcemap来直接定位），移动端则使用远程调试（remote debugging 等在chrome或safari中进行复现，并定位问题））</li>
+<li>1.来源页面采用的协议为表示本地文件的”file”或者”data”URI（refer为<code>file:XXX</code>或<code>data:XXX</code>）</li>
+<li>2.当前请求页面采用的是非安全协议，而来源页面采用的是安全协议(HTTPS跳到HTTP)</li>
+<li>3.直接在浏览器地址输入地址进入的页面，或<code>location.reload()</code>刷新会没有refer，<code>location.href</code>或者<code>location.replace()</code> 有refer</li>
+<li>4.禁止发送 refer：<code>&lt;a rel=&quot;noreferrer&quot; href=&quot;https://evacoder.com/users&quot;&gt;</code>，<code>&lt;meta content=&quot;never&quot; name=&quot;referrer&quot;&gt;</code></li>
 </ul>
-<p>从上面我们可以发现，测试虽然测了大部分机型，但是js裸奔在各式各样的设备上，你真的能放心吗？</p>
-<p>反馈问题我们需要：1.设备信息，2.报错提示，3.复现流程</p>
-<p>内部反馈还好，如果是小白用户，根本不知道如何F12，更不要提移动端的错误调试，用户反馈到的很有可能就是一句（点了没反应，白屏之类的没有太多用处的信息）。</p>
-<p>最近抛弃了ie8，各种新技术都可以用起来了。虽然使用webpack，babel已经很成熟了，也封装的越来越好，</p>
-<p>一行browserlist&gt;1%就可以保证所有的兼容性。但是难免还是有点心慌，antd圣诞彩蛋自己被辞了也没办法找他们要赔偿啊？</p>
-<p>虽然有内网灰度，等着别人反馈问题？周期很长的，灰度3个月你受得了？</p>
-<p>这个时候我们真的非常需要一个前端的异常监控系统，复现流程先不奢求，只要有设备信息，js报什么错，具体的行数，一般也可以定位到问题了。</p>
-<h4 id="异常监控系统的原理"><a href="#异常监控系统的原理" class="headerlink" title="异常监控系统的原理"></a>异常监控系统的原理</h4><p>如果让你自己实现一个异常监控系统你会怎么做？</p>
-<p>最核心的API就是window.onerror，触发window.onerror的时候，将所有获取到的错误信息都发送一个请求到server端。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onerror = <span class="function"><span class="keyword">function</span> (<span class="params">msg, url, lineNo, columnNo, error</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>当代码中的 promise reject 的时候，onerror 是捕获不到异常的。对于 promise reject 的异常，除了对每个用到 promise 的地方都加上 catch 之外，我们还应该在全局环境下进行一个兜底。</p>
-<p>我们可以监听全局 unhandledrejection 事件：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'unhandledrejection'</span>, (e) =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(e)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<p>如果要阻止异常输出到控制台上，可以加上 e.preventDefault()。<br>通过发送请求还可以获取到设备的UA信息，ip地址。</p>
-<p>但是线上运行的代码都是打包压缩的，报错信息并不具体，不好定位，我们需要生成sourcemap文件便于debug。</p>
-<h4 id="sentry的使用"><a href="#sentry的使用" class="headerlink" title="sentry的使用"></a>sentry的使用</h4><p>一般公司也不会自建异常监控系统，现在有很成熟的方案，这里推荐使用sentry。</p>
-<p>接入只需要：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"https://browser.sentry-cdn.com/4.6.4/bundle.min.js"</span> crossorigin=<span class="string">"anonymous"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;script&gt;</span><br><span class="line">  Sentry.init(&#123;</span><br><span class="line">    dsn: <span class="string">'https://57b032907e35480d991114d212fcdda4@sentry.evacoder.com/2'</span>,</span><br><span class="line">    ignoreErrors: [],</span><br><span class="line">    release: <span class="string">"&lt;%= htmlWebpackPlugin.options.sentryRelease%&gt;"</span>,</span><br><span class="line">  &#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
-<p>或者使用npm直接安装也行，使用类似。</p>
-<p>不用担心sentry的兼容性，因为sentry也是hook了window.onerror，而window.onerror所有浏览器有标准实现。</p>
-<p>咋hook你懂的，可以复习下我写的这篇 <a href="https://www.evacoder.com/2019/02/15/iframe_security/" target="_blank" rel="noopener">万物皆可hook</a>。</p>
-<p>需要注意的是我们的老朋友跨域，js报错也是会跨域的=_=#，&lt;script&gt;引入的不同源js中的错误，window.onerror只能捕获到Script error，需要在script标签添加<code>crossorigin</code>属性，并配置CORS。</p>
-<p>iframe，css，img这些标签捕获不到错误。</p>
-<p>另外需要注意的是：sourcemap暴露在外网可能会导致源码泄漏，所以我们部署时一定要记得去掉sourcemap。有了sentry之后我们更可以直接去掉外网暴露的sourcemap，一样可以快速定位报错具体信息。</p>
-<p>配置sentry的sourcemap，以vue.config.js为例</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> SentryPlugin = <span class="built_in">require</span>(<span class="string">'@sentry/webpack-plugin'</span>);</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  productionSourceMap: <span class="literal">false</span>,</span><br><span class="line">  configureWebpack: &#123;</span><br><span class="line">    plugins: [</span><br><span class="line">      <span class="keyword">new</span> SentryPlugin(&#123;</span><br><span class="line">        include: <span class="string">'./dist'</span>,</span><br><span class="line">      &#125;),</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="部署搭建sentry"><a href="#部署搭建sentry" class="headerlink" title="部署搭建sentry"></a>部署搭建sentry</h4><p>参考文档可以通过docker来部署sentry<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/getsentry/onpremise.git</span><br></pre></td></tr></table></figure></p>
-<p>按照github上的步骤一步步部署</p>
-<p>遇到其他问题去看<a href="https://docs.sentry.io" target="_blank" rel="noopener">文档</a>，不会看文档还做程序员是害人害己哈哈哈。</p>
+<p>前端虽然可以通过<code>document.referrer</code>获取到refer，但为了安全JS是无法修改refer的。</p>
+<p>那坏人在referer上是否还有可攻击点呢？</p>
+<p>当然！如果要限制refer，有的接口需要客户端通用，考虑到客户端请求不带refer，server端有时会放过refer为空的情况，这个时候坏人就可以利用上面的规则构造出refer为空的情况。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">"data:text/html;base64,PGZvcm0gbWV0aG9kPXBvc3QgYWN0aW9uPWh0dHA6Ly9hLmIuY29tL2Q+PGlucHV0IHR5cGU9dGV4dCBuYW1lPSdpZCcgdmFsdWU9JzEyMycvPjwvZm9ybT48c2NyaXB0PmRvY3VtZW50LmZvcm1zWzBdLnN1Ym1pdCgpOzwvc2NyaXB0Pg=="</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>base64解码下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">atob(<span class="string">'PGZvcm0gbWV0aG9kPXBvc3QgYWN0aW9uPWh0dHA6Ly9hLmIuY29tL2Q+PGlucHV0IHR5cGU9dGV4dCBuYW1lPSdpZCcgdmFsdWU9JzEyMycvPjwvZm9ybT48c2NyaXB0PmRvY3VtZW50LmZvcm1zWzBdLnN1Ym1pdCgpOzwvc2NyaXB0Pg=='</span>)</span><br><span class="line"></span><br><span class="line">=&gt;</span><br><span class="line"></span><br><span class="line"><span class="string">"&lt;form method=post action=http://a.b.com/d&gt;&lt;input type=text name='id' value='123'/&gt;&lt;/form&gt;&lt;script&gt;document.forms[0].submit();&lt;/script&gt;"</span></span><br></pre></td></tr></table></figure>
+<p>利用上文的第1条：协议为data开头，如果这个HTML页面向任何http站点提交请求的话，这些请求的Referer都是空的。</p>
+<p>或者利用第5条，强制设置不发送 refer</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"never"</span> <span class="attr">name</span>=<span class="string">"referrer"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">rel</span>=<span class="string">"noreferrer"</span> <span class="attr">href</span>=<span class="string">"https://evacoder.com/users"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>既然存在作恶的空间我们就最好不要放过refer为空的请求，对于客户端通过UA来过滤放行。</p>
+<h4 id="refer的正则攻击点"><a href="#refer的正则攻击点" class="headerlink" title="refer的正则攻击点"></a>refer的正则攻击点</h4><p>那不允许refer为空就不存在安全问题了吗？refer的正则校验依然有很多可绕过的地方。因为无法看到后端的refer校验规则，我们只能碰碰运气，常见的问题如下：</p>
+<p>如果已知在evacoder.com/demo中是可以通过refer校验的，我们试着在抓包工具中修改refer为以下：</p>
+<p>1.<a href="https://www.badmanhackevacoder.com" target="_blank" rel="noopener">https://badmanhackevacoder.com</a>/demo （可能只校验了<code>/^.*evacoder.com/demo$/</code>）</p>
+<p>2.<a href="https://www.evacoder.badman.com" target="_blank" rel="noopener">https://badman.com</a>/evacoder.com/demo (可能只校验了<code>/^.*evacoder.com/demo$/</code>构造一个对应的文件夹）</p>
+<p>3.<a href="https://badman.com?id=evacoder.com/demo%28构造一个参数%29\" target="_blank" rel="noopener">https://badman.com?id=evacoder.com/demo(构造参数</a>）</p>
+<h4 id="CORS中的类似攻击"><a href="#CORS中的类似攻击" class="headerlink" title="CORS中的类似攻击"></a>CORS中的类似攻击</h4><p>我们常说AJAX有跨域限制，但是很多人没有注意到即使跨域，AJAX其实也已经将请求发出去，不过因为浏览器限制，JS获取不到响应而已，类似ping img。为了解决AJAX跨域的问题，我们通常使用CORS来跨域资源共享。</p>
+<p>IE10以上都支持CORS，放心使用，只需要后端配置允许CORS，前端啥也不用改就可以直接获取到跨域的请求，我们可以视情况在IE10以下使用JSONP来兼容。</p>
+<p>node配置示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="string">'*'</span>,<span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line"><span class="comment">// 任意域名都可访问此接口，不能携带cookie</span></span><br><span class="line">res.header(<span class="string">'Access-Control-Allow-Origin'</span>, <span class="string">'*'</span>);</span><br><span class="line"><span class="comment">//res.header('Access-Control-Allow-Origin', 'http://www.baidu.com'); // 只有www.baidu.com 可以访问。</span></span><br><span class="line">res.header(<span class="string">'Access-Control-Allow-Headers'</span>, <span class="string">'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild'</span>);</span><br><span class="line">res.header(<span class="string">'Access-Control-Allow-Methods'</span>, <span class="string">'PUT, POST, GET, DELETE, OPTIONS'</span>);<span class="comment">// 允许的请求方法</span></span><br><span class="line"><span class="keyword">if</span> (req.method == <span class="string">'OPTIONS'</span>) &#123;</span><br><span class="line">res.send(<span class="number">200</span>); <span class="comment">// 在正常的请求之前，会发送一个验证，是否可以请求。</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">next();</span><br><span class="line">&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>上面说到refer因为正则校验不严格，所以容易出现可以绕过的问题，在CORS中一样存在。</p>
+<p>对于CORS为*的，我们不必关心，它已经放弃了限制，你随便来调用吧，要是有笨到将敏感接口如此设置的，应该会被直接开除吧。</p>
+<p>但是假设我们F12突然发现 <a href="https://www.evacoder.com" target="_blank" rel="noopener">https://www.evacoder.com</a> 中有个接口居然设置了CORS，</p>
+<p>CORS请求成功之后，在response header中会有以下请求头，比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Response Header</span><br><span class="line">Origin: https://www.evacoder.com</span><br><span class="line">Access-Control-Allow-Credentials: true</span><br><span class="line">Access-Control-Allow-Headers: Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,token</span><br><span class="line">Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS</span><br><span class="line">Access-Control-Allow-Origin: https://www.evacoder.com</span><br></pre></td></tr></table></figure>
+<p>这里的CORS只在指定的某些域名可以使用，同样仅在前端是看不出来在后端设置的具体域名的。</p>
+<p>我们来碰碰运气，在抓包工具中修改Origin为以下：</p>
+<p>1.<a href="https://www.badmanhackevacoder.com" target="_blank" rel="noopener">https://www.badmanhackevacoder.com</a> （可能只校验了<code>/^.\*evacoder.com$/</code>）</p>
+<p>2.<a href="https://www.evacoder.badman.com" target="_blank" rel="noopener">https://www.evacoder.badman.com</a> (可能只校验了<code>/^.\*evacoder..\*.com$/</code>）</p>
+<p>反正去测试吧，可能会碰到漏网之小白，再找到敏感接口，将 <a href="https://www.badmanhackevacoder.com/testPage" target="_blank" rel="noopener">https://www.badmanhackevacoder.com/testPage</a> 发给用户，用户可能已经登录过evacoder.com，坏人页请求敏感接口成功，就能获取到小白在evacoder的敏感信息了。</p>
+<p>CORS可攻击点的范围比refer要稍小一点，CORS只能构造假的domain，refer 还可以构造参数，可发挥的空间更大。</p>
+<p>更多<a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="noopener">CORS详细介绍</a></p>
 
       
     </div>
@@ -534,7 +538,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/team/" rel="tag"># team</a>
+            <a href="/tags/Security/" rel="tag"># Security</a>
           
         </div>
       
@@ -547,8 +551,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/18/iframe/" rel="next" title="「 HTML 」iframe100问">
-                <i class="fa fa-chevron-left"></i> 「 HTML 」iframe100问
+              <a href="/2019/03/18/xmind/" rel="next" title="「 工具 」绘图工具指南">
+                <i class="fa fa-chevron-left"></i> 「 工具 」绘图工具指南
               </a>
             
           </div>
@@ -557,8 +561,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/02/20/static_deploy/" rel="prev" title="「 基础设施 」现代化前端工程发布">
-                「 基础设施 」现代化前端工程发布 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/18/i18n_thinking/" rel="prev" title="「 功能点 」国际化的一些思考和注意事项">
+                「 功能点 」国际化的一些思考和注意事项 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -750,7 +754,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#bug反馈"><span class="nav-number">1.</span> <span class="nav-text">bug反馈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异常监控系统的原理"><span class="nav-number">2.</span> <span class="nav-text">异常监控系统的原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sentry的使用"><span class="nav-number">3.</span> <span class="nav-text">sentry的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#部署搭建sentry"><span class="nav-number">4.</span> <span class="nav-text">部署搭建sentry</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#refer为空的情况"><span class="nav-number">1.</span> <span class="nav-text">refer为空的情况</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#refer的正则攻击点"><span class="nav-number">2.</span> <span class="nav-text">refer的正则攻击点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CORS中的类似攻击"><span class="nav-number">3.</span> <span class="nav-text">CORS中的类似攻击</span></a></li></ol></div>
             
 
           </div>
