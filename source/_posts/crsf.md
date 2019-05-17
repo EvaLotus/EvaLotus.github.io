@@ -1,7 +1,7 @@
 ---
 title: 「 安全 」这次，完全弄明白CSRF
 date: 2018-12-20 20:11:15
-tags: HTTP
+tags: Security
 ---
 今天听小伙伴分享了下CSRF攻击的原理，这次真的弄明白了CSRF。
 **CSRF\(**Cross Site Request Forgery\) 是什么？跨站请求伪造。

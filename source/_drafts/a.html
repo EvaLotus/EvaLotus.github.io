@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="b.js" async>  </script>
+  <h1>Can you see me?</h1>
+  <script>
+    console.log(new Date().valueOf());
+  // document.addEventListener('DOMContentLoaded', function() {
+  //   console.log('3 seconds passed');
+  // });
+
+  // let a = 0;
+  // let b = async () = {
+  //   a = a + await 10;
+  //   console.log('2', a);
+  // }
+  // b();
+
+  // a++;
+  // console.log('1', a);
+
+  // async其实就是将函数返回值用Promise.resolve()包裹了下，和then中处理返回值一样，await只能配套async使用
+  // console.log(test());
+
+
+  // function longTask() {
+  //   var i = 0;
+  //   while (i < 10000) {
+  //     console.log(i);
+  //     i++;
+  //   }
+  // }
+  // longTask();
+  // 耗时操作执行完毕之后才会渲染出di
+
+    let script=document.createElement('script');
+    script.src='';
+    document.body.appendChild(script);
+  </script>
+  
+  <!-- <link rel="stylesheet" href="a.php"> -->
+  <div>Can you see me?</div>
+  <script>
+  // 浏览器确实是按HTML顺序依次执行的
+  // 所以经常说需要将script放在body的底部，防止阻塞页面。
+  // console.log(1);
+let div=document.createElement('div');
+div.innerHTML='21222222222222222';
+document.body.appendChild(div);
+console.log(document.body.children);
+var i = 0;
+while (i < 100000000) {
+  console.log(i);
+  i++;
+}
+console.log(new Date().valueOf());
+  </script>
+</body>
+
+</html>

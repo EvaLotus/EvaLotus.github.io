@@ -89,7 +89,7 @@ siblingWindow.location.href ='https://evacoder.com';
 
 可以通过HTML5的新特性`sandbox`属性来限制iframe的行为，这个属性是反向的，如果空字符串则会应用所有的限制，sandbox包含的属性会移除对应的限制。
 
-| "" | 应用以下所有的限制。 |
+| `""` | 应用以下所有的限制。 |
 | :------------------- | :--------------------------------------------- |
 | allow-same-origin | 允许 iframe 内容被视为与包含文档有相同的来源。 |
 | allow-top-navigation | 允许 iframe 内容从包含文档导航（加载）内容。 |
@@ -137,7 +137,7 @@ window.opener.location='https://evacoder.com';
 
 ```js
 if (top !== self) {
-top.location = location
+  top.location = location
 }
 ```
 
@@ -147,16 +147,21 @@ top.location = location
 
 **4.post请求可以跨域么？**
 
-我们常说的浏览器有跨域请求限制，实际上是 ajax 不能跨域，但我们可以用 古老的form 表单来跨域呀，在 iframe 中提交，还可以做到form表单提交而且页面不刷新
+为何有这样一个问题呢？
+
+因为了解CSRF攻击的小伙伴都知道，坏人可以在我们的页面中通过 `new Image().src='evacoder.com/getMoney'` 带着我们页面中的cookie直接发出请求，但是通过img，script这类都只能发出 GET 请求。
+
+我们常说的浏览器有跨域请求限制，实际上是 AJAX 不能跨域，这里的跨域也只是说获取不到请求的响应结果，但我们可以用 古老的form 表单来跨域，在 iframe 中提交，还可以做到form表单提交而且页面不刷新
 
 ```js
 <iframe style="display:none">
-　<form method="POST"　action="http://api.mi.com">
-　　　　<input type="hidden" name="other" value="XXX">
-　　　　<input type="hidden" name="money" value="10000">
+  <form method="POST"　action="http://api.mi.com">
+    <input type="hidden" name="other" value="XXX">
+    <input type="hidden" name="money" value="10000">
 　</form>
 </iframe>
 ```
+但是需要注意的是，AJAX跨域限制只是浏览器不给JS处理响应的结果而已，所以上面的办法其实没有那么厉害，直接AJAX POST也能发送跨域请求。所以我们还需要其他的措施来防止CSRF攻击。
 
 **5.可以在iframe的引用页修改iframe元素的样式吗？**
 
@@ -202,9 +207,3 @@ iframe 最大的好处是它一个独立的运行环境，邮箱框架中使用�
 [Chrome 将默认屏蔽“非用户行为触发”的父页面跳转](https://zhuanlan.zhihu.com/p/38538801)
 
 想到其它有意思的点再补充吧~
-
-今天真的很忙，一整天被呼来唤去的，想起每日一更的约定又难实现，真的要嘤嘤嘤的哭出来，压力大的每天晚上都睡不好，其实也没人逼我，就想试试自己能坚持多久。
-
-可能要求数量的话会导致质量降低，但是有这样的约定挂在心头总比每日毫无追求来的好。
-
-坚持一万小时训练法，等我变成三十岁的老阿姨，一定会有很大的变化。

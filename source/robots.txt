@@ -6,13 +6,5 @@ Allow: /2018/
 Allow: /2019/
 Allow: /archives/
 
-Disallow: /about/
-Disallow: /assets/
-Disallow: /js/
-Disallow: /css/
-Disallow: /lib/
-Disallow: /movies/
-Disallow: /page/
-
-Sitemap: http://www.arao.me/sitemap.xml
-Sitemap: http://www.arao.me/baidusitemap.xml
+Sitemap: http://www.evacoder.com/sitemap.xml
+Sitemap: http://www.evacoder.com/baidusitemap.xml

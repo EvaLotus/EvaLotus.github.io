@@ -7,9 +7,9 @@ tags: 微信开发
 <!-- more -->
 接入js-sdk的分享功能，分享出去的地址会变成
 
-[https://i.mi.com/static2?filename=MicloudWebBill/event/recruit/index.html&from=singlemessage&isappinstalled=0](https://i.mi.com/static2?filename=MicloudWebBill/event/recruit/index.html&from=singlemessage&isappinstalled=0)
+https://i.mi.com/static2?filename=MicloudWebBill/event/recruit/index.html&from=singlemessage&isappinstalled=0
 
-后台签名如果是写死url的话，第二次分享就会有签名错误的问题，导致分享出去用户看到的description和头图都没有了，变成了默认的url地址。
+后台签名如果是写死url的话，第二次分享就会有签名错误的问题，分享出去用户看到的description和头图都没有了，变成了默认的url地址。
 
 所以后端需要实时获取url地址来加密签名，以免导致二次分享出错的问题
 
