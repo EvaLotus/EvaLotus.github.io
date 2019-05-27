@@ -113,7 +113,7 @@
 <meta property="og:site_name" content="Eva&#39;s Blog">
 <meta property="og:description" content="上篇说到iframe弹窗的登录安全，接下来我们带着问题出发，详细的了解下iframe这个历史的产物。 虽然足够古老，但是也能解决很多现代的问题。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-02-22T06:52:57.427Z">
+<meta property="og:updated_time" content="2019-05-14T02:39:13.048Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="「 HTML 」iframe100问">
 <meta name="twitter:description" content="上篇说到iframe弹窗的登录安全，接下来我们带着问题出发，详细的了解下iframe这个历史的产物。 虽然足够古老，但是也能解决很多现代的问题。">
@@ -491,7 +491,7 @@
 <table>
 <thead>
 <tr>
-<th style="text-align:left">“”</th>
+<th style="text-align:left"><code>&quot;&quot;</code></th>
 <th style="text-align:left">应用以下所有的限制。</th>
 </tr>
 </thead>
@@ -530,12 +530,15 @@
 <p>在上一篇文章中，我们提到了为了安全禁止了登录页被嵌在iframe中，但是一般更多的是为了预防点击劫持（clickjacking）的考虑。</p>
 <p>如果我们有个广告页，需要靠点击量来计费，坏人把我们的页面放在一个透明度为0的iframe中，用户就可能无感知的情况下点击，广告费就猛增。</p>
 <p>以前的做法一般是通过js在页面中加入</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (top !== self) &#123;</span><br><span class="line">top.location = location</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (top !== self) &#123;</span><br><span class="line">  top.location = location</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>就可以保证自己始终是在顶层窗口中显示，就避免了被内嵌在别人的页面中。</p>
 <p>但是现在一般都通过服务端直接设置<code>X-Frame-Options：SAMEORIGIN</code>响应头来只允许被同域的页面内嵌。</p>
 <p><strong>4.post请求可以跨域么？</strong></p>
-<p>我们常说的浏览器有跨域请求限制，实际上是 ajax 不能跨域，但我们可以用 古老的form 表单来跨域呀，在 iframe 中提交，还可以做到form表单提交而且页面不刷新</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe style=<span class="string">"display:none"</span>&gt;</span><br><span class="line">　&lt;form method=<span class="string">"POST"</span>　action=<span class="string">"http://api.mi.com"</span>&gt;</span><br><span class="line">　　　　&lt;input type=<span class="string">"hidden"</span> name=<span class="string">"other"</span> value=<span class="string">"XXX"</span>&gt;</span><br><span class="line">　　　　&lt;input type=<span class="string">"hidden"</span> name=<span class="string">"money"</span> value=<span class="string">"10000"</span>&gt;</span><br><span class="line">　&lt;<span class="regexp">/form&gt;</span></span><br><span class="line"><span class="regexp">&lt;/i</span>frame&gt;</span><br></pre></td></tr></table></figure>
+<p>为何有这样一个问题呢？</p>
+<p>因为了解CSRF攻击的小伙伴都知道，坏人可以在我们的页面中通过 <code>new Image().src=&#39;evacoder.com/getMoney&#39;</code> 带着我们页面中的cookie直接发出请求，但是通过img，script这类都只能发出 GET 请求。</p>
+<p>我们常说的浏览器有跨域请求限制，实际上是 AJAX 不能跨域，这里的跨域也只是说获取不到请求的响应结果，但我们可以用 古老的form 表单来跨域，在 iframe 中提交，还可以做到form表单提交而且页面不刷新</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe style=<span class="string">"display:none"</span>&gt;</span><br><span class="line">  &lt;form method=<span class="string">"POST"</span>　action=<span class="string">"http://api.mi.com"</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">"hidden"</span> name=<span class="string">"other"</span> value=<span class="string">"XXX"</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">"hidden"</span> name=<span class="string">"money"</span> value=<span class="string">"10000"</span>&gt;</span><br><span class="line">　&lt;<span class="regexp">/form&gt;</span></span><br><span class="line"><span class="regexp">&lt;/i</span>frame&gt;</span><br></pre></td></tr></table></figure>
+<p>但是需要注意的是，AJAX跨域限制只是浏览器不给JS处理响应的结果而已，所以上面的办法其实没有那么厉害，直接AJAX POST也能发送跨域请求。所以我们还需要其他的措施来防止CSRF攻击。</p>
 <p><strong>5.可以在iframe的引用页修改iframe元素的样式吗？</strong></p>
 <p>比如我用了google reCAPTCHA的sdk，出来的验证码是通过iframe加载的，我想要修改google的样式。</p>
 <p>如上文所述，跨域了是不能进行 DOM 操作的，不然会有严重的安全问题，post message 也只是能在页面间传递信息而已。</p>
@@ -554,9 +557,6 @@
 <p>参考</p>
 <p><a href="https://www.zhihu.com/question/20653055" target="_blank" rel="noopener">知乎：iframe 的好处和坏处</a><br><a href="https://zhuanlan.zhihu.com/p/38538801" target="_blank" rel="noopener">Chrome 将默认屏蔽“非用户行为触发”的父页面跳转</a></p>
 <p>想到其它有意思的点再补充吧~</p>
-<p>今天真的很忙，一整天被呼来唤去的，想起每日一更的约定又难实现，真的要嘤嘤嘤的哭出来，压力大的每天晚上都睡不好，其实也没人逼我，就想试试自己能坚持多久。</p>
-<p>可能要求数量的话会导致质量降低，但是有这样的约定挂在心头总比每日毫无追求来的好。</p>
-<p>坚持一万小时训练法，等我变成三十岁的老阿姨，一定会有很大的变化。</p>
 
       
     </div>
@@ -689,7 +689,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">42</span>
+                    <span class="site-state-item-count">43</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -734,7 +734,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">14</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

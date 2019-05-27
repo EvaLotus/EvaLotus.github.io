@@ -105,18 +105,18 @@
 
 
 
-  <meta name="description" content="从后端国际化转向了使用vue-i18n前端国际化，不再会出现因为资源缺失导致的service error了，近期又整理了下国际化中踩过的坑，分享给大家。">
+  <meta name="description" content="从后端国际化转向了使用vue-i18n前端国际化，不再会出现因为资源缺失导致的service error了，近期又全面整理了下国际化中踩过的坑，分享给大家。">
 <meta name="keywords" content="功能点">
 <meta property="og:type" content="article">
 <meta property="og:title" content="「 功能点 」国际化的一些思考和注意事项">
 <meta property="og:url" content="https://evacoder.com/2019/04/18/i18n_thinking/index.html">
 <meta property="og:site_name" content="Eva&#39;s Blog">
-<meta property="og:description" content="从后端国际化转向了使用vue-i18n前端国际化，不再会出现因为资源缺失导致的service error了，近期又整理了下国际化中踩过的坑，分享给大家。">
+<meta property="og:description" content="从后端国际化转向了使用vue-i18n前端国际化，不再会出现因为资源缺失导致的service error了，近期又全面整理了下国际化中踩过的坑，分享给大家。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-05-10T03:57:58.710Z">
+<meta property="og:updated_time" content="2019-05-27T03:47:10.523Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="「 功能点 」国际化的一些思考和注意事项">
-<meta name="twitter:description" content="从后端国际化转向了使用vue-i18n前端国际化，不再会出现因为资源缺失导致的service error了，近期又整理了下国际化中踩过的坑，分享给大家。">
+<meta name="twitter:description" content="从后端国际化转向了使用vue-i18n前端国际化，不再会出现因为资源缺失导致的service error了，近期又全面整理了下国际化中踩过的坑，分享给大家。">
 
 
 
@@ -467,7 +467,7 @@
       
 
       
-        <p>从后端国际化转向了使用vue-i18n前端国际化，不再会出现因为资源缺失导致的service error了，近期又整理了下国际化中踩过的坑，分享给大家。<br><a id="more"></a></p>
+        <p>从后端国际化转向了使用vue-i18n前端国际化，不再会出现因为资源缺失导致的service error了，近期又全面整理了下国际化中踩过的坑，分享给大家。<br><a id="more"></a></p>
 <h3 id="和翻译同学的合作"><a href="#和翻译同学的合作" class="headerlink" title="和翻译同学的合作"></a>和翻译同学的合作</h3><p>翻译同学一般使用 <a href="https://crowdin.com" target="_blank" rel="noopener">https://crowdin.com</a> 来提交翻译，在crowdin提交之后会有脚本定时提交到gitlab的语言资源项目中，开发同学可以通过脚本将语言资源copy到自己的实际项目中，但是要注意需要等翻译<strong>100%</strong>完成时才进行copy，不然会混杂着未翻译的文案给用户造成困扰。</p>
 <p>和翻译同学合作需要注意以下几点：</p>
 <h4 id="1-注意尽量不要使用拼接的字符串"><a href="#1-注意尽量不要使用拼接的字符串" class="headerlink" title="1.注意尽量不要使用拼接的字符串"></a>1.注意尽量不要使用拼接的字符串</h4><p>比如：</p>
@@ -479,14 +479,14 @@
 <p>and=和</p>
 <p>这样翻译同学会和莫名其妙，而且不同语言因为语序不一样，我们生硬的组合起来，展示在网页上的整句话会完全不可读。</p>
 <h4 id="2-注意单复数的处理"><a href="#2-注意单复数的处理" class="headerlink" title="2.注意单复数的处理"></a>2.注意单复数的处理</h4><p>left_times=您还能发送{n}条短信</p>
-<p>在其他语言中会有单复数的区分，1 message left，2 messages left。 在阿语中单复数的表达甚至有多达6种。 Android的resource是使用xml，处理单复数如下<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">plurals</span> <span class="attr">name</span>=<span class="string">"watch_face_count"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">item</span> <span class="attr">quantity</span>=<span class="string">"one"</span>&gt;</span>%1$d个手盘<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">item</span> <span class="attr">quantity</span>=<span class="string">"other"</span>&gt;</span>%1$d个手盘<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plurals</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>在其他语言中会有单复数的区分，1 message left，2 messages left。 在阿语中单复数的表达甚至有多达6种。 Android的resource是使用xml，处理单复数如下<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">plurals</span> <span class="attr">name</span>=<span class="string">"watch_face_count"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">item</span> <span class="attr">quantity</span>=<span class="string">"one"</span>&gt;</span>%1$d个手盘<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">item</span> <span class="attr">quantity</span>=<span class="string">"other"</span>&gt;</span>%1$d个手盘<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plurals</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>Web中暂时没有比较好的处理方法</p>
 <h4 id="3-需要注意日期，金额等格式差异的处理"><a href="#3-需要注意日期，金额等格式差异的处理" class="headerlink" title="3.需要注意日期，金额等格式差异的处理"></a>3.需要注意日期，金额等格式差异的处理</h4><p>比如在中文中通常是年月日格式：2019-05-13，英语中日期格式是日月年 13-05-2019</p>
-<h4 id="4-需要注意rtl语言的特殊ui处理"><a href="#4-需要注意rtl语言的特殊ui处理" class="headerlink" title="4.需要注意rtl语言的特殊ui处理"></a>4.需要注意rtl语言的特殊ui处理</h4><p>有很多语言，比如iw_IL，ar等语言习惯都是从左到右的书写习惯，此时除了需要加上body{direction:rtl}</p>
+<h4 id="4-需要注意rtl语言的特殊ui处理"><a href="#4-需要注意rtl语言的特殊ui处理" class="headerlink" title="4.需要注意rtl语言的特殊ui处理"></a>4.需要注意rtl语言的特殊ui处理</h4><p>有很多语言，比如iw_IL，ar等语言习惯都是从左到右的书写习惯，此时除了需要加上 <code>body{direction:rtl}</code></p>
 <p>其他的布局也需要注意将left和right互换。</p>
-<h4 id="5-需要注意语言中单双引号的处理"><a href="#5-需要注意语言中单双引号的处理" class="headerlink" title="5.需要注意语言中单双引号的处理"></a>5.需要注意语言中单双引号的处理</h4><p>英语en_US和法语fr_FR有单引号，iw_IL希伯来语中有双引号作为字符。</p>
+<h4 id="5-需要注意语言中单双引号的处理"><a href="#5-需要注意语言中单双引号的处理" class="headerlink" title="5.需要注意语言中单双引号的处理"></a>5.需要注意语言中单双引号的处理</h4><p>英语en_US，法语fr_FR，意大利语it_IT有单引号，iw_IL希伯来语中有双引号作为字符。</p>
 <p>如果出现在js的字符串中，导致语法错误，程序直接无法运行，此时我们需要用上转义字符来避免问题。</p>
-<p>通过Python脚本执行将单双引号进行html转译</p>
+<p>写个脚本统一将单双引号进行html转译</p>
 <table>
 <thead>
 <tr>
@@ -496,24 +496,26 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">‘</td>
-<td style="text-align:left"><code>&amp;#39</code>（因为 <code>&amp;apos;</code> 不兼容IE所以使用这个）</td>
+<td style="text-align:left"><code>&#39;</code></td>
+<td style="text-align:left"><code>&amp;#39;</code>（因为 <code>&amp;apos;</code> 不兼容IE所以使用这个）</td>
 </tr>
 <tr>
-<td style="text-align:left">“</td>
+<td style="text-align:left"><code>&quot;</code></td>
 <td style="text-align:left"><code>&amp;quot;</code></td>
 </tr>
 </tbody>
 </table>
-<h4 id="6-需要注意某些语言过长的处理"><a href="#6-需要注意某些语言过长的处理" class="headerlink" title="6.需要注意某些语言过长的处理"></a>6.需要注意某些语言过长的处理</h4><p>有些语言，比如mr_IR一个单词就非常长，所以一点要做好超长的样式处理，能够做到自适应布局。</p>
-<h3 id="对外提供页面原则"><a href="#对外提供页面原则" class="headerlink" title="对外提供页面原则"></a>对外提供页面原则</h3><p>国际化的实现通常有两种方案：<br>1.将每个语言打包成一个页面（index-en_US.html,index-fr_FR.html）</p>
+<h4 id="6-需要注意某些语言过长的处理"><a href="#6-需要注意某些语言过长的处理" class="headerlink" title="6.需要注意某些语言过长的处理"></a>6.需要注意某些语言过长的处理</h4><p>有些语言，比如 <code>mr_IR</code> 一个单词就非常长，所以一点要做好超长的样式处理，能够做到自适应布局。</p>
+<h3 id="对外提供页面原则"><a href="#对外提供页面原则" class="headerlink" title="对外提供页面原则"></a>对外提供页面原则</h3><p>国际化的实现通常有两种方案：</p>
+<p>1.将每个语言打包成一个页面（index-en_US.html,index-fr_FR.html）</p>
 <ul>
 <li>通常使用在对于性能和白屏时间有要求的网站首页，采用后端渲染根据对应的语言去加载</li>
-<li>或者每个语言的差异比较大，不能通过模版语法简单的key-value对应上<br>2.同一个页面，根据_locale参数或cookie加载不同的语言包(en_US.json,fr_FR.json)</li>
+<li>或者每个语言的差异比较大，不能通过模版语法简单的key-value对应上</li>
 </ul>
-<p>无论使用哪种方式，<strong>对外提供的页面需要被别的页面引用</strong>，不应该让每个引用的页面来处理语言逻辑，即不应该直接提供zh_CN.html，en_US.html这样的路径，而应该提供一个中间页面index.html根据参数_locale=${locale}或者cookie来自动跳转对应的语言版本。</p>
-<h3 id="vue-i18n使用"><a href="#vue-i18n使用" class="headerlink" title="vue-i18n使用"></a>vue-i18n使用</h3><p><a href="https://kazupon.github.io/vue-i18n/zh/introduction.html" target="_blank" rel="noopener">文档</a>已经很清楚而且现在也有翻译了，不再赘述，需要注意使用webpack延迟加载而不是直接加载全部。</p>
-<p>一般情况下都是前端同学来维护国际化的资源文件，确实是一件费时费力枯燥无味的工作，但是在工作中切忌眼高手低，分配到你的工作一定要做好。随着语言的种类越来越多，为了方便维护，最开始就要考虑好上面的问题的解决方案。</p>
+<p>2.同一个页面，根据_locale参数或cookie加载不同的语言包(en_US.json,fr_FR.json)</p>
+<p>无论使用哪种方式，因为我们对外提供的页面需要被别的页面引用，<strong>不应该让每个引用的页面来处理语言和页面对应逻辑</strong>，即不应该直接提供zh_CN.html，en_US.html这样的路径，而应该提供一个中间页面index.html，有的locale并不能自动对应locale.html,需要作为页面提供者的我们根据参数_locale=${locale}或者cookie来自动跳转对应的语言版本统一处理。</p>
+<h3 id="vue-i18n使用"><a href="#vue-i18n使用" class="headerlink" title="vue-i18n使用"></a>vue-i18n使用</h3><p><a href="https://kazupon.github.io/vue-i18n/zh/introduction.html" target="_blank" rel="noopener">Vue-i18n 文档</a> 已经很清楚而且现在也有翻译了，不再赘述，需要注意使用webpack延迟加载而不是直接加载全部。</p>
+<p>一般情况下都是前端来维护国际化的资源文件，确实是一件费时费力枯燥无味的工作，但是在工作中切忌眼高手低，分配到你的工作一定要做好。随着业务发展，需要支持的语言的种类越来越多，为了方便维护，最开始就要考虑好上面的问题的解决方案。</p>
 
       
     </div>
@@ -558,8 +560,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/19/refer_cors_sec/" rel="next" title="「 安全 」从refer白名单说到CORS攻击点">
-                <i class="fa fa-chevron-left"></i> 「 安全 」从refer白名单说到CORS攻击点
+              <a href="/2019/03/19/refer_cors_sec/" rel="next" title="「 安全 」从 referrer 白名单说到CORS攻击点">
+                <i class="fa fa-chevron-left"></i> 「 安全 」从 referrer 白名单说到CORS攻击点
               </a>
             
           </div>
@@ -646,7 +648,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">42</span>
+                    <span class="site-state-item-count">43</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -691,7 +693,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">14</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
