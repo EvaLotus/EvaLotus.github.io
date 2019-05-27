@@ -1,5 +1,5 @@
 ---
-title: 「 安全 」从 `referrer` 白名单说到CORS攻击点
+title: 「 安全 」从 referrer 白名单说到CORS攻击点
 date: 2019-03-19 18:27:12
 tags: Security
 ---
@@ -61,13 +61,13 @@ atob('PGZvcm0gbWV0aG9kPXBvc3QgYWN0aW9uPWh0dHA6Ly9hLmIuY29tL2Q+PGlucHV0IHR5cGU9dG
 
 1.https://www.badmanhackevacoder.com/demo  （可能只校验了`/^.*evacoder.com/demo$/`）
 
-2.https://www.evacoder.badman.com/evacoder.com/demo   (可能只校验了`/^.*evacoder.com/demo$/`构造一个对应的文件夹）
+2.https://www.evacoder.badman.com/evacoder.com/demo   (可能只校验了`/^.*evacoder.com/demo$/`,可以构造一个对应的文件夹来绕过）
 
 3.https://badman.com?id=evacoder.com/demo （构造参数）
 
 #### CORS中的类似攻击
 
-我们常说AJAX有跨域限制，但是很多人没有注意到即使跨域，AJAX其实也已经将请求发出去，不过因为浏览器限制，JS获取不到响应而已，类似ping img。为了解决AJAX跨域的问题，我们通常使用CORS来跨域资源共享。
+我们常说AJAX有跨域限制，但是很多人没有注意到即使跨域，AJAX其实也已经将请求发出去，只不过因为浏览器限制，JS获取不到响应而已，类似ping img。为了解决AJAX跨域的问题，现代我们通常使用CORS来跨域资源共享。
 
 IE10以上都支持CORS，放心使用，只需要后端配置允许CORS，前端啥也不用改就可以直接获取到跨域的请求，我们可以视情况在IE10以下使用JSONP来兼容。
 
@@ -114,8 +114,10 @@ Access-Control-Allow-Origin: https://www.evacoder.com
 
 2.[https://www.evacoder.badman.com](https://www.evacoder.badman.com) \(可能只校验了`/^.\*evacoder..\*.com$/`）
 
-反正去测试吧，可能会碰到漏网之小白，再找到敏感接口，将 [https://www.badmanhackevacoder.com/testPage](https://www.badmanhackevacoder.com/testPage) 发给用户，用户可能已经登录过evacoder.com，坏人页请求敏感接口成功，就能获取到小白在evacoder的敏感信息了。
+去测试吧，可能会碰到漏网之小白，再找到敏感接口，将 [https://www.badmanhackevacoder.com/testPage](https://www.badmanhackevacoder.com/testPage) 发给用户，用户可能已经登录过evacoder.com，坏人页请求敏感接口成功，就能获取到小白在evacoder的敏感信息了。
 
 CORS可攻击点的范围比 `referrer` 要稍小一点，CORS只能构造假的domain， `referrer`  还可以构造参数，可发挥的空间更大。
 
-更多[CORS详细介绍](http://www.ruanyifeng.com/blog/2016/04/cors.html)
+虽然一般是server端referer和CORS白名单，但是作为对浏览器最了解的前端，为server端提供安全建议也是我们应该做的哦~
+
+[CORS详细介绍](http://www.ruanyifeng.com/blog/2016/04/cors.html)
