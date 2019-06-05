@@ -5,6 +5,7 @@ tags: JS
 ---
 记录localStorage在实践中遇到的具体问题。
 
+<!-- more -->
 #### localStorage和cookie的区别
 ##### 1.大小
 localStorage可以存储大约5M的数据，cookie一般只能存储4kb。
