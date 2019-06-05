@@ -105,18 +105,18 @@
 
 
 
-  <meta name="description" content="记录localStorage在实践中遇到的具体问题。 localStorage和cookie的区别1.大小localStorage可以存储大约5M的数据，cookie一般只能存储4kb。两者都有大小限制，不同浏览器单次设置的大小和总条数会有差异，需要做好超过限制之后的处理 2.兼容性cookie由来已久，几乎所有浏览器都支持，兼容性更好localStorage支持&amp;gt;=IE8，还有些特别的情况">
+  <meta name="description" content="记录localStorage在实践中遇到的具体问题。">
 <meta name="keywords" content="JS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="「 缓存 」localStorage实践指南">
 <meta property="og:url" content="https://evacoder.com/2019/02/20/localStorage/index.html">
 <meta property="og:site_name" content="Eva&#39;s Blog">
-<meta property="og:description" content="记录localStorage在实践中遇到的具体问题。 localStorage和cookie的区别1.大小localStorage可以存储大约5M的数据，cookie一般只能存储4kb。两者都有大小限制，不同浏览器单次设置的大小和总条数会有差异，需要做好超过限制之后的处理 2.兼容性cookie由来已久，几乎所有浏览器都支持，兼容性更好localStorage支持&amp;gt;=IE8，还有些特别的情况">
+<meta property="og:description" content="记录localStorage在实践中遇到的具体问题。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-05-27T03:53:18.707Z">
+<meta property="og:updated_time" content="2019-06-05T07:48:34.709Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="「 缓存 」localStorage实践指南">
-<meta name="twitter:description" content="记录localStorage在实践中遇到的具体问题。 localStorage和cookie的区别1.大小localStorage可以存储大约5M的数据，cookie一般只能存储4kb。两者都有大小限制，不同浏览器单次设置的大小和总条数会有差异，需要做好超过限制之后的处理 2.兼容性cookie由来已久，几乎所有浏览器都支持，兼容性更好localStorage支持&amp;gt;=IE8，还有些特别的情况">
+<meta name="twitter:description" content="记录localStorage在实践中遇到的具体问题。">
 
 
 
@@ -468,6 +468,7 @@
 
       
         <p>记录localStorage在实践中遇到的具体问题。</p>
+<a id="more"></a>
 <h4 id="localStorage和cookie的区别"><a href="#localStorage和cookie的区别" class="headerlink" title="localStorage和cookie的区别"></a>localStorage和cookie的区别</h4><h5 id="1-大小"><a href="#1-大小" class="headerlink" title="1.大小"></a>1.大小</h5><p>localStorage可以存储大约5M的数据，cookie一般只能存储4kb。<br>两者都有大小限制，不同浏览器单次设置的大小和总条数会有差异，需要做好超过限制之后的处理</p>
 <h5 id="2-兼容性"><a href="#2-兼容性" class="headerlink" title="2.兼容性"></a>2.兼容性</h5><p>cookie由来已久，几乎所有浏览器都支持，兼容性更好<br>localStorage支持&gt;=IE8，还有些特别的情况下兼容性不好：<br>ie11下用户保护模式下调用<code>window.localStorage</code>直接报错<br>禁止cookie时调用<code>window.localStorage</code>直接报错，但<code>document.cookie</code>不会报错<br>safari无痕模式下cookie是可用的，localStorage存在但是setItem时会报错(chrome的无痕模式localStorage和cookie都可用，只不过关闭浏览器之后会清除)</p>
 <h5 id="3-特性"><a href="#3-特性" class="headerlink" title="3.特性"></a>3.特性</h5><p>cookie在每次请求中都会携带，server端可以CRUD cookie，但是localStorage只是种浏览器存储方式而已，server端无法操作<br>cookie必须url encode<br>cookie可以设置如下属性：</p>
@@ -625,7 +626,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">43</span>
+                    <span class="site-state-item-count">45</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -674,7 +675,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">15</span>
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
